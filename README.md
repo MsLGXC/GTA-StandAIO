@@ -21,7 +21,16 @@
 </div>
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!
+
 > 如果您对上一条不感兴趣，也欢迎加入[春田椛椛幼稚园](https://jq.qq.com/?_wv=1027&k=4WdgwgSh)，一起搞♂(迫真)!
+
+> 如果你对在线Mod感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)
+
+> 在此处下载Mod[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC )
+
+> 在此处下载Mod[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj )访问码:v1q5
+
+> 在此处下载Mod[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link )
 
 ## 最后一个发布
 ```bash
