@@ -1,0 +1,17 @@
+<!---
+This is an example IPL Set file
+The File Starts with <IPL> tag and ends with </IPL> tag.
+<IPLMeta Name="Setname here" is the name of the set not that important but should be filled out.
+<Load Name="Enter the name of the IPL that you want to load"/>
+<Unload Name="Enter the name of the IPL that you want to unload"/>
+
+You can add as many entries as you want they will be proccessed line by line first all loads and than all unloads.
+---->
+<IPL>
+	<IPLMeta Name="Example"/>
+	<Load Name="airfield"/>
+	<Load Name="ap1_01_c_critical_0"/>
+	<Load Name="ap1_01_b_interior_v_hanger_milo_"/>
+	<Unload Name="ap1_01_a_strm_11"/>
+	<Unload Name="ap1_01_a_strm_5"/>
+</IPL>

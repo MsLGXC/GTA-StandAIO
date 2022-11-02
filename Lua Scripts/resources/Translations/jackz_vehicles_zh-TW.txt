@@ -1,0 +1,287 @@
+# Auto Translated by Google Translate on 2022-01-05 10:41:32
+# Generic
+
+NO_WAYPOINT_SET: 你没有设置航点
+AUTO_SPECTATE: 玩家距离太远，自动观看长达 3 秒。
+PLAYER_OUT_OF_RANGE: 玩家不在车内或不在范围内。
+THEM: 他们
+ME: 我
+FILE_SAVED: 已保存到 %s
+VEHICLE_SAVE_DATA: 车辆：%s%s (%s)\n格式版本：%s（当前：%s）
+VEHICLE_SPAWNED: 生成的 %s
+
+# Menu Specific
+
+VEHICLE_OPTIONS_NAME: 车辆选项
+VEHICLE_OPTIONS_DESC: 车辆选项列表
+TP_VEH_TO_ME_NAME: 传送车辆给我
+TP_VEH_TO_ME_DESC: 将他们的车辆传送到您当前的位置
+TP_VEH_TO_WAYPOINT_NAME: 将车辆传送到航点
+TP_VEH_TO_WAYPOINT_DESC: 将他们的车辆传送到您当前的航点
+# Menu: Attachments
+ATTACHMENTS_NAME: 附件
+ATTACHMENTS_DESC: 将他们的车辆连接到：\n货车\n拖车
+TOW_TRUCKS_DIVIDER: 拖车
+TOW_DRIVE_NAME: 牵引和驱动
+TOW_DRIVE_DESC: 在汽车前面产生一辆拖车并扭曲到驾驶员座位
+TOW_TRUCKS_WANDER_NAME: 拖（漫游）
+TOW_TRUCKS_WANDER_DESC: 会随机制造一辆拖车在周围随机拖拽玩家的车辆
+TOW_TO_WAYPOINT_NAME: 拖到航点
+TOW_TO_WAYPOINT_DESC: 会让一辆随机拖车将玩家的车辆拖到你的航点
+TOW_TO_PLAYER_DIVIDER: 拖到玩家
+TOW_TO_PLAYER_INDV_DESC: 会随机制造一辆拖车将玩家的车辆拖到他们身边
+DETACH_TOW_NAME: 分离拖车
+DETACH_TOW_DESC: 将与任何拖车分离
+USE_MAGNET_NAME: 使用磁铁
+USE_MAGNET_DESC: 如果启用，将使用磁铁而不是绳索。在某些情况下可能工作得更好
+CARGOBOB_FLY_NAME: 产卵 Cargobob & Fly
+CARGOBOB_FLY_DESC: 在他们的车辆上生成一个货车，并自己驾驶它
+CARGOBOB_MT_CHILIAD_NAME: Cargobob 到 Mt.奇利亚德
+CARGOBOB_MT_CHILIAD_DESC: 会让一个随机的cargobob乘坐玩家的车辆登上千年
+CARGOBOB_OCEAN_NAME: Cargobob 到海洋
+CARGOBOB_OCEAN_DESC: 会让一个随机的货车把玩家的载具带到大海
+CARGOBOB_TO_PLAYER_NAME: Cargobob 到玩家
+CARGOBOB_TO_PLAYER_INDV_DESC: 会让一个随机的货车把玩家的车辆带到他们身边
+CARGOBOB_TO_WAYPOINT_NAME: Cargobob 到航点
+CARGOBOB_TO_WAYPOINT_DESC: 会让一个随机的货车把玩家的车辆带到你的航点
+DETACH_CARGOBOB_NAME: 分离 Cargobob
+DETACH_CARGOBOB_DESC: 将cargobob从车辆上分离
+TRAILERS_DIVIDER: 拖车
+TRAILER_DRIVE_WANDER_NAME: 开车兜风
+TRAILER_DRIVE_WANDER_DESC: 会让一辆随机的出租车和拖车随机带上玩家的车辆
+TRAILER_TO_WAYPOINT_NAME: 前往航点
+TRAILER_TO_WAYPOINT_DESC: 会让一辆随机的出租车和拖车将玩家的车辆带到你的航点
+TRAILER_GATE_DOWN_OPT_NAME: Spawn Trailer with Gate Down
+TRAILER_GATE_DOWN_OPT_DESC: 生成的拖车应该在门关闭的情况下生成吗？
+TITAN_FLY_TO_MT_CHILIAD_NAME: 飞往 Mt. Chiliad
+TITAN_FLY_TO_MT_CHILIAD_DESC: 生成一个泰坦，将他们的车辆放入其中并飞向山。千年
+TITAN_FLY_TO_PLAYER_NAME: 飞向玩家
+TITAN_FLY_TO_PLAYER_INDV_DESC: 会让一个随机的泰坦把玩家的载具带到他们身边
+TITAN_FLY_TO_WAYPOINT_NAME: 飞到航点
+TITAN_FLY_TO_WAYPOINT_DESC: 生成一个泰坦，将他们的车辆放入其中并飞到您的航点
+ATTACH_FREE_VEHICLE_NAME: 免费车辆
+ATTACH_FREE_VEHICLE_DESC: 向上传送车辆以逃离拖车或其他物体
+ATTACH_DETACH_ALL_NAME: 全部分离
+ATTACH_DETACH_ALL_DESC: 将车辆与任何事物分离
+VEH_DRIVE_NAME: 驾驶车辆
+VEH_DRIVE_DESC: 模拟驾驶他们的车辆 - 通过生成和驾驶连接了车辆的克隆人。
+# Menu: Movement
+MOVEMENT_NAME: 移动
+MOVEMENT_DESC: 车辆移动选项列表。\n升压、发射、弹弓、停止
+MOVEMENT_BOOST_NAME: 促进
+MOVEMENT_BOOST_DESC: 以给定的速度（英里/小时）推动玩家的车辆前进
+MOVEMENT_SLINGSHOT_NAME: 弹弓
+MOVEMENT_SLINGSHOT_DESC: 以给定的速度 (mph) 和向上推动玩家的车辆
+MOVEMENT_LAUNCH_NAME: 发射
+MOVEMENT_LAUNCH_DESC: 向上提升玩家的车辆
+MOVEMENT_STOP_NAME: 停止
+MOVEMENT_STOP_DESC: 停止播放器的引擎
+# Menu: Doors
+DOORS_NAME: 门
+DOORS_DESC: 打开和关闭玩家的车门
+DOORS_LOCK_STATUS_NAME: 锁定状态
+DOORS_LOCK_STATUS_DESC: 更改值的锁定状态\n0 = 解锁\n1 = 为乘客锁定\n2 = 所有人锁定
+DOORS_OPEN_NAME: 打开
+DOORS_OPEN_DESC: 如果启用，将打开门\n如果禁用将关闭
+DOORS_ALL_DOORS_NAME: 所有门
+DOORS_ALL_DOORS_DESC: 打开/关闭应该打开所有门还是单独选择的门？
+DOORS_INDV_DESC: 打开或关闭 %s
+DOORS_LANDING_GEAR_NAME: 起落架放下
+DOORS_LANDING_GEAR_DESC: 改变起落架状态
+# Menu: Los Santos Customs
+LSC_DESC: 自定义玩家的车辆选项\n设置大灯\n设置油漆颜色\n等等
+LSC_EXTRAS_NAME: 车辆附加功能
+LSC_EXTRAS_DESC: 应用车辆可以拥有的任何车辆附加功能
+EXTRA_INDV_DESC: 将此额外应用于车辆
+LSC_XENON_TYPE_NAME: 氙气大灯喷漆类型
+LSC_XENON_TYPE_DESC: 用于氙气灯的涂料\n默认值 = -1\n白色 = 0\n蓝色 = 1\n电蓝 = 2\n薄荷绿 = 3\n柠檬绿 = 4\n黄色 = 5\n黄金雨 = 6\n橙色 = 7\n红色 = 8\n小马粉红色 = 9\n粉红色 = 10\n紫色 = 11\n黑光 = 12
+LSC_NEON_LIGHTS_NAME: 霓虹灯
+LSC_NEON_APPLY_NAME: 应用霓虹色
+LSC_NEON_APPLY_DESC: 使用下面选择的颜色应用霓虹色
+LSC_NEON_COLOR_NAME: 霓虹色
+LSC_NEON_COLOR_DESC: 用于霓虹灯的颜色
+LSC_PAINT_NAME: 画
+LSC_PAINT_DESC: 用下面选定的颜色涂漆汽车
+LSC_PAINT_PRIMARY_NAME: 油漆颜色（主要）
+LSC_PAINT_PRIMARY_DESC: 给汽车涂漆的原色
+LSC_PAINT_SECONDARY_NAME: 油漆颜色（次要）
+LSC_PAINT_SECONDARY_DESC: 给汽车喷漆的辅助色
+LSC_VEHICLE_MODS_NAME: 车辆模组
+LSC_VEHICLE_MODS_DESC: 
+LSC_MOD_NORMAL_DESC: 最多应用 %d 个 %s 变体\n-1 是股票
+LSC_MOD_TOGGLE_DESC: 打开或关闭 %s
+LSC_WHEEL_TYPE_NAME: 轮子类型
+LSC_WHEEL_TYPE_DESC: 设置车辆的车轮类型\n运动 = 0\n肌肉 = 1\n低骑手 = 2\nSUV = 3\n越野 = 4\n调谐器 = 5\n自行车车轮 = 6\n高端 = 7\n点击申请。
+LSC_WINDOW_TINT_NAME: 窗口色调
+LSC_WINDOW_TINT_DESC: 设置窗口色调。\n0 = 无\n1 = 纯黑色\n2 = 黑烟\n3 = 轻烟\n4 = 股票\n5 = 豪华轿车\n6 = 绿色\n点击申请。
+LSC_UPGRADE_NAME: 升级
+LSC_UPGRADE_DESC: 将车辆升级到最高等级
+LSC_UPGRADE_RANDOM_NAME: 随机升级
+LSC_UPGRADE_RANDOM_DESC: 将随机升级您的车辆。这包括油漆颜色和 mods 将随机应用。
+LSC_PERFORMANCE_UPGRADE_NAME: 性能升级
+LSC_PERFORMANCE_UPGRADE_DESC: 升级以下车辆部件：\n引擎\n传播\n刹车\n盔甲\n涡轮
+# Menu: Misc Vehicle Options
+VEH_CLONE_NAME: 克隆车辆
+VEH_CLONE_DESC: 克隆玩家的车辆
+VEH_SAVE_NAME: 保存车辆
+VEH_SAVE_DESC: 将玩家的车辆保存到磁盘
+VEH_SAVE_HINT: 输入名称以将车辆另存为
+VEH_SPAWN_VEHICLE_NAME: 生成载具
+VEH_SPAWN_VEHICLE_DESC: 在玩家面前生成指定名称的车辆
+VEH_SPAWN_NOT_FOUND: 找不到那辆车
+VEH_FLIP_UPRIGHT_NAME: 翻转直立
+VEH_FLIP_UPRIGHT_DESC: 将玩家的车辆向上翻转
+VEH_FLIP_180_NAME: 翻转车180
+VEH_FLIP_180_DESC: 翻转玩家的车辆
+VEH_HONK_NAME: 鸣喇叭
+VEH_HONK_DESC: 让他们的车鸣喇叭。如果车内没有玩家，效果最佳
+VEH_HIJACK_WANDER_NAME: 劫持车辆（流浪）
+VEH_HIJACK_WANDER_DESC: 使随机 NPC 劫持他们的车辆\n 0 = 门已解锁\n 1 = 门已锁
+VEH_HIJACK_TO_PLAYER_NAME: 劫持并驾驶至玩家
+VEH_HIJACK_TO_PLAYER_INDV_DESC: 会让一个随机的 ped 驾驶玩家的车辆到他们身边
+VEH_HIJACK_FAILED_ACQUIRE: 劫机者未能及时进入车辆。
+VEH_BURST_TIRES_NAME: 爆胎
+VEH_BURST_TIRES_DESC: 爆破玩家的车辆轮胎
+VEH_DELETE_NAME: 删除车辆
+VEH_DELETE_DESC: 移除玩家的车辆
+VEH_EXPLODE_NAME: 爆炸车
+VEH_EXPLODE_DESC: 用风格杀死玩家的车辆引擎。
+VEH_KILL_ENGINE_NAME: 杀死引擎
+VEH_KILL_ENGINE_DESC: 杀死玩家的车辆引擎
+VEH_CLEAN_NAME: 清洁车辆
+VEH_CLEAN_DESC: 清除玩家载具上的任何污垢或血迹
+VEH_REPAIR_NAME: 维修车
+VEH_REPAIR_DESC: 修理玩家的车辆
+VEH_TOGGLE_GODMODE_NAME: 切换神模式
+VEH_TOGGLE_GODMODE_DESC: 切换他们的车辆无敌
+VEH_LICENSE_NAME: 设置车牌
+VEH_LICENSE_DESC: 设置他们的车辆牌照
+VEH_SAVE_CURRENT_NAME: 保存当前车辆
+VEH_SAVE_CURRENT_DESC: 使用所有自定义保存您当前的车辆
+VEH_SAVE_CURRENT_HINT: 输入名称以将车辆另存为
+# Menu: Cloud 
+CLOUD_NAME: 云车
+CLOUD_DESC: 查看其他用户的车辆或上传您自己的车辆
+CLOUD_SEARCH_NAME: 搜索
+CLOUD_SEARCH_DESC: 在云端搜索车辆
+CLOUD_SEARCH_NEW_NAME: 搜索新品
+CLOUD_SEARCH_NO_RESULTS: 没有找到 %s 的搜索结果
+CLOUD_SPAWN_NAME: 产卵
+CLOUD_SPAWN_DESC: 
+CLOUD_DOWNLOAD_NAME: 下载
+CLOUD_DOWNLOAD_DESC: 将此文件保存到您保存的自定义车辆列表中\n%appdata%\支架\车辆
+CLOUD_UPLOAD: 上传
+CLOUD_UPLOAD_DESC: 浏览您保存的车辆以上传到云端
+CLOUD_UPLOAD_VEHICLE: 点击上传此车辆
+CLOUD_UPLOAD_VEHICLE_NOTICE: 将覆盖云中的现有版本。
+CLOUD_UPLOAD_NO_ID: 您没有 cloudID，请联系 jackz 寻求帮助。
+CLOUD_UPLOAD_SUCCESS: 车辆成功上传至云端。
+CLOUD_UPLOAD_ERROR: 无法上传到云：%s
+CLOUD_BROWSE_DIVIDER: 浏览用户车辆
+CLOUD_BROWSE_VEHICLES_DESC: 浏览所有上传的车辆
+CLOUD_BROWSE_VEHICLES_COUNT: %d 辆
+# Menu: Spawn Saved
+SAVED_NAME: 生成保存的车辆
+SAVED_DESC: 可生成的已保存车辆列表。\n存储在 %appdata%\Stand\Vehicles\n仅支持自定义 json 车辆，不兼容其他菜单。
+SPAWN_IN_VEHICLE_NAME: 在车辆中生成
+SPAWN_IN_VEHICLE_DESC: 启用：将在车辆中生成\n禁用：会在你面前生成
+SAVED_APPLY_CURRENT_NAME: 将保存的车辆应用到当前车辆
+SAVED_APPLY_CURRENT_DESC: 它不会生成新保存的车辆，而是将其设置应用于您当前的车辆。
+SAVED_VEHICLE_DESC: 生成保存的自定义车辆
+SAVED_MUST_BE_IN_VEHICLE: 您必须在车内才能申请
+SAVED_SUCCESS_CURRENT: 将 %s 应用到您当前的车辆
+# Menu: Nearby Vehicles
+NEARBY_VEHICLES_NAME: 附近车辆
+NEARBY_VEHICLES_DESC: 对附近车辆采取的行动
+NEARBY_TOW_ALL_NAME: 拖走附近的所有车辆
+NEARBY_TOW_ALL_DESC: 警告：这可能会使您的 FPS 下降甚至使您的游戏崩溃！\n仅限于 %d 辆拖车以防止碰撞。
+NEARBY_TOW_CLEAR_NAME: 清除所有附近的拖车
+NEARBY_CARGOBOB_ALL_NAME: Cargobob 附近的汽车
+NEARBY_CARGOBOB_ALL_DESC: 忽略玩家，所以他们可以观看 eh)\n可能有小概率崩溃，不要太快发垃圾邮件
+NEARBY_CARGOBOB_ALL_MAGNET_NAME: Cargobob 附近的汽车（磁铁）
+NEARBY_CARGOBOB_ALL_MAGNET_EXTRA: 使用磁铁
+NEARBY_CARGOBOB_CLEAR_NAME: 清除所有附近的 Cargobob
+NEARBY_ALL_CLEAR_NAME: 清除附近的所有车辆
+NEARBY_ALL_CLEAR_DESC: 清除范围内所有附近的车辆。
+NEARBY_ALL_CLEAR_SUCCESS: 已删除 %d 辆车
+NEARBY_EXPLODE_RANDOM_NAME: 随机爆炸
+NEARBY_EXPLODE_RANDOM_DESC: 会随机标记附近的一辆汽车爆炸
+NEARBY_HIJACK_ALL_NAME: 劫持附近所有
+NEARBY_HIJACK_ALL_DESC: 使NPC劫持附近的所有车辆
+NEARBY_HONK_NAME: 鸣喇叭
+NEARBY_HONK_DESC: 使附近所有车辆警报响起
+# Menu: All Players
+ALL_NAME: 所有玩家
+ALL_DESC: 在所有玩家上激活的动作列表。
+ALL_NEAR_ONLY_NAME: 仅附近
+ALL_NEAR_ONLY_DESC: 脚本应该只适用于附近的车辆还是应该适用于所有车辆。\n注意：如果为所有车辆启用，菜单将一个一个地自动观察每个玩家。
+ALL_SPAWN_DESC: 为所有玩家生成车辆名称
+ALL_CLEAN_DESC: 清洁所有玩家的车辆
+ALL_REPAIR_DESC: 修理所有玩家的车辆
+ALL_GODMODE_DESC: 切换所有玩家的车辆无敌
+# Menu: Autodrive
+AUTODRIVE_NAME: 自动驾驶
+AUTODRIVE_DESC: 自动驾驶选项
+AUTODRIVE_STYLE_NORMAL: 普通的
+AUTODRIVE_STYLE_OVERTAKE: 有时超车
+AUTODRIVE_STYLE_AVOID_EXTREMELY: 极避
+AUTODRIVE_STYLE_RUSHED: 冲
+AUTODRIVE_STYLE_IGNORE: 忽略灯光
+AUTODRIVE_STYLE_AVOID: 避免交通
+AUTODRIVE_STYLE_REVERSED: 反转
+AUTODRIVE_STYLE_GOOD: 据说很好驾驶
+AUTODRIVE_STYLE_MOST_EFFICIENT: 最有效率
+AUTODRIVE_STYLE_MOST_EFFICIENT_DESC: 从 A 到 B，对车辆不利。
+AUTODRIVE_STYLE_QUICK: 快速智能
+AUTODRIVE_STYLE_QUICK_DESC: 避开所有实体，采用最短路径。
+AUTODRIVE_STYLE_NERVOUS: 紧张的司机
+AUTODRIVE_STYLE_NERVOUS_DESC: 止于一切。耐心等待。避开高速公路。
+# Menu: Autodrive/Chauffeur
+AUTODRIVE_CHAUFFEUR_NAME: 司机
+AUTODRIVE_CHAUFFEUR_DESC: 为您制作另一个 NPC 驱动器。
+AUTODRIVE_CHAUFFEUR_STOP_WHEN_FALLEN_NAME: 不在/开时停止驾驶
+AUTODRIVE_CHAUFFEUR_STOP_WHEN_FALLEN_DESC: 当您下车或从车顶跌落时，司机是否应该停下来？
+AUTODRIVE_CHAUFFEUR_SPAWN_DRIVER_NAME: 生成驱动程序
+AUTODRIVE_CHAUFFEUR_SPAWN_DRIVER_DESC: 将获得一名司机进入您的最后/现用车辆为您驾驶。它会自动劫持任何播放器驱动程序。\n发出就绪信号后，选择目的地。
+# TODO: Driver Ready Signals
+AUTODRIVE_CHAUFFEUR_NO_DRIVER: 没有要删除的驱动程序
+AUTODRIVE_DRIVER_UNAVAILABLE: 司机不在车内或超出范围
+AUTODRIVE_DRIVER_NONE: 没有驱动程序来控制，产生一个新的驱动程序。
+AUTODRIVE_STYLE_NAME: 驾驶方式
+AUTODRIVE_STYLE_DESC: 设置 AI 驱动程序的驾驶方式
+AUTODRIVE_STYLE_INDV_DESC: 将驾驶风格设置为
+AUTODRIVE_STYLE_INDV_SUCCESS: 将驾驶方式设置为 %s
+AUTODRIVE_SPEED_NAME: 行驶速度
+AUTODRIVE_SMART_NAME: 智能自动驾驶
+AUTODRIVE_SMART_DESC: 将自动驾驶到您当前的航点，并在您按下任何移动控件时暂停。
+AUTODRIVE_ACTIONS_DIVIDER: 驱动操作
+AUTODRIVE_DRIVE_WAYPOINT_NAME: 开车到航点
+AUTODRIVE_DRIVE_TO_PLAYER_NAME: 开车到玩家
+AUTODRIVE_DRIVE_TO_PLAYER_INDV_DESC: 开车到选定的玩家
+AUTODRIVE_WANDER_HOVER_NAME: 徘徊/悬停
+AUTODRIVE_WANDER_HOVER_DESC: 直升机将改为悬停。飞机 idk 可能坠毁
+AUTODRIVE_STOP_NAME: 停止驾驶
+# Menu: Lua Scripts Cont.
+SPINNING_CARS_NAME: 纺车
+SPINNING_CARS_DESC: 打开看看
+# Menu: Current Modifiers Menu
+CVM_NAME: 当前车辆设置
+CVM_DESC: 将乘数和其他设置应用于您当前的汽车，例如：\n扭矩\n重力\n灯\n永远直立
+CVM_KEEP_UPRIGHT_NAME: 始终保持直立
+CVM_KEEP_UPRIGHT_DESC: 一旦检测到翻转，自动翻转车辆直立。
+CVM_ACTIVE_MODS_DIVIDER: 主动模组
+CVM_LIGHTS_NAME: 灯
+CVM_LIGHTS_DESC: 默认值：100
+CVM_TORQUE_NAME: 加速
+CVM_TORQUE_DESC: 默认值：100
+CVM_TRACTION_NAME: 牵引力
+CVM_TRACITON_DESC: 默认 -> 1
+CVM_ACTIVE_NAME: 使能够
+CVM_ACTIVE_DESC: 是否应该应用当前的乘数？
+CRUISE_CONTROL_NAME: 巡航控制
+CRUISE_CONTROL_DESC: 将让您的车辆以您最后的速度行驶。有点鸡肋
+NEARBY_VEHICLES_LIST_NAME: 车辆清单
+NEARBY_VEHICLES_LIST_DESC: 提供附近所有车辆的列表
+VEHLIST_SEATS_NAME: 座位
+VEHLIST_SEATS_DESC: 
+VEHLIST_SEAT_OCCUPIED: 车辆座位被玩家占用

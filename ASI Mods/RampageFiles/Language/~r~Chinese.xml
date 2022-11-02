@@ -1,0 +1,1065 @@
+<!---
+本汉化由MrLGXC制作!感谢@visgod @GeGe提供了近200行的旧版翻译！
+---->
+<Table>
+	<Meta Author="~r~MrLGXC汉化"/>
+	<Translation Original="Home" Replace="Translated whatever"/>
+	<Translation Original="HOME" Replace="~r~MrLGXC汉化~y~q群1051701387"/>
+	<Translation Original="Player" Replace="玩家"/>
+	<Translation Original="Weapon" Replace="武器"/>
+	<Translation Original="Vehicle" Replace="载具"/>
+	<Translation Original="Teleport" Replace="传送"/>
+	<Translation Original="Spawner" Replace="生成器"/>
+	<Translation Original="World" Replace="世界"/>
+	<Translation Original="Miscellaneous" Replace="杂项"/>
+	<Translation Original="Character Stats" Replace="角色统计"/>
+	<Translation Original="Settings" Replace="设置"/>
+	<Translation Original="Wardrobe" Replace="衣柜"/>
+	<Translation Original="Language" Replace="语言"/>
+	<Translation Original="Hotkey Manager" Replace="快捷键管理器"/>
+	<Translation Original="Search" Replace="搜索"/>
+    <Translation Original="Core" Replace="核心"/>
+	<Translation Original="Window Manager" Replace="窗口管理器"/>
+	<Translation Original="Extended UI" Replace="扩展UI"/>
+	<Translation Original="Theme" Replace="主题"/>
+	<Translation Original="Plugins" Replace="插件"/>
+	<Translation Original="Load / Save" Replace="加载/保存"/>
+	<Translation Original="Navigation Delay" Replace="纵向滚动延迟"/>
+	<Translation Original="Value Delay" Replace="横向滚动延迟"/>
+	<Translation Original="Open Key" Replace="菜单启动键"/>
+	<Translation Original="Gamepad Open Key" Replace="手柄菜单启动键"/>
+	<Translation Original="Search for an Option" Replace="搜索选项"/>
+	<Translation Original="Search Results" Replace="搜索结果"/>
+	<Translation Original="TRAINER SEARCH" Replace="修改器搜索"/>
+	<Translation Original="Search through most integrated options." Replace="搜索最集成的选项"/>
+	<Translation Original="Manage essential features." Replace="管理基本功能"/>
+	<Translation Original="Open various windows." Replace="打开各种窗口"/>
+	<Translation Original="Toggle extended interface features." Replace="切换扩展界面功能"/>
+	<Translation Original="Edit the menu style." Replace="编辑菜单样式"/>
+	<Translation Original="No Plugins found" Replace="找不到插件"/>
+	<Translation Original="PLUGIN" Replace="插件"/>
+	<Translation Original="LANGUAGE" Replace="语言"/>
+	<Translation Original="Default" Replace="默认"/>
+	<Translation Original="Manage pre-defined hotkeys." Replace="管理预设的快捷键"/>
+	<Translation Original="Load and Save configs." Replace="加载并保存配置"/>
+	<Translation Original="Files get saved under RampageFiles." Replace="文件保存在RampageFiles下"/>
+	<Translation Original="Set the up/down scroll delay." Replace="设置上/下滚动延迟"/>
+	<Translation Original="Set the left/right scroll delay." Replace="设置左/右滚动延迟"/>
+	<Translation Original="The main key to open Rampage" Replace="打开Rampage的主键"/>
+	<Translation Original="Don't forget to save settings after changing." Replace="更改后不要忘记保存设置"/>
+	<Translation Original="The main key to open Rampage with Controller" Replace="用手柄打开Rampage的主键"/>
+	<Translation Original="SETTINGS" Replace="设置"/>
+	<Translation Original="CORE SETTINGS" Replace="核心设置"/>
+	<Translation Original="Debug" Replace="调试"/>
+	<Translation Original="Mouse controls" Replace="鼠标控制"/>
+	<Translation Original="Controller controls" Replace="手柄控制"/>
+	<Translation Original="Tooltip box" Replace="工具提示框"/>
+	<Translation Original="Menu sounds" Replace="菜单声音"/>
+	<Translation Original="Sound Theme" Replace="声音主题"/>
+	<Translation Original="Check for Updates" Replace="检查更新"/>
+	<Translation Original="Restart Game" Replace="重新启动游戏"/>
+	<Translation Original="Enable mouse cursor" Replace="启用鼠标光标"/>
+	<Translation Original="Enable support for XBox / PS controllers." Replace="启用对XBOX/PS手柄的支持"/>
+	<Translation Original="Show tooltip box." Replace="显示工具提示框"/>
+	<Translation Original="Menu click and switch sounds." Replace="菜单单击和切换时的声音"/>
+	<Translation Original="Set the menu sound theme." Replace="设置菜单声音主题"/>
+	<Translation Original="Relaunches the game." Replace="重新启动游戏"/>
+	<Translation Original="DEBUG" Replace="调试"/>
+	<Translation Original="Advanced Logging" Replace="高级日志记录"/>
+	<Translation Original="This will log more info to RampageLog.log" Replace="这将把更多信息记录到RampageLog.log中"/>
+	<Translation Original="Clear Brief" Replace="清除摘要"/>
+	<Translation Original="Test Feed" Replace="测试馈送"/>
+	<Translation Original="Test Help Text" Replace="测试帮助文本"/>
+	<Translation Original="Throw Exception" Replace="引发异常"/>
+	<Translation Original="WINDOW MANAGER" Replace="窗口管理器"/>
+	<Translation Original="Open Log" Replace="打开日志"/>
+	<Translation Original="Open Sysinfo" Replace="打开系统信息"/>
+	<Translation Original="Open Performance" Replace="打开性能"/>
+	<Translation Original="Open Hotkeys" Replace="打开快捷键"/>
+	<Translation Original="Close all" Replace="全部关闭"/>
+	<Translation Original="Reset Windows" Replace="重置窗口"/>
+	<Translation Original="Open Rampage Log window." Replace="打开Rampage日志窗口"/>
+	<Translation Original="Open Sysinfo window." Replace="打开系统信息窗口"/>
+	<Translation Original="Open Performance window." Replace="打开性能窗口"/>
+	<Translation Original="Open Hotkeys window." Replace="打开快捷键窗口"/>
+	<Translation Original="Close all open windows." Replace="关闭所有打开的窗口"/>
+	<Translation Original="Reset Windows to default position." Replace="将窗口重置为默认位置"/>
+	<Translation Original="EXTENDED UI" Replace="扩展UI"/>
+	<Translation Original="Teleport map" Replace="传送地图"/>
+	<Translation Original="Vehicle previews" Replace="车辆预览"/>
+	<Translation Original="Window Activators" Replace="窗口激活器"/>
+	<Translation Original="Invert Colors" Replace="反色"/>
+	<Translation Original="Smooth scrolling" Replace="平滑滚动"/>
+	<Translation Original="Scroll Anim Speed" Replace="滚动动画速度"/>
+	<Translation Original="Toggle Globe" Replace="切换地球仪"/>
+	<Translation Original="Toggle the globe on Rectangle header." Replace="在头图上切换地球仪"/>
+	<Translation Original="Enable teleport map under teleport options." Replace="在传送选项下启用传送地图"/>
+	<Translation Original="See yourself and destinations on a map." Replace="在地图上查看自己和目的地"/>
+	<Translation Original="Enable vehicle pictures in vehicle spawner." Replace="在车辆生成器中启用车辆图片"/>
+	<Translation Original="Displays window activator panels top-right." Replace="显示右上角的窗口激活器面板"/>
+	<Translation Original="Invert the menu colors." Replace="反转菜单颜色"/>
+	<Translation Original="Smooth scroller transition." Replace="平滑滚动条过渡"/>
+	<Translation Original="Changes the animation speed." Replace="更改动画速度"/>
+	<Translation Original="THEME" Replace="主题"/>
+	<Translation Original="Premade themes" Replace="预制主题"/>
+	<Translation Original="Header" Replace="头图"/>
+	<Translation Original="Header image" Replace="标题图片"/>
+	<Translation Original="Customize" Replace="定制"/>
+	<Translation Original="Primary" Replace="主要的"/>
+	<Translation Original="Title Text" Replace="标题文本"/>
+	<Translation Original="Header Color" Replace="头图颜色"/>
+	<Translation Original="Scroller Color" Replace="滚动条颜色"/>
+	<Translation Original="RGB Mode" Replace="RGB模式"/>
+	<Translation Original="Menu" Replace="菜单"/>
+	<Translation Original="Menu X axis" Replace="菜单X轴"/>
+	<Translation Original="Load and Save config to file." Replace="加载并保存配置到文件"/>
+	<Translation Original="File is saved under RampageFiles\Settings.json" Replace="文件保存在RampageFiles\Settings.json下"/>
+	<Translation Original="Change the top header image." Replace="更改顶部标题图像"/>
+	<Translation Original="Menu Y axis" Replace="菜单Y轴"/>
+	<Translation Original="Restore" Replace="恢复"/>
+	<Translation Original="This will load the optimal settings." Replace="这将加载最佳设置"/>
+	<Translation Original="Load optimal defaults" Replace="加载最优默认设置"/>
+	<Translation Original="Menu color rgb cycle." Replace="菜单颜色rgb循环"/>
+	<Translation Original="Interaction" Replace="干涉"/>
+	<Translation Original="Custom" Replace="自定义"/>
+	<Translation Original="Animated" Replace="动画"/>
+	<Translation Original="Change trainer x position." Replace="更改修改器x轴位置"/>
+	<Translation Original="Change trainer y position." Replace="更改修改器y轴位置"/>
+	<Translation Original="PREMADE THEMES" Replace="预制主题"/>
+	<Translation Original="Red" Replace="红色"/>
+	<Translation Original="Blue" Replace="蓝色"/>
+	<Translation Original="Green" Replace="绿色"/>
+	<Translation Original="Purple" Replace="紫色"/>
+	<Translation Original="Dark Purple" Replace="深紫色"/>
+	<Translation Original="Light Blue" Replace="浅蓝色"/>
+	<Translation Original="Spring Green" Replace="春绿色"/>
+	<Translation Original="Dark Green" Replace="深绿色"/>
+	<Translation Original="Cadet Blue" Replace="军校蓝"/>
+	<Translation Original="Navy Blue" Replace="海军蓝"/>
+	<Translation Original="Cerulean Blue" Replace="天蓝色"/>
+	<Translation Original="Lorulean Purple" Replace="紫罗兰"/>
+	<Translation Original="Dark Magenta" Replace="深品红"/>
+	<Translation Original="Maroon" Replace="紫褐色"/>
+	<Translation Original="Orange" Replace="橙色"/>
+	<Translation Original="Crimson" Replace="深红色"/>
+	<Translation Original="Red Dead Red" Replace="大表哥红"/>
+	<Translation Original="Social Club" Replace="Social Club色"/>
+	<Translation Original="Teal" Replace="蓝绿色"/>
+	<Translation Original="Deep Pink" Replace="深粉红色"/>
+	<Translation Original="HOTKEY MANAGER" Replace="快捷键管理器"/>
+	<Translation Original="Cursor Hotkey" Replace="鼠标快捷键"/>
+	<Translation Original="Enable key to activate mouse support." Replace="启用键以激活鼠标支持"/>
+	<Translation Original="Cursor Key" Replace="鼠标键位"/>
+	<Translation Original="Vehicle Weapon Key" Replace="车载武器键位"/>
+	<Translation Original="Plane Smoke Key" Replace="飞机烟雾键位"/>
+	<Translation Original="Teleport Hotkey" Replace="传送快捷键"/>
+	<Translation Original="Fix Vehicle Hotkey" Replace="修复车辆快捷键"/>
+	<Translation Original="Creator Hotkey" Replace="创造模式快捷键"/>
+	<Translation Original="Cmd Hotkey" Replace="控制台快捷键"/>
+	<Translation Original="Cmd Key" Replace="控制台键位"/>
+	<Translation Original="Registered Hotkeys" Replace="已注册的快捷键"/>
+	<Translation Original="Save Hotkey Config" Replace="保存快捷键配置"/>
+	<Translation Original="Load Hotkey Config" Replace="加载快捷键配置"/>
+	<Translation Original="Teleports you to waypoint on press." Replace="按下此键时传送你到导航点"/>
+	<Translation Original="Fixes your vehicle on press." Replace="按下此键时修复你的载具"/>
+	<Translation Original="Fast switch into creator mode." Replace="快速切换到创造模式"/>
+	<Translation Original="Enable key to activate cmd input." Replace="启用键以激活控制台输入"/>
+	<Translation Original="LOAD / SAVE SETTINGS" Replace="加载/保存设置"/>
+	<Translation Original="Save Settings" Replace="保存设置"/>
+	<Translation Original="Load Settings" Replace="加载设置"/>
+	<Translation Original="Toggles" Replace="切换"/>
+	<Translation Original="Sync Toggle Config" Replace="同步切换配置"/>
+	<Translation Original="Save current settings to file." Replace="将当前设置保存到文件"/>
+	<Translation Original="Load settings from file." Replace="从文件加载设置"/>
+	<Translation Original="Enale syncing toggles with config." Replace="启用同步切换配置"/>
+	<Translation Original="PLAYER" Replace="玩家"/>
+    <Translation Original="Walk Style" Replace="行走风格"/>
+    <Translation Original="Vision" Replace="视觉"/>
+    <Translation Original="Moods" Replace="情绪"/>
+    <Translation Original="Animations" Replace="动画"/>
+    <Translation Original="Scenarios" Replace="场景"/>
+    <Translation Original="Effects" Replace="效果"/>
+    <Translation Original="Player Proofs" Replace="玩家保护"/>
+    <Translation Original="Godmode" Replace="无敌模式"/>
+    <Translation Original="Auto Heal" Replace="自动回血"/>
+    <Translation Original="Ghostmode" Replace="幽灵模式"/>
+	<Translation Original="Wanted Level" Replace="通缉等级"/>
+    <Translation Original="Set your wanted level." Replace="设置你的通缉等级"/>
+    <Translation Original="Run Speed" Replace="奔跑速度"/>
+    <Translation Original="Swim Speed" Replace="游泳速度"/>
+    <Translation Original="Never Wanted" Replace="永不通缉"/>
+    <Translation Original="Police Ignore" Replace="警察无视"/>
+    <Translation Original="No Ragdoll" Replace="没有布娃娃"/>
+    <Translation Original="Super Jump" Replace="超级跳跃"/>
+    <Translation Original="Beast Jump" Replace="野兽跳跃"/>
+    <Translation Original="Ultra Jump" Replace="极端跳跃"/>
+    <Translation Original="Ultra Run" Replace="极端跑步"/>
+    <Translation Original="Player Opacity" Replace="玩家不透明度"/>
+    <Translation Original="Unlimited Special Ability" Replace="无限特殊能力"/>
+    <Translation Original="Fly Mode" Replace="飞行模式"/>
+    <Translation Original="Activates fly mode." Replace="激活飞行模式"/>
+	<Translation Original="Superman" Replace="超人"/>
+    <Translation Original="Collision" Replace="碰撞"/>
+    <Translation Original="Midget Mode" Replace="微型模式"/>
+    <Translation Original="Force" Replace="原力"/>
+    <Translation Original="Forcefield" Replace="力场"/>
+    <Translation Original="Breath Fire" Replace="呼吸火焰"/>
+    <Translation Original="Show Bones" Replace="显示骨骼"/>
+    <Translation Original="Clip through objects" Replace="穿过物体"/>
+    <Translation Original="Heal" Replace="治愈"/>
+    <Translation Original="Suicide" Replace="自杀"/>
+    <Translation Original="Clone Player" Replace="克隆玩家"/>
+    <Translation Original="Clean Ped" Replace="清洁玩家"/>
+    <Translation Original="Clean your ped." Replace="清洁您的ped"/>
+    <Translation Original="Clean's blood and damages." Replace="清除血液和损伤"/>
+	<Translation Original="WEAPONS" Replace="武器"/>
+    <Translation Original="Manage Weapons" Replace="管理武器"/>
+    <Translation Original="Ammo Modifiers" Replace="弹药修改器"/>
+    <Translation Original="Aimbot" Replace="自动瞄准"/>
+    <Translation Original="Modifiers" Replace="修改器"/>
+    <Translation Original="Heatvision on Aiming" Replace="瞄准时热感"/>
+    <Translation Original="Slow Motion on Aiming" Replace="瞄准时慢动作"/>
+    <Translation Original="Rapid Fire" Replace="快速射击"/>
+    <Translation Original="Rapid Gun" Replace="快速枪"/>
+    <Translation Original="Tenfold Bullets" Replace="十倍子弹"/>
+    <Translation Original="Infinite Ammo" Replace="无限子弹"/>
+    <Translation Original="No Reload" Replace="无需装填"/>
+    <Translation Original="Manage your weapons" Replace="管理您的武器"/>
+    <Translation Original="Teleport Gun" Replace="传送枪"/>
+    <Translation Original="Cartoon Gun" Replace="卡通枪"/>
+    <Translation Original="Debug Gun" Replace="调试枪"/>
+    <Translation Original="Delete Gun" Replace="删除枪"/>
+    <Translation Original="Revive Gun" Replace="复活枪"/>
+    <Translation Original="Gravity Gun" Replace="重力炮"/>
+    <Translation Original="Magnet Gun" Replace="电磁枪"/>
+    <Translation Original="Pickup Gun" Replace="拾取枪"/>
+    <Translation Original="Portal Gun" Replace="传送门枪"/>
+    <Translation Original="Force Gun" Replace="原力枪"/>
+    <Translation Original="Vehicle Paint Gun" Replace="车辆喷漆枪"/>
+    <Translation Original="Drive It Gun" Replace="驾驶枪"/>
+    <Translation Original="Teleport into impact vehicle." Replace="传送到击中的车辆中"/>
+	<Translation Original="Options that affect your player." Replace="影响玩家的选项"/>
+	<Translation Original="Customize all your weapons." Replace="定制所有武器"/>
+	<Translation Original="Customize and mod your vehicle." Replace="定制和改装您的车辆"/>
+	<Translation Original="Teleport everywhere." Replace="传送到任何地方"/>
+	<Translation Original="Spawn and manage objects." Replace="生成和管理对象"/>
+	<Translation Original="Spawn maps and modded vehicles." Replace="生成地图和改装车辆"/>
+	<Translation Original="Control the environment." Replace="控制环境"/>
+	<Translation Original="Misc options." Replace="其他选项"/>
+	<Translation Original="Edit your offline character stats." Replace="编辑线下角色统计信息"/>
+	<Translation Original="Customize Rampage to your own like." Replace="根据自己的喜好定制Rampage"/>
+	<Translation Original="Change your current outfit." Replace="改变你当前的着装"/>
+	<Translation Original="Change your current walk style." Replace="改变当前行走风格"/>
+	<Translation Original="Change your vision." Replace="改变你的视觉"/>
+	<Translation Original="Change your facial expression." Replace="改变你的面部表情"/>
+	<Translation Original="Animate your player model." Replace="设置玩家模型的动画"/>
+	<Translation Original="Let your model play scenarios." Replace="让您的模型播放场景"/>
+	<Translation Original="Play effects on your player model" Replace="在玩家模型上播放效果"/>
+	<Translation Original="Set your player provements." Replace="设置玩家装备"/>
+	<Translation Original="Your player becomes Godmode." Replace="你的玩家成为无敌模式"/>
+	<Translation Original="Your player regenerates max health when damaged." Replace="你的玩家在受到伤害时恢复最大生命值"/>
+	<Translation Original="Your player becomes Ghostmode." Replace="你的玩家变成幽灵模式"/>
+	<Translation Original="Set your run speed." Replace="设定跑步速度"/>
+	<Translation Original="Set your swim speed." Replace="设定游泳速度"/>
+	<Translation Original="Never get wanted." Replace="永远不会被通缉"/>
+	<Translation Original="Cops will ignore you." Replace="警察会无视你"/>
+	<Translation Original="Disable ped ragdoll on impact or fall." Replace="在碰撞或坠落时禁用ped布娃娃效果"/>
+	<Translation Original="Your ped can jump higher." Replace="你的ped可以跳得更高"/>
+	<Translation Original="Enable beast jump ability." Replace="启用野兽跳跃能力"/>
+	<Translation Original="Your ped can jump much higher." Replace="你的ped可以跳得更高"/>
+	<Translation Original="Your ped can run extremely fast." Replace="你的ped能跑得非常快"/>
+	<Translation Original="Set your player opacity." Replace="设置玩家的不透明度"/>
+	<Translation Original="Gives you unlimited special ability." Replace="给你无限的特殊能力"/>
+	<Translation Original="Activates superman mode." Replace="激活超人模式"/>
+	<Translation Original="Disable player collision." Replace="禁用玩家碰撞"/>
+	<Translation Original="You will fall trough world." Replace="你会从世界中掉落"/>
+	<Translation Original="Makes player tiny." Replace="使玩家变小"/>
+	<Translation Original="Use the force." Replace="使用原力"/>
+	<Translation Original="Push nearby entities away." Replace="将附近的实体推开"/>
+	<Translation Original="Breath out fire." Replace="呼出火焰"/>
+	<Translation Original="Show Player Bones." Replace="显示玩家骨骼"/>
+	<Translation Original="Allows you to warp through some objects." Replace="允许你穿过某些对象"/>
+	<Translation Original="Heal yourself." Replace="治愈你自己"/>
+	<Translation Original="Full heal + full armor." Replace="满血+满护甲"/>
+	<Translation Original="Kill yourself." Replace="自杀"/>
+	<Translation Original="Instant death." Replace="瞬间死亡"/>
+	<Translation Original="Clones your player." Replace="克隆您的玩家"/>
+	<Translation Original="Creates a clone of your current model." Replace="创建当前模型的克隆"/>
+	<Translation Original="Player Info" Replace="玩家信息"/>
+	<Translation Original="Health" Replace="血量"/>
+	<Translation Original="Armour" Replace="护甲"/>
+	<Translation Original="Character" Replace="角色"/>
+	<Translation Original="Other" Replace="其他"/>
+	<Translation Original="Model" Replace="模型"/>
+	<Translation Original="Movement" Replace="移动"/>
+	<Translation Original="Location" Replace="位置"/>
+	<Translation Original="X Coord" Replace="X坐标"/>
+	<Translation Original="Y Coord" Replace="Y坐标"/>
+	<Translation Original="Z Coord" Replace="Z坐标"/>
+	<Translation Original="Bank" Replace="银行"/>
+	<Translation Original="Speed" Replace="速度"/>
+	<Translation Original="Ammo" Replace="弹药"/>
+	<Translation Original="Heading" Replace="行进方向"/>
+	<Translation Original="Pitch" Replace="重力"/>
+	<Translation Original="Roll" Replace="翻滚"/>
+	<Translation Original="Yaw" Replace="偏角"/>
+	<Translation Original="WARDROBE" Replace="衣柜"/>
+	<Translation Original="Model Changer" Replace="模型切换器"/>
+	<Translation Original="Outfit Loader" Replace="装备加载器"/>
+	<Translation Original="Wardrobe Cam" Replace="衣柜摄像头"/>
+	<Translation Original="Random Components" Replace="随机装备"/>
+	<Translation Original="Random Props" Replace="随机道具"/>
+	<Translation Original="Default Components" Replace="默认装备"/>
+	<Translation Original="Change your ped model." Replace="更改您的ped模型"/>
+	<Translation Original="Add Rockstar Logo Gold/Black" Replace="添加Rockstar标志金/黑"/>
+	<Translation Original="Add Rockstar Logo Black/White" Replace="添加Rockstar标志黑/白"/>
+	<Translation Original="Add Rockstar Logo Blue/Grey" Replace="添加Rockstar标志蓝/灰"/>
+	<Translation Original="Add Custom Decal" Replace="添加自定义贴花"/>
+	<Translation Original="Head" Replace="头"/>
+	<Translation Original="Beard/Masks" Replace="胡须/面具"/>
+	<Translation Original="Hair" Replace="头发"/>
+	<Translation Original="Torso" Replace="躯干"/>
+	<Translation Original="Legs" Replace="腿"/>
+	<Translation Original="Hands/Back" Replace="双手/背部"/>
+	<Translation Original="Shoes" Replace="鞋"/>
+	<Translation Original="Teeth/Scarf/Necklace/Bracelets" Replace="牙齿/围巾/项链/手镯"/>
+	<Translation Original="Accessory/Tops" Replace="配件/上衣"/>
+	<Translation Original="Armor Draw" Replace="外护甲"/>
+	<Translation Original="Emblems" Replace="标志"/>
+	<Translation Original="Tops" Replace="外套"/>
+	<Translation Original="Props" Replace="道具"/>
+	<Translation Original="Hats" Replace="帽子"/>
+	<Translation Original="Glasses" Replace="眼镜"/>
+	<Translation Original="Ear Pieces" Replace="耳塞"/>
+	<Translation Original="Watches" Replace="手表"/>
+	<Translation Original="Bangles" Replace="手镯"/>
+	<Translation Original="Generates a random outfit." Replace="生成随机装备"/>
+	<Translation Original="Applies random props." Replace="应用随机道具"/>
+	<Translation Original="Reset default components." Replace="重置默认组件"/>
+	<Translation Original="Drawables" Replace="可修改数据"/>
+	<Translation Original="Load custom outfits." Replace="加载自定义装备"/>
+	<Translation Original="OUTFIT LOADER" Replace="装备加载器"/>
+	<Translation Original="Save current outfit" Replace="保存当前装备"/>
+	<Translation Original="Premade" Replace="预制"/>
+	<Translation Original="Army" Replace="军队"/>
+	<Translation Original="Bodysuit" Replace="连体衣"/>
+	<Translation Original="CDirector" Replace="CD导演"/>
+	<Translation Original="Christmas" Replace="圣诞节"/>
+	<Translation Original="Epsilon" Replace="艾普西隆"/>
+	<Translation Original="Fireman" Replace="消防员"/>
+	<Translation Original="Ghostrider" Replace="幽灵骑士"/>
+	<Translation Original="Highway Police" Replace="公路警察"/>
+	<Translation Original="Juggernaut" Replace="主宰"/>
+	<Translation Original="Police (freemode) " Replace="警察（线上初始模型）"/>
+	<Translation Original="Policeman" Replace="警察"/>
+	<Translation Original="Secret Service" Replace="特勤局"/>
+	<Translation Original="Suit" Replace="高级管理人员"/>
+	<Translation Original="Thron" Replace="荆棘"/>
+	<Translation Original="White Smoking" Replace="白烟"/>
+	<Translation Original="Load Outfit" Replace="加载装备"/>
+	<Translation Original="No files found" Replace="找不到文件"/>
+	<Translation Original="MODEL CHANGER" Replace="模型切换器"/>
+	<Translation Original="Addon Peds" Replace="附加Peds"/>
+	<Translation Original="Load Custom Ped Models" Replace="加载自定义Ped模型"/>
+	<Translation Original="Only works if you use the AddonPeds mod" Replace="仅在使用AddonPeds mod时有效"/>
+	<Translation Original="Player Height" Replace="玩家高度"/>
+	<Translation Original="Player Width" Replace="玩家宽度"/>
+	<Translation Original="Custom Input" Replace="自定义输入"/>
+	<Translation Original="Ped Models" Replace="Ped模型"/>
+	<Translation Original="Animal" Replace="动物"/>
+	<Translation Original="Ambient Female" Replace="周围女性"/>
+	<Translation Original="Ambient Male" Replace="周围男性"/>
+	<Translation Original="Cutscene" Replace="剧情画面"/>
+	<Translation Original="Gang Female" Replace="帮派女性"/>
+	<Translation Original="Gang Male" Replace="帮派男性"/>
+	<Translation Original="Story" Replace="故事"/>
+	<Translation Original="Multiplayer" Replace="多人游戏"/>
+	<Translation Original="Scenario Female" Replace="场景女性"/>
+	<Translation Original="Scenario Male" Replace="场景男性"/>
+	<Translation Original="Others" Replace="其他"/>
+	<Translation Original="Set your player height." Replace="设置玩家高度"/>
+	<Translation Original="Set your player width." Replace="设置玩家宽度"/>
+	<Translation Original="Enter custom model name or hash." Replace="输入自定义模型名称或哈希值"/>
+	<Translation Original="Story Scenario Female" Replace="故事情节女性"/>
+	<Translation Original="Story Scenario Male" Replace="故事情节男性"/>
+	<Translation Original="ADDON PEDS LOADER" Replace="附加PEDS加载器"/>
+	<Translation Original="No Addon Peds Installed" Replace="未安装附加PED"/>
+	<Translation Original="WALK STYLES" Replace="行走风格"/>
+	<Translation Original="Generic Male" Replace="普通男性"/>
+	<Translation Original="Generic Female" Replace="普通女性"/>
+	<Translation Original="Gangster" Replace="匪徒"/>
+	<Translation Original="Hipster" Replace="时髦的"/>
+	<Translation Original="Hobo" Replace="流浪汉"/>
+	<Translation Original="Hobo #2" Replace="流浪汉 #2"/>
+	<Translation Original="Obese" Replace="肥胖的"/>
+	<Translation Original="Obese #2" Replace="肥胖的 #2"/>
+	<Translation Original="Lester" Replace="莱斯特"/>
+	<Translation Original="Film Female" Replace="电影女性"/>
+	<Translation Original="Drunk" Replace="醉酒"/>
+	<Translation Original="Moderate Drunk" Replace="中度醉酒"/>
+	<Translation Original="Moderate Drunk Head Up" Replace="中度醉酒抬头"/>
+	<Translation Original="Slightly Drunk" Replace="有点醉了"/>
+	<Translation Original="Very Drunk" Replace="喝得酩酊大醉"/>
+	<Translation Original="Cool Jog" Replace="酷炫慢跑"/>
+	<Translation Original="Leaf Blower" Replace="叶鼓风机"/>
+	<Translation Original="Tool Belt Walk" Replace="工具皮带行走"/>
+	<Translation Original="Sexy" Replace="性感的"/>
+	<Translation Original="Amanda - Bag" Replace="阿曼达-提包"/>
+	<Translation Original="Micheal - Fire" Replace="麦克-着火"/>
+	<Translation Original="Franklin - Fire" Replace="富兰克林-着火"/>
+	<Translation Original="Jimmy - Nervous" Replace="吉米-紧张"/>
+	<Translation Original="Jimmy - Slow" Replace="吉米-慢"/>
+	<Translation Original="Alien" Replace="外星人"/>
+	<Translation Original="Brave" Replace="勇敢的"/>
+	<Translation Original="Brave #2" Replace="勇敢的 #2"/>
+	<Translation Original="Brave #3" Replace="勇敢的 #3"/>
+	<Translation Original="Brave #4" Replace="勇敢的 #4"/>
+	<Translation Original="Brave Idle" Replace="勇敢的懒汉"/>
+	<Translation Original="Brave Idle #2" Replace="勇敢的懒汉 #2"/>
+	<Translation Original="Business" Replace="商务"/>
+	<Translation Original="Business #2" Replace="商务 #2"/>
+	<Translation Original="Business #3" Replace="商务 #3"/>
+	<Translation Original="Casual" Replace="随意的"/>
+	<Translation Original="Casual #2" Replace="随意的 #2"/>
+	<Translation Original="Casual #3" Replace="随意的 #3"/>
+	<Translation Original="Casual #4" Replace="随意的 #4"/>
+	<Translation Original="Casual #5" Replace="随意的 #5"/>
+	<Translation Original="Casual #6" Replace="随意的 #6"/>
+	<Translation Original="Clipboard" Replace="剪贴板"/>
+	<Translation Original="Coward" Replace="胆小鬼"/>
+	<Translation Original="Burning" Replace="燃烧"/>
+	<Translation Original="Flee" Replace="逃走"/>
+	<Translation Original="Flee #2" Replace="逃走 #2"/>
+	<Translation Original="Flee #3" Replace="逃走 #3"/>
+	<Translation Original="Flee #4" Replace="逃走 #4"/>
+	<Translation Original="Flee #5" Replace="逃走 #5"/>
+	<Translation Original="Flee #6" Replace="逃走 #6"/>
+	<Translation Original="Hiking Male" Replace="徒步旅行男性"/>
+	<Translation Original="Hiking Female" Replace="徒步旅行女性"/>
+	<Translation Original="Hurry" Replace="匆忙"/>
+	<Translation Original="Hurry #2" Replace="匆忙 #2"/>
+	<Translation Original="Hurry #3" Replace="匆忙 #3"/>
+	<Translation Original="Hurry #4" Replace="匆忙 #4"/>
+	<Translation Original="Hurry #5" Replace="匆忙 #5"/>
+	<Translation Original="Injured Male" Replace="受伤男性"/>
+	<Translation Original="Injured Generic" Replace="普通受伤"/>
+	<Translation Original="Injured Female" Replace="受伤女性"/>
+	<Translation Original="Intimidation" Replace="威胁"/>
+	<Translation Original="Intimidation Cop Unarmed" Replace="恐吓的空手警察"/>
+	<Translation Original="Intimidation Unarmed" Replace="非武装恐吓"/>
+	<Translation Original="Muscular" Replace="肌肉的"/>
+	<Translation Original="Quick" Replace="快的"/>
+	<Translation Original="Sad" Replace="悲伤的"/>
+	<Translation Original="Sad #2" Replace="悲伤的 #2"/>
+	<Translation Original="Sad #3" Replace="悲伤的 #3"/>
+	<Translation Original="Sad #4" Replace="悲伤的 #4"/>
+	<Translation Original="Sad #5" Replace="悲伤的 #5"/>
+	<Translation Original="Shady" Replace="可疑的"/>
+	<Translation Original="Shocked" Replace="震惊的"/>
+	<Translation Original="Arrogant" Replace="傲慢的"/>
+	<Translation Original="Chubby" Replace="胖乎乎的"/>
+	<Translation Original="Handbag Walk" Replace="手提包行走"/>
+	<Translation Original="Heels" Replace="高跟鞋"/>
+	<Translation Original="Thug" Replace="恶棍"/>
+	<Translation Original="Thug #2" Replace="恶棍 #2"/>
+	<Translation Original="Thug #3" Replace="恶棍 #3"/>
+	<Translation Original="Thug #4" Replace="恶棍 #4"/>
+	<Translation Original="Thug #5" Replace="恶棍 #5"/>
+	<Translation Original="VISION" Replace="视觉"/>
+	<Translation Original="Nightvision" Replace="夜视仪"/>
+	<Translation Original="Heatvision" Replace="热感"/>
+	<Translation Original="Clear all" Replace="全部清除"/>
+	<Translation Original="Strength" Replace="强度"/>
+	<Translation Original="MOODS" Replace="情绪"/>
+	<Translation Original="Reset" Replace="重置"/>
+	<Translation Original="Normal" Replace="正常"/>
+	<Translation Original="Happy" Replace="高兴"/>
+	<Translation Original="Angry" Replace="愤怒"/>
+	<Translation Original="Stressed" Replace="焦虑"/>
+	<Translation Original="Sleeping" Replace="睡觉中"/>
+	<Translation Original="Aiming" Replace="瞄准中"/>
+	<Translation Original="Injured" Replace="受伤的"/>
+	<Translation Original="Death" Replace="死亡"/>
+	<Translation Original="Smug" Replace="沾沾自喜"/>
+	<Translation Original="Sulk" Replace="闷闷不乐"/>
+	<Translation Original="PLAYER PROOFS" Replace="玩家保护"/>
+	<Translation Original="Bullets" Replace="子弹"/>
+	<Translation Original="Fire" Replace="火"/>
+	<Translation Original="Explosions" Replace="爆炸"/>
+	<Translation Original="Melee" Replace="近战"/>
+	<Translation Original="EFFECTS" Replace="影响"/>
+	<Translation Original="Loop" Replace="循环"/>
+	<Translation Original="Clown Appears" Replace="小丑出现"/>
+	<Translation Original="Clown Death" Replace="小丑之死"/>
+	<Translation Original="Clown Bul" Replace="小丑球"/>
+	<Translation Original="Clown" Replace="小丑"/>
+	<Translation Original="Money Smoke" Replace="金钱烟雾"/>
+	<Translation Original="Firework Starburst" Replace="星爆烟花"/>
+	<Translation Original="Firework Fountain" Replace="喷射烟花"/>
+	<Translation Original="Firework Shotburst" Replace="爆竹烟花"/>
+	<Translation Original="Firework Trail" Replace="长痕烟花"/>
+	<Translation Original="Firework Trail Spawn" Replace="生成长痕烟花"/>
+	<Translation Original="Firework Ground Burst" Replace="爆竹地面爆炸"/>
+	<Translation Original="NYE Firework" Replace="NYE烟花"/>
+	<Translation Original="Spiral Firework" Replace="螺旋烟花"/>
+	<Translation Original="Money Rain" Replace="金钱雨"/>
+	<Translation Original="Big Smoke" Replace="大烟雾"/>
+	<Translation Original="Plane Explosion" Replace="飞机爆炸"/>
+	<Translation Original="Banknotes" Replace="钞票"/>
+	<Translation Original="Truck Crash" Replace="卡车碰撞"/>
+	<Translation Original="Train Crash" Replace="火车碰撞"/>
+	<Translation Original="Alien Disintegrate" Replace="外星人解体"/>
+	<Translation Original="Alien Teleport" Replace="外星人传送"/>
+	<Translation Original="Alien Impact" Replace="外星人冲击"/>
+	<Translation Original="Electric Box" Replace="配电箱"/>
+	<Translation Original="Water Splash" Replace="水花飞溅"/>
+	<Translation Original="Sniper Impact" Replace="狙击手撞击"/>
+	<Translation Original="Dirt Throw" Replace="尘土飞扬"/>
+	<Translation Original="Blood Stab" Replace="血刺"/>
+	<Translation Original="Ped Sliced" Replace="Ped切片"/>
+	<Translation Original="Camera" Replace="照相机"/>
+	<Translation Original="Meth Smoke" Replace="冰毒烟雾"/>
+	<Translation Original="Burial Dirt" Replace="埋藏的污垢"/>
+	<Translation Original="ANIMATIONS" Replace="动画"/>
+	<Translation Original="Dictionaries" Replace="词典"/>
+	<Translation Original="Reload List" Replace="重新加载列表"/>
+	<Translation Original="ANIMATION DICTIONARIES" Replace="动画词典"/>
+	<Translation Original="Controllable" Replace="可控的"/>
+	<Translation Original="Enable controls during animation." Replace="在动画期间启用控制"/>
+	<Translation Original="Garbled" Replace="混乱不清的"/>
+	<Translation Original="Stop Animation" Replace="停止动画"/>
+	<Translation Original="Garbled animation." Replace="乱码动画"/>
+	<Translation Original="SCENARIOS" Replace="场景"/>
+	<Translation Original="All Scenarios" Replace="所有场景"/>
+	<Translation Original="Stop Playing" Replace="停止播放"/>
+	<Translation Original="ALL SCENARIOS" Replace="所有场景"/>
+	<Translation Original="Stop Playing Immediately" Replace="立即停止播放"/>
+	<Translation Original="Use nearest" Replace="使用最近的"/>
+	<Translation Original="Paparazzi" Replace="狗仔队"/>
+	<Translation Original="Drug Dealer" Replace="毒贩"/>
+	<Translation Original="Sunbathe" Replace="沐日光浴"/>
+	<Translation Original="Play Instrument" Replace="演奏乐器"/>
+	<Translation Original="Mechanic" Replace="技工"/>
+	<Translation Original="Flex" Replace="弯曲"/>
+	<Translation Original="Jogging" Replace="慢跑"/>
+	<Translation Original="Binoculars" Replace="双筒望远镜"/>
+	<Translation Original="Sex Receiver" Replace="性接受者"/>
+	<Translation Original="Sex Giver" Replace="性交者"/>
+	<Translation Original="Bench Press" Replace="卧举"/>
+	<Translation Original="Lifting Weights" Replace="举重"/>
+	<Translation Original="Chin Ups" Replace="引体向上"/>
+	<Translation Original="Push Ups" Replace="俯卧撑"/>
+	<Translation Original="BBQ" Replace="烧烤"/>
+	<Translation Original="Yoga" Replace="瑜伽"/>
+	<Translation Original="Fishing" Replace="钓鱼"/>
+	<Translation Original="Holding Sign" Replace="等待标志"/>
+	<Translation Original="Security" Replace="保全"/>
+	<Translation Original="Park Attendant" Replace="游乐园工作人员"/>
+	<Translation Original="Medic" Replace="医生"/>
+	<Translation Original="Gardening" Replace="园艺"/>
+	<Translation Original="Film Shocking" Replace="电影震撼"/>
+	<Translation Original="Standing With Phone" Replace="站在电话旁边"/>
+	<Translation Original="Standing With Phone Upright" Replace="手机直立站立"/>
+	<Translation Original="Idle Cop" Replace="闲置警察"/>
+	<Translation Original="Drinking" Replace="饮酒"/>
+	<Translation Original="Golf Player" Replace="高尔夫球手"/>
+	<Translation Original="Tennis Player" Replace="网球运动员"/>
+	<Translation Original="Welding" Replace="焊接"/>
+	<Translation Original="Smoking Pot" Replace="吸烟罐"/>
+	<Translation Original="Hammering" Replace="锤击"/>
+	<Translation Original="Prostitute High Class" Replace="高级妓女"/>
+	<Translation Original="Prostitute Low Class" Replace="低级妓女"/>
+	<Translation Original="Drilling" Replace="钻孔"/>
+	<Translation Original="Smoking" Replace="吸烟"/>
+	<Translation Original="EDIT YOUR CHARACTER" Replace="编辑角色"/>
+	<Translation Original="Achievements" Replace="成就"/>
+	<Translation Original="Money" Replace="金钱"/>
+	<Translation Original="Stats" Replace="统计数据"/>
+	<Translation Original="Add Objects to Database" Replace="将对象添加到数据库"/>
+	<Translation Original="Map Spooner" Replace="地图Spooner"/>
+	<Translation Original="ini Loader" Replace="ini加载器"/>
+	<Translation Original="json Loader" Replace="json加载器"/>
+	<Translation Original="xml Loader" Replace="xml加载器"/>
+	<Translation Original="Unlock all" Replace="全部解锁"/>
+	<Translation Original="All Achievements" Replace="所有成就"/>
+	<Translation Original="Player Stats" Replace="玩家统计数据"/>
+	<Translation Original="Deaths" Replace="死亡数"/>
+	<Translation Original="Kills" Replace="杀敌数"/>
+	<Translation Original="Headshots" Replace="爆头数"/>
+	<Translation Original="Shots" Replace="射击数"/>
+	<Translation Original="Completed Missions" Replace="已完成的任务"/>
+	<Translation Original="Stolen Vehicles" Replace="窃取的车辆"/>
+	<Translation Original="Fastest Speed" Replace="最快速度"/>
+	<Translation Original="Times Cheated" Replace="作弊次数"/>
+	<Translation Original="Cash Earned" Replace="赚取的现金"/>
+	<Translation Original="Cash Spend" Replace="花费的现金"/>
+	<Translation Original="Playing Time" Replace="游玩时间"/>
+	<Translation Original="Completion" Replace="完成度"/>
+	<Translation Original="ACHIEVEMENTS" Replace="成就"/>
+	<Translation Original="STATS" Replace="统计数据"/>
+	<Translation Original="Max stats" Replace="最大统计数据"/>
+	<Translation Original="Checklist" Replace="清单"/>
+	<Translation Original="Missions" Replace="任务"/>
+	<Translation Original="Hobbies and Pastimes" Replace="爱好和消遣"/>
+	<Translation Original="Strangers and Freaks" Replace="陌生人和怪胎"/>
+	<Translation Original="Random Events" Replace="随机事件"/>
+	<Translation Original="Welcome to Los Santos" Replace="欢迎来到洛圣都"/>
+	<Translation Original="MONEY" Replace="金钱"/>
+	<Translation Original="Delay" Replace="延迟"/>
+	<Translation Original="MAP SPOONER" Replace="地图SPOONER"/>
+	<Translation Original="INI LOADER" Replace="INI加载器"/>
+	<Translation Original="Delete last creation" Replace="删除上次创建"/>
+	<Translation Original="Load Vehicles" Replace="加载车辆"/>
+	<Translation Original="JSON LOADER" Replace="JSON加载器"/>
+	<Translation Original="XML LOADER" Replace="XML加载器"/>
+	<Translation Original="Amount" Replace="数量"/>
+	<Translation Original="Bank Loop" Replace="银行循环"/>
+	<Translation Original="Drop Money" Replace="掉落金钱"/>
+	<Translation Original="Money Gun" Replace="金钱枪"/>
+	<Translation Original="Ped Drop" Replace="Ped掉落"/>
+	<Translation Original="Statistics" Replace="统计数字"/>
+	<Translation Original="Bank Editor" Replace="银行编辑器"/>
+	<Translation Original="BANK EDITOR" Replace="银行编辑器"/>
+	<Translation Original="Edit Money" Replace="编辑货币"/>
+	<Translation Original="Clear Bank" Replace="清除银行"/>
+	<Translation Original="MISCELLANEOUS" Replace="其他"/>
+	<Translation Original="Yacht Spawner" Replace="游艇生成器"/>
+	<Translation Original="Animal Riding" Replace="动物骑行"/>
+	<Translation Original="Mp3 Player" Replace="Mp3播放器"/>
+	<Translation Original="Game Music" Replace="游戏音乐"/>
+	<Translation Original="Mobile TV" Replace="移动电视"/>
+	<Translation Original="Cutscene Player" Replace="玩家剧情画面"/>
+	<Translation Original="Radio" Replace="收音机"/>
+	<Translation Original="HUD Colors" Replace="HUD颜色"/>
+	<Translation Original="Overlay Settings" Replace="覆盖设置"/>
+	<Translation Original="City Cameras" Replace="城市摄像机"/>
+	<Translation Original="Train Ride" Replace="火车行驶"/>
+	<Translation Original="Particle Man" Replace="粒子人"/>
+	<Translation Original="Load Heist Yacht" Replace="加载抢劫游艇"/>
+	<Translation Original="Load Gunrunning Yacht" Replace="加载军火走私艇"/>
+	<Translation Original="Teleport to Heist Yacht" Replace="传送到抢劫游艇"/>
+	<Translation Original="Teleport to Gunrunning Yacht" Replace="传送到军火走私艇"/>
+	<Translation Original="Unload Heist Yacht" Replace="卸载抢劫游艇"/>
+	<Translation Original="Unload Gunrunning Yacht" Replace="卸载军火走私艇"/>
+	<Translation Original="YACHT SPAWNER" Replace="游艇生成器"/>
+	<Translation Original="ANIMAL RIDING" Replace="动物骑行"/>
+	<Translation Original="Stop Riding" Replace="停止骑行"/>
+	<Translation Original="Cow Idle" Replace="奶牛闲置"/>
+	<Translation Original="Deer Idle" Replace="鹿闲置"/>
+	<Translation Original="Deer Walk" Replace="鹿行走"/>
+	<Translation Original="Deer Run" Replace="鹿奔跑"/>
+	<Translation Original="MP3 PLAYER" Replace="MP3播放器"/>
+	<Translation Original="Plays: Nothing" Replace="播放：无"/>
+	<Translation Original="Pause" Replace="暂停"/>
+	<Translation Original="Resume" Replace="继续"/>
+	<Translation Original="Stop" Replace="结束"/>
+	<Translation Original="Play all" Replace="全部播放"/>
+	<Translation Original="Volume (db)" Replace="音量（分贝）"/>
+	<Translation Original="Files" Replace="文件夹"/>
+	<Translation Original="No playable files found" Replace="找不到可播放的文件"/>
+	<Translation Original="GAME MUSIC" Replace="游戏音乐"/>
+	<Translation Original="Stop Music Events" Replace="停止音乐活动"/>
+	<Translation Original="MOBILE TV" Replace="移动电视"/>
+	<Translation Original="Enable" Replace="启动"/>
+	<Translation Original="Channel" Replace="频道"/>
+	<Translation Original="PLAY CUTSCENES" Replace="播放动画"/>
+	<Translation Original="MOBILE RADIO" Replace="移动收音机"/>
+	<Translation Original="Toggle" Replace="切换"/>
+	<Translation Original="Unlock New Stations" Replace="解锁新电台"/>
+	<Translation Original="Skip Track" Replace="跳过音轨"/>
+	<Translation Original="Stations" Replace="车站"/>
+	<Translation Original="Off" Replace="关闭"/>
+	<Translation Original="HUD COLOR" Replace="HUD颜色"/>
+	<Translation Original="All Elements" Replace="所有元素"/>
+	<Translation Original="Reset all" Replace="全部重置"/>
+	<Translation Original="Use Online HUD" Replace="使用线上HUD"/>
+	<Translation Original="Current Color" Replace="当前颜色"/>
+	<Translation Original="ALL HUD ELEMENTS" Replace="所有HUD元素"/>
+	<Translation Original="OVERLAY" Replace="覆盖层"/>
+	<Translation Original="Display FPS" Replace="显示FPS"/>
+	<Translation Original="Display current frame count." Replace="显示当前帧数"/>
+	<Translation Original="Display Day & Time (Realtime)" Replace="显示日期和时间（现实时间）"/>
+	<Translation Original="Display Time (Ingame)" Replace="显示时间（游戏中）"/>
+	<Translation Original="Display Coords" Replace="显示坐标"/>
+	<Translation Original="Hide HUD" Replace="隐藏HUD"/>
+	<Translation Original="Large Radar" Replace="大型雷达"/>
+	<Translation Original="Disable Notifications" Replace="禁用通知"/>
+	<Translation Original="Display current realtime day & time." Replace="显示当前现实日期和时间"/>
+	<Translation Original="Display current ingame time." Replace="显示当前游戏中时间"/>
+	<Translation Original="Display current coords." Replace="显示当前坐标"/>
+	<Translation Original="Hides HUD this frame." Replace="此模式隐藏HUD"/>
+	<Translation Original="Enlarges the radar." Replace="放大雷达"/>
+	<Translation Original="Disables notifications." Replace="禁用通知"/>
+	<Translation Original="CITY CAMERAS" Replace="城市摄像机"/>
+	<Translation Original="Select Camera" Replace="选择摄像头"/>
+	<Translation Original="Airport" Replace="机场"/>
+	<Translation Original="TRAIN" Replace="火车"/>
+	<Translation Original="Spawn Train" Replace="生成火车"/>
+	<Translation Original="Control Train" Replace="控制火车"/>
+	<Translation Original="Train Speed" Replace="火车速度"/>
+	<Translation Original="Derail Train" Replace="使火车脱轨"/>
+	<Translation Original="Delete Train" Replace="删除火车"/>
+	<Translation Original="PARTICLE MAN" Replace="粒子人"/>
+	<Translation Original="Ghost Rider" Replace="幽灵骑士"/>
+	<Translation Original="Rampage Mode" Replace="狂暴模式"/>
+	<Translation Original="Particles" Replace="粒子"/>
+	<Translation Original="Clown Trails" Replace="小丑尾迹"/>
+	<Translation Original="Hand Trails" Replace="手部尾迹"/>
+	<Translation Original="Toggle Trails" Replace="切换尾迹"/>
+	<Translation Original="Trail Color" Replace="尾迹颜色"/>
+	<Translation Original="Trailer Boosh" Replace="拖车噪音"/>
+	<Translation Original="Clown Muz" Replace="小丑木兹"/>
+	<Translation Original="FRIENDLIST" Replace="好友列表"/>
+	<Translation Original="Friendlist" Replace="好友列表"/>
+	<Translation Original="Cam Zoom" Replace="镜头缩放"/>
+	<Translation Original="GTA 2 Cam" Replace="GTA 2镜头"/>
+	<Translation Original="No Clip" Replace="无剪辑"/>
+	<Translation Original="Container Rider" Replace="集装箱骑手"/>
+	<Translation Original="Air Walk / Drive" Replace="空中行走/驾驶"/>
+	<Translation Original="Freecam" Replace="自由镜头"/>
+	<Translation Original="MP Map" Replace="多人地图"/>
+	<Translation Original="Disable Recording" Replace="禁用录制"/>
+	<Translation Original="Disable Stunt Jumps" Replace="禁用特技跳跃"/>
+	<Translation Original="Disable Flight Music" Replace="禁用飞行音乐"/>
+	<Translation Original="Disables flight music." Replace="禁用飞行音乐"/>
+	<Translation Original="Alter the gameplay cam zooming." Replace="改变游戏性摄像头缩放"/>
+	<Translation Original="Use old gta 2 top down cam." Replace="使用旧gta 2自上而下镜头"/>
+	<Translation Original="Clip trough entities and buildings." Replace="穿过实体和建筑物"/>
+	<Translation Original="Ride on containers, bike required!" Replace="乘坐集装箱，需要自行车"/>
+	<Translation Original="Walk or Drive over the air." Replace="在空中行走或驾驶"/>
+	<Translation Original="Free moving camera." Replace="自由移动摄像头"/>
+	<Translation Original="Remove Fog of War" Replace="消除战争迷雾"/>
+	<Translation Original="Cap FPS" Replace="限制帧数"/>
+	<Translation Original="Cap your framerate." Replace="限制帧速率"/>
+	<Translation Original="Higher value = lower framerate." Replace="较高的值=较低的帧速率"/>
+	<Translation Original="Reveals entire map." Replace="显示整个地图"/>
+	<Translation Original="Enables multiplayer map components." Replace="启用多人游戏地图组件"/>
+	<Translation Original="Stops recording and discards clip." Replace="停止录制并丢弃剪辑"/>
+	<Translation Original="Disables vehicle stunt jumps." Replace="禁用车辆特技跳跃"/>
+	<Translation Original="Weapon Laser" Replace="武器激光"/>
+	<Translation Original="Laser sight on aiming." Replace="瞄准时使用激光指示器"/>
+	<Translation Original="Explosive Ammo" Replace="爆炸子弹"/>
+	<Translation Original="Shoot explosive bullets." Replace="发射爆炸性子弹"/>
+	<Translation Original="Fire Ammo" Replace="燃烧子弹"/>
+	<Translation Original="Shoot fire bullets." Replace="射击燃烧子弹"/>
+	<Translation Original="One Hit Kill" Replace="一击必杀"/>
+	<Translation Original="High Damage." Replace="高伤害"/>
+	<Translation Original="No Recoil" Replace="无后坐"/>
+	<Translation Original="No Weapon recoil." Replace="无武器后坐"/>
+	<Translation Original="Explosive Melee" Replace="爆炸近战"/>
+	<Translation Original="Power fists." Replace="有力的拳头."/>
+	<Translation Original="Explosions on melee damage." Replace="近战伤害爆炸"/>
+	<Translation Original="Disable unlimited parachutes." Replace="禁用无限制降落伞"/>
+	<Translation Original="No Parachutes" Replace="没有降落伞"/>
+	<Translation Original="Disable Wanted Music" Replace="禁用通缉音乐"/>
+	<Translation Original="Force MP Audio" Replace="强制多人音频"/>
+	<Translation Original="Decrease Graphics" Replace="减少图形"/>
+	<Translation Original="Adjust Global LOD" Replace="调整全局LOD"/>
+	<Translation Original="6 Star Wanted" Replace="6星通缉"/>
+	<Translation Original="Pause Game" Replace="暂停游戏"/>
+	<Translation Original="Remove Weapon Wheel Slomo" Replace="移除武器轮时缓效果"/>
+	<Translation Original="Send Console Message" Replace="发送控制台消息"/>
+	<Translation Original="About Rampage" Replace="关于Rampage"/>
+	<Translation Original="Dev" Replace="开发人员"/>
+	<Translation Original="Script Monitor" Replace="脚本监视器"/>
+	<Translation Original="Script Terminator" Replace="脚本终止符"/>
+	<Translation Original="Script Loader" Replace="脚本加载器"/>
+	<Translation Original="SCRIPT MONITOR" Replace="脚本监视器"/>
+	<Translation Original="Currently Running" Replace="当前正在运行"/>
+	<Translation Original="Disables wanted music." Replace="禁用通缉音乐"/>
+	<Translation Original="Forces multiplayer audio." Replace="强制多人游戏音频"/>
+	<Translation Original="~y~Can break missions and director mode!" Replace="~y~可能破坏任务和导演模式"/>
+	<Translation Original="Decreases level of detail." Replace="降低细节程度"/>
+	<Translation Original="Adjust the global level of detail." Replace="调整全局细节级别"/>
+	<Translation Original="High values can crash the game." Replace="高值可能会使游戏崩溃"/>
+	<Translation Original="Get fake 6 star wanted level." Replace="获得假6星级通缉级别"/>
+	<Translation Original="Pauses the game." Replace="暂停游戏"/>
+	<Translation Original="This removes the slomo inside the weapon wheel." Replace="这将移除武器轮内的时间缓慢效果"/>
+	<Translation Original="ABOUT RAMPAGE" Replace="关于RAMPAGE"/>
+	<Translation Original="Version" Replace="版本"/>
+	<Translation Original="Lang" Replace="语言"/>
+	<Translation Original="Big Thanks to" Replace="非常感谢"/>
+	<Translation Original="For allowing single player modding in gta v." Replace="允许单人在gta v中进行改装"/>
+	<Translation Original="For the nativedb and all documentation arround it." Replace="nativedb及其周围的所有文档"/>
+	<Translation Original="For xml compatibility." Replace="xml兼容性"/>
+	<Translation Original="Documentation around GTA V Modding" Replace="GTA V改装相关文件"/>
+	<Translation Original="Libraries used" Replace="使用的库"/>
+	<Translation Original="As xml parsing library." Replace="作为xml解析库"/>
+	<Translation Original="As json parsing library." Replace="作为json解析库"/>
+	<Translation Original="As hooking library." Replace="作为钩子库"/>
+	<Translation Original="For faster unordered maps." Replace="更快的无序地图"/>
+	<Translation Original="As audio library to play mp3 files." Replace="作为音频库播放mp3文件"/>
+	<Translation Original="For developing and updating ScriptHookV." Replace="开发和更新ScriptHookV"/>
+	<Translation Original="Based on" Replace="基于"/>
+	<Translation Original="Time" Replace="时间"/>
+	<Translation Original="Weather" Replace="天气"/>
+	<Translation Original="Ocean" Replace="海洋"/>
+	<Translation Original="Gravity" Replace="重力"/>
+	<Translation Original="Ped Manager" Replace="Ped管理器"/>
+	<Translation Original="Vehicle Manager" Replace="载具管理器"/>
+	<Translation Original="Object Manager" Replace="物体管理器"/>
+	<Translation Original="Model Swapping" Replace="模型交换"/>
+	<Translation Original="Tornado & Black Hole" Replace="龙卷风与黑洞"/>
+	<Translation Original="IPL Loader" Replace="IPL加载器"/>
+	<Translation Original="Jumparound Mode" Replace="跳跃模式"/>
+	<Translation Original="Firework Mode" Replace="烟花模式"/>
+	<Translation Original="Radar" Replace="雷达"/>
+	<Translation Original="Decrease Ped Population" Replace="减少Ped数量"/>
+	<Translation Original="Decrease Vehicle Population" Replace="减少载具数量"/>
+	<Translation Original="Delete World Pickups" Replace="删除世界中可拾取物"/>
+	<Translation Original="Refresh Interior" Replace="刷新室内"/>
+	<Translation Original="Clear Area Scale" Replace="清除区域范围"/>
+	<Translation Original="Clear Area" Replace="清除区域"/>
+	<Translation Original="No restricted zones" Replace="无限制区"/>
+	<Translation Original="Rain Rockets" Replace="火箭雨"/>
+	<Translation Original="Blackout" Replace="停电"/>
+	<Translation Original="Cleanup Area" Replace="清理区域"/>
+	<Translation Original="WORLD" Replace="世界"/>
+	<Translation Original="Jumping peds and vehicles around you." Replace="在你周围跳跃的人和载具"/>
+	<Translation Original="Rockets are falling from the sky." Replace="火箭从天而降"/>
+	<Translation Original="Fireworks everywhere!" Replace="到处都是烟花!"/>
+	<Translation Original="Scan vehicles around you." Replace="扫描你周围的载具"/>
+	<Translation Original="Decrease amount of peds." Replace="减少PED数量"/>
+	<Translation Original="Decrease amount of vehicles." Replace="减少车辆数量"/>
+	<Translation Original="Delete all pickups in world" Replace="删除世界上的所有可拾取物"/>
+	<Translation Original="Free Memory." Replace="释放内存"/>
+	<Translation Original="Disable all restricted zones." Replace="禁用所有限制区域"/>
+	<Translation Original="All lights go off." Replace="所有灯熄灭"/>
+	<Translation Original="EMP mode." Replace="EMP模式"/>
+	<Translation Original="Meteor Shower" Replace="流星雨"/>
+	<Translation Original="Force Type" Replace="力场类型"/>
+	<Translation Original="Black Hole" Replace="黑洞"/>
+	<Translation Original="Options" Replace="选项"/>
+	<Translation Original="Delete entities" Replace="删除实体"/>
+	<Translation Original="Attraction Settings" Replace="引力设置"/>
+	<Translation Original="Vehicles" Replace="载具"/>
+	<Translation Original="Peds" Replace="Peds"/>
+	<Translation Original="Objects" Replace="物体"/>
+	<Translation Original="Tornado" Replace="龙卷风"/>
+	<Translation Original="TORNADO & BLACK HOLE" Replace="龙卷风和黑洞"/>
+	<Translation Original="Apply Force" Replace="应用力"/>
+	<Translation Original="Set Velocity" Replace="设置速度"/>
+	<Translation Original="High Force Rot" Replace="强力旋转"/>
+	<Translation Original="Low Force" Replace="低作用力"/>
+	<Translation Original="Low Force 2" Replace="低作用力 2"/>
+	<Translation Original="High Force 2 Rot" Replace="强力2 旋转"/>
+	<Translation Original="Force No Rot" Replace="仅作用力不旋转"/>
+	<Translation Original="Force Plus" Replace="增强的力"/>
+	<Translation Original="This will delete only the vehicles." Replace="这将仅删除车辆"/>
+	<Translation Original="Sets the force strength of blackhole" Replace="设置黑洞的力强度"/>
+	<Translation Original="Change the way how force gets applied to entities." Replace="更改将力应用于实体的方式"/>
+	<Translation Original="Customize" Replace="定制"/>
+	<Translation Original="Vehicle Handling" Replace="载具操控性"/>
+	<Translation Original="Vehicle Acrobatics" Replace="载具杂技"/>
+	<Translation Original="Ramp Creator" Replace="斜坡创造者"/>
+	<Translation Original="Speedometer" Replace="车速表"/>
+	<Translation Original="Chauffeur" Replace="代驾"/>
+	<Translation Original="Vehicle Weapons" Replace="载具武器"/>
+	<Translation Original="Blip" Replace="光点"/>
+	<Translation Original="Vehicle AI" Replace="载具AI"/>
+	<Translation Original="Autopilot" Replace="自动驾驶仪"/>
+	<Translation Original="Vehicle PTFX" Replace="载具粒子"/>
+	<Translation Original="Vehicle Doors" Replace="载具门"/>
+	<Translation Original="Ghost Vehicle" Replace="幽灵车"/>
+	<Translation Original="Vehicle Opacity" Replace="车辆不透明度"/>
+	<Translation Original="Vehicle Jump" Replace="车辆跳跃"/>
+	<Translation Original="Auto-Fix" Replace="自动修复"/>
+	<Translation Original="Force Engine On" Replace="强制引擎开启"/>
+	<Translation Original="Unlimited native Boost" Replace="无限火箭助推"/>
+	<Translation Original="Freeze Vehicle" Replace="冻结车辆"/>
+	<Translation Original="Auto-Flip" Replace="自动翻转"/>
+	<Translation Original="Indicator Lights" Replace="指示灯"/>
+	<Translation Original="Cruise Control" Replace="巡航控制系统"/>
+	<Translation Original="Slamm it (Low)" Replace="砰地一声（低）"/>
+	<Translation Original="Slamm it (High)" Replace="砰地一声（高）"/>
+	<Translation Original="Force Push" Replace="强制推送"/>
+	<Translation Original="Roll windows down" Replace="摇下窗户"/>
+	<Translation Original="Cargobob Magnet" Replace="货物磁铁"/>
+	<Translation Original="Clone Vehicle" Replace="克隆载具"/>
+	<Translation Original="~r~Delete Vehicle" Replace="~r~删除载具"/>
+	<Translation Original="Horn Boost" Replace="鸣笛加速"/>
+	<Translation Original="Speed Boost" Replace="速度提升"/>
+	<Translation Original="Drive on Water" Replace="水上驾驶"/>
+	<Translation Original="Anti Fall from Bike" Replace="自行车防坠落"/>
+	<Translation Original="Seatbelt" Replace="安全带"/>
+	<Translation Original="Front Ramp" Replace="前坡道"/>
+	<Translation Original="Rear Ramp" Replace="后坡道"/>
+	<Translation Original="Left Ramp" Replace="左坡道"/>
+	<Translation Original="Right Ramp" Replace="右坡道"/>
+	<Translation Original="Create Ramps" Replace="创建坡道"/>
+	<Translation Original="Detach Ramps" Replace="分离坡道"/>
+	<Translation Original="Speed" Replace="速度"/>
+	<Translation Original="Spawn Chauffeur" Replace="生成司机"/>
+	<Translation Original="Spawn (Custom)" Replace="生成（自定义）"/>
+	<Translation Original="Vehicle Lasers" Replace="载具激光指示"/>
+	<Translation Original="Vehicle Weapon" Replace="载具武器"/>
+	<Translation Original="Vehicle Weapon Key" Replace="载具武器键位"/>
+	<Translation Original="Vehicle Rapid Fire" Replace="载具快速射击"/>
+	<Translation Original="Aircraft Bomber" Replace="飞机轰炸机"/>
+	<Translation Original="Explosion Type" Replace="爆炸类型"/>
+	<Translation Original="Enable" Replace="启用"/>
+	<Translation Original="Add Blip" Replace="添加标志"/>
+	<Translation Original="Teleport to blip vehicle" Replace="传送到标志载具"/>
+	<Translation Original="Teleport blip vehicle to you" Replace="将标志载具传送给我"/>
+	<Translation Original="Display Blip" Replace="显示标志"/>
+	<Translation Original="Lock Vehicle" Replace="锁定载具"/>
+	<Translation Original="Drive to Waypoint" Replace="行驶至导航点"/>
+	<Translation Original="Drive around" Replace="开车四处转转"/>
+	<Translation Original="Please enter a plane." Replace="请进入一架飞机"/>
+	<Translation Original="AP (1)" Replace="智能控制1"/>
+	<Translation Original="AP (2) Fly to Waypoint" Replace="智能控制2（飞向导航点）"/>
+	<Translation Original="ACS" Replace="防撞系统"/>
+	<Translation Original="Args" Replace="参数"/>
+	<Translation Original="Big planes" Replace="大型飞机"/>
+	<Translation Original="Modify Altitude" Replace="修改高度"/>
+	<Translation Original="Altitude" Replace="高度"/>
+	<Translation Original="Climb" Replace="爬升"/>
+	<Translation Original="Descent" Replace="下降"/>
+	<Translation Original="Apply" Replace="应用"/>
+	<Translation Original="Modify Speed" Replace="修改速度"/>
+	<Translation Original="New Speed" Replace="新速度"/>
+	<Translation Original="ILS" Replace="仪表着陆系统"/>
+	<Translation Original="Approach" Replace="接近"/>
+	<Translation Original="Plane Smoke" Replace="飞机烟雾"/>
+	<Translation Original="Plane Smoke Color" Replace="飞机烟雾颜色"/>
+	<Translation Original="Toggle Key" Replace="切换键"/>
+	<Translation Original="Wheel Effects" Replace="轮子效果"/>
+	<Translation Original="Driver Door" Replace="驾驶员车门"/>
+	<Translation Original="Passenger Door" Replace="副驾驶车门"/>
+	<Translation Original="Rear Left" Replace="左后门"/>
+	<Translation Original="Rear Right" Replace="右后门"/>
+	<Translation Original="Hood" Replace="引擎盖"/>
+	<Translation Original="Trunk" Replace="后备箱"/>
+	<Translation Original="All" Replace="全部"/>
+	<Translation Original="Add Parachute" Replace="添加降落伞"/>
+	<Translation Original="Add Nitro" Replace="添加硝基"/>
+	<Translation Original="Front Flip" Replace="前空翻"/>
+	<Translation Original="Back Flip" Replace="后空翻"/>
+	<Translation Original="Kick Flip" Replace="左侧翻"/>
+	<Translation Original="Heel Flip" Replace="右侧翻"/>
+	<Translation Original="Bunny Hop" Replace="兔子跳"/>
+	<Translation Original="Launch Up" Replace="发射"/>
+	<Translation Original="Launch Crush" Replace="发射压碎"/>
+	<Translation Original="Acceleration" Replace="加速度"/>
+	<Translation Original="Brake" Replace="制动"/>
+	<Translation Original="Super Grip" Replace="超级抓地力"/>
+	<Translation Original="Slide" Replace="滑行"/>
+	<Translation Original="Speed Modifications" Replace="速度修改"/>
+	<Translation Original="Bypass max speed" Replace="绕过最大速度"/>
+	<Translation Original="Force max speed" Replace="强制最大速度"/>
+	<Translation Original="Fully tune" Replace="最大化升级"/>
+	<Translation Original="Basic tune" Replace="基础升级"/>
+	<Translation Original="Restore tune" Replace="恢复升级"/>
+	<Translation Original="Make Dirty" Replace="弄脏"/>
+	<Translation Original="Wash" Replace="清洗"/>
+	<Translation Original="Speedometer (Textured)" Replace="车速表（纹理）"/>
+	<Translation Original="Speedometer (Plate Text)" Replace="车速表（车牌文本）"/>
+	<Translation Original="Type" Replace="类型"/>
+	<Translation Original="Weapon Camo" Replace="武器迷彩"/>
+	<Translation Original="Give all Weapons" Replace="给予所有武器"/>
+	<Translation Original="Give Digiscanner" Replace="给予扫描仪"/>
+	<Translation Original="Give Briefcase" Replace="给予公文包"/>
+	<Translation Original="Remove all Weapons" Replace="移除所有武器"/>
+	<Translation Original="Drop current Weapon" Replace="放下当前武器"/>
+	<Translation Original="Upgrade (all weapons)" Replace="升级（所有武器）"/>
+	<Translation Original="Upgrade (current weapon)" Replace="升级（当前武器）"/>
+	<Translation Original="Fill Ammo" Replace="填满弹药"/>
+	<Translation Original="Custom Crosshair" Replace="自定义十字线"/>
+	<Translation Original="Crosshair Color" Replace="十字线颜色"/>
+	<Translation Original="Normal" Replace="普通"/>
+	<Translation Original="Army" Replace="军队色"/>
+	<Translation Original="Gold" Replace="金色"/>
+	<Translation Original="Green" Replace="绿色"/>
+	<Translation Original="LSPD" Replace="警局色"/>
+    <Translation Original="Orange" Replace="橙色"/>
+    <Translation Original="Pink" Replace="粉色"/>
+    <Translation Original="Platinum" Replace="铂金"/>
+    <Translation Original="Rainbow Weapons" Replace="彩虹武器"/>
+    <Translation Original="Camo" Replace="迷彩色"/>
+	<Translation Original="Handguns" Replace="手枪"/>
+	<Translation Original="Submachine Guns" Replace="冲锋枪"/>
+	<Translation Original="Shotguns" Replace="霰弹枪"/>
+	<Translation Original="Assault Rifles" Replace="突击步枪"/>
+	<Translation Original="Sniper Rifles" Replace="狙击步枪"/>
+	<Translation Original="Heavy Weapons" Replace="重型武器"/>
+	<Translation Original="Throwables" Replace="投掷武器"/>
+	<Translation Original="Misc" Replace="杂项"/>
+	<Translation Original="Bullet Type" Replace="子弹类型"/>
+	<Translation Original="Coords Gun" Replace="坐标枪"/>
+	<Translation Original="Airstrike Gun" Replace="空袭枪"/>
+	<Translation Original="Remote Rocket" Replace="远程火箭"/>
+	<Translation Original="Ped Gun" Replace="Ped枪"/>
+	<Translation Original="Vehicle Gun" Replace="载具枪"/>
+	<Translation Original="Targeting Mode" Replace="目标模式"/>
+	<Translation Original="Triggerbot" Replace="触发机器人"/>
+	<Translation Original="Priorize" Replace="优先考虑"/>
+	<Translation Original="Auto Shoot" Replace="自动射击"/>
+	<Translation Original="Scale" Replace="比例"/>
+	<Translation Original="Damage Modifier" Replace="伤害修改"/>
+	<Translation Original="Vehicle Damage Modifier" Replace="载具伤害修改"/>
+	<Translation Original="Melee Modifier" Replace="近战修改"/>
+	<Translation Original="Defense Modifier" Replace="防护修改"/>
+	<Translation Original="Accuracy" Replace="精准度"/>
+	<Translation Original="Reset" Replace="重置"/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+	<Translation Original="" Replace=""/>
+</Table>

@@ -1,0 +1,31 @@
+# Menu: Chat Box Design
+DESIGN_NAME: Chat Box Design
+DESIGN_TEXT: Change how the chatbox looks
+DESIGN_CHAT_COLOR_NAME: Chat Color
+DESIGN_CHAT_COLOR_DESC: Sets the color the stand chat will use
+DESIGN_BACKGROUND_COLOR_NAME: Background Color
+DESIGN_BACKGROUND_COLOR_DESC: Sets the background color the chat box will use
+DESIGN_POS_NAME: %s Position
+DESIGN_POS_DESC: Sets the %s position where the chatbox appears at
+DESIGN_TEXT_SIZE_NAME: Text Size
+DESIGN_TEXT_SIZE_DESC: Sets the text size the chat uses
+DESIGN_MESSAGE_DURATION_NAME: Message Duration
+DESIGN_MESSAGE_DURATION_DESC: How long until a message disappears? In seconds.
+# Menu: Channels
+CHANNELS_NAME: Channels
+CHANNELS_DESC: Switch to other channels if one is too active or you wish to chat privately
+CHANNELS_SWITCHED: Switched chat channel to %s
+CHANNELS_ACTIVE: Current channel: %s
+CHANNELS_SWITCH_TO: Chat in the %s public channel
+CHANNELS_SPECIFIC_NAME: Enter a specific channel
+CHANNELS_SPECIFIC_DESC: Chat & receive messages from a specific channel. Useful to message any of your friends privately.\nChannel ID must be an alphanumeric id (letters and numbers only)
+CHANNELS_SPECIFIC_INVALID: Invalid channel entered
+RECV_ALL_PUBLIC_NAME: Receive messages from all public channels
+RECV_ALL_PUBLIC_DESC: Enabled, you will receive messages from all public channels (channels prefilled in channels list)\n\nDisabled, you will only receive messages from your active channel
+SEND_MSG_NAME: Send Message
+SEND_MSG_DESC: Sends a chat message to all online stand users.\n\nNote: Racism, spamming, or any form of harassment is not tolerated and will result in your account being banned from chatting. Don't be a dick.
+SEND_CHAT_AS: Chatting as "%s"
+SEND_MAINTENACE: Chat server is in maintenance mode, cannot send.
+SEND_ERROR: Chat server returned error: 
+EXAMPLE_1: Example: Welcome to Stand Chat.
+EXAMPLE_2: Example: This is some example text. Have you tried jackz_vehicles? I heard it's a great script.

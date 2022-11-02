@@ -1,0 +1,53 @@
+{
+    "Main Color": {
+        "R": 95,
+        "G": 158,
+        "B": 160
+    },
+    "Title Text Color": {
+        "R": 255,
+        "G": 255,
+        "B": 255
+    },
+    "Header Color": {
+        "R": 95,
+        "G": 158,
+        "B": 160
+    },
+    "Scroller Color": {
+        "R": 95,
+        "G": 158,
+        "B": 160
+    },
+    "Controls": {
+        "Controller Support": true,
+        "Instructional Buttons": true,
+        "Sounds": true,
+        "Sound Theme": 0,
+        "Scroll Speed": 120,
+        "Number Speed": 120
+    },
+    "UI": {
+        "Teleport Map": true,
+        "Teleport Animation": 1,
+        "Vehicle Previews": true,
+        "Window Activators": true,
+        "Welcome Screen": false,
+        "Show Globe": false,
+        "Smooth Scroller": true,
+        "Scroll Smoothness": 4,
+        "Header Image": 1
+    },
+    "Position": {
+        "Menu X": 0.26998,
+        "Menu Y": 0.00998
+    },
+    "Keys": {
+        "Open Key": 121,
+        "Open Gamepad": 0,
+        "Open Key Info": "F10"
+    },
+    "Toggles": {
+        "Sync Config": false
+    }
+}

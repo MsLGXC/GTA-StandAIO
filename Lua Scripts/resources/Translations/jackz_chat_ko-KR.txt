@@ -1,0 +1,31 @@
+# Menu: Chat Box Design
+DESIGN_NAME: Chat Box Design
+DESIGN_TEXT: Change how the chatbox looks
+DESIGN_CHAT_COLOR_NAME: Chat Color
+DESIGN_CHAT_COLOR_DESC: Stand 채팅에서 사용할 색상을 설정합니다.
+DESIGN_BACKGROUND_COLOR_NAME: 배경 색
+DESIGN_BACKGROUND_COLOR_DESC: 채팅 상자에서 사용할 배경 색을 설정합니다.
+DESIGN_POS_NAME: %s Position
+DESIGN_POS_DESC: Sets the %s position where the chatbox appears at
+DESIGN_TEXT_SIZE_NAME: 글자 크기
+DESIGN_TEXT_SIZE_DESC: 채팅에서 사용하는 글자 크기를 설정합니다.
+DESIGN_MESSAGE_DURATION_NAME: 채팅 표시 기간
+DESIGN_MESSAGE_DURATION_DESC: 채팅이 표시되는 시간을 뜻합니다.
+# Menu: Channels
+CHANNELS_NAME: Channels
+CHANNELS_DESC: 한 채널에 너무 사람이 많거나 비공개로 채팅하려면 다른 채널로 전환하세요.
+CHANNELS_SWITCHED: 채팅 채널을 %s (으)로 전환했습니다.
+CHANNELS_ACTIVE: Current channel: %s
+CHANNELS_SWITCH_TO: 공개 채널 %s 에서 채팅
+CHANNELS_SPECIFIC_NAME: 특정 채널을 입력하세요.
+CHANNELS_SPECIFIC_DESC: 특정 채널에서 채팅 및 메시지를 수신합니다. 친구에게 개인적으로 메시지를 보낼 때 유용합니다.\n채널 ID는 영어나 숫자 ID여야만 합니다
+CHANNELS_SPECIFIC_INVALID: Invalid channel entered
+RECV_ALL_PUBLIC_NAME: 모든 공개 채널에서 채팅을 수신합니다.
+RECV_ALL_PUBLIC_DESC: 활성화: 모든 공개 채널에서 메시지 수신\n\n비활성화: 활성화된 채널에서만 메시지 수신
+SEND_MSG_NAME: 채팅 보내기
+SEND_MSG_DESC: 모든 온라인 Stand 유저에게 채팅 메시지를 보냅니다.\n\n참고로 인종 차별, 도배 및 모든 형태의 괴롭힘은 허용되지 않으며 채팅이 금지될 수도 있습니다.
+SEND_CHAT_AS: Chatting as "%s"
+SEND_MAINTENACE: 채팅 서버가 유지 보수 중이므로, 보낼 수 없습니다.
+SEND_ERROR: 채팅 서버에서 다음 오류를 반환했습니다:
+EXAMPLE_1: Example: Welcome to Stand Chat.
+EXAMPLE_2: Example: This is some example text. Have you tried jackz_vehicles? I heard it's a great script.

@@ -1,0 +1,6 @@
+<!---
+This is an example IPLList file here you can add more names to load them ingame or get there load state.
+---->
+<IPLS>
+	<IPL Name="airfield"/>
+</IPLS>

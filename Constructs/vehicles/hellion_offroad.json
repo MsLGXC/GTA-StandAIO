@@ -1,0 +1,59 @@
+{
+    "Main": {
+        "Damage": {
+            "CollisionDamageMult": 0.0,
+            "DeformationDamageMult": 0.0,
+            "EngineDamageMult": 0.0,
+            "PetrolTankVolume": 100.0,
+            "WeaponDamageMult": 0.0
+        },
+        "Miscellaneous": {
+            "MonetaryValue": 50000,
+            "OilVolume": 100.0,
+            "SeatOffset.X": -0.10000000149011612,
+            "SeatOffset.Y": 0.0,
+            "SeatOffset.Z": 0.10000000149011612
+        },
+        "Physical": {
+            "DownforceModifier": 0.0,
+            "Mass": 1900.0,
+            "PercentSubmerged": 85.0,
+            "VecCentreOfMassOffset.X": 0.0,
+            "VecCentreOfMassOffset.Y": 0.019999999552965164,
+            "VecCentreOfMassOffset.Z": 0.14000000059604645,
+            "VecInertiaMultiplier.X": 1.2999999523162842,
+            "VecInertiaMultiplier.Y": 1.2999999523162842,
+            "VecInertiaMultiplier.Z": 1.2999999523162842
+        },
+        "Suspension": {
+            "AntiRollBarForce": 0.11999999731779099,
+            "RollCentreHeightFront": 0.5,
+            "RollCentreHeightRear": 0.5,
+            "SuspensionCompDamp": 0.10000000149011612,
+            "SuspensionForce": 1.0,
+            "SuspensionLowerLimit": -1.0000001192092896,
+            "SuspensionReboundDamp": 0.14000000059604645,
+            "SuspensionUpperLimit": 1.0000001192092896
+        },
+        "Transmission": {
+            "BrakeForce": 0.30000001192092896,
+            "ClutchChangeRateScaleDownShift": 2.0999999046325684,
+            "ClutchChangeRateScaleUpShift": 2.0999999046325684,
+            "DriveBiasFront": 1.0,
+            "DriveInertia": 1.0,
+            "HandBrakeForce": 0.4000000059604645,
+            "InitialDriveForce": 0.25,
+            "InitialDriveGears": 5,
+            "InitialDriveMaxFlatVel": 1.2999999523162842,
+            "SteeringLock": 0.6283185482025146
+        },
+        "Wheel Traction": {
+            "CamberStiffnesss": 0.0,
+            "LowSpeedTractionLossMult": 0.49999991059303284,
+            "TractionCurveMax": 5.0,
+            "TractionLossMult": 0.0,
+            "TractionSpringDeltaMax": 0.5
+        }
+    },
+    "Type": 0
+}

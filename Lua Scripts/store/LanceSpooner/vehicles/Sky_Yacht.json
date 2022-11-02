@@ -1,0 +1,297 @@
+{
+	"vehicles": [],
+	"version": "Jackz Custom Vehicle 1.1.0",
+	"objects": [{
+		"name": "apa_mp_apa_yacht_o2_rail_b",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 90
+		},
+		"offset": {
+			"x": -2.3,
+			"y": 0,
+			"z": 23.15
+		},
+		"model": -2079407903
+	}, {
+		"name": "apa_mp_apa_yacht_option2",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 90
+		},
+		"offset": {
+			"x": -2.3,
+			"y": 0,
+			"z": 23.16
+		},
+		"model": -1263908835
+	}, {
+		"name": "sf_mp_apa_yacht_jacuzzi_ripple1",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"offset": {
+			"x": -0.3,
+			"y": -50.9,
+			"z": 8.8
+		},
+		"model": 1149891890
+	}, {
+		"name": "sf_mp_apa_yacht_door",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"offset": {
+			"x": -0.02,
+			"y": -36.83,
+			"z": 9.25
+		},
+		"model": 1058242652
+	}, {
+		"name": "sf_mp_apa_yacht_door2",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 180
+		},
+		"offset": {
+			"x": 1.1,
+			"y": 0,
+			"z": 15.3
+		},
+		"model": -1509779685
+	}, {
+		"name": "apa_mp_apa_y2_l2c",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 90
+		},
+		"offset": {
+			"x": -2.3,
+			"y": 0,
+			"z": 23.17
+		},
+		"model": -1015243924
+	}, {
+		"name": "apa_mp_apa_yacht_door2",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"offset": {
+			"x": -1.69,
+			"y": 0.05,
+			"z": 15.3
+		},
+		"model": -1788250883
+	}, {
+		"name": "sf_mp_apa_yacht_win",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 90
+		},
+		"offset": {
+			"x": -2.3,
+			"y": 0,
+			"z": 8.6
+		},
+		"model": 1565053508
+	}, {
+		"name": "apa_mp_apa_yacht_door2",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 180
+		},
+		"offset": {
+			"x": 1.09,
+			"y": 0.05,
+			"z": 15.3
+		},
+		"model": -1788250883
+	}, {
+		"name": "sf_mp_apa_yacht",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 90
+		},
+		"offset": {
+			"x": -2.3,
+			"y": 0,
+			"z": 8.6
+		},
+		"model": 1031517508
+	}, {
+		"name": "sf_mp_apa_yacht_door2",
+		"visible": true,
+		"type": "ENTITY",
+		"rotation": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"offset": {
+			"x": -1.68,
+			"y": 0,
+			"z": 15.3
+		},
+		"model": -1509779685
+	}],
+	"base": {
+		"savedata": {
+			"Interior Color": 0,
+			"Dirt Level": 0,
+			"Mods": {
+				"Roof": -1,
+				"Steering Wheel": -1,
+				"Grille": -1,
+				"Hydraulics": -1,
+				"Side Skirt": -1,
+				"Shifter Leavers": -1,
+				"Ornaments": -1,
+				"Trim Design": -1,
+				"Livery": -1,
+				"Plaques": -1,
+				"Plate Holders": -1,
+				"Fender": -1,
+				"Wheels Design": 49,
+				"Toggles": {
+					"UNK19": false,
+					"UNK21": false,
+					"Turbo Turning": true,
+					"Tire Smoke": false,
+					"UNK17": false,
+					"Xenon Headlights": true
+				},
+				"Hood": -1,
+				"Transmission": -1,
+				"Right Fender": -1,
+				"Spoilers": -1,
+				"Front Bumper": 1,
+				"Brakes": -1,
+				"Exhaust": -1,
+				"Horns": -1,
+				"Dial Design": -1,
+				"Frame": -1,
+				"Armor": -1,
+				"Suspension": -1,
+				"Rear Bumper": -1,
+				"Motorcycle Back Wheel Design": -1,
+				"Engine": -1
+			},
+			"Extras": {
+				"8": true,
+				"9": true,
+				"6": true,
+				"7": true,
+				"10": true,
+				"1": true,
+				"13": true,
+				"12": true,
+				"4": true,
+				"5": true,
+				"2": true,
+				"3": true
+			},
+			"Name": "BLIMP3",
+			"Livery": {
+				"Count": -1,
+				"Style": -1
+			},
+			"Lights": {
+				"Neon": {
+					"Right": false,
+					"Left": false,
+					"Color": {
+						"b": 255,
+						"r": 255,
+						"g": 0
+					},
+					"Front": false,
+					"Back": false
+				},
+				"Xenon Color": 255
+			},
+			"Dashboard Color": 0,
+			"Window Tint": -1,
+			"Manufacturer": "",
+			"Format": "JSTAND 1.3.1",
+			"Engine Running": true,
+			"Type": "Helicopters",
+			"Colors": {
+				"Color Combo": -1,
+				"Secondary": {
+					"Custom Color": {
+						"b": 96,
+						"r": 80,
+						"g": 107
+					},
+					"Custom": true
+				},
+				"Paint Fade": 0.7607843875885,
+				"Primary": {
+					"Custom Color": {
+						"b": 96,
+						"r": 80,
+						"g": 89
+					},
+					"Custom": true
+				},
+				"Vehicle": {
+					"Secondary": 0,
+					"g": 8,
+					"Primary": 0,
+					"b": 8,
+					"r": 8
+				},
+				"Extras": {
+					"pearlescent": 10,
+					"wheel": 0
+				}
+			},
+			"Tire Smoke": {
+				"b": 255,
+				"r": 255,
+				"g": 255
+			},
+			"License Plate": {
+				"Text": "02DTE387",
+				"Type": 0
+			},
+			"Bulletproof Tires": false,
+			"Model": -307958377
+		},
+		"visible": true,
+		"model": -307958377
+	}
+}

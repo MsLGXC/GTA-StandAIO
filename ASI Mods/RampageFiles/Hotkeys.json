@@ -1,0 +1,19 @@
+{
+    "Hotkeys": {
+        "Cursor Key": 88,
+        "Cursor Key Info": "X",
+        "Cursor Key Toggle": false,
+        "Teleport Key": 116,
+        "Teleport Key Info": "F5",
+        "Teleport Key Toggle": false,
+        "Cmd Key": 84,
+        "Cmd Key Info": "T",
+        "Cmd Key Toggle": false,
+        "Vehicle Weapon Key": 69,
+        "Vehicle Weapon Key Info": "E",
+        "Vehicle Plane Smoke Key": 86,
+        "Vehicle Plane Smoke Key Info": "V",
+        "Fix Vehicle Key Toggle": true,
+        "Creator Key Toggle": true
+    }
+}

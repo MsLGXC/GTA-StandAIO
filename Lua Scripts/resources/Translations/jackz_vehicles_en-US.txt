@@ -1,0 +1,289 @@
+# Generic
+
+NO_WAYPOINT_SET: You have no waypoint set
+AUTO_SPECTATE: Player is too far, auto-spectating for upto 3s.
+PLAYER_OUT_OF_RANGE: Player is not in a car or out of range.
+THEM: Them
+ME: Me
+FILE_SAVED: Saved to %s
+VEHICLE_SAVE_DATA: Vehicle: %s%s (%s)\nFormat Version: %s (Current: %s)
+VEHICLE_SPAWNED: Spawned %s
+
+# Menu Specific
+
+VEHICLE_OPTIONS_NAME: Vehicle Options
+VEHICLE_OPTIONS_DESC: List of vehicle options
+TP_VEH_TO_ME_NAME: Teleport Vehicle To Me
+TP_VEH_TO_ME_DESC: Teleports their vehicle to your current location
+TP_VEH_TO_WAYPOINT_NAME: Teleport Vehicle To Waypoint 
+TP_VEH_TO_WAYPOINT_DESC: Teleports their vehicle to your current waypoint
+# Menu: Attachments
+ATTACHMENTS_NAME: Attachments
+ATTACHMENTS_DESC: Attach their vehicle to:\nCargobobs\nTow Trucks
+TOW_TRUCKS_DIVIDER: Tow Trucks
+TOW_DRIVE_NAME: Tow & Drive
+TOW_DRIVE_DESC: Spawn a tow truck in front of car and warp to driver seat
+TOW_TRUCKS_WANDER_NAME: Tow (Wander)
+TOW_TRUCKS_WANDER_DESC: Will make a random tow truck tow the player's vehicle randomly around
+TOW_TO_WAYPOINT_NAME: Tow To Waypoint
+TOW_TO_WAYPOINT_DESC: Will make a random tow truck tow the player's vehicle to your waypoint
+TOW_TO_PLAYER_DIVIDER: Tow To Player
+TOW_TO_PLAYER_INDV_DESC: Will make a random tow truck tow the player's vehicle to them
+DETACH_TOW_NAME: Detach Tow Truck
+DETACH_TOW_DESC: Will detach from any tow truck
+USE_MAGNET_NAME: Use Magnet
+USE_MAGNET_DESC: If enabled, will use a magnet instead of a rope. May work better in some situations
+CARGOBOB_FLY_NAME: Spawn Cargobob & Fly
+CARGOBOB_FLY_DESC: Spawns a cargobob attached to their vehicle, and fly it yourself
+CARGOBOB_MT_CHILIAD_NAME: Cargobob to Mt. Chiliad
+CARGOBOB_MT_CHILIAD_DESC: Will make a random cargobob take the player's vehicle to mount chiliad
+CARGOBOB_OCEAN_NAME: Cargobob To Ocean
+CARGOBOB_OCEAN_DESC: Will make a random cargobob take the player's vehicle to the ocean
+CARGOBOB_TO_PLAYER_NAME: Cargobob to Player
+CARGOBOB_TO_PLAYER_INDV_DESC: Will make a random cargobob take the player's vehicle to them
+CARGOBOB_TO_WAYPOINT_NAME: Cargobob To Waypoint
+CARGOBOB_TO_WAYPOINT_DESC: Will make a random cargobob take the player's vehicle to your waypoint
+DETACH_CARGOBOB_NAME: Detach Cargobob
+DETACH_CARGOBOB_DESC: Will detach cargobob from vehicle
+TRAILERS_DIVIDER: Trailers
+TRAILER_DRIVE_WANDER_NAME: Drive Around
+TRAILER_DRIVE_WANDER_DESC: Will make a random cab & trailer take the player's vehicle randomly around
+TRAILER_TO_WAYPOINT_NAME: Take To Waypoint
+TRAILER_TO_WAYPOINT_DESC: Will make a random cab & trailer take the player's vehicle to your waypoint
+TRAILER_GATE_DOWN_OPT_NAME: Spawn Trailer With Gate Down
+TRAILER_GATE_DOWN_OPT_DESC: Should spawned trailers spawn with gate down?
+TITAN_FLY_TO_MT_CHILIAD_NAME: Fly To Mt. Chiliad
+TITAN_FLY_TO_MT_CHILIAD_DESC: Spawns a titan, puts their vehicle in it and flys to mt. chiliad
+TITAN_FLY_TO_PLAYER_NAME: Fly To Player
+TITAN_FLY_TO_PLAYER_INDV_DESC: Will make a random titan take the player's vehicle to them
+TITAN_FLY_TO_WAYPOINT_NAME: Fly To Waypoint
+TITAN_FLY_TO_WAYPOINT_DESC: Spawns a titan, puts their vehicle in it and flys to your waypoint
+ATTACH_FREE_VEHICLE_NAME: Free Vehicle
+ATTACH_FREE_VEHICLE_DESC: Teleports the vehicle upwards to escape trailers or other objects
+ATTACH_DETACH_ALL_NAME: Detach All
+ATTACH_DETACH_ALL_DESC: Will detach vehicle from anything and everything
+VEH_DRIVE_NAME: Drive Vehicle
+VEH_DRIVE_DESC: Simulate driving their vehicle - by spawning & driving a clone with their vehicle attached.
+# Menu: Movement
+MOVEMENT_NAME: Movement
+MOVEMENT_DESC: List of vehicle movement options.\nBoost, Launch, Slingshot, Stop
+MOVEMENT_BOOST_NAME: Boost
+MOVEMENT_BOOST_DESC: Boost the player's vehicle forwards at a given speed (mph)
+MOVEMENT_SLINGSHOT_NAME: Slingshot
+MOVEMENT_SLINGSHOT_DESC: Boost the player's vehicle forward at a given speed (mph) & upwards
+MOVEMENT_LAUNCH_NAME: Launch
+MOVEMENT_LAUNCH_DESC: Boosts the player's vehicle upwards
+MOVEMENT_STOP_NAME: Stop
+MOVEMENT_STOP_DESC: Stops the player's engine
+# Menu: Doors
+DOORS_NAME: Doors
+DOORS_DESC: Open and close the player's vehicle doors
+DOORS_LOCK_STATUS_NAME: Lock Status
+DOORS_LOCK_STATUS_DESC: Changes the lock state of the value\n0 = Unlocked\n1 = Locked for passengers\n2 = Locked for all
+DOORS_OPEN_NAME: Open
+DOORS_OPEN_DESC: Will open the doors if enabled\nWill close if disabled
+DOORS_ALL_DOORS_NAME: All Doors
+DOORS_ALL_DOORS_DESC: Should opening / closing open all doors or individually selected door?
+DOORS_INDV_DESC: Opens or closes %s
+DOORS_LANDING_GEAR_NAME: Landing Gear Down
+DOORS_LANDING_GEAR_DESC: Changes the landing gear state
+# Menu: Los Santos Customs
+LSC_DESC: Customize the player's vehicle options\nSet headlights\nSet Paint Color\netc
+LSC_EXTRAS_NAME: Vehicle Extras
+LSC_EXTRAS_DESC: Apply any vehicle extras that the vehicle can have
+EXTRA_INDV_DESC: Apply this extra to the vehicle
+LSC_XENON_TYPE_NAME: Xenon Headlights Paint Type
+LSC_XENON_TYPE_DESC: The paint to use for xenon lights\nDefault = -1\nWhite = 0\nBlue = 1\nElectric Blue = 2\nMint Green = 3\nLime Green = 4\nYellow = 5\nGolden Shower = 6\nOrange = 7\nRed = 8\nPony Pink = 9\nHot Pink = 10\nPurple = 11\nBlacklight = 12
+LSC_NEON_LIGHTS_NAME: Neon Lights
+LSC_NEON_APPLY_NAME: Apply Neon Color
+LSC_NEON_APPLY_DESC: Applies neon colors with the color selected below
+LSC_NEON_COLOR_NAME: Neon Color
+LSC_NEON_COLOR_DESC: The color to use for neon lights
+LSC_PAINT_NAME: Paint
+LSC_PAINT_DESC: Paints the car with the selected colors below
+LSC_PAINT_PRIMARY_NAME: Paint Color (Primary)
+LSC_PAINT_PRIMARY_DESC: The primary color to paint the car
+LSC_PAINT_SECONDARY_NAME: Paint Color (Secondary)
+LSC_PAINT_SECONDARY_DESC: The secondary color to paint the car
+LSC_VEHICLE_MODS_NAME: Vehicle Mods
+LSC_VEHICLE_MODS_DESC: 
+LSC_MOD_NORMAL_DESC: Apply upto %d variations of %s\n-1 is Stock
+LSC_MOD_TOGGLE_DESC: Toggle %s on or off
+LSC_WHEEL_TYPE_NAME: Wheel Type
+LSC_WHEEL_TYPE_DESC: Sets the vehicle's wheel types\nSport = 0\nMuscle = 1\nLowrider = 2\nSUV = 3\nOffroad = 4\nTuner = 5\nBike Wheels = 6\nHigh End = 7\nClick to apply.
+LSC_WINDOW_TINT_NAME: Window Tint
+LSC_WINDOW_TINT_DESC: Set the window tint.\n0 = None\n1 = Pure Black\n2 = Dark Smoke\n3 = Light Smoke\n4 = Stock\n5 = Limo\n6 = Green\nClick to apply.
+LSC_UPGRADE_NAME: Upgrade
+LSC_UPGRADE_DESC: Upgrades the vehicle to the highest upgrades
+LSC_UPGRADE_RANDOM_NAME: Random Upgrade
+LSC_UPGRADE_RANDOM_DESC: Will randomly upgrade your vehicle. This includes the paint color and mods will be randomly applied.
+LSC_PERFORMANCE_UPGRADE_NAME: Performance Upgrade
+LSC_PERFORMANCE_UPGRADE_DESC: Upgrades the following vehicle parts:\nEngine\nTransmission\nBrakes\nArmour\nTurbo
+# Menu: Misc Vehicle Options
+VEH_CLONE_NAME: Clone Vehicle
+VEH_CLONE_DESC: Clones the player's vehicle
+VEH_SAVE_NAME: Save Vehicle
+VEH_SAVE_DESC: Saves the player's vehicle to disk
+VEH_SAVE_HINT: Enter a name to save the vehicle as
+VEH_SPAWN_VEHICLE_NAME: Spawn Vehicle
+VEH_SPAWN_VEHICLE_DESC: Spawns the vehicle of specified name in front of the player
+VEH_SPAWN_NOT_FOUND: Could not find that vehicle
+VEH_FLIP_UPRIGHT_NAME: Flip Upright
+VEH_FLIP_UPRIGHT_DESC: Flips the player's vehicle upwards
+VEH_FLIP_180_NAME: Flip Vehicle 180
+VEH_FLIP_180_DESC: Flips the player's vehicle around
+VEH_HONK_NAME: Honk
+VEH_HONK_DESC: Makes their car honk. Works best if no player in vehicle
+VEH_HIJACK_WANDER_NAME: Hijack Vehicle (Wander)
+VEH_HIJACK_WANDER_DESC: Makes a random NPC hijack their vehicle\n 0 = Doors Unlocked\n 1 = Doors Locked
+VEH_HIJACK_TO_PLAYER_NAME: Hijack & Drive To Player
+VEH_HIJACK_TO_PLAYER_INDV_DESC: Will make a random ped drive the player's vehicle to them
+VEH_HIJACK_FAILED_ACQUIRE: Hijacker failed to enter vehicle in time.
+VEH_BURST_TIRES_NAME: Burst Tires
+VEH_BURST_TIRES_DESC: Bursts the player's vehicle tires
+VEH_DELETE_NAME: Delete Vehicle
+VEH_DELETE_DESC: Removes the player's vehicle
+VEH_EXPLODE_NAME: Explode Vehicle
+VEH_EXPLODE_DESC: Kills the player's vehicle engine with style.
+VEH_KILL_ENGINE_NAME: Kill Engine
+VEH_KILL_ENGINE_DESC: Kills the player's vehicle engine
+VEH_CLEAN_NAME: Clean Vehicle
+VEH_CLEAN_DESC: Cleans the player's vehicle of any dirt or blood
+VEH_REPAIR_NAME: Repair Vehicle
+VEH_REPAIR_DESC: Repairs the player's vehicle
+VEH_TOGGLE_GODMODE_NAME: Toggle Godmode
+VEH_TOGGLE_GODMODE_DESC: Toggles their vehicle invincibility
+VEH_LICENSE_NAME: Set License Plate
+VEH_LICENSE_DESC: Sets their vehicles license plate
+VEH_SAVE_CURRENT_NAME: Save Current Vehicle
+VEH_SAVE_CURRENT_DESC: Saves your current vehicle with all customizations
+VEH_SAVE_CURRENT_HINT: Enter a name to save the vehicle as
+# Menu: Cloud 
+CLOUD_NAME: Cloud Vehicles
+CLOUD_DESC: View other user's vehicles or upload your own
+CLOUD_SEARCH_NAME: Search
+CLOUD_SEARCH_DESC: Search the cloud for vehicles
+CLOUD_SEARCH_NEW_NAME: Search New
+CLOUD_SEARCH_NO_RESULTS: No search results found for %s
+CLOUD_SPAWN_NAME: Spawn
+CLOUD_SPAWN_Desc: 
+CLOUD_DOWNLOAD_NAME: Download
+CLOUD_DOWNLOAD_DESC: Save this file to your saved custom vehicles list in\n%appdata%\Stand\Vehicles
+CLOUD_UPLOAD: Upload
+CLOUD_UPLOAD_DESC: Browse your saved vehicles to upload to the cloud
+CLOUD_UPLOAD_VEHICLE: Click to upload this vehicle
+CLOUD_UPLOAD_VEHICLE_NOTICE: Will overwrite existing versions in the cloud.
+CLOUD_UPLOAD_NO_ID: You do not have a cloudID, contact jackz for help.
+CLOUD_UPLOAD_SUCCESS: Vehicle uploaded to cloud successfully.
+CLOUD_UPLOAD_ERROR: Failed to upload to the cloud: %s
+BROWSE_BY_USERS_NAME: Browse by Users
+BROWSE_BY_USERS_DESC: Browse vehicles grouped by uploader
+BROWSE_BY_VEHICLES_NAME: Browse by Vehicles
+BROWSE_BY_VEHICLES_DESC: Browse all vehicles based on the below sorting criteria
+CLOUD_BROWSE_VEHICLES_DESC: Browse all uploaded vehicles by
+CLOUD_BROWSE_VEHICLES_COUNT: %d vehicles
+# Menu: Spawn Saved
+SAVED_NAME: Spawn Saved Vehicles
+SAVED_DESC: List of spawnable saved vehicles.\nStored in %appdata%\Stand\Vehicles\nOnly supports custom json vehicles, not compatible with other menus.
+SPAWN_IN_VEHICLE_NAME: Spawn In Vehicle
+SPAWN_IN_VEHICLE_DESC: Enabled: Will spawn in vehicle\nDisabled: Will spawn in-front of you
+SAVED_APPLY_CURRENT_NAME: Apply Saved Vehicle to Current Vehicle
+SAVED_APPLY_CURRENT_DESC: Instead of spawning a new saved vehicle, it will instead apply its settings to your current vehicle.
+SAVED_VEHICLE_DESC: Spawns a saved custom vehicle
+SAVED_MUST_BE_IN_VEHICLE: You must be in a vehicle to apply
+SAVED_SUCCESS_CURRENT: Applied %s to your current vehicle
+# Menu: Nearby Vehicles
+NEARBY_VEHICLES_NAME: Nearby Vehicles
+NEARBY_VEHICLES_DESC: Actions to do on nearby vehicles
+NEARBY_TOW_ALL_NAME: Tow All Nearby Vehicles
+NEARBY_TOW_ALL_DESC: WARNING: This can make your FPS drop or even crash your game!\nLimited to %d tow trucks to prevent crashes.
+NEARBY_TOW_CLEAR_NAME: Clear All Nearby Tows
+NEARBY_CARGOBOB_ALL_NAME: Cargobob Nearby Cars
+NEARBY_CARGOBOB_ALL_DESC: Ignores players, so they can watch eh)\nMay have a small chance of crashing, don't spam it too quickly
+NEARBY_CARGOBOB_ALL_MAGNET_NAME: Cargobob Nearby Cars (Magnet)
+NEARBY_CARGOBOB_ALL_MAGNET_EXTRA: Uses magnet
+NEARBY_CARGoBOB_CLEAR_NAME: Clear All Nearby Cargobobs
+NEARBY_ALL_CLEAR_NAME: Clear All Nearby Vehicles
+NEARBY_ALL_CLEAR_DESC: Clears all nearby vehicles in a range.
+NEARBY_ALL_CLEAR_SUCCESS: Deleted %d vehicles
+NEARBY_EXPLODE_RANDOM_NAME: Explode Random
+NEARBY_EXPLODE_RANDOM_DESC: Will mark a random nearby car to explode
+NEARBY_HIJACK_ALL_NAME: Hijack All Nearby
+NEARBY_HIJACK_ALL_DESC: Makes npcs hijack all nearby vehicles
+NEARBY_HONK_NAME: Honk
+NEARBY_HONK_DESC: Makes all nearby vehicles alarms go off
+# Menu: All Players
+ALL_NAME: All Players
+ALL_DESC: Lists of actions activated on all players.
+ALL_NEAR_ONLY_NAME: Near Only
+ALL_NEAR_ONLY_DESC: Should the script work only on nearby vehicles or should it work on all vehicles.\nNote: If enabled for ALL vehicles, menu will auto-spectate each player individually one by one.
+ALL_SPAWN_DESC: Spawns the vehicle name for all players
+ALL_CLEAN_DESC: Cleans all players' vehicles
+ALL_REPAIR_DESC: Repair all player's vehicles
+ALL_GODMODE_DESC: Toggles all players' vehicles invincibility
+# Menu: Autodrive
+AUTODRIVE_NAME: Autodrive
+AUTODRIVE_DESC: Autodrive options
+AUTODRIVE_STYLE_NORMAL: Normal
+AUTODRIVE_STYLE_OVERTAKE: Overtake Sometimes
+AUTODRIVE_STYLE_AVOID_EXTREMELY: Avoid Extremely
+AUTODRIVE_STYLE_RUSHED: Rushed
+AUTODRIVE_STYLE_IGNORE: Ignore Lights
+AUTODRIVE_STYLE_AVOID: Avoid Traffic
+AUTODRIVE_STYLE_REVERSED: Reversed
+AUTODRIVE_STYLE_GOOD: Supposedly Good Driving
+AUTODRIVE_STYLE_MOST_EFFICIENT: The Most Efficient
+AUTODRIVE_STYLE_MOST_EFFICIENT_DESC: Goes A to B, not good for vehicles.
+AUTODRIVE_STYLE_QUICK: Quick & Smart
+AUTODRIVE_STYLE_QUICK_DESC: Avoids all entities, takes shortest path.
+AUTODRIVE_STYLE_NERVOUS: Nervous Driver
+AUTODRIVE_STYLE_NERVOUS_DESC: Stops at EVERYTHING. Waits patiently. Avoids highways.
+# Menu: Autodrive/Chauffeur
+AUTODRIVE_CHAUFFEUR_NAME: Chauffeur
+AUTODRIVE_CHAUFFEUR_DESC: Make another NPC drive for you.
+AUTODRIVE_CHAUFFEUR_STOP_WHEN_FALLEN_NAME: Stop Driving When Not In/On
+AUTODRIVE_CHAUFFEUR_STOP_WHEN_FALLEN_DESC: Should the driver stop when you either exit the vehicle or fallen off on top?
+AUTODRIVE_CHAUFFEUR_SPAWN_DRIVER_NAME: Spawn Driver
+AUTODRIVE_CHAUFFEUR_SPAWN_DRIVER_DESC: Will acquire a driver into your last/active vehicle to drive for you. It will automatically hijack any player drivers.\nOnce the ready signal is given, choose a destination.
+# TODO: Driver Ready Signals
+AUTODRIVE_CHAUFFEUR_NO_DRIVER: No Driver to delete
+AUTODRIVE_DRIVER_UNAVAILABLE: Driver is not in a car or out of range
+AUTODRIVE_DRIVER_NONE: No driver to control, spawn a new driver.
+AUTODRIVE_STYLE_NAME: Driving Style
+AUTODRIVE_STYLE_DESC: Sets how the ai driver will drive
+AUTODRIVE_STYLE_INDV_DESC: Sets driving style to
+AUTODRIVE_STYLE_INDV_SUCCESS: Set driving style to %s
+AUTODRIVE_SPEED_NAME: Driving Speed
+AUTODRIVE_SMART_NAME: Smart Autodrive
+AUTODRIVE_SMART_DESC: Will automatically drive to your current waypoint, and will pause when you press any movement controls.
+AUTODRIVE_ACTIONS_DIVIDER: Drive Actions
+AUTODRIVE_DRIVE_WAYPOINT_NAME: Drive to Waypoint
+AUTODRIVE_DRIVE_TO_PLAYER_NAME: Drive To Player
+AUTODRIVE_DRIVE_TO_PLAYER_INDV_DESC: Drive to the selected player
+AUTODRIVE_WANDER_HOVER_NAME: Wander / Hover
+AUTODRIVE_WANDER_HOVER_DESC: Helicopters will hover instead. Planes idk probably crash
+AUTODRIVE_STOP_NAME: Stop Driving
+# Menu: Lua Scripts Cont.
+SPINNING_CARS_NAME: Spinning Cars
+SPINNING_CARS_DESC: Turn it on and see
+# Menu: Current Modifiers Menu
+CVM_NAME: Current Vehicle Settings
+CVM_DESC: Apply multipliers and other settings to your current car such as:\nTorque\nGravity\nLights\nAlways Upright
+CVM_KEEP_UPRIGHT_NAME: Always Keep Upright
+CVM_KEEP_UPRIGHT_DESC: Automatically flips vehicle upright once detected flipped.
+CVM_ACTIVE_MODS_DIVIDER: Active Mods
+CVM_LIGHTS_NAME: Lights
+CVM_LIGHTS_DESC: Default: 100
+CVM_TORQUE_NAME: Acceleration
+CVM_TORQUE_DESC: Default: 100
+CVM_TRACTION_NAME: Traction
+CVM_TRACTION_DESC; Default = 1
+CVM_ACTIVE_NAME: Enable
+CVM_ACTIVE_DESC: Should the current multipliers be applied?
+CRUISE_CONTROL_NAME: Cruise Control
+CRUISE_CONTROL_DESC: Will keep your vehicle driving at whatever the last speed you were at. It's kinda shitty.
+NEARBY_VEHICLES_LIST_NAME: Vehicle List
+NEARBY_VEHICLES_LIST_DESC: Provides a list of all nearby vehicles
+VEHLIST_SEATS_NAME: Seats
+VEHLIST_SEATS_DESC: 
+VEHLIST_SEAT_OCCUPIED: Vehicle seat is occupied by a player

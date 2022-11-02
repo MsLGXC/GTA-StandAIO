@@ -1,0 +1,675 @@
+# <  README  >
+# Thanks to translate HC!
+# You should translate right-side texts. Otherwise, it'll cause errors.
+# You can use all characters except "=" character.
+# Using "#" character means the line will be ignored like the comment in coding.
+# If you wanna release your own translation, contact to Dev of HC in DC Server.
+# Learn More: https://icedoomfist.com/Stand_Heist_Control/How_To_Translate/
+
+
+--- [ # General ] ---
+
+Heist Control = 抢劫控制
+Announcement = 公告
+You are using latest version of HC! = 您正在使用最新版本的HC!
+You are using outdated version of HC! = 您正在使用旧版的HC版本 !
+Current Version: = 当前版本:
+Latest Version: = 最新版本:
+Stand can't get latest version info of HC. = Stand无法获取HC的最新版本信息.
+HC website currently has connection issue. = HC网站目前有连接问题.
+Coded GTAO Version: = 编码GTA版本:
+Current GTAO Version: = 当前GTA版本:
+Hard = 困难
+Normal = 普通
+Notification = 通知
+[Risky] = [风险]
+[Locally] = [本地]
+Custom Payout = 自定义付款
+You didn't input the value. Please input it! = 您没有输入值.请输入!
+Enable = 开启
+Sucessfully set! = 设置成功!
+Would you like to restart HC now? = 您想现在重启HC吗?
+Others = 其他
+Good bye, thank you for using HC! :D = 再见,感谢您使用HC!
+
+
+--- [ # Main Tabs ] ---
+
+Cayo Perico Heist = 佩里科岛
+Diamond Casino Heist = 名钻赌场
+Doomsday Heist = 末日豪劫
+Classic Heist = 公寓任务
+LS Tuners Robbery = 改装铺合约
+The Contract: Agency = 事务所合同
+Master Unlocker = 解锁大师
+Tools = 工具
+Settings & About HC = 设置和关于抢劫控制
+
+
+--- [ # Cayo Perico Heist ] ---
+
+Automated Presets = 自动预设
+1 Player = 玩家 1
+2 Players = 玩家 2
+3 Players = 玩家 3
+4 Players = 玩家 4
+Sapphire Panther = 猎豹雕像
+Ruby Necklace = 红宝石项链
+
+Quick Preset [1 ~ 4P] = 快速预设 [1 ~ 4P]
+There are no secondary targets, only one primary target exists. Your goal is get it. = 没有次要目标，只有一个主要目标。你的目标是得到它.
+Standard Preset = 标准预设
+Semi-Original Preset = 半原始预设
+- Remember to choose your preset outside the Submarine or in the Main Deck = - 记得在潜艇外或主甲板选择预设.离开虎鲸
+- Remember to deactivate the preset at the end. = - 记得在结束时取消预设.
+
+Custom Teleport = 定制传送
+Compound = 豪宅内部传送点
+El Rubio's Office = 金发的办公室
+Front Gate Exit = 前门出口
+Storage = 库房传送点
+North = 北库房
+West = 西库房
+South = 南库房
+Vault = 地下室
+Island = 豪宅外部传送点
+Airstrip = 飞机跑道
+Crop Fields = 农田
+Main Dock = 主要码头
+North Dock = 北码头
+Loot = 战利品
+Radio Tower = 无线电塔
+Drainage = 下水道
+Drainage: 2nd Checkpoint = 下水道检查点2
+Ocean Safe Place = 海洋撤离点
+Kosatka: Heist Board [Call Kosatka first] = 虎鲸:抢劫面板 [呼出虎鲸]
+You have not bought Kosatka yet. Buy it first to teleport! = 你还没有购买虎鲸. 先购买才能传送!
+
+Advanced Features = 高级功能
+Players Cut = 玩家分红
+Your Cut = 你的分红
+Player 2 = 玩家 2
+Player 3 = 玩家 3
+Player 4 = 玩家 4
+Set 100% to everyone = 为每个人设置100%
+
+
+Bag Capacity Modifier = 背包容量修改
+Normal Bag Limit = 正常背包容量
+Simulate Bag to 2 players = 修改背包容量为两个玩家
+Simulate Bag to 3 players = 修改背包容量为三个玩家
+Simulate Bag to 4 players = 修改背包容量为四个玩家
+Infinite Bag = 无限背包
+Skip Hacking = 跳过 Hacking
+Skip Sewer Cutter = 跳过下水道切割
+Open Plasma Glass Immediately = 立即打开玻璃
+Bypass Plasma Glass Cutter Heat = 绕过切割机发热
+Infinite Voltage Timer = Infinite Voltage Timer
+Remove Fencing Fee & Pavel Cut = 删除倒卖费用和帕维尔分红
+Leave activated until the end of the heist = 在抢劫结束前保持激活状态
+Auto-finish Primary Target = 自动完成主要目标
+Remove Drainage Pipe = 删除排水管
+
+Heist Vehicles = 抢劫方式
+Submarine KOSATKA = 潜艇虎鲸1
+Plane ALKONOST = 飞机阿尔科诺斯特
+Plane VELUM = 飞机梅杜莎
+Helicopter STEALTH ANNIHILATOR = 直升机隐形歼灭者
+Boat PATROL BOAT = 船只巡逻艇
+Boat LONGFIN = 船只长鳍
+Unlock All Vehicles = 解锁所有入场方式
+
+Primary Target = 主要目标
+
+Secondary Target = 次要目标
+When using this method, the percentage and final payment is random! = 使用这种方法时，百分比和最终付款是随机的!
+Remove All = 移除所有
+
+Compound Loot = 复合战利品
+
+Weapon Loadouts = 武器装备
+Aggressor = 侵略者
+- Assault SG + Machine Pistol = - 突击散弹枪 + 冲锋手枪
+- Machete + Grenade = - 开山刀 + 手榴弹
+Conspirator = 阴谋者
+- Military Rifle + AP = - 军用步枪 + 单发手枪
+- Knuckles + Stickies = - 手指虎 + 粘弹
+Crackshot = 神枪手
+- Sniper + AP = - 轻狙 + 连发手枪
+- Knife + Molotov = - 小刀 + 燃烧瓶
+Saboteur = 破坏者
+- SMG Mk2 + SNS Pistol = - MK2冲锋枪 + 单发手枪
+Marksman = 神射手
+- AK-47 + Pistol .50 = - MK2突击步枪 + 单发手枪
+- Machete + Pipe Bomb = -砍刀 + 土质炸弹
+
+Equipments Spawn Location = 器械生成位置
+- Guard Clothing = - 保安服装
+- Bolt Cutters = - 螺栓切割器
+
+Supply Truck Location = 卡车位置
+Heist Difficulty = 抢劫难度
+Unlock Heist Awards = 解锁抢劫奖项
+Complete all Missions only = 只完成单人所有任务
+Force the longest final Cutscene = 强制完成最长的最后过场动画
+Keep in mind that you must use this option before starting the Heist = 记住,你必须在开始抢劫之前使用这个选项
+Set Heist to Default [Reset] = 将劫案设置为默认[重置]
+
+
+--- [ # Casino Heist ] ---
+
+Silent & Sneaky Approach = 隐迹潜踪
+BigCon Approach = 兵不厌诈
+Aggressive Approach = 气势汹汹
+$3.5 Millions & For All Players = 所有玩家350万美元
+ALWAYS choose Low Level Buyer! = 永远选择最低出价的买家!
+
+Advanced Features = 高级功能
+Your Cut (Non-Host) = 你的分红 (非主机)
+Works on both of sorts: Fingerprint and Keypad = 适用于两种类型:指纹和面板
+Instant Vault Door Laser = 加速金库门激光
+
+Inside = 内部
+Planning Boards = 计划面板
+Garage Exit = 车库出口
+Waste Disposal = 废物处理间门口
+2-Keypad Door = 双人刷卡点
+Inside Vault = 金库内部
+Pre-Inside Vault = 金库大门
+Daily Bonus = 小金库
+Daily Bonus Room = 小金库门控制室
+Outside = 外部
+Main Gate = 主大门
+Staff Lobby = 员工大门
+
+Heist Planning [Board 1] = 抢劫面板 [面板 1]
+
+Change Approach and Difficulty = 更改入场方式和难度
+Change Target = 更改主要目标
+Diamond = 钻石
+Gold = 黄金
+Artwork = 艺术作品
+Cash = 现金
+P.O.I & Access Points = P.O.I & Access Points
+Change your session to apply! = 切换战局生效!
+
+Heist Planning [Board 2] = 抢劫面板 [面板 2]
+
+Change Gunman = 更改枪手
+Chester McCoy = 麦考伊
+Gustavo Mota = 莫塔
+Patrick McReary = 麦克雷里
+Charlie Reed = 里德
+Karl Abolaji = 阿博拉吉
+Random = 随机枪手
+Remove = 删除枪手
+
+Weapon Variation = 更改武器
+
+Change Vehicle = 更改辆手
+Chester McCoy = 麦考伊
+Eddie Toh = 埃迪
+Taliana Martinez = 马丁内斯
+Zach Nelson = 纳尔逊
+Karim Denz = 卡里姆
+
+Vehicle Variation = 更改车辆
+Best = 最好
+Good = 很好
+Fine = 好
+Worst = 最差
+
+Change Hacker = 更改黑客
+Avi Schwartzman = 施瓦茨曼
+Paige Harris = 佩奇哈里斯
+Christian Feltz = 克里斯蒂安·费尔茨
+Yohan Blair = 约翰·布莱尔
+Rickie Luken = 里奇·卢克恩
+
+Choose Mask = 选择面具
+Remove Mask = 删除面具
+Geometric = Geometric
+Hunter = Hunter
+Oni Half Mask = Oni Half Mask
+Emoji = Emoji
+Ornate Skull = Ornate Skull
+Lucky Fruit = Lucky Fruit
+Guerilla = Guerilla
+Clown = Clown
+Animal = Animal
+Riot = Riot
+Oni = Oni
+Hockey = Hockey
+
+Unlock Scan Card Level = 解锁门禁卡级别
+Duggan Guards = 杜根警卫
+0 - Strongest Guards = 最强警卫
+3 - Weakest Guards = 最弱警卫
+
+Heist Planning [Board 3] = 抢劫面板 [面板 3]
+Remove Drills = 删除钻孔器
+Silent & Sneaky and Aggressive Approach = 影迹潜踪,兵不厌诈,气势汹汹的方法
+
+Board Loader & Unloader = 完成/卸载计划版
+Load all Boards = 完成所有计划版
+Unload all Boards = 卸载所有计划版
+
+Casino Story Missions = 赌场故事任务
+Loose Cheng = Loose Cheng
+House Keeping = House Keeping
+Strong Arm Tactics = 暴力战术
+Play to Win = Play to Win
+Bad Beat = Bad Beat
+Cashing Out = Cashing Out
+
+Remove Heist Prepare Cooldown = 准备冷却时间
+Skip Agatha Baker missions to the last one = 跳过贝克女士的任务，到最后一个
+
+
+--- [ # Doomsday Heist ] ---
+
+[Final Heist] = [最终抢劫]
+The Data Breaches ACT I = 数据泄露 ACT I
+The Bogdan Problem ACT II = 波格丹危 ACT II
+The Doomsday Scenario ACT III = 末日降临 ACT III
+
+Heist board = 抢劫面板
+Prisoner cell = 会议室
+
+Modify ACT I Payment [$2.5 Millions] = 修改数据泄露收入[250万美元]
+Modify ACT II Payment [$2.5 Millions] = 修改波格丹危机付款[250万美元]
+Modify ACT III Payment [$2.5 Millions] = 修改末日降临付款[250万美元]
+Set difficulty as hard. In-Game percentage may seem weird. Applied to everyone. = 设置难度为“难”.在游戏中, 百分比似乎很奇怪. 适用于每个人.
+
+Setup: Server Farm (Lester) = 设置:服务器群(莱斯特)
+Unlock All Doomsday Heist = 解锁所有末日劫案
+Complete all preparations (Not Setup) = 完成所有准备工作(不是设置)
+
+
+--- [ # Classic Heist ] ---
+
+Fleeca Heist = Fleeca Heist
+Your Payout (Millions) = 你的收入 (百万)
+Will be applied only to you & have to host = 将只适用于您&必须是主持人
+- Only do this only one time or twice in less than 24 hours. = - 在24小时内只做一到两次.
+- Otherwise, you can be banned! = - 否则，你可能会被封禁!
+Modify Payout Amount = 修改付款金额
+Complete all Setup = 完成所有设置
+You may need to choose a Heist and then complete the first setup, activated until then = 你需要选择一个抢劫，然后完成第一个设置，激活直到那时
+
+
+--- [ # LS Robbery ] ---
+
+Modify Contracts payout - $1 MILLIONs = 修改合约收入- 100万
+Always keep this option actived before starting a contract = 在开始合同之前，一定要启用这个选项
+Changes will only happen if you are outside your Auto-Shop! = 你需要在改装铺外面才会发生改变!离开改装铺!
+Union Depository = 联合储蓄
+The Superdollar Deal = 大钞交易
+The Bank Contract = 银行合约
+The ECU Job = 电控单元
+The Prison Contract = 监狱合约
+The Agency Deal = IAA 交易
+The Lost Contract = 摩托帮交易
+The Data Contract = 数据合约
+Complete missions (only) = 完成任务 (only)
+
+Reset Missions (only) = 重置任务 (only)
+Reset Contracts = 重置合同
+Reset Total Gains & Completed Missions = 重置总收益和完成任务
+
+
+--- [ # The Contract : Agency ] ---
+
+VIP Contract: Dr.Dre = VIP 合同 : Dr.Dre
+The feature to be worked properly, you may need to log out of F.Clinton & Partner = 该功能要正常工作，您可能需要退出F.Clinton & 组织
+
+NightLife Leak = 夜生活泄密
+The Nightclub (Prep) = 夜总会(前置)
+The Marina (Prep) = 码头 (前置)
+NightLife Leak (Mission) = 夜生活泄密 (任务)
+
+High Society Leak = 上流社会泄密
+The Country Club (Prep) = 乡村俱乐部(前置)
+Guest List (Prep) = 宾客名单 (前置)
+High Society (Mission) = 上流社会(任务)
+
+South Central Leak = 南中心区泄密
+Davis (Prep) = 戴维斯(前置)
+The Ballas (Prep) = 巴勒帮(前置)
+Agency Studio (Mission) = 代理工作室(任务)
+Final Contract: Don't Fuck with Dre = 最终合同:别惹德瑞
+
+Modify Final Contract Payout (2 Millions) = 修改最终合同付款(200万)
+Skip Cooldown of Payphone hits & contracts = 跳过抢劫电话和合同的冷却时间
+Make sure enabled before starting any contract or hit. = 在开始任何合同或抢劫前确保启用.
+Remove Security Missions Cooldown = 移除安全任务冷却时间
+Complete all Missions = 完成所有任务
+
+
+--- [ # Master Unlocker ] ---
+
+DLCs = DLCs
+Arena Wars DLC = 竞技场战争 DLC
+Unlock all Arena Wars Trophy and Toys = 解锁所有竞技场战争奖杯和玩具
+Arena Wars Clothing = 解锁竞技场的内容
+Summer 2020 DLC = 2020年夏天 DLC
+Summer 2020 Awards = 2020年夏季奖项
+Unlock Summer DLC Clothing = 解锁夏天 DLC的内容
+LS Tuners DLC = 车友会s DLC
+Unlock Drip Fed Outfits = 解锁联合储蓄装备
+Unlock Awards = 解锁奖项
+The Contract DLC = 合约DLC 
+Unlock Animal Masks = 解锁动物面具
+Unlock DJ Pooh Shirts = 解锁DJ Pooh t恤
+
+Buildings = 建筑
+Arcade Unlockers = 游戏厅解锁器
+Unlock Arcade Trophys and Toys = 解锁游戏厅奖杯和玩具
+Unlock Arcade Clothing = 解锁游戏厅服装
+Unlock NightClub Awards = 解锁夜总会奖项
+Casino Store Ace Masks = 赌场商店的扑克面具
+Add cosmetics items to the Office/MC = 向办公室添加修饰项目
+
+Missions = 任务
+Cayo Perico unlockables = 佩里科岛解锁
+Unlock Yacht Missions = 解锁游艇任务
+Unlock all Contacts = 解锁所有联系人
+Skip Lamar Missions to the last one = 跳过拉马任务到最后一个
+
+Special Anniversaries = 特殊的纪念日
+Christmas = 圣诞节服装
+Bypass Christmas Clothing = 绕过圣诞节服装
+You must always keep this feature activated to wear! = 您必须始终保持此功能激活，以穿戴!
+Unlock Christmas Liveries = 解锁圣诞服装
+Unlock Christmas Content = 解锁圣诞节的内容
+Valentine = 情人节解锁
+Independence Day = 独立日解锁
+
+Clothes = 衣服
+Unlock Hats and many Shirts = 解锁帽子和许多衬衫
+Unlock Don't Cross the Line Tee = 解锁Don't Cross the Line Tee
+
+Vehicles = 车辆
+Unlock some vehicles trade price = 解锁部分车辆交易价格
+Unlock Shotaro = 解锁尚太郎
+
+Weapons = 特殊武器
+Stone Hatchet Challenge = 石头斧
+Double Action Revolver = 连发左轮手枪
+Navy Revolver = 海军左轮手枪
+Up-N-Atomizer = Up-N-Atomizer
+
+Vanilla Unicorn Award = 解锁香草独角兽大奖
+Alien Tatto (Illuminati) = 外星人的纹身(光明会)
+Returning Bonus = 回归奖金
+
+
+--- [ # Tools ] ---
+
+Tunables = 可调参数
+Remove Cooldowns = 移除冷却时间
+Resupply Delay = 补给延迟
+MC Business = MC业务
+Bunker = 地堡
+Buy & Sell = 购买和出售
+Special Cargo = 特殊货物
+Vehicle Cargo = 载具货物
+Air Freight Cargo = 空运货物
+Client Job = 委托人工作
+Launch Kosatka Missiles = 发射虎鲸导弹
+
+Multipliers = Multipliers
+LS Car Meet = LS 汽车赛
+Street Race = 街头比赛
+Pursuit Race = 追逐赛
+Scramble = 争夺
+Head 2 Head = Head 2 Head
+LS Car Meet Track = LS汽车赛车场
+
+Trigger Special Crate Missions = 触发特殊板条箱任务
+Note that buying special crates can only in the Terrobyte. = 注意，购买特殊的板条箱只能在Terrobyte.
+Ornamental Egg = 观赏蛋
+Gold Minigun = 黄金机枪
+Large Diamond = 大钻石
+Rage Hide = Rage Hide
+Film Reel = 电影胶片
+Rare Pocket Watch = 稀有怀表
+
+Bunker Mission Selector = 地堡任务选择器
+[SPECIAL] Trigger Alien Egg Mission = [特殊] 触发外星蛋任务
+
+Steal Supplies = 偷物资
+Altruist Camp = 利他主义者营地
+The Dune Buggy = 沙丘车
+Police Riot = 防暴警察
+Mine = 我的 
+The Technical Aqua = 技术员 Aqua
+Rival Operation = 敌手行动
+Zancudo River = Zancudo 河流
+LSIA = LSIA
+Merryweather HQ = Merryweather HQ
+Training Ground (Tank) = Training Ground (Tank)
+Del Perro Beach = Del Perro Beach
+Cholla Springs Avenue = Cholla Springs Avenue
+Chupacabra Street = “卓帕卡布拉”街
+
+Sell Weapons = 出售武器
+HVY Insurgent Pick Up = HVY 反叛者 Pick Up
+HVY Insurgent (Normal) = HVY叛乱(正常)
+Marshall = 马歇尔
+HVY Insurgent Pick Up (Custom) = HVY叛乱Pick Up(定制)
+Phantom Wedge = Phantom Wedge
+Dune FAV = 沙丘 FAV
+
+Remove Other Cost = 删除其他费用
+Repair Vehicle Cargo = 维修车辆的货物
+When you sell vehicle, block paying related repair. = 你卖车的时候,支付相关维修.
+Ron's Cut of Air Freight Cargo = 罗恩对空运货物的削减
+Tony's Cut of Nightclub = 托尼对夜店的削减
+Resupply MC Business = 补给MC业务
+Resupply Bunker = 补给地堡
+
+Single MC Vehicle Sell = 单一MC车辆出售
+Makes always number of MC business selling's vehicle is one. = 始终使MC企业出售的车辆数量为一.
+Bypass Transaction Error Messages = 避开交易错误消息
+Prevents appearing transaction error messages, can be used for a lot of stuffs like when you get CEO Money. = 防止出现交易错误消息，可以用于很多东西，如当你得到CEO的钱.
+Make One Snack Full Health = 让一份零食补满生命
+Whatever you use a snack, will make you full health. = 无论你用什么零食，都会让你很健康.
+Infinite Stone Hatchet Power = 无限石斧力量
+Complete Headhunter = 完成猎头者
+Complete Sightseer = 完成观光者
+Complete working in progress the mission. = 完成正在进行的任务.
+7 Years GTAO Playtime = 7年的GTA游戏时间
+Make your account like played GTAO 7 years. = 让你的账号像玩了7年的GTA一样.
+
+Custom Money Remover = 自定义金钱删除
+Easy way to remove GTAO bank account money = 简单的方法来移除GTA银行账户的钱
+Firstly, buy ballistic equipment. To remove money, call it in the interaction menu = 首先，购买弹道设备。要移除钱，请在交互菜单中调用它
+
+AFK Money = 获得金钱
+Methods are safe to use, but if you earn too much money, can be banned. Always use at own your risk. = 使用此方法是安全的，但如果你获取太多了的钱，会被封禁。使用时要自负风险.
+Cooldown Time [Sec] = 冷却时间(秒)
+Auto Time Trial = 自动计时
+Auto Rig Slot Machine = 自动操控老虎机
+Ratio of Jackpot and Loss = 累计奖金与损失之比
+Playing Time Trial one time is done! Waiting for cooldown time... = Playing Time Trial one time is done! 请等待冷却时间...
+Auto Black Jack = 自动黑杰克
+
+Heist Cooldown Timer = 抢劫冷却计时器
+When set time passed, HC will let you know heist cooldown has been passed. = 当设定的时间过去后，HC会让你知道抢劫冷却时间过去了.
+Text Position = Text Position
+Cooldown time passed, you can play the heist again! = 冷却时间过去了，你可以再次进行抢劫!
+Custom Heist = 定制抢劫
+Use Stand's Overlay = 使用Stand装饰
+"Enabled: Use Stand's Overlay & Settings: Game > Info Overlay" = "启用:使用Stand的叠加和设置:游戏 >信息装饰"
+Disabled: Use Heist Control's Overlay & Settings = 禁用:使用抢劫控制的装饰和设置
+Set Custom Time = 设置ustom时间
+
+Manage Near Peds & Cams = 管理附近的Peds和摄像头
+Work only to hostile peds = 只对怀有敌意的人机有效
+Enabled: Ped options work only to hostile peds = 启用:Ped选项只对怀有敌意的人机有效
+Disabled: Ped options work to all peds = 禁用:Ped选项适用于所有人机
+Peds = Peds
+Remove Weapons = 删除武器Delete = Delete
+Kill = 杀死
+Cams = 摄像头
+
+Bypass Locked Doors = 绕过锁着的门
+Speed of Improved No Clip = 增加无碰撞的速度
+Distance of Teleport To Forward = 向前传送的距离
+Instant Doors Crack = 瞬间开门
+Improved No Clip = 增加无碰撞
+Teleport To Forward = 向前传送
+
+Request Services = 请求服务
+MOC = 机动作战中心
+Avenger = 复仇者
+Terrobyte = 恐霸
+Kosatka = 虎鲸
+Dingy = 小艇
+Ballistic Armor = 无赖战士
+
+Info Spoofing = 信息欺骗
+Value = 数值
+Total Money = 总金额
+Kills = 杀死
+Deaths = 死亡
+
+Business Upgrade States = 业务升级状态
+Document = 伪造文档
+Weed = 大麻
+Counterfit = 伪造现金
+Meth = 冰毒
+Cocaine = 可卡因
+Bunker = 地堡
+Arcade = 游戏厅
+Nightclub = 夜总会
+Equipment Upgrade = 设备升级
+Staff Upgrade = 员工升级
+Secuirity Upgrade = 安保升级
+Decor Upgrade = 装饰升级
+Firing Range Upgrade = 靶场升级
+Gunlocker Upgrade = 枪锁升级
+Personal Quarters Upgrade = 个人住宿升级
+Transportation Upgrade = 交通工具升级
+Drone Station = 无人机站
+Business Hub = 商业中心
+Floor = 地板
+Style = 风格
+Wall = 墙
+Garage = 车库
+Neon Lights = 霓虹灯
+High Score Screen = 排行榜屏幕
+Lighting = 照明
+Dancers = 舞者
+Paid DJs = Paid DJs
+
+Stat Editor & Reader = 属性编辑器和读取器
+Presets Stat Editor = 预设属性编辑器
+Modify Stat = 修改属性
+Set Stat = 设置属性
+Crew Rank = 玩家等级
+
+Playtime = 游戏时间
+Method = 方法
+Use Adding Playtime = 使用添加游戏时间
+Enabled: Use adding playtime method = 启用:使用添加游戏时间方法
+- Add from your current playtime = - 从您当前的游戏时间添加
+Disabled: Use setting playtime method = 禁用:使用设置游戏时间的方法
+- Set equal you will set time = - 设置等于你将设置的时间
+Note that set method supports up to only 24.8 days, but add method supports up to 50K days = 注意，设置方法最多只支持24.8天，而添加方法最多支持50K天
+Day = 天
+Hour = 小时
+Min = 分
+Total Playtime = 总游戏时间
+GTA:O Playtime = GTA时间
+Deathmatches = 死亡竞赛
+Races = 比赛
+Creator = 创造者
+
+Cash Earned & Spent = 现金收入和支出
+Cash Amount = 现金金额
+Total Earned = 总收入
+Total Spent = 总支出
+Related Earned Cash = 相关收入现金
+Jobs = 工作
+Betting = 赌博
+Shared = 共享
+Car Sales = 汽车出售
+Picked Up = 捡的
+
+Stat Name = 属性名称
+Stat Value = 属性值
+Example Stat = 例子属性
+
+Custom Stat Editor = 自定义属性编辑器
+Setting some certain stats may cause a ban. Use at your own risk! = 设置一些特定的数据可能会导致封禁.使用风险自负!
+Note: MP0_ or MP1_ will be selected by HC automatically, therefore don't write it. = 注意:MP0_或MP1_会被HC自动选择，所以不要改写它.
+
+Custom Stat Reader = 自定义属性读取器
+Copy Stat Value = 复制属性值
+Read Stat = 读取属性
+Sucessfully read! = 成功读取!
+
+Language Setting = 语言设置
+How To Translate = 如何翻译
+Always looking for new translators not existing language. If you interested in translating HC, click! = 我一直在寻找新的译者，未收录的语言。如果您对翻译HC感兴趣，请单击!
+Language = 语言
+
+
+--- [ # Settings ] ---
+
+Settings = 设置
+In-Game Customize = 游戏定制
+
+Sort = 排序
+In-Game = 游戏
+No Notification = 没有通知
+
+Icon = 图标
+HC Logo = HC Logo
+Lester = 莱斯特
+Legend Of Heist = 抢劫传说
+Skull Head = 骷髅头
+Warstock = 军舰
+Black R* = 黑色 R*
+R* Social Club = R* 社交俱乐部
+
+Background Color =背景颜色
+Black = 黑色
+White = 白色
+Red = 红色
+Orange = 橙色
+Yellow = 黄色
+Mint = 薄荷
+Green = 绿色
+Light Blue = 浅绿色
+
+Text Color = 文本颜色
+
+
+--- [ # About HC ] ---
+
+About HC = 关于 HC
+Join Discord Server! = 加入Discord服务器!
+Get support, Download beta version, Enjoy other stuffs! = 获得帮助,下载测试版,享受其他东西!
+Youtube = Youtube
+Videos that related HC tutorial are uploaded, subscribe the channel for me, :D = HC教程相关视频已上传，请订阅我的频道
+Tutorial = 教程
+If you don't know how to use HC, click! = 如果您不知道如何使用HC，请单击!
+Changelog = 更新日志
+If you want to know what latest version was changed, click! = 如果您想知道最新版本，请单击!
+
+
+--- [ # Credits ] ---
+
+Credits = 制作组
+If you click features, will show the user's profile image & copy name or be redirected to mentioned website. = 如果您点击功能，将显示用户的个人资料图像和副本名称或被重定向到提到的网站.
+2Take1 Heist Control Dev, He allowed me to use his code. Without him, HC doesn't exist. Really thanks to him! = Heist Control Dev，他允许我使用他的代码。没有他，HC就不存在。非常感谢他!
+Creator of Wiriscript & Lancescript that help me coding HC = wirscript和Lancescript的创造者，帮助我编码HC
+Helped a lot of stuffs for HC's website maintenance. = 帮我做了很多HC网站维护的工作.
+Helped me coding website's design. = 帮助我编写网站设计.
+Made logo, banner and etc for HC. = 为HC制作logo、横幅等.
+Let me know about stats info. = 让我知道统计信息.
+Translators = 翻译
+Maintains HC's translation = 维护HC的翻译
