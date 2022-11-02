@@ -38,3 +38,51 @@
 > **若使用Menyoo生成载具后异常，请并重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
 
+## 包含的内容
+
+<details>
+  <summary>LUA Scripts</summary>
+
+  - [x] lancescript_reloaded (汉化-MrLGXC)
+
+  - [x] WiriScript (汉化-MrLGXC)
+
+  - [x] LanceSpoonerCN (汉化-MrLGXC)
+
+  - [x] PolicifyCN (汉化-MrLGXC)
+
+  - [x] gLanceCN (汉化-MrLGXC)
+
+  - [x] nextConsoleCN (汉化-MrLGXC)
+
+  - [x] head_bangCN (这也能算汉化?-MrLGXC)
+
+  - [x] Constructor (汉化-Zelda Two)
+
+  - [x] SaltyScript (汉化-Zelda Two)
+
+  - [x] CxScript (汉化-Zelda Two)
+
+  - [x] SprunkStop (汉化-Zelda Two)
+
+  - [x] EntityThrottler (汉化-Zelda Two)
+
+  - [x] HornSongs (汉化-Zelda Two)
+
+</details>
+<details>
+  <summary>ASI Mods</summary>
+
+  - [x] Menyoo TOXX9.5 (基于原版1.40由守望社区大佬TOXX魔改，带机翻)
+
+  - [x] Menyoo MAFINS 1.71 (原版)
+
+  - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
+
+</details>
+<details>
+  <summary>Headers</summary>
+
+  - [x] MrLGXC自用主题所需的头图
+
+</details>
