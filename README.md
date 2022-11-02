@@ -27,18 +27,19 @@
 > 在此处下载Mod[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj ) 访问码:v1q5<br>
 > 在此处下载Mod[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link )
 
-## 最后一个发布
+# 最后一个发布
 ```bash
 更新于游戏版本1.63，stand版本0.90.5
 ```
-## 注意事项
+# 注意事项
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
 > **在线模式中最多同步80个实体，超出后仅本地显示。若别人无法看到请先清除旧的实体**<br>
 > **若使用Menyoo生成载具后异常，并请重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
+> **本合集以实用主义至上，拒绝任何无意义或功能重复的资源**<br>
 
-## 包含的内容
+## *包含的内容*
 
 <details>
   <summary>LUA Scripts</summary>
@@ -93,13 +94,41 @@
 
 </details>
 <details>
+  <summary>Theme</summary>
+
+  - [x] MrLGXC制作的20个超高清中文玩家标签，极致美学，巅峰像素
+
+  - [x] 高清重制的stand图形选项卡
+
+  - [x] 华为鸿蒙字体（告别问号）
+
+</details>
+<details>
   <summary>ASI Mods</summary>
 
   - [x] Menyoo TOXX9.5 (基于原版1.40由守望社区大佬TOXX魔改，带机翻)
 
-  - [x] Menyoo MAFINS 1.71 (原版)
+  - [x] Menyoo MAFINS 1.71(https://github.com/MAFINS/MenyooSP)
 
   - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
+
+</details>
+<details>
+  <summary>menyoostuff</summary>
+
+  - [x] Menyoo的资源文件夹
+
+</details>
+<details>
+  <summary>Constructs</summary>
+
+  - [x] Constructs的资源文件夹
+
+</details>
+<details>
+  <summary>Profiles</summary>
+
+  - [x] MrLGXC自用配置，3400h+游戏时长，3300h+菜单经验，1100h+stand经验，全场景适用
 
 </details>
 <details>
