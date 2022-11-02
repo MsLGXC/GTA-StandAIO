@@ -69,6 +69,28 @@
 
   - [x] HornSongs (汉化-Zelda Two)
 
+  - [x] AcjokerScript (汉化-lu_zi)
+
+  - [x] JinxScript__CN (汉化-BLackMist)
+
+  - [x] KeramiScript (汉化-空白白)
+
+  - [x] jackz_vehicle_builder (汉化-谷歌翻译)
+
+  - [x] jackz_vehicles (汉化-谷歌翻译)
+
+  - [x] Heist Control (汉化-)
+
+  - [x] MusinessBanager (汉化-)
+
+  - [x] Actions (汉化-)
+
+  - [x] JerryScript (汉化-)
+
+  - [x] train_control.cn (汉化-)
+
+  - [x] heezy二代目 (缝合，原生中文)
+
 </details>
 <details>
   <summary>ASI Mods</summary>
