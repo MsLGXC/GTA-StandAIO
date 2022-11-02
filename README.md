@@ -6,7 +6,7 @@
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
   本项目前身为2021/10由MrLGXC创建的Stand配置，后与MrLGXC在11月创建的lance/wiri等脚本汉化合并。<br>
-  于2021/12正式开始StandAIO项目<br>
+  于2021/12正式开始StandAIO项目，为创建更好的社区于2022/11转储v25至github公开储存库<br>
 
   本项目符合 [GPL3.0通用公开许可证](https://github.com/MrLGXC/GTA-StandAIO/blob/main/LICENSE) 标准，可基于以下项目与进行翻译
   | 项目地址 | 平台 |
@@ -35,7 +35,7 @@
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
 > **在线模式中最多同步80个实体，超出后仅本地显示。若别人无法看到请先清除旧的实体**<br>
-> **若使用Menyoo生成载具后异常，并请重载ASI**<br>
+> **若使用Menyoo生成载具后异常，请重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
 > **本合集以实用主义至上，拒绝任何无意义或功能重复的资源**<br>
 
