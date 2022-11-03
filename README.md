@@ -173,6 +173,7 @@
 如果不想用我的配置，不想用我的主题，只想用脚本和模组你可以自己去设置里面启动你想要用的脚本或插件
 
 ## 特别感谢
+| 帮助 | 原因 |
 | --- | --- |
 | [Sainan](https://github.com/Sainan) | 创建了这个伟大的菜单,gtaol菜单史上的伟绩 |
 | [TAKE2\Rockstar](https://www.rockstargames.com/) | 创建了这个伟大的游戏，游戏史上最迷人的东西 |
