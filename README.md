@@ -146,7 +146,7 @@
 
 ## 2.使用每夜版（不推荐）
 
-可以前往[Code\main](https://codeload.github.com/MrLGXC/GTA-StandAIO/zip/refs/heads/main）下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
+可以前往[Code\main](https://codeload.github.com/MrLGXC/GTA-StandAIO/zip/refs/heads/main)下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
 
 ### *安装方法*
 双击"点此打开stand根目录.lnk"<br>
