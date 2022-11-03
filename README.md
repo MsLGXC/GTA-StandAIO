@@ -149,16 +149,16 @@
 可以前往[Code\main](https://codeload.github.com/MrLGXC/GTA-StandAIO/zip/refs/heads/main）下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
 
 ### *安装方法*
-双击"点此打开stand根目录.lnk"
-将所有文件解压至打开后的stand根目录
-若出现意外问题，使用win+r运行AppData，找到Roaming\Stand
-实在找不到，Stand注入器里面点Open Stand Folder！
-然后将menyooStuff移动至你的游戏根目录
-不知道在哪里就steam右键管理，浏览本地文件！
-删除Stand目录中\Headers\Custom Header除nocturnal.png的所有图片（如果你想用我的主题，不想用则反之）
-游戏中默认F3进入Freecam,F5启动Menyoo,F6启动spooner创造模式,F10启动rampage
-如果一开车就加速到载具选项中更改加速的快捷键
-不要问我为什么没效果，确认你按照上述步骤正确的解压了。并且已经在stand的设置里面应用了我的配置
+双击"点此打开stand根目录.lnk"<br>
+将所有文件解压至打开后的stand根目录<br>
+若出现意外问题，使用win+r运行AppData，找到Roaming\Stand<br>
+实在找不到，Stand注入器里面点Open Stand Folder！<br>
+然后将menyooStuff移动至你的游戏根目录<br>
+不知道在哪里就steam右键管理，浏览本地文件！<br>
+删除Stand目录中\Headers\Custom Header除nocturnal.png的所有图片（如果你想用我的主题，不想用则反之）<br>
+游戏中默认F3进入Freecam,F5启动Menyoo,F6启动spooner创造模式,F10启动rampage<br>
+如果一开车就加速到载具选项中更改加速的快捷键<br>
+不要问我为什么没效果，确认你按照上述步骤正确的解压了。并且已经在stand的设置里面应用了我的配置<br>
 如果不想用我的配置，不想用我的主题，只想用脚本和模组你可以自己去设置里面启动你想要用的脚本或插件
 
 ### 旧的更新日志
