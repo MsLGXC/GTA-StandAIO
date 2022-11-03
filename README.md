@@ -11,12 +11,12 @@
   本项目符合 [GPL3.0通用公开许可证](https://github.com/MrLGXC/GTA-StandAIO/blob/main/LICENSE) 标准，可基于以下项目与进行翻译
   | 项目地址 | 平台 |
   | --- | --- |
-  | [MAFINS/MenyooSP](https://github.com/MAFINS/MenyooSP) | [C++\ASI] |
-  | [xSetrox/lancescript-reloaded](https://github.com/xSetrox/lancescript-reloaded) | [Lua] |
-  | [xSetrox/gLance](https://github.com/xSetrox/gLance) | [Lua] |
-  | [xSetrox/nextConsole](https://github.com/xSetrox/nextConsole) | [Lua] |
-  | [nowiry/WiriScript](https://github.com/nowiry/WiriScript) | [Lua] |
-  | [hexarobi/stand-lua-policify](https://github.com/hexarobi/stand-lua-policify) | [Lua] |
+  | [MAFINS/MenyooSP](https://github.com/MAFINS/MenyooSP) | C++\ASI |
+  | [xSetrox/lancescript-reloaded](https://github.com/xSetrox/lancescript-reloaded) | Lua |
+  | [xSetrox/gLance](https://github.com/xSetrox/gLance) | Lua |
+  | [xSetrox/nextConsole](https://github.com/xSetrox/nextConsole) | Lua |
+  | [nowiry/WiriScript](https://github.com/nowiry/WiriScript) | Lua |
+  | [hexarobi/stand-lua-policify](https://github.com/hexarobi/stand-lua-policify) | Lua |
 
 </div>
 
@@ -31,6 +31,7 @@
 ```bash
 更新于游戏版本1.63，stand版本0.90.5
 ```
+# 为爱发电            用心制造
 # 注意事项
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
@@ -170,6 +171,11 @@
 如果一开车就加速到载具选项中更改加速的快捷键<br>
 不要问我为什么没效果，确认你按照上述步骤正确的解压了。并且已经在stand的设置里面应用了我的配置<br>
 如果不想用我的配置，不想用我的主题，只想用脚本和模组你可以自己去设置里面启动你想要用的脚本或插件
+
+## 特别感谢
+| --- | --- |
+| [Sainan](https://github.com/Sainan) | 创建了这个伟大的菜单,gtaol菜单史上的伟绩 |
+| [TAKE2\Rockstar](https://www.rockstargames.com/) | 创建了这个伟大的游戏，游戏史上最迷人的东西 |
 
 ### 旧的更新日志
 ```json
