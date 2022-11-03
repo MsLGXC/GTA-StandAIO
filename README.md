@@ -28,6 +28,11 @@
 > 在此处下载Mod[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
+# 紧急公告
+# *今天是令人悲伤的一天，我以为我能让[春田椛椛幼稚园](https://jq.qq.com/?_wv=1027&k=4WdgwgSh)安然度过战争风暴*<br>
+# *但在今天，2022/11/3，这个拥有4年历史和1700名成员的古老帝国沦于盖世太保的魔掌之下*<br>
+# *如果有人看到这条信息的话，这是新的灯塔[春田椛椛幼稚园](https://jq.qq.com/?_wv=1027&k=L4o4zG7T)*<br>
+
 # 最后一个发布
 ```bash
 更新于游戏版本1.63，stand版本0.90.5
