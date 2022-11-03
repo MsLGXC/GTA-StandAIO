@@ -137,6 +137,16 @@
   - [x] MrLGXC自用主题所需的头图
 
 </details>
+<details>
+  <summary>[高级]mods v4</summary>
+
+  - [ ] nib系列 （过于自慰已移除）
+
+  - [ ] bf北风系列 （由于作者贩卖免费资源遭数平台封杀已移除）
+
+  - [x] MrLGXC的线上模组v4 （可用，正在加紧更新无脑化安装)
+
+</details>
 
 # 下载及安装方法
 
