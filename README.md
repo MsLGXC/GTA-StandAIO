@@ -20,16 +20,19 @@
 
 </div>
 
-> 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
-> 如果您对上一条不感兴趣，也欢迎加入[春田椛椛幼稚园](https://jq.qq.com/?_wv=1027&k=96pRYJde)，一起搞♂(迫真)!<br>
+> 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
+> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=96pRYJde)，一起搞♂(迫真)!<br><br>
+
 > 如果你对在线Mod感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
+> 当前发布的模组包版本v5,v4<br>
 > 在此处下载Mod[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
 > 在此处下载Mod[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
-> 在此处下载Mod[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
+> 在此处下载Mod（由于本人空间不足所以只有v5）[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
+
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
 # 紧急公告
-## 关于2022//11/3 19:20 流酱的4年1700人大群惨遭封停的回应
+## 关于2022//11/3 19:20 流光星辰的4年1700人大群[春田椛椛幼稚园]惨遭封停的回应
 # *成功不是终点，失败也并非末日 最重要的是继续前进的勇气*
 
 # 最后一个发布
