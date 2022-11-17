@@ -1,7 +1,16 @@
--- GTA5 Constants
--- v1.3
+-- Constructor Constants
 
+local SCRIPT_VERSION = "0.28b1"
 local constants = {}
+
+constants.rotation_orders = {
+    { "ZYX", {}, "Rotate around the z-axis, then the y-axis and finally the x-axis.", 0 },
+    { "YZX", {}, "Rotate around the y-axis, then the z-axis and finally the x-axis.", 1 },
+    { "ZXY", {}, "Rotate around the z-axis, then the x-axis and finally the y-axis.", 2 },
+    { "XZY", {}, "Rotate around the x-axis, then the z-axis and finally the y-axis.", 3 },
+    { "YXZ", {}, "Rotate around the y-axis, then the x-axis and finally the z-axis.", 4 },
+    { "XYZ", {}, "Rotate around the x-axis, then the y-axis and finally the z-axis.", 5 },
+}
 
 constants.ped_props = {
     {index=0, name="Hats"},
@@ -1234,3 +1243,4 @@ constants.ped_weapons = {
 }
 
 return constants
+

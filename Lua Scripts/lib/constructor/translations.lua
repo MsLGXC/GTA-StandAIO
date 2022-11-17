@@ -1,7 +1,88 @@
 -- Constructor Translations
--- v1.2.1
 
+local SCRIPT_VERSION = "0.28"
 local translations = {}
+
+---
+--- Debug Log
+---
+
+local function debug_log(message, additional_details)
+    if CONSTRUCTOR_CONFIG.debug_mode then
+        if CONSTRUCTOR_CONFIG.debug_mode == 2 and additional_details ~= nil then
+            message = message .. "\n" .. inspect(additional_details)
+        end
+        util.log("[constructor_translations] "..message)
+    end
+end
+
+---
+--- Translation Helpers
+---
+
+translations.lang = {}
+translations.current_translations = {}
+translations.missing_translations = {}
+local LANG_STRING_NOT_FOUND = "/!\\ STRING NOT FOUND /!\\"
+
+function CONSTRUCTOR_TRANSLATE_FUNCTION(text)
+    local translated_string = translations.current_translations[text]
+    if translated_string ~= nil and translated_string ~= LANG_STRING_NOT_FOUND then
+        --debug_log("Found local translation for '"..text.."'")
+        return translated_string
+    end
+    local label_id = lang.find(text, "en")
+    if label_id then
+        --debug_log("Found global translation for '"..text.."'")
+        translated_string = lang.get_string(label_id, lang.get_current())
+        if translated_string ~= LANG_STRING_NOT_FOUND then
+            return translated_string
+        end
+    else
+        --debug_log("Missing translation: "..text)
+        translations.missing_translations[text] = text
+    end
+    return text
+end
+
+translations.inject_custom_translations = function()
+    for lang_id, language_key in pairs(translations.GAME_LANGUAGE_IDS) do
+        if translations.lang[lang_id] ~= nil then
+            --debug_log("Processing translations language "..lang_id)
+            lang.set_translate(lang_id)
+            for english_string, translated_string in pairs(translations.lang[lang_id]) do
+                local label_id = lang.find(english_string, "en")
+                --debug_log("Found label for '"..english_string.."' as label "..label_id)
+                if (not label_id) or label_id == 0 then
+                    label_id = lang.register(english_string)
+                    --debug_log("Registered '"..english_string.."' as label "..label_id)
+                end
+                local existing_translation = lang.get_string(label_id, lang_id)
+                if (not existing_translation) or existing_translation == english_string or existing_translation == LANG_STRING_NOT_FOUND then
+                    --debug_log("Adding translation for "..lang_id.." '"..english_string.."' ["..label_id.."] as '"..translated_string.."'  Existing translation: '"..existing_translation.."'")
+                    if label_id > 0 then
+                        local translate_status, translate_response = pcall(lang.translate, label_id, translated_string)
+                        if not translate_status then
+                            debug_log("Failed to add translation '"..english_string.."' as label "..label_id)
+                        end
+                    else
+                        --debug_log("Cannot translate internal label")
+                    end
+                    if lang_id == lang.get_current() then
+                        translations.current_translations[english_string] = translated_string
+                    end
+                else
+                    --debug_log("Found translation for "..lang_id.." '"..english_string.."' ["..label_id.."] as '"..existing_translation.."'")
+                end
+            end
+        end
+    end
+end
+
+translations.log_missing_translations = function()
+    util.toast("Logged "..#translations.missing_translations.." missing translations", TOAST_ALL)
+    util.log(inspect(translations.missing_translations))
+end
 
 translations.GAME_LANGUAGE_IDS = {
     ["en"] = "en-US",
@@ -32,10 +113,12 @@ translations.LANGUAGE_NAMES = {
     ["zh-CN"] = "Chinese (Simplified)"
 }
 
+translations.lang = {}
+
 --- Chinese (Simplified)
 --- By       Zelda Two
 
-translations["zh"] = {
+translations.lang["zh"] = {
     ["More stable, but updated less often."] = "更稳定,但更新频率较低.",
     ["Cutting edge updates, but less stable."] = "最新版本,但是不太稳定",
     ["Loading..."] = "加载...",
@@ -54,7 +137,7 @@ translations["zh"] = {
     ["Registered "] = "记录 ",
     ["Saving translation for "] = "保存翻译 ",
     ["Could not natives lib. Make sure it is selected under Stand > Lua Scripts > Repository > natives-1663599433"] = "没有lib.确保已经下载 Stand > Lua Scripts > Repository > natives-1663599433",
-    ["Max table depth reached"] = "最大地下水位深度？",
+    ["Max table depth reached"] = "达到最大组合数量？",
     ["Adding attachment to construct "] = "添加附件到构造 ",
     ["Removing preview "] = "删除预览 ",
     ["Adding a preview "] = "添加预览",
@@ -91,7 +174,7 @@ translations["zh"] = {
     ["Attachment missing handle"] = "附件缺少手把",
     ["Rebuilding attachment menu "] = "重建附件菜单 ",
     ["Name"] = "名称",
-    ["Set name of the attachment"] = "设置此附件名称",
+    ["Set name of the attachment"] = "此组件名称",
     ["Position"] = "位置",
     ["Offset"] = "偏移",
     ["X: Left / Right"] = "X: 左/右",
@@ -101,10 +184,10 @@ translations["zh"] = {
     ["X: Pitch"] = "X: 俯仰",
     ["Y: Roll"] = "Y: 翻滚",
     ["Z: Yaw"] = "Z: 偏摆",
-    ["World Position"] = "世界偏移",
-    ["World Rotation"] = "世界旋转",
+    ["World Position"] = "世界：偏移",
+    ["World Rotation"] = "世界：旋转",
     ["Hold SHIFT to fine tune"] = "按住SHIFT键进行微调",
-    ["Options"] = "选项",
+    ["Options"] = "其他选项",
     ["Visible"] = "可见",
     ["Will the attachment be visible, or invisible"] = "附件是可见还是不可见",
     ["Collision"] = "碰撞",
@@ -141,7 +224,7 @@ translations["zh"] = {
     ["Break Door: Trunk"] = "拆除门: 后备箱",
     ["Break Door: Trunk2"] = "拆除门: 后备箱2",
     ["Remove door."] = "拆除门.",
-    ["Ped Options"] = "Ped选项",
+    ["Ped Options"] = "人物选项",
     ["Can Rag Doll"] = "布娃娃",
     ["If enabled, the ped can go limp."] = "如果启用,ped将没有布娃娃系统.",
     ["Armor"] = "护甲",
@@ -167,7 +250,7 @@ translations["zh"] = {
     ["Attach a copy of this object to your Ped."] = "将此Ped的附件附加到你身上.",
     ["Making ped into "] = "将 ped 变成 ",
     ["More Options"] = "更多选项",
-    ["LoD Distance"] = "LoD距离",
+    ["LoD Distance"] = "细节距离",
     ["Level of Detail draw distance"] = "细节绘制距离",
     ["Blip"] = "图标",
     ["Blip Sprite"] = "地图图标",
@@ -179,7 +262,7 @@ translations["zh"] = {
     ["Lights"] = "灯",
     ["Light On"] = "开灯",
     ["If attachment is a light, it will be on and lit (many lights only work during night time)."] = "如果附附件是灯,它是否会被打开(很多灯只会在晚上工作).",
-    ["Light Disabled"] = "禁用灯",
+    ["Light Disabled"] = "禁灯",
     ["If attachment is a light, it will be ALWAYS off, regardless of others settings."] = "如果附件是灯,它将被关闭,只要你开了这个无论这么设置都是关闭.",
     ["Proofs"] = "防护",
     ["Bullet Proof"] = "防弹",
@@ -192,34 +275,35 @@ translations["zh"] = {
     ["If attachment is impervious to damage from melee attacks."] = "附件不受近战伤害",
     ["Attachments"] = "附件",
     ["Add Attachment"] = "添加附件",
-    ["Curated"] = "附件项目",
-    ["Browse a curated collection of attachments"] = "浏览精选的附件集合",
+    ["Options for attaching other entities to this construct"] = "添加其他附件到该组件内.",
+    ["Curated"] = "附件大全",
+    ["Browse a curated collection of attachments"] = "浏览精心挑选的附件",
     ["Search"] = "搜索",
-    ["Search for a prop by name"] = "按名称搜索道具",
-    ["Add by Name"] = "按名称添加",
-    ["Add an object, vehicle, or ped by exact name."] = "按确切名称添加物体，车辆或ped.",
-    ["Object by Name"] = "按物体名称",
-    ["Add an in-game object by exact name. To search for objects try https://gta-objects.xyz/"] = "按确切名称添加游戏内物体.要搜索物体，请尝试 https://gta-objects.xyz/",
-    ["Ped by Name"] = "按ped名称",
-    ["Add a vehicle by exact name."] = "按确切名称添加ped.",
-    ["Open gta-objects.xyz"] = "打开 gta-objects.xyz",
-    ["Website for browsing and searching for props"] = "用于浏览和搜索道具的网站",
-    ["Add Attachment Gun"] = "添加附件枪",
+    ["Search for a prop by name"] = "按名称搜索大致附件",
+    ["Add by Name"] = "搜索添加",
+    ["Add an object, vehicle, or ped by exact name."] = "搜索准确名称添加物体，车辆或人物.",
+    ["Object by Name"] = "物体名称",
+    ["Add an in-game object by exact name. To search for objects try https://gta-objects.xyz/"] = "搜索准确名称添加",
+    ["Ped by Name"] = "人物名称",
+    ["Add a vehicle by exact name."] = "搜索准确名称添加",
+    ["Open gta-objects.xyz"] = "打开用于搜索模型名称的网站",
+    ["Website for browsing and searching for props"] = "用于浏览和搜索附件的网站",
+    ["Add Attachment Gun"] = "附件添加枪",
     ["Anything you shoot with this enabled will be added to the current construct"] = "启用此功能射击的任何物体都将添加到当前构造中",
     ["Edit Attachments"] = "编辑附件",
     ["Clone"] = "克隆",
-    ["Clone (In Place)"] = "克隆 (位置)",
-    ["Clone Reflection: X:Left/Right"] = "克隆反射：X:左/右",
-    ["Clone Reflection: Y:Front/Back"] = "克隆反射：Y:前/后",
-    ["Clone Reflection: Z:Up/Down"] = "克隆反射：Z:上/下",
+    ["Clone (In Place)"] = "克隆 (原处)",
+    ["Clone Reflection: X:Left/Right"] = "克隆映像：X:左/右",
+    ["Clone Reflection: Y:Front/Back"] = "克隆映像：Y:前/后",
+    ["Clone Reflection: Z:Up/Down"] = "克隆映像：Z:上/下",
     ["Actions"] = "行动",
     ["Teleport"] = "传送",
     ["Teleport Into Vehicle"] = "传送到载具",
-    ["Teleport Me to Construct"] = "传送我到构造",
-    ["Teleport Construct to Me"] = "传送构造到我",
+    ["Teleport Me to Construct"] = "传送我到 构造",
+    ["Teleport Construct to Me"] = "构造 传送到我",
     ["Debug Info"] = "调试信息",
-    ["Rebuild"] = "重建",
-    ["Delete construct (if it still exists), then recreate a new one from scratch."] = "删除构造(如果它仍然存在),然后从头开始重新创建一个新构造.",
+    ["Rebuild"] = "重新创建",
+    ["Delete construct (if it still exists), then recreate a new one from scratch."] = "删除当前组件并重新生成.",
     ["Save As"] = "另存为",
     ["Save construct to disk"] = "将构造保存到磁盘",
     ["Delete"] = "删除",
@@ -232,10 +316,10 @@ translations["zh"] = {
     ["Create New Construct"] = "创建新构造",
     ["Vehicle"] = "载具",
     ["From Current"] = "当前载具",
-    ["Create a new construct based on current (or last in) vehicle"] = "在当前载具(或最后一辆)进行构造",
+    ["Create a new construct based on current (or last in) vehicle"] = "在当前载具(或最后一辆)进行构建",
     ["Error: You must be (or recently been) in a vehicle to create a construct from it"] = "错误:你必须在坐过当前载具(或最后一辆)才能进行构造",
     ["From Vehicle Name"] = "载具名称",
-    ["Create a new construct from an exact vehicle name"] = "从载具名称创建新构造",
+    ["Create a new construct from an exact vehicle name"] = "搜索载具名称并生成",
     ["Structure (Map)"] = "构造(地图)",
     ["From New Construction Cone"] = "物体构造",
     ["Create a new stationary construct"] = "搜索并创建一个新的固定模型",
@@ -245,23 +329,23 @@ translations["zh"] = {
     ["From Me"] = "构造自己",
     ["Create a new construct from your player Ped"] = "对当前模型进行自我构造",
     ["Player is already a construct"] = "玩家已经是一个构造体",
-    ["From Ped Name"] = "人物模型名称",
+    ["From Ped Name"] = "人物名称",
     ["Create a new Ped construct from exact name"] = "搜索创建一个新的人物模型",
     ["Load Construct"] = "加载构造体",
     ["Load a previously saved or shared construct into the world"] = "将保存或共享的构造加载到世界中",
-    ["Loaded Constructs"] = "已加载的构造体",
+    ["Loaded Constructs"] = "已加载构造",
     ["View and edit already loaded constructs"] = "查看和编辑已经加载的构造",
-    ["Search all your construct files"] = "搜索你的所有构造文件",
-    ["Edit your search query"] = "编辑你的搜索",
+    ["Search all your construct files"] = "搜索文件并生成",
+    ["Edit your search query"] = "搜索构造体",
     ["No results found"] = "没有搜索结果",
     ["Missing downloaded file "] = "缺少下载文件 ",
     ["File downloaded "] = "文件已下载 ",
     ["Unzipping"] = "正在解压缩",
     ["Unzipped"] = "已解压缩",
-    ["Open Constructs Folder"] = "打开构造文件夹",
-    ["Open constructs folder. Share your creations or add new creations here."] = "打开构造文件夹.在此处分享您的作品或添加新作品.",
-    ["Download Curated Constructs"] = "下载精选构造",
-    ["Download a curated collection of constructs."] = "下载精选的构造集合",
+    ["Open Constructs Folder"] = "打开模组文件夹",
+    ["Open constructs folder. Share your creations or add new creations here."] = "打开模组文件夹.在此处分享您的作品或添加新作品.",
+    ["Download Curated Constructs"] = "下载精选模组",
+    ["Download a curated collection of constructs."] = "下载精选的模组集合",
     ["Drive Spawned Vehicles"] = "驾驶生成载具",
     ["When spawning vehicles, automatically place you into the drivers seat."] = "生成载具时，自动将您置于驾驶员座位.",
     ["Wear Spawned Peds"] = "穿上生成的人物模型",
@@ -269,19 +353,19 @@ translations["zh"] = {
     ["Browse"] = "浏览",
     ["Global Configs"] = "全局配置",
     ["Edit Offset Step"] = "编辑偏移量",
-    ["The amount of change each time you edit an attachment offset (hold SHIFT or L1 for fine tuning)"] = "每次编辑附件偏移时的变化量(按住 SHIFT 或 L1 进行微调)",
+    ["The amount of change each time you edit an attachment offset (hold SHIFT for fine tuning)"] = "每次编辑附件偏移时的变化量(按住SHIFT键进行微调)",
     ["Edit Rotation Step"] = "编辑旋转量",
-    ["The amount of change each time you edit an attachment rotation (hold SHIFT or L1 for fine tuning)"] = "每次编辑附件旋转时的变化量(按住 SHIFT 或 L1 进行微调)",
+    ["The amount of change each time you edit an attachment rotation (hold SHIFT for fine tuning)"] = "每次编辑附件旋转时的变化量(按住SHIFT键进行微调)",
     ["Show Previews"] = "显示预览",
-    ["Show previews when adding attachments"] = "添加附件时显示预览",
+    ["Show previews when adding attachments"] = "选择附件时显示预览",
     ["Preview Display Delay"] = "显示预览延迟",
-    ["After browsing to a construct or attachment, wait this long before showing the preview."] = "在浏览一个构造体或附件,需要等待多久才会显示出来.",
-    ["Delete All on Unload"] = "卸载时解构所有",
-    ["Deconstruct all spawned constructs when unloading Constructor"] = "停止脚本时解构所有生成的构造体",
+    ["After browsing to a construct or attachment, wait this long before showing the preview."] = "在浏览一个组件或单附件,需要多久才会显示出来.",
+    ["Delete All on Unload"] = "停止脚本时删除所有生成",
+    ["Deconstruct all spawned constructs when unloading Constructor"] = "停止脚本时解构所有生成的组件或附件",
     ["Clean Up"] = "清理",
-    ["Remove nearby vehicles, objects and peds. Useful to delete any leftover construction debris."] = "移除附近载具,物体和ped.删除多余的构造体.",
+    ["Remove nearby vehicles, objects and peds. Useful to delete any leftover construction debris."] = "移除附近所有生成的载具,物体和ped组件",
     ["Script Meta"] = "脚本信息",
-    ["Constructor"] = "构造",
+    ["Constructor"] = "[构造]Constructor",
     ["Version"] = "版本",
     ["Release Branch"] = "更新发布处",
     ["Switch from main to dev to get cutting edge updates, but also potentially more bugs."] = "从main[稳定]切换到dev[开发]可能会有更多bug.",
@@ -291,7 +375,7 @@ translations["zh"] = {
     ["Clean Reinstall"] = "清除重新安装",
     ["Force an update to the latest version, regardless of current version."] = "强制更新到最新版本,而不考虑当前版本.",
     ["Debug Mode"] = "调试模式",
-    ["Log additional details about Constructors actions."] = "记录构造者调试信息到Log",
+    ["Log additional details about Constructors actions."] = "记录构造者调试信息到Stand Log",
     ["Log Missing Translations"] = "记录缺失翻译",
     ["Log any newly found missing translations"] = "记录任何缺失的翻译",
     ["Github Source"] = "Github资源",
@@ -299,21 +383,76 @@ translations["zh"] = {
     ["Discord"] = "官方Discord",
     ["Open Discord Server"] = "打开Discord服务器",
     ["Credits"] = "鸣谢",
-    ["Developers"] = "开发者",
+    ["Developers"] = "开发",
     ["Main developer"] = "本脚本开发",
     ["Development, Testing, Suggestions and Support"] = "测试,建议和支持",
     ["Inspirations"] = "启示",
     ["Much of Constructor is based on code originally copied from Jackz Vehicle Builder and this script wouldn't be possible without it. Constructor is just my own copy of Jackz's amazing work. Thank you Jackz!"] = "大部分Constructor都是基于Jackz Vehicle Builder的代码,没有它.这个脚本就不可能实现.构造者只是我对Jackz惊人作品的复制品.谢谢你,Jackz！",
     ["LanceSpooner is also a huge inspiration to this script. Thanks Lance!"] = "构造者要感谢LanceSpooner的启发,谢谢你Lance！",
-    ["Install Curated Constructs"] = "安装精选构造",
+    ["Install Curated Constructs"] = "安装作者推荐精选模组",
     ["Download and install a curated collection of constructs from https://github.com/hexarobi/stand-curated-constructs"] = "从以下网站下载并安装精选的构造合集 https://github.com/hexarobi/stand-curated-constructs",
-    ["Translators"] = "翻译"
+    ["Development, Ped Curation"] = "开发, Ped策划",
+    ["Focus Menu on Spawned Constructs"] = "生成组件自动切换父级菜单",
+    ["When spawning a construct, focus Stands menu on the newly spawned construct. Otherwise, stay in the Load Constructs menu."] = "生成组件时自动帮你切换到已加载的构造菜单中",
+    ["From Nearby"] = "附近载具",
+    ["Create a new construct based on nearby vehicle"] = "从附近载具创建新构造",
+    ["Entity Options"] = "实体选项",
+    ["Additional options available for all entities."] = "实体选择选",
+    ["Alpha"] = "透明度",
+    ["The amount of transparency the object has. Local only!"] = "该物体透明度.仅限本地!",
+    ["Mission Entity"] = "任务实体",
+    ["If attachment is treated as a mission entity."] = "附件被视为任务实体",
+    ["Give Weapon"] = "给予武器",
+    ["Give the ped a weapon."] = "给予该ped武器",
+    ["Vehicle by Name"] = "载具名称",
+    ["From Current Vehicle"] = "当前载具",
+    ["From Vehicle List"] = "载具列表",
+    ["Create a new construct from a list of vehicles"] = "从载具列表中生成新的载具",
+    ["From Object Search"] = "物体名称",
+    ["Create a new map by searching for a object"] = "搜索物体名称并生成",
+    ["From Current Ped"] = "自我构造",
+    ["From Ped List"] = "人物列表",
+    ["Create a new construct from a list of peds"] = "从人物列表中生成新的人物",
+    ["Spawn Entity Delay"] = "生成实体延迟",
+    ["Pause after spawning any object. Useful for preventing issues when spawning large constructs with many objects."] = "每个实体生成之间的延迟.",
+    ["Freeze Position"] = "冻结位置",
+    ["Will the construct be frozen in place, or allowed to move freely"] = "附件是否被冻结在原地.",
+    ["Particle Effects"] = "粒子特效",
+    ["Browse a curated collection of particle effects"] = "预览精品粒子特效",
+    ["Clean Up Distance"] = "清理距离",
+    ["How far away the cleanup command will reach to delete entities."] = "实体的清除距离是多少",
+    ["Info"] = "信息",
+    ["Set name of the player that created this construct"] = "创建此模组的作者名字",
+    ["Description"] = "描述",
+    ["Set text to describe this construct"] = "此模组的描述",
+    ["Create a new construct from a base vehicle, object, or ped. Then extend it with attachments. Finally save your creation and share it with others."] = "从一个车辆、物体或人物创建一个新的组合.然后用附件来拼接它.最后保存你的创作并与他人分享.",
+    ["Set global configuration options."] = "设置全局配置选项",
+    ["Information and options about the Constructor script itself."] = "关于此脚本的相关信息和选项",
+    ["Chat Spawnable Dir"] = "聊天生成目录",
+    ["Set a Constructs sub-folder to be spawnable by name. Only available for users with permission to use Spawn Commands. See Online>Chat>Commands"] = "将Constructs子文件夹设置为名称生成.仅适用于有权使用“生成命令”的用户.请参见线上>聊天>命令",
+    ["Constructs Allowed Per Player"] = "构造体上限",
+    ["CqCq and Zelda Two"] = "Zelda Two",
+    ["Chinese"] = "中文翻译",
+    ["The number of constructs any one player can spawn at a time. When a player tried to spawn additional constructs past this limit, the oldest spawned construct will be deleted."] = "玩家可生成的构造数,当生成指定数后将删除老的构造.",
+    ["Editing"] = "编辑",
+    ["Set configuration options relating to editing constructs."] = "设置编辑与constructs有关的配置选项",
+    ["Previews"] = "预览",
+    ["Set configuration options relating to previewing constructs."] = "设置预览constructs有关的配置选项",
+    ["Debug"] = "调试",
+    ["Chat Spawn Commands"] = "聊天生成命令",
+    ["Hold SHIFT to fine tune, or hold CONTROL to move ten steps at once."] = "按住SHIFT键进行微调，或按住Ctrl键一次移动10倍.",
+    ["Set configuration options relating to debugging the menu."] = "设置调试菜单有关的配置选项",
+    ["Set configuration options relating to spawning constructs."] = "设置生成constructs有关的配置选项",
+    ["Translators"] = "翻译",
+    ["Auto-Update"] = "自动更新",
+    ["Automatically install updates as they are released. Disable if you cannot successfully fetch updates as normal."] = "作者更新lua时会自动进行更新,如果你无法更新,请取消自动更新.",
 }
 
 ---
 --- Return
 ---
 
+translations.inject_custom_translations()
 return translations
 
 

@@ -603,31 +603,31 @@ end
     end
 
     local function generateHudSettings(root, prefix, settingsTable)
-        JSlang.slider(root, 'X position', {prefix..'XPos'}, '', -200, 0, settingsTable.xOffset, 1, function(value)
+        JSlang.slider(root, 'X 位置', {prefix..'XPos'}, '', -200, 0, settingsTable.xOffset, 1, function(value)
             settingsTable.xOffset = value
         end)
-        JSlang.slider(root, 'Y position', {prefix..'YPos'}, '', -5, 195, settingsTable.yOffset, 1, function(value)
+        JSlang.slider(root, 'Y 位置', {prefix..'YPos'}, '', -5, 195, settingsTable.yOffset, 1, function(value)
             settingsTable.yOffset = value
         end)
-        JSlang.slider(root, 'Scale', {prefix..'scale'}, 'The size of the text.', 200, 1500, 500, 1, function(value)
+        JSlang.slider(root, 'Scale', {prefix..'scale'}, '文字大小', 200, 1500, 500, 1, function(value)
             settingsTable.scale = value / 1000
         end)
-        JSlang.slider(root, 'Text alignment', {prefix..'alignment'}, '1 is center, 2 is left and 3 is right.', 1, 3, settingsTable.alignment, 1, function(value)
+        JSlang.slider(root, '文本对齐', {prefix..'alignment'}, '1居中,2居左,3居右.', 1, 3, settingsTable.alignment, 1, function(value)
             settingsTable.alignment = value
         end)
-        JSlang.colour(root, 'Text colour', {prefix..'colour'}, 'Sets the colour of the text overlay.', settingsTable.textColour, true, function(colour)
+        JSlang.colour(root, '文本颜色', {prefix..'colour'}, '设置文本覆盖的颜色.', settingsTable.textColour, true, function(colour)
             settingsTable.textColour = colour
         end)
     end
 
     local function generateDelaySettings(root, name, delayTable)
-        JSlang.slider(root, 'Ms', {'JS'..name..'DelayMs'}, 'The delay is the added total of ms, sec and min values.', 1, 999, delayTable.ms, 1, function(value)
+        JSlang.slider(root, '毫秒', {'JS'..name..'DelayMs'}, '延迟是毫秒、秒和最小值的总和.', 1, 999, delayTable.ms, 1, function(value)
             delayTable.ms = value
         end)
-        JSlang.slider(root, 'Seconds', {'JS'..name..'DelaySec'}, 'The delay is the added total of ms, sec and min values.', 0, 59, delayTable.s, 1, function(value)
+        JSlang.slider(root, '秒', {'JS'..name..'DelaySec'}, '延迟是毫秒、秒和最小值的总和.', 0, 59, delayTable.s, 1, function(value)
             delayTable.s = value
         end)
-        JSlang.slider(root, 'Minutes', {'JS'..name..'DelayMin'}, 'The delay is the added total of ms, sec and min values.', 0, 60, delayTable.min, 1, function(value)
+        JSlang.slider(root, '分钟', {'JS'..name..'DelayMin'}, '延迟是毫秒、秒和最小值的总和.', 0, 60, delayTable.min, 1, function(value)
             delayTable.min = value
         end)
     end
@@ -676,7 +676,7 @@ end
     --only warns on the first opening, credit to sai for providing this workaround
     local function listWarning(listRoot, firstOpening)
         if not firstOpening[1] then return end
-        menu.show_warning(listRoot, CLICK_MENU, JSlang.str_trans('I can\'t guarantee that these options are 100% safe. I tested them on my main, but im stupid.'), function()
+        menu.show_warning(listRoot, CLICK_MENU, JSlang.str_trans('我不能保证这些选项是100%安全的. 我在我的大号测试了它们,但我太蠢了.'), function()
             firstOpening[1] = false
             menu.focus(listRoot, '')
         end)
@@ -892,20 +892,20 @@ end
     end
 
     local taskTable = {
-        [1] = {1,  JSlang.str_trans('climbing Ladder')},
-        [2] = {2,  JSlang.str_trans('exiting vehicle')},
-        [3] = {160,  JSlang.str_trans('entering vehicle')},
-        [4] = {335, JSlang.str_trans('parachuting')},
-        [5] = {422,  JSlang.str_trans('jumping')},
-        [6] = {423,  JSlang.str_trans('falling')},
+        [1] = {1,  JSlang.str_trans('爬梯')},
+        [2] = {2,  JSlang.str_trans('离开载具')},
+        [3] = {160,  JSlang.str_trans('进入载具')},
+        [4] = {335, JSlang.str_trans('跳伞')},
+        [5] = {422,  JSlang.str_trans('跳跃')},
+        [6] = {423,  JSlang.str_trans('坠落')},
     }
     local function getMovementType(ped)
         if PED.IS_PED_RAGDOLL(ped) then
-            return  JSlang.str_trans('ragdolling')
+            return  JSlang.str_trans('摔倒')
         elseif PED.IS_PED_CLIMBING(ped) then
-            return  JSlang.str_trans('climbing')
+            return  JSlang.str_trans('攀登')
         elseif PED.IS_PED_VAULTING(ped) then
-            return  JSlang.str_trans('vaulting')
+            return  JSlang.str_trans('越过障碍物')
         end
         for i = 1, #taskTable do
             if TASK.GET_IS_TASK_ACTIVE(ped, taskTable[i][1]) then return taskTable[i][2] end
@@ -913,33 +913,33 @@ end
         if not isMoving(ped) then return end
         if PED.IS_PED_IN_ANY_VEHICLE(ped, true) then
             if PED.IS_PED_IN_ANY_PLANE(ped) then
-                return  JSlang.str_trans('flying a plane')
+                return  JSlang.str_trans('驾驶飞机')
             elseif PED.IS_PED_IN_ANY_HELI(ped) then
-                return  JSlang.str_trans('flying a helicopter')
+                return  JSlang.str_trans('驾驶直升机')
             elseif PED.IS_PED_IN_ANY_BOAT(ped) then
-                return  JSlang.str_trans('driving a boat')
+                return  JSlang.str_trans('驾驶船只')
             elseif PED.IS_PED_IN_ANY_SUB(ped) then
-                return  JSlang.str_trans('driving a submarine')
+                return  JSlang.str_trans('驾驶潜艇')
             elseif PED.IS_PED_ON_ANY_BIKE(ped) then
-                return  JSlang.str_trans('biking')
+                return  JSlang.str_trans('驾驶摩托车/自行车')
             end
-            return  JSlang.str_trans('driving')
+            return  JSlang.str_trans('驾驶')
         elseif PED.IS_PED_SWIMMING(ped) then
-            return  JSlang.str_trans('swimming')
+            return  JSlang.str_trans('游泳')
         elseif TASK.IS_PED_STRAFING(ped) then
-            return  JSlang.str_trans('strafing')
+            return  JSlang.str_trans('扫射')
         elseif TASK.IS_PED_SPRINTING(ped) then
-            return  JSlang.str_trans('sprinting')
+            return  JSlang.str_trans('冲刺')
         elseif PED.GET_PED_STEALTH_MOVEMENT(ped) then
-            return  JSlang.str_trans('sneaking')
+            return  JSlang.str_trans('潜行')
         elseif TASK.IS_PED_GETTING_UP(ped) then
-            return  JSlang.str_trans('getting up')
+            return  JSlang.str_trans('起身')
         elseif PED.IS_PED_GOING_INTO_COVER(ped) then
-            return  JSlang.str_trans('going into cover')
+            return  JSlang.str_trans('进入掩护')
         elseif PED.IS_PED_IN_COVER(ped) then
-            return  JSlang.str_trans('moving in cover')
+            return  JSlang.str_trans('在掩体中移动')
         else
-            return  JSlang.str_trans('moving')
+            return  JSlang.str_trans('移动')
         end
     end
 
@@ -1094,10 +1094,10 @@ local whitelistedName = false
     ----------------------------------
     -- Script settings
     ----------------------------------
-        JSlang.list(_LR['Settings'], 'Script settings', {'JSsettings'}, '')
+        JSlang.list(_LR['Settings'], '脚本设置', {'JSsettings'}, '')
 
         notifications = true
-        JSlang.toggle(_LR['Script settings'], 'Disable JS notifications', {'JSnoNotify'}, 'Makes the script not notify when stuff happens. These can be pretty useful so I don\'t recommend turning them off.', function(toggle)
+        JSlang.toggle(_LR['脚本设置'], '禁用Jerry脚本的通知', {'JSnoNotify'}, '使脚本在运行时不进行通知. 这些可能非常有用,所以我不建议将它们关闭.', function(toggle)
             notifications = not toggle
             if notifications then
                 JSlang.toast('Notifications on')
@@ -1105,11 +1105,11 @@ local whitelistedName = false
         end)
 
         local maxTimeBetweenPress = 300
-        JSlang.slider(_LR['Script settings'], 'Double tap interval', {'JSdoubleTapInterval'}, 'Lets you set the maximum time between double taps in ms.', 1, 1000, 300, 1, function(value)
+        JSlang.slider(_LR['脚本设置'], '双击间隔', {'JSdoubleTapInterval'}, '让您以毫秒为单位设置双击之间的最长时间.', 1, 1000, 300, 1, function(value)
             maxTimeBetweenPress = value
         end)
 
-        JSlang.action(_LR['Script settings'], 'Create translation template', {'JStranslationTemplate'}, 'Creates a template file for translation in store/JerryScript/Language.', function()
+        JSlang.action(_LR['脚本设置'], '创建翻译模板', {'JStranslationTemplate'}, '在 store/JerryScript/Language 中创建用于翻译的模板文件', function()
             async_http.init('raw.githubusercontent.com', '/Jerrrry123/JerryScript/'.. getLatestRelease() ..'/store/JerryScript/Language/template.lua', function(fileContent)
                 local i = ''
                 if filesystem.exists(lang_dir ..'template.lua') then
@@ -1135,37 +1135,37 @@ local whitelistedName = false
             async_http.dispatch()
         end)
 
-        JSlang.hyperlink(_LR['Script settings'], 'Command list', 'https://raw.githubusercontent.com/Jerrrry123/JerryScript/main/commandList.txt', 'A list of all the scripts features and commands.')
+        JSlang.hyperlink(_LR['脚本设置'], '命令列表', 'https://raw.githubusercontent.com/Jerrrry123/JerryScript/main/commandList.txt', '所有脚本功能和命令的列表.')
 
     ----------------------------------
     -- Player info settings
     ----------------------------------
-        JSlang.list(_LR['Settings'], 'Player info settings', {'JSplayerInfoSettings'}, '')
+        JSlang.list(_LR['Settings'], '玩家信息设置', {'JSplayerInfoSettings'}, '')
 
         local piSettings = new.hudSettings(-151, 1, 3)
-        generateHudSettings(_LR['Player info settings'], 'PI', piSettings)
+        generateHudSettings(_LR['玩家信息设置'], 'PI', piSettings)
 
         ----------------------------------
         -- Player info toggles
         ----------------------------------
-            JSlang.list(_LR['Player info settings'], 'Display options', {'PIDisplay'}, '')
+            JSlang.list(_LR['玩家信息设置'], '显示选项', {'PIDisplay'}, '')
 
             local playerInfoTogglesOptions = {
                 {
-                    name = 'Disable name', command = 'PIdisableName', description = '', toggle = true,
+                    name = '禁用名称', command = 'PIdisableName', description = '', toggle = true,
                     displayText = function(pid)
                         return JSlang.str_trans('Player') ..': '.. players.get_name(pid)
                     end
                 },
                 {
-                    name = 'Disable weapon', command = 'PIdisableWeapon', description = '', toggle = true,
+                    name = '禁用武器', command = 'PIdisableWeapon', description = '', toggle = true,
                     displayText = function(pid, ped, weaponHash)
                         local weaponName = getWeaponName(weaponHash)
-                        return weaponName and JSlang.str_trans('Weapon') ..': '.. weaponName
+                        return weaponName and JSlang.str_trans('武器') ..': '.. weaponName
                     end
                 },
                 {
-                    name = 'Disable ammo info', command = 'PIdisableAmmo', description = '', toggle = true,
+                    name = '禁用子弹信息', command = 'PIdisableAmmo', description = '', toggle = true,
                     displayText = function(pid, ped, weaponHash)
                         local damageType = WEAPON.GET_WEAPON_DAMAGE_TYPE(weaponHash)
                         if (damageType == 2 or damageType == 1 or damageType == 12) or WEAPON.GET_WEAPONTYPE_GROUP(weaponHash) == util.joaat('GROUP_THROWN') or util.joaat('weapon_raypistol') == weaponHash then return end
@@ -1175,19 +1175,19 @@ local whitelistedName = false
                         if WEAPON.GET_AMMO_IN_CLIP(ped, weaponHash, ammo_ptr) and WEAPON.GET_WEAPONTYPE_GROUP(weaponHash) != util.joaat('GROUP_THROWN') then
                             ammoCount = memory.read_int(ammo_ptr)
                             local clipSize = WEAPON.GET_MAX_AMMO_IN_CLIP(ped, weaponHash, 1)
-                            return ammoCount and JSlang.str_trans('Clip') ..': '.. ammoCount ..' / '.. clipSize
+                            return ammoCount and JSlang.str_trans('弹夹') ..': '.. ammoCount ..' / '.. clipSize
                         end
                     end
                 },
                 {
-                    name = 'Disable damage type', command = 'PIdisableDamage', description = 'Displays the type of damage the players weapon does, like melee / fire / bullets / mk2 ammo.', toggle = true,
+                    name = '禁用伤害类型', command = 'PIdisableDamage', description = '显示玩家武器造成的伤害类型,例如: 近战/火/子弹/mk2弹药', toggle = true,
                     displayText = function(pid, ped, weaponHash)
                         local damageType = getDamageType(ped, weaponHash)
-                        return damageType and JSlang.str_trans('Damage type') ..': '.. damageType
+                        return damageType and JSlang.str_trans('伤害类型') ..': '.. damageType
                     end
                 },
                 {
-                    name = 'Disable vehicle', command = 'PIdisableVehicle', description = '', toggle = true,
+                    name = '禁用载具', command = 'PIdisableVehicle', description = '', toggle = true,
                     displayText = function(pid, ped)
                         if not PED.IS_PED_IN_ANY_VEHICLE(ped, false) then return end
                         local vehicleName = getPlayerVehicleName(ped)
@@ -1195,7 +1195,7 @@ local whitelistedName = false
                     end
                 },
                 {
-                    name = 'Disable score', command = 'PIdisableScore', description = 'Only shows when you or they have kills.', toggle = true,
+                    name = '禁用比分', command = 'PIdisableScore', description = '仅在您或他被击杀时显示.', toggle = true,
                     displayText = function(pid)
                         local myScore = GET_INT_GLOBAL(2870058 + 386 + 1 + pid)
                         local theirScore = GET_INT_GLOBAL(2870058 + 353 + 1 + pid)
@@ -1203,44 +1203,44 @@ local whitelistedName = false
                     end
                 },
                 {
-                    name = 'Disable moving indicator', command = 'PIdisableMovement', description = '', toggle = true,
+                    name = '禁用移动指示器', command = 'PIdisableMovement', description = '', toggle = true,
                     displayText = function(pid, ped)
                         local movement = getMovementType(ped)
-                        return movement and JSlang.str_trans('Player is') ..' '.. movement
+                        return movement and JSlang.str_trans('玩家正在') ..' '.. movement
                     end
                 },
                 {
-                    name = 'Disable aiming indicator', command = 'PIdisableAiming', description = '', toggle = true,
+                    name = '禁用瞄准指示器', command = 'PIdisableAiming', description = '', toggle = true,
                     displayText = function(pid)
-                        return PLAYER.IS_PLAYER_TARGETTING_ENTITY(pid, players.user_ped()) and JSlang.str_trans('Player is aiming at you')
+                        return PLAYER.IS_PLAYER_TARGETTING_ENTITY(pid, players.user_ped()) and JSlang.str_trans('玩家在瞄准您')
                     end
                 },
                 {
-                    name = 'Disable reload indicator', command = 'PIdisableReload', description = '', toggle = true,
+                    name = '禁用重新加载指示器', command = 'PIdisableReload', description = '', toggle = true,
                     displayText = function(pid, ped)
-                        return PED.IS_PED_RELOADING(ped) and JSlang.str_trans('Player is reloading')
+                        return PED.IS_PED_RELOADING(ped) and JSlang.str_trans('玩家正在重新装弹')
                     end
                 },
             }
-            generateToggles(playerInfoTogglesOptions, _LR['Display options'], true)
+            generateToggles(playerInfoTogglesOptions, _LR['显示选项'], true)
 
     -----------------------------------
     -- Safe monitor settings
     -----------------------------------
-        JSlang.list(_LR['Settings'], 'Safe monitor settings', {'SMsettings'}, 'Settings for the on screen text')
+        JSlang.list(_LR['Settings'], '保险箱监视器设置', {'SMsettings'}, '屏幕文字信息设置')
 
         smSettings = new.hudSettings(-3, 0, 2)
-        generateHudSettings(_LR['Safe monitor settings'], 'SM', smSettings)
+        generateHudSettings(_LR['保险箱监视器设置'], 'SM', smSettings)
 
     -----------------------------------
     -- Explosion settings
     -----------------------------------
-        JSlang.list(_LR['Settings'], 'Explosion settings', {'JSexpSettings'}, 'Settings for the different options that explode players in this script.')
+        JSlang.list(_LR['Settings'], '爆炸设置', {'JSexpSettings'}, '修改脚本中爆炸玩家的选项设置.')
 
         local expLoopDelay = new.delay(250, 0, 0)
 
-        JSlang.list(_LR['Explosion settings'], 'Loop delay', {'JSexpDelay'}, 'Lets you set a custom delay between looped explosions.')
-        generateDelaySettings(_LR['Loop delay'], 'Loop delay', expLoopDelay)
+        JSlang.list(_LR['爆炸设置'], '循环延迟', {'JSexpDelay'}, '让您在循环爆炸之间设置自定义延迟.')
+        generateDelaySettings(_LR['循环延迟'], '循环延迟', expLoopDelay)
 
         -----------------------------------
         -- Fx explosion settings
@@ -1252,7 +1252,7 @@ local whitelistedName = false
                 colour = new.colour( 255, 0, 255 )
             }
 
-            JSlang.list(_LR['Explosion settings'], 'FX explosions', {'JSfxExp'}, 'Lets you choose effects instead of explosion type.')
+            JSlang.list(_LR['爆炸设置'], '爆炸特效', {'JSfxExp'}, '让您选择爆炸效果而不是爆炸类型.')
 
             local function getEffectLabelTableFromKeys(keyTable)
                 local labelTable = {}
@@ -1270,7 +1270,7 @@ local whitelistedName = false
                 return labelTable
             end
 
-            JSlang.list_select(_LR['FX explosions'], 'FX type', {'JSfxExpType'}, 'Choose a fx explosion type.', getEffectLabelTableFromKeys(JS_tbls.effects), 5, function(index, name)
+            JSlang.list_select(_LR['爆炸特效'], '特效类型', {'JSfxExpType'}, '选择一个特效爆炸类型.', getEffectLabelTableFromKeys(JS_tbls.effects), 5, function(index, name)
                 if name == 'Explosion' then
                     expSettings.currentFx = nil
                 else
@@ -1278,28 +1278,28 @@ local whitelistedName = false
                 end
             end)
 
-            menu.rainbow(JSlang.colour(_LR['FX explosions'], 'FX colour', {'JSPfxColour'}, 'Only works on some pfx\'s.',  new.colour( 255, 0, 255 ), false, function(colour)
+            menu.rainbow(JSlang.colour(_LR['爆炸特效'], '特效颜色', {'JSPfxColour'}, '只适用于某些特效',  new.colour( 255, 0, 255 ), false, function(colour)
                 expSettings.colour = colour
             end))
         -----------------------------------
 
-        JSlang.slider(_LR['Explosion settings'], 'Camera shake', {'JSexpCamShake'}, 'How much explosions shake the camera.', 0, 1000, expSettings.camShake, 1, function(value)
+        JSlang.slider(_LR['爆炸设置'], '画面抖动', {'JSexpCamShake'}, '多少次爆炸用于画面抖动.', 0, 1000, expSettings.camShake, 1, function(value)
             expSettings.camShake = toFloat(value)
         end)
 
-        JSlang.toggle(_LR['Explosion settings'], 'Invisible explosions', {'JSexpInvis'}, '', function(toggle)
+        JSlang.toggle(_LR['爆炸设置'], '隐形爆炸', {'JSexpInvis'}, '', function(toggle)
             expSettings.invisible = toggle
         end)
 
-        JSlang.toggle(_LR['Explosion settings'], 'Silent explosions', {'JSexpSilent'}, '', function(toggle)
+        JSlang.toggle(_LR['爆炸设置'], '无声爆炸', {'JSexpSilent'}, '', function(toggle)
             expSettings.audible = not toggle
         end)
 
-        JSlang.toggle(_LR['Explosion settings'], 'Disable explosion damage', {'JSnoExpDamage'}, '', function(toggle)
+        JSlang.toggle(_LR['爆炸设置'], '禁用爆炸伤害', {'JSnoExpDamage'}, '', function(toggle)
             expSettings.noDamage = toggle
         end)
 
-        JSlang.list(_LR['Explosion settings'], 'Blame settings', {'JSblameSettings'}, 'Lets you blame yourself or other players for your explosions, go to the player list to chose a specific player to blame.')
+        JSlang.list(_LR['爆炸设置'], '栽赃设置', {'JSblameSettings'}, '让爆炸显示的发送者为自己或其他玩家,前往玩家列表选择要栽赃的特定玩家')
 
         local runningToggling = false
         local function mutuallyExclusiveToggles(toggle)
@@ -1312,32 +1312,32 @@ local whitelistedName = false
         end
 
         local exp_blame_toggle
-        local exp_own_toggle = JSlang.toggle(_LR['Blame settings'], 'Owned explosions', {'JSownExp'}, 'Will overwrite "Disable explosion damage".', function(toggle)
+        local exp_own_toggle = JSlang.toggle(_LR['栽赃设置'], '署名爆炸', {'JSownExp'}, '将覆盖"禁用爆炸伤害".', function(toggle)
             expSettings.owned = toggle
             if not runningToggling then
                 mutuallyExclusiveToggles(exp_blame_toggle)
             end
         end)
 
-        exp_blame_toggle = menu.toggle(_LR['Blame settings'], JSlang.str_trans('Blame') ..': '.. JSlang.str_trans('Random'), {'JSblameExp'}, JSlang.str_trans('Will overwrite "Disable explosion damage" and if you haven\'t chosen a player random players will be blamed for each explosion.'), function(toggle)
+        exp_blame_toggle = menu.toggle(_LR['栽赃设置'], JSlang.str_trans('栽赃') ..': '.. JSlang.str_trans('Random'), {'JSblameExp'}, JSlang.str_trans('将会覆盖"禁用爆炸伤害",如果您没有选择玩家,将会默认为栽赃随机的玩家.'), function(toggle)
             expSettings.blamed = toggle
             if not runningToggling then
                 mutuallyExclusiveToggles(exp_own_toggle)
             end
         end)
 
-        JSlang.list(_LR['Blame settings'], 'Blame player list', {'JSblameList'}, 'Custom player list for selecting blames.')
+        JSlang.list(_LR['栽赃设置'], '栽赃玩家列表', {'JSblameList'}, '用于选择栽赃目标的玩家列表.')
 
         local blamesTogglesTable = {}
         players.on_join(function(pid)
             local playerName = players.get_name(pid)
-            blamesTogglesTable[pid] = menu.action(_LR['Blame player list'], playerName, {'JSblame'.. playerName}, JSlang.str_trans('Blames your explosions on them.'), function()
+            blamesTogglesTable[pid] = menu.action(_LR['栽赃玩家列表'], playerName, {'JSblame'.. playerName}, JSlang.str_trans('Blames your explosions on them.'), function()
                 expSettings.blamedPlayer = pid
                 if not menu.get_value(exp_blame_toggle) then
                     menu.trigger_command(exp_blame_toggle)
                 end
-                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('Blame') ..': '.. playerName)
-                menu.focus(_LR['Blame player list'])
+                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('栽赃') ..': '.. playerName)
+                menu.focus(_LR['栽赃玩家列表'])
             end)
         end)
 
@@ -1353,23 +1353,23 @@ local whitelistedName = false
                 end
                 menu.trigger_command(explodeLoopAll, 'off')
                 expSettings.blamedPlayer = false
-                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('Blame') ..': '.. JSlang.str_trans('Random'))
+                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('栽赃') ..': '.. JSlang.str_trans('Random'))
                 if notifications then
                     JSlang.toast('Explosions stopped because the player you\'re blaming left.')
                 end
             end
         end)
 
-        JSlang.action(_LR['Blame settings'], 'Random blames', {'JSblameRandomExp'}, 'Switches blamed explosions back to random if you already chose a player to blame.', function()
+        JSlang.action(_LR['栽赃设置'], '随机栽赃', {'JSblameRandomExp'}, '如果您已经选择了栽赃的玩家,将会把栽赃目标设置为随机.', function()
             expSettings.blamedPlayer = false
             if not menu.get_value(exp_blame_toggle) then
                 menu.trigger_command(exp_blame_toggle)
             end
-            menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('Blame') ..': '.. JSlang.str_trans('Random'))
+            menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('栽赃') ..': '.. JSlang.str_trans('Random'))
         end)
 
         local hornBoostMultiplier = 1.000
-        JSlang.slider(_LR['Settings'], 'Horn boost multiplier', {'JShornBoostMultiplier'}, 'Set the force applied to the car when you or another player uses horn boost.', -100000, 100000, hornBoostMultiplier * 1000, 1, function(value)
+        JSlang.slider(_LR['Settings'], '喇叭加速速度修改', {'JShornBoostMultiplier'}, '设置您或其他玩家使用喇叭加速时的速度.', -100000, 100000, hornBoostMultiplier * 1000, 1, function(value)
             hornBoostMultiplier = value / 1000
         end)
 
@@ -1382,7 +1382,7 @@ do
     local startViewMode
     local scope_scaleform
     local gaveHelmet = false
-    JSlang.toggle_loop(_LR['Self'], 'Ironman mode', {'JSironman'}, 'Grants you the abilities of ironman :)', function()
+    JSlang.toggle_loop(_LR['Self'], '钢铁侠模式', {'JSironman'}, '赋予你钢铁侠的能力 :)', function()
         if not menu.get_value(levitationCommand) then
             menu.trigger_command(levitationCommand)
         end
@@ -1415,8 +1415,8 @@ do
         SF.CLEAR_ALL()
         SF.TOGGLE_MOUSE_BUTTONS(false)
         SF.SET_DATA_SLOT(2, JSkey.get_control_instructional_button(0, 'INPUT_ATTACK'), JSlang.str_trans('Explode'))
-        SF.SET_DATA_SLOT(1, JSkey.get_control_instructional_button(0, 'INPUT_AIM'), JSlang.str_trans('Beam'))
-        SF.SET_DATA_SLOT(0, JSkey.get_control_instructional_button(0, barrageInput), JSlang.str_trans('Barrage'))
+        SF.SET_DATA_SLOT(1, JSkey.get_control_instructional_button(0, 'INPUT_AIM'), JSlang.str_trans('光束'))
+        SF.SET_DATA_SLOT(0, JSkey.get_control_instructional_button(0, barrageInput), JSlang.str_trans('弹幕'))
         SF.DRAW_INSTRUCTIONAL_BUTTONS()
 
         JSkey.disable_control_action(0, 'INPUT_VEH_MOUSE_CONTROL_OVERRIDE')
@@ -1483,7 +1483,7 @@ do
     -----------------------------------
     -- Fire wings
     -----------------------------------
-        JSlang.list(_LR['Self'], 'Fire wings', {}, '')
+        JSlang.list(_LR['Self'], '火翅膀', {}, '')
 
         local fireWings = {
             [1] = {pos = {[1] = 120.0, [2] =  75.0}},
@@ -1503,7 +1503,7 @@ do
         }
 
         local ptfxEgg
-        JSlang.toggle(_LR['Fire wings'], 'Fire wings', {'JSfireWings'}, 'Puts wings made of fire on your back.', function (toggle)
+        JSlang.toggle(_LR['火翅膀'], '火翅膀', {'JSfireWings'}, '将火制成的翅膀附加在您的背上.', function (toggle)
             fireWingsSettings.on = toggle
             if fireWingsSettings.on then
                 ENTITY.SET_ENTITY_PROOFS(players.user_ped(), false, true, false, false, false, false, 1, false)
@@ -1553,18 +1553,18 @@ do
             end
         end)
 
-        JSlang.slider(_LR['Fire wings'], 'Fire wings scale', {'JSfireWingsScale'}, '', 1, 100, 3, 1, function(value)
+        JSlang.slider(_LR['火翅膀'], '火翅膀比例', {'JSfireWingsScale'}, '', 1, 100, 3, 1, function(value)
             fireWingsSettings.scale = value / 10
         end)
 
-        menu.rainbow(JSlang.colour(_LR['Fire wings'], 'Fire wings colour', {'JSfireWingsColour'}, '', fireWingsSettings.colour, false, function(colour)
+        menu.rainbow(JSlang.colour(_LR['火翅膀'], '火翅膀颜色', {'JSfireWingsColour'}, '', fireWingsSettings.colour, false, function(colour)
             fireWingsSettings.colour = colour
         end))
 
     -----------------------------------
     -- Fire breath
     -----------------------------------
-        JSlang.list(_LR['Self'], 'Fire breath', {}, '')
+        JSlang.list(_LR['Self'], '喷火', {}, '')
 
         local fireBreathSettings = {
             scale = 0.3,
@@ -1584,7 +1584,7 @@ do
             self.y.value = transitionValue(self.y.value, self.y[movementType], 0.01)
         end
 
-        JSlang.toggle(_LR['Fire breath'], 'Fire breath', {'JSfireBreath'}, '', function(toggle)
+        JSlang.toggle(_LR['喷火'], '喷火', {'JSfireBreath'}, '', function(toggle)
             fireBreathSettings.on = toggle
             if toggle then
                 while not STREAMING.HAS_NAMED_PTFX_ASSET_LOADED('weap_xs_vehicle_weapons') do
@@ -1624,11 +1624,11 @@ do
             end
         end)
 
-        JSlang.slider(_LR['Fire breath'], 'Fire breath scale', {'JSfireBreathScale'}, '', 1, 100, fireBreathSettings.scale * 10, 1, function(value)
+        JSlang.slider(_LR['喷火'], '喷火比例', {'JSfireBreathScale'}, '', 1, 100, fireBreathSettings.scale * 10, 1, function(value)
             fireBreathSettings.scale = value / 10
         end)
 
-        menu.rainbow(JSlang.colour(_LR['Fire breath'], 'Fire breath colour', {'JSfireBreathColour'}, '', fireBreathSettings.colour, false, function(colour)
+        menu.rainbow(JSlang.colour(_LR['喷火'], '喷火颜色', {'JSfireBreathColour'}, '', fireBreathSettings.colour, false, function(colour)
             fireBreathSettings.colour = colour
         end))
 
@@ -1636,39 +1636,39 @@ do
     -- Ped customization
     -----------------------------------
         local faceFeatures = {
-            [0]  = 'Nose Width',
-            [1]  = 'Nose Peak Hight',
-            [2]  = 'Nose Peak Length',
-            [3]  = 'Nose Bone Hight',
-            [4]  = 'Nose Peak Lowering',
-            [5]  = 'Nose Bone Twist',
-            [6]  = 'Eyebrow Hight',
-            [7]  = 'Eyebrow Forward',
-            [8]  = 'Cheeks Bone Hight',
-            [9]  = 'Cheeks Bone Width',
-            [10] = 'Cheeks Width',
-            [11] = 'Eyes Opening',
-            [12] = 'Lips Thickness',
-            [13] = 'Jaw Bone Width',
-            [14] = 'Jaw Bone Back Length',
-            [15] = 'Chin Bone Lowering',
-            [16] = 'Chin Bone Length',
-            [17] = 'Chin Bone Width',
-            [18] = 'Chin Hole',
-            [19] = 'Neck Width',
+            [0]  = '鼻子 宽度',
+            [1]  = '鼻尖 高度',
+            [2]  = '鼻尖 长度',
+            [3]  = '鼻隔 高度',
+            [4]  = '鼻尖 缩小',
+            [5]  = '鼻子',
+            [6]  = '眉毛 高度',
+            [7]  = '眉毛 前倾',
+            [8]  = '脸颊 高度',
+            [9]  = '脸颊 宽度',
+            [10] = '脸颊 宽度',
+            [11] = '眼睛 睁开程度',
+            [12] = '嘴唇 厚度',
+            [13] = '颧骨 宽度',
+            [14] = '颧骨 长度',
+            [15] = '下巴 缩小',
+            [16] = '下巴 长度',
+            [17] = '下巴 宽度',
+            [18] = '下巴 形状',
+            [19] = '脖子 宽度',
         }
-        JSlang.list(_LR['Self'], 'Face features', {}, '')
-        JSlang.list(_LR['Face features'], 'Customize face features', {}, 'Customizations reset after restarting the game.')
+        JSlang.list(_LR['Self'], '容貌功能', {}, '')
+        JSlang.list(_LR['容貌功能'], '自定义容貌功能', {}, '重启游戏后,外貌功能将被重置.')
 
         local face_sliders = {}
         for i = 0, #faceFeatures do
             local faceValue = (util.is_session_started() and math.floor(STAT_GET_FLOAT('FEATURE_'.. i) * 100) or 0)
-            face_sliders[faceFeatures[i]] = JSlang.slider(_LR['Customize face features'], faceFeatures[i], {'JSset'.. string.gsub(faceFeatures[i], ' ', '')}, '', -1000, 1000, faceValue, 1, function(value)
+            face_sliders[faceFeatures[i]] = JSlang.slider(_LR['自定义容貌功能'], faceFeatures[i], {'JSset'.. string.gsub(faceFeatures[i], ' ', '')}, '', -1000, 1000, faceValue, 1, function(value)
                 PED._SET_PED_MICRO_MORPH_VALUE(players.user_ped(), i, value / 100)
             end)
         end
 
-        menu.divider(_LR['Face features'], '', {}, '')
+        menu.divider(_LR['容貌功能'], '', {}, '')
 
         local function getProfileName(fullPath, removePath)
             local path = string.sub(fullPath, #removePath + 1)
@@ -1699,7 +1699,7 @@ do
             loadProfiles(root)
         end
 
-        JSlang.action(_LR['Face features'], 'Create face feature profile', {'JSsaveFaceFeatures'}, 'Saves your customized face in a file so you can load it.', function()
+        JSlang.action(_LR['容貌功能'], '创建容貌功能配置文件', {'JSsaveFaceFeatures'}, '将您的自定义容貌保存在一个文件中,以便您可以加载它.', function()
             menu.show_command_box('JSsaveFaceFeatures ')
         end, function(fileName)
             local f = assert(io.open(face_profiles_dir .. fileName ..'.txt', 'w'))
@@ -1707,39 +1707,39 @@ do
                 f:write(faceFeatures[i] ..': '.. menu.get_value(face_sliders[faceFeatures[i]]) ..'\n')
             end
             f:close()
-            reloadProfiles(_LR['Face features'])
+            reloadProfiles(_LR['容貌功能'])
         end)
 
-        JSlang.action(_LR['Face features'], 'Reload profiles', {'JSreLoadFaceFeatureProfiles'}, 'Refreshes your profiles without having to restart the script.', function()
-            reloadProfiles(_LR['Face features'])
+        JSlang.action(_LR['容貌功能'], '重新加载配置', {'JSreLoadFaceFeatureProfiles'}, '无需重新运行脚本即可刷新您的配置文件.', function()
+            reloadProfiles(_LR['容貌功能'])
         end)
 
-        JSlang.divider(_LR['Face features'], 'Profiles')
+        JSlang.divider(_LR['容貌功能'], 'Profiles')
 
         if filesystem.is_dir(face_profiles_dir) then
-            loadProfiles(_LR['Face features'])
+            loadProfiles(_LR['容貌功能'])
         end
 
         local faceOverlays = {
-            [0]  = { name = 'Blemishes',          min = -1, max = 23 },
+            [0]  = { name = '面部斑点',          min = -1, max = 23 },
             [1]  = { name = 'Facial Hair',        min = -1, max = 28 },
-            [2]  = { name = 'Eyebrows',           min = -1, max = 33 },
-            [3]  = { name = 'Ageing',             min = -1, max = 14 },
-            [4]  = { name = 'Makeup',             min = -1, max = 74 },
-            [5]  = { name = 'Blush',              min = -1, max = 6  },
-            [6]  = { name = 'Complexion',         min = -1, max = 11 },
-            [7]  = { name = 'Sun Damage',         min = -1, max = 10 },
-            [8]  = { name = 'Lipstick',           min = -1, max = 9  },
-            [9]  = { name = 'Moles/Freckles',     min = -1, max = 17 },
-            [10] = { name = 'Chest Hair',         min = -1, max = 16 },
-            [11] = { name = 'Body Blemishes',     min = -1, max = 11 },
-            [12] = { name = 'Add Body Blemishes', min = -1, max = 1  },
+            [2]  = { name = '眉毛',           min = -1, max = 33 },
+            [3]  = { name = '皮肤老化',             min = -1, max = 14 },
+            [4]  = { name = '眼妆',             min = -1, max = 74 },
+            [5]  = { name = '脸红晕',              min = -1, max = 6  },
+            [6]  = { name = '肤色',         min = -1, max = 11 },
+            [7]  = { name = '皮肤损伤',         min = -1, max = 10 },
+            [8]  = { name = '唇膏',           min = -1, max = 9  },
+            [9]  = { name = '痣和雀斑',     min = -1, max = 17 },
+            [10] = { name = '胸部',         min = -1, max = 16 },
+            [11] = { name = '身体斑点',     min = -1, max = 11 },
+            [12] = { name = '添加身体斑点', min = -1, max = 1  },
         }
-        JSlang.list(_LR['Self'], 'Customize face overlays', {}, 'Customizations reset after restarting the game.')
+        JSlang.list(_LR['Self'], '外貌功能', {}, '重启游戏后,外貌功能将被重置.')
 
         for i = 0, #faceOverlays do
             local overlayValue = PED._GET_PED_HEAD_OVERLAY_VALUE(players.user_ped(), i)
-            JSlang.slider(_LR['Customize face overlays'], faceOverlays[i].name, {}, '', faceOverlays[i].min, faceOverlays[i].max, (overlayValue == 255 and -1 or overlayValue), 1, function(value)
+            JSlang.slider(_LR['外貌功能'], faceOverlays[i].name, {}, '', faceOverlays[i].min, faceOverlays[i].max, (overlayValue == 255 and -1 or overlayValue), 1, function(value)
                 PED.SET_PED_HEAD_OVERLAY(players.user_ped(), i, (value == 255 and -1 or value), 1)
             end)
         end
@@ -1747,21 +1747,21 @@ do
     -----------------------------------
     -- Ragdoll options
     -----------------------------------
-        JSlang.list(_LR['Self'], 'Ragdoll options', {'JSragdollOptions'}, 'Different options for making yourself ragdoll.')
+        JSlang.list(_LR['Self'], '摔倒选项', {'JSragdollOptions'}, '选择不同的摔倒选项.')
 
-        JSlang.toggle_loop(_LR['Ragdoll options'], 'Better clumsiness', {'JSclumsy'}, 'Like stands clumsiness, but you can get up after you fall.', function()
+        JSlang.toggle_loop(_LR['摔倒选项'], '笨拙', {'JSclumsy'}, '让您的人物很容易摔倒.', function()
             if PED.IS_PED_RAGDOLL(players.user_ped()) then util.yield(3000) return end
             PED.SET_PED_RAGDOLL_ON_COLLISION(players.user_ped(), true)
         end)
 
-        JSlang.action(_LR['Ragdoll options'], 'Stumble', {'JSstumble'}, 'Makes you stumble with a good chance of falling over.', function()
+        JSlang.action(_LR['摔倒选项'], '绊倒', {'JSstumble'}, '让你绊倒,很可能会摔倒.', function()
             local vector = ENTITY.GET_ENTITY_FORWARD_VECTOR(players.user_ped())
             PED.SET_PED_TO_RAGDOLL_WITH_FALL(players.user_ped(), 1500, 2000, 2, vector.x, -vector.y, vector.z, 1, 0, 0, 0, 0, 0, 0)
         end)
 
         -- credit to LAZScript for inspiring this
         local fallTimeout = false
-        JSlang.toggle(_LR['Ragdoll options'], 'Fall over', {'JSfallOver'}, 'Makes you stumble, fall over and prevents you from getting back up.', function(toggle)
+        JSlang.toggle(_LR['摔倒选项'], '倒下', {'JSfallOver'}, '让您绊倒、跌倒并阻止您站起来.', function(toggle)
             if toggle then
                 local vector = ENTITY.GET_ENTITY_FORWARD_VECTOR(players.user_ped())
                 PED.SET_PED_TO_RAGDOLL_WITH_FALL(players.user_ped(), 1500, 2000, 2, vector.x, -vector.y, vector.z, 1, 0, 0, 0, 0, 0, 0)
@@ -1774,17 +1774,17 @@ do
         end)
 
         -- credit to aaron for telling me this :p
-        JSlang.toggle_loop(_LR['Ragdoll options'], 'Ragdoll', {'JSragdoll'}, 'Just makes you ragdoll.', function()
+        JSlang.toggle_loop(_LR['摔倒选项'], '摔倒', {'JSragdoll'}, '让您的人物摔倒.', function()
             PED.SET_PED_TO_RAGDOLL(players.user_ped(), 2000, 2000, 0, true, true, true)
         end)
     -----------------------------------
 
-    JSlang.list(_LR['Self'], 'Custom respawn', {}, '')
+    JSlang.list(_LR['Self'], '自定义复活', {}, '')
 
     local wasDead = false
     local respawnPos
     local respawnRot
-    local custom_respawn_toggle = menu.toggle_loop(_LR['Custom respawn'], JSlang.str_trans('Custom respawn') ..': '.. JSlang.str_trans('none'), {}, JSlang.str_trans('Set a location that you respawn at when you die.'), function()
+    local custom_respawn_toggle = menu.toggle_loop(_LR['自定义复活'], JSlang.str_trans('自定义复活') ..': '.. JSlang.str_trans('none'), {}, JSlang.str_trans('设置一个您死后复活的位置.'), function()
         if respawnPos == nil then return end
         local isDead = PLAYER.IS_PLAYER_DEAD(players.user())
         if wasDead and not isDead then
@@ -1804,31 +1804,31 @@ do
         return util.get_label_text(ZONE.GET_NAME_OF_ZONE(v3.get(players.get_position(pid))))
     end
 
-    local custom_respawn_location custom_respawn_location = JSlang.action(_LR['Custom respawn'], 'Save location', {}, 'No location set.', function()
+    local custom_respawn_location custom_respawn_location = JSlang.action(_LR['自定义复活'], '保存位置', {}, '未设置位置.', function()
         respawnPos = players.get_position(players.user())
         respawnRot = ENTITY.GET_ENTITY_ROTATION(players.user_ped(), 2)
-        menu.set_menu_name(custom_respawn_toggle, JSlang.str_trans('Custom respawn') ..': '.. getZoneName(players.user()))
+        menu.set_menu_name(custom_respawn_toggle, JSlang.str_trans('自定义复活') ..': '.. getZoneName(players.user()))
         local pos = 'X: '.. respawnPos.x ..'\nY: '.. respawnPos.y ..'\nZ: '.. respawnPos.z
         menu.set_help_text(custom_respawn_toggle,  pos)
-        menu.set_help_text(custom_respawn_location,  JSlang.str_trans('Current location') ..':\n'.. pos)
+        menu.set_help_text(custom_respawn_location,  JSlang.str_trans('当前位置') ..':\n'.. pos)
     end)
 
-    JSlang.slider(_LR['Self'], 'Ghost', {'JSghost'}, 'Makes your player different levels off see through.', 0, 100, 100, 25, function(value)
+    JSlang.slider(_LR['Self'], '幽灵', {'JSghost'}, '修改您人物的不透明度.', 0, 100, 100, 25, function(value)
         ENTITY.SET_ENTITY_ALPHA(players.user_ped(), JS_tbls.alphaPoints[value / 25 + 1], false)
     end)
 
-    JSlang.toggle_loop(_LR['Self'], 'Full regen', {'JSfullRegen'}, 'Makes your hp regenerate until you\'re at full health.', function()
+    JSlang.toggle_loop(_LR['Self'], '自动加血', {'JSfullRegen'}, '一直加血直到您的血被加满.', function()
         local health = ENTITY.GET_ENTITY_HEALTH(players.user_ped())
         if ENTITY.GET_ENTITY_MAX_HEALTH(players.user_ped()) == health then return end
         ENTITY.SET_ENTITY_HEALTH(players.user_ped(), health + 5, 0)
         util.yield(255)
     end)
 
-    JSlang.toggle(_LR['Self'], 'Cold blooded', {'JScoldBlooded'}, 'Removes your thermal signature.\nOther players still see it tho.', function(toggle)
+    JSlang.toggle(_LR['Self'], '冷血', {'JScoldBlooded'}, '移除您的热信号.\n其他人仍然可以看到它.', function(toggle)
         PED.SET_PED_HEATSCALE_OVERRIDE(players.user_ped(), (toggle and 0 or 1.0))
     end)
 
-    JSlang.toggle(_LR['Self'], 'Quiet footsteps', {'JSquietSteps'}, 'Disables the sound of your footsteps.', function(toggle)
+    JSlang.toggle(_LR['Self'], '无声脚步', {'JSquietSteps'}, '禁用您的脚步声.', function(toggle)
         AUDIO._SET_PED_AUDIO_FOOTSTEP_LOUD(players.user_ped(), not toggle)
     end)
 end
@@ -1840,7 +1840,7 @@ do
     JSlang.list(menu_root, 'Weapons', {'JSweapons'}, '')
 
     local thermal_command = menu.ref_by_path('Game>Rendering>Thermal Vision', 37)
-    JSlang.toggle_loop(_LR['Weapons'], 'Thermal guns', {'JSthermalGuns'}, 'Makes it so when you aim any gun you can toggle thermal vision on "E".', function()
+    JSlang.toggle_loop(_LR['Weapons'], '热成像枪', {'JSthermalGuns'}, '当您瞄准时按"E"可以启用热成像功能.', function()
         local aiming = PLAYER.IS_PLAYER_FREE_AIMING(players.user_ped())
         if GRAPHICS.GET_USINGSEETHROUGH() and not aiming then
             menu.trigger_command(thermal_command, 'off')
@@ -1855,7 +1855,7 @@ do
     ----------------------------------
     -- Weapon settings
     ----------------------------------
-        JSlang.list(_LR['Weapons'], 'Weapon settings', {}, '')
+        JSlang.list(_LR['Weapons'], '武器设置', {}, '')
 
         local function readWeaponAddress(storeTable, offset, stopIfModified)
             if util.is_session_transition_active() then return 0 end
@@ -1886,7 +1886,7 @@ do
         end
 
         local modifiedRecoil = {}
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Disable recoil', {'JSnoRecoil'}, 'Disables the camera shake when shooting guns.', function()
+        JSlang.toggle_loop(_LR['武器设置'], '无后坐力', {'JSnoRecoil'}, '使用武器射击时不会抖动游戏画面.', function()
             local weaponHash = readWeaponAddress(modifiedRecoil, 0x2F4, true)
             if weaponHash == 0 then return end
             memory.write_float(modifiedRecoil[weaponHash].address, 0)
@@ -1895,7 +1895,7 @@ do
         end)
 
         local modifiedSpread = {}
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Disable spread', {'JSnoSpread'}, '', function()
+        JSlang.toggle_loop(_LR['武器设置'], '无扩散', {'JSnoSpread'}, '', function()
             local weaponHash = readWeaponAddress(modifiedSpread, 0x74, true)
             if weaponHash == 0 then return end
             memory.write_float(modifiedSpread[weaponHash].address, 0)
@@ -1907,7 +1907,7 @@ do
             [1] = {hash = util.joaat('weapon_minigun')},
             [2] = {hash = util.joaat('weapon_rayminigun')},
         }
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Remove spin-up time', {'JSnoSpinUp'}, 'Removes the spin-up from both the minigun and the widowmaker.', function()
+        JSlang.toggle_loop(_LR['武器设置'], '移除前摇', {'JSnoSpinUp'}, '移除加特林和寡妇制造者的前摇.', function()
             local weaponHash = WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped())
             for i = 1, #modifiedSpinup do
                 if weaponHash == modifiedSpinup[i].hash then
@@ -1927,7 +1927,7 @@ do
         local modifiedCarForce = {}
         local modifiedHeliForce = {}
         local modifiedPedForce = {}
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Bullet force multiplier', {'JSbulletForceMultiplier'}, 'Works best when shooting vehicles from the front.\nDisplayed value is in percent.', function()
+        JSlang.toggle_loop(_LR['武器设置'], '子弹伤害修改', {'JSbulletForceMultiplier'}, '从正面射击载具时效果最佳.\n显示的值以百分比为单位.', function()
             local weaponHash = readWeaponAddress(modifiedCarForce, 0x0E0, false)
             if weaponHash == 0 then return end
             memory.write_float(modifiedCarForce[weaponHash].address, modifiedCarForce[weaponHash].original * 99999999999999)
@@ -1945,11 +1945,11 @@ do
             resetWeapons(modifiedPedForce)
         end)
 
-        JSlang.divider(_LR['Weapon settings'], 'Aim fov')
+        JSlang.divider(_LR['武器设置'], '瞄准视野')
 
         local extraZoom2 = 0
         local modifiedAimFov = {}
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Enable aim fov', {'JSenableAimFov'}, 'Lets you modify the fov you have while you\'re aiming.', function()
+        JSlang.toggle_loop(_LR['武器设置'], '启用瞄准视野缩放', {'JSenableAimFov'}, '让您在瞄准时修改视野大小.', function()
             JSkey.disable_control_action(0, 'INPUT_SNIPER_ZOOM_IN_ONLY')
             JSkey.disable_control_action(0, 'INPUT_SNIPER_ZOOM_OUT_ONLY')
 
@@ -1973,11 +1973,11 @@ do
             resetWeapons(modifiedAimFov)
         end)
 
-        JSlang.divider(_LR['Weapon settings'], 'Zoom aim fov')
+        JSlang.divider(_LR['武器设置'], '放大瞄准视野')
 
         local extraZoom = 0
         local modifiedZoomFov = {}
-        JSlang.toggle_loop(_LR['Weapon settings'], 'Enable zoom fov', {'JSenableZoomFov'}, 'Lets you modify the fov you have while you\'re aiming and has zoomed in.', function()
+        JSlang.toggle_loop(_LR['武器设置'], '启用放大瞄准视野缩放', {'JSenableZoomFov'}, '让您在瞄准放大时修改视野大小.', function()
             local weaponHash = readWeaponAddress(modifiedZoomFov, 0x410, false)
             if weaponHash == 0 then return end
             memory.write_float(modifiedZoomFov[weaponHash].address,  modifiedZoomFov[weaponHash].original + extraZoom)
@@ -1985,7 +1985,7 @@ do
             resetWeapons(modifiedZoomFov)
         end)
 
-        JSlang.slider_float(_LR['Weapon settings'], 'Zoom aim fov', {'JSzoomAimFov'}, '', 100, 9999999999, 100, 1, function(value)
+        JSlang.slider_float(_LR['武器设置'], '放大瞄准视野', {'JSzoomAimFov'}, '', 100, 9999999999, 100, 1, function(value)
             extraZoom = (value - 100) / 100
             modifiedZoomWeapon = nil
         end)
@@ -1993,7 +1993,7 @@ do
     -----------------------------------
     -- Proxy stickys
     -----------------------------------
-        JSlang.list(_LR['Weapons'], 'Proxy stickys', {}, '')
+        JSlang.list(_LR['Weapons'], '粘弹自动爆炸', {}, '')
 
         local proxyStickySettings = {players = true, npcs = false, radius = 2.0}
         local function autoExplodeStickys(ped)
@@ -2003,7 +2003,7 @@ do
             end
         end
 
-        JSlang.toggle_loop(_LR['Proxy stickys'], 'Proxy stickys', {'JSproxyStickys'}, 'Makes your sticky bombs automatically detonate around players or npc\'s, works with the player whitelist.', function()
+        JSlang.toggle_loop(_LR['粘弹自动爆炸'], '粘弹自动爆炸', {'JSproxyStickys'}, '使您的粘弹在玩家或NPC附近时自动引爆,可与玩家白名单一起使用.', function()
             if proxyStickySettings.players then
                 local specificWhitelistGroup = {user = false,  friends = whitelistGroups.friends, strangers = whitelistGroups.strangers}
                 local playerList = getNonWhitelistedPlayers(whitelistListTable, specificWhitelistGroup, whitelistedName)
@@ -2022,19 +2022,19 @@ do
             end
         end)
 
-        JSlang.toggle(_LR['Proxy stickys'], 'Detonate near players', {'JSProxyStickyPlayers'}, 'If your sticky bombs automatically detonate near players.', function(toggle)
+        JSlang.toggle(_LR['粘弹自动爆炸'], '引爆附近的玩家', {'JSProxyStickyPlayers'}, '如果您的粘性炸弹在玩家附近时自动引爆.', function(toggle)
             proxyStickySettings.players = toggle
         end, proxyStickySettings.players)
 
-        JSlang.toggle(_LR['Proxy stickys'], 'Detonate near npc\'s', {'JSProxyStickyNpcs'}, 'If your sticky bombs automatically detonate near npc\'s.', function(toggle)
+        JSlang.toggle(_LR['粘弹自动爆炸'], '引爆附近的NPC', {'JSProxyStickyNpcs'}, '如果您的粘性炸弹在NPC附近时自动引爆.', function(toggle)
             proxyStickySettings.npcs = toggle
         end, proxyStickySettings.npcs)
 
-        JSlang.slider(_LR['Proxy stickys'], 'Detonation radius', {'JSstickyRadius'}, 'How close the sticky bombs have to be to the target to detonate.', 1, 10, proxyStickySettings.radius, 1, function(value)
+        JSlang.slider(_LR['粘弹自动爆炸'], '爆炸半径', {'JSstickyRadius'}, '粘性炸弹必须离目标多近才会引爆.', 1, 10, proxyStickySettings.radius, 1, function(value)
             proxyStickySettings.radius = toFloat(value)
         end)
 
-        JSlang.action(_LR['Proxy stickys'], 'Remove all sticky bombs', {'JSremoveStickys'}, 'Removes every single sticky bomb that exists (not only yours).', function()
+        JSlang.action(_LR['粘弹自动爆炸'], '移除所有粘性炸弹', {'JSremoveStickys'}, '移除所有存在的粘性炸弹(不仅仅是你的).', function()
             WEAPON.REMOVE_ALL_PROJECTILES_OF_TYPE(util.joaat('weapon_stickybomb'), false)
         end)
     -----------------------------------
@@ -2064,10 +2064,10 @@ do
     end
 
     --credit to lance for the entity gun, but i edited it a bit
-    JSlang.list(_LR['Weapons'], 'Nuke options', {}, '')
+    JSlang.list(_LR['Weapons'], '核弹选项', {}, '')
 
     local nuke_gun_option
-    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['Nuke options'], 'Nuke gun', {'JSnukeGun'}, 'Makes the rpg fire nukes', mutually_exclusive_weapons, function(toggle)
+    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['核弹选项'], '核弹枪', {'JSnukeGun'}, '使火箭炮发出的子弹变成核弹.', mutually_exclusive_weapons, function(toggle)
         nuke_gun_option = toggle
         util.create_tick_handler(function()
             if WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped()) == -1312131151 then --if holding homing launcher
@@ -2127,7 +2127,7 @@ do
         end
     end
 
-    JSlang.action(_LR['Nuke options'], 'Nuke waypoint', {'JSnukeWP'}, 'Drops a nuke on your selected Waypoint.', function ()
+    JSlang.action(_LR['核弹选项'], '核弹标记点', {'JSnukeWP'}, '掉落一颗核弹在您标记的位置.', function ()
         local waypointPos = get_waypoint_v3()
         if waypointPos then
             local hash = util.joaat('w_arena_airmissile_01a')
@@ -2148,16 +2148,16 @@ do
         end
     end)
 
-    JSlang.slider(_LR['Nuke options'], 'Nuke height', {'JSnukeHeight'}, 'The height of the nukes you drop.', 10, 100, nuke_height, 10, function(value)
+    JSlang.slider(_LR['核弹选项'], '核弹高度', {'JSnukeHeight'}, '投下核弹的高度.', 10, 100, nuke_height, 10, function(value)
         nuke_height = value
     end)
 
     --this is heavily skidded from wiriScript so credit to wiri
     local launcherThrowable = util.joaat('weapon_grenade')
-    JSlang.list(_LR['Weapons'], 'Throwables launcher', {}, '')
+    JSlang.list(_LR['Weapons'], '投掷物发射器', {}, '')
 
     local throwables_launcher
-    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['Throwables launcher'], 'Throwables launcher', {'JSgrenade'}, 'Makes the grenade launcher able to shoot throwables, gives you the throwable if you don\'t have it so you can shoot it.', mutually_exclusive_weapons, function(toggle)
+    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['投掷物发射器'], '投掷物发射器', {'JSgrenade'}, '使榴弹发射器能够发射可选的投掷物.', mutually_exclusive_weapons, function(toggle)
         throwables_launcher = toggle
         util.create_tick_handler(function()
             if WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped()) == -1568386805 then --if holding grenade launcher
@@ -2198,7 +2198,7 @@ do
         ['Ball']  = util.joaat('weapon_ball'),
         ['Pipe Bomb'] = util.joaat('weapon_pipebomb'),
     }
-    JSlang.list_select(_LR['Throwables launcher'], 'Current throwable', {'JSthrowablesLauncher'}, 'Choose what throwable the grenade launcher has.', getLabelTableFromKeys(throwablesTable), 4, function(index, text)
+    JSlang.list_select(_LR['投掷物发射器'], '当前投掷物', {'JSthrowablesLauncher'}, '选择榴弹发射器发射的投掷物.', getLabelTableFromKeys(throwablesTable), 4, function(index, text)
         launcherThrowable = throwablesTable[text]
     end)
 
@@ -2210,11 +2210,11 @@ do
         end)
     end
 
-    JSlang.list(_LR['Weapons'], 'Explosive animal gun', {}, '')
+    JSlang.list(_LR['Weapons'], '爆炸动物枪', {}, '')
 
     local exp_animal = 'a_c_killerwhale'
     local explosive_animal_gun
-    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['Explosive animal gun'], 'Explosive animal gun', {'JSexpAnimalGun'}, 'Inspired by impulses explosive whale gun, but can fire other animals too.', mutually_exclusive_weapons, function(toggle)
+    mutually_exclusive_weapons[#mutually_exclusive_weapons + 1] = menu.mutually_exclusive_toggle(_LR['爆炸动物枪'], '爆炸动物枪', {'JSexpAnimalGun'}, '灵感来自爆炸鲸鱼枪,但您也可以将子弹变成其他动物.', mutually_exclusive_weapons, function(toggle)
         explosive_animal_gun = toggle
         while explosive_animal_gun do
             local weaponHash = WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped())
@@ -2263,15 +2263,15 @@ do
         ['Retriever'] = 'a_c_retriever',
         ['Rottweiler'] = 'a_c_rottweiler',
     }
-    JSlang.list_select(_LR['Explosive animal gun'], 'Current animal', {'JSexplosiveAnimalGun'}, 'Choose what animal the explosive animal gun has.', getLabelTableFromKeys(animalsTable), 6, function(index, text)
+    JSlang.list_select(_LR['爆炸动物枪'], '当前动物', {'JSexplosiveAnimalGun'}, '选择爆炸动物枪发射时使用的动物.', getLabelTableFromKeys(animalsTable), 6, function(index, text)
         exp_animal = animalsTable[text]
     end)
 
-    JSlang.list(_LR['Weapons'], 'Minecraft gun', {}, '')
+    JSlang.list(_LR['Weapons'], '我的世界枪', {}, '')
 
     local impactCords = v3()
     local blocks = {}
-    JSlang.toggle_loop(_LR['Minecraft gun'], 'Minecraft gun', {'JSminecraftGun'}, 'Spawns blocks where you shoot.', function()
+    JSlang.toggle_loop(_LR['我的世界枪'], '我的世界枪', {'JSminecraftGun'}, '当您射击时生成阻挡物.', function()
         if WEAPON.GET_PED_LAST_WEAPON_IMPACT_COORD(players.user_ped(), memory.addrof(impactCords)) then
             local hash = util.joaat('prop_mb_sandblock_01')
             loadModel(hash)
@@ -2279,14 +2279,14 @@ do
         end
     end)
 
-    JSlang.action(_LR['Minecraft gun'], 'Delete last block', {'JSdeleteLastBlock'}, '', function()
+    JSlang.action(_LR['我的世界枪'], '删除最后一个阻挡物', {'JSdeleteLastBlock'}, '', function()
         if blocks[#blocks] != nil then
             entities.delete_by_handle(blocks[#blocks])
             blocks[#blocks] = nil
         end
     end)
 
-    JSlang.action(_LR['Minecraft gun'], 'Delete all blocks', {'JSdeleteBlocks'}, '', function()
+    JSlang.action(_LR['我的世界枪'], '删除所有阻挡物', {'JSdeleteBlocks'}, '', function()
         for i = 1, #blocks do
             entities.delete_by_handle(blocks[i])
             blocks[i] = nil
@@ -2296,7 +2296,7 @@ do
     local flameThrower = {
         colour = mildOrangeFire
     }
-    JSlang.toggle_loop(_LR['Weapons'], 'Flamethrower', {'JSflamethrower'}, 'Converts the minigun into a flamethrower.', function()
+    JSlang.toggle_loop(_LR['Weapons'], '喷火器', {'JSflamethrower'}, '将加特林变成火焰喷射器.', function()
         if WEAPON.GET_SELECTED_PED_WEAPON(players.user_ped()) != 1119849093 or not JSkey.is_control_pressed(2, 'INPUT_AIM') then
             if not flameThrower.ptfx then return end
 
@@ -2319,11 +2319,11 @@ do
         end
     end)
 
-    JSlang.toggle(_LR['Weapons'], 'Friendly fire', {'JSfriendlyFire'}, 'Makes you able to shoot peds the game count as your friends.', function(toggle)
+    JSlang.toggle(_LR['Weapons'], '友好枪', {'JSfriendlyFire'}, '使您射击NPC时让他们不会攻击您.', function(toggle)
         PED.SET_CAN_ATTACK_FRIENDLY(players.user_ped(), toggle, false)
     end)
 
-    JSlang.toggle_loop(_LR['Weapons'], 'Reload when rolling', {'JSrollReload'}, 'Reloads your weapon when doing a roll.', function()
+    JSlang.toggle_loop(_LR['Weapons'], '翻滚自动装弹', {'JSrollReload'}, '当您翻滚时自动装填弹夹.', function()
         if TASK.GET_IS_TASK_ACTIVE(players.user_ped(), 4) and JSkey.is_control_pressed(2, 'INPUT_JUMP') and not PED.IS_PED_SHOOTING(players.user_ped())  then --checking if player is rolling
             util.yield(900)
             WEAPON.REFILL_AMMO_INSTANTLY(players.user_ped())
@@ -2385,20 +2385,20 @@ do
     -----------------------------------
     -- Speed and handling
     -----------------------------------
-        JSlang.list(_LR['Vehicle'], 'Speed and handling', {'JSspeedHandling'}, '')
+        JSlang.list(_LR['Vehicle'], '速度和操控', {'JSspeedHandling'}, '')
 
-        JSlang.toggle(_LR['Speed and handling'], 'Low traction', {'JSlowTraction'}, 'Makes your vehicle have low traction, I recommend setting this to a hotkey.', function(toggle)
+        JSlang.toggle(_LR['速度和操控'], '低牵引力', {'JSlowTraction'}, '降低您载具的牵引力,我建议为其设置一个快捷键.', function(toggle)
             carSettings.lowTraction.on = toggle
             carSettings.lowTraction.setOption(toggle)
         end)
 
-        JSlang.toggle(_LR['Speed and handling'], 'Launch control', {'JSlaunchControl'}, 'Limits how much force your car applies when accelerating so it doesn\'t burnout, very noticeable in a Emerus.', function(toggle)
+        JSlang.toggle(_LR['速度和操控'], '启动控制', {'JSlaunchControl'}, '限制您的载具在加速时施加的力,使其不会摧毁,在跑车艾梅鲁斯中非常明显.', function(toggle)
             carSettings.launchControl.on = toggle
             carSettings.launchControl.setOption(toggle)
         end)
 
         local my_torque = 100
-        JSlang.slider_float(_LR['Speed and handling'], 'Set torque', {'JSsetSelfTorque'}, 'Modifies the speed of your vehicle.', -1000000, 1000000, my_torque, 1, function(value)
+        JSlang.slider_float(_LR['速度和操控'], '设置扭矩', {'JSsetSelfTorque'}, '修改您载具的速度.', -1000000, 1000000, my_torque, 1, function(value)
             my_torque = value
             util.create_tick_handler(function()
                 VEHICLE.SET_VEHICLE_CHEAT_POWER_INCREASE(my_cur_car, my_torque/100)
@@ -2407,28 +2407,28 @@ do
         end)
 
         local quickBrakeLvL = 1.5
-        JSlang.toggle_loop(_LR['Speed and handling'], 'Quick brake', {'JSquickBrake'}, 'Slows down your speed more when pressing "S".', function(toggle)
+        JSlang.toggle_loop(_LR['速度和操控'], '快速刹车', {'JSquickBrake'}, '按"S"时会进一步减慢您的速度.', function(toggle)
             if JSkey.is_control_just_pressed(2, 'INPUT_VEH_BRAKE') and ENTITY.GET_ENTITY_SPEED(my_cur_car) >= 0 and not ENTITY.IS_ENTITY_IN_AIR(my_cur_car) and VEHICLE.GET_PED_IN_VEHICLE_SEAT(my_cur_car, -1, false) == players.user_ped() then
                 VEHICLE.SET_VEHICLE_FORWARD_SPEED(my_cur_car, ENTITY.GET_ENTITY_SPEED(my_cur_car) / quickBrakeLvL)
                 util.yield(250)
             end
         end)
 
-        JSlang.slider_float(_LR['Speed and handling'], 'Quick brake force', {'JSquickBrakeForce'}, '1.00 is ordinary brakes.', 100, 999, 150, 1,  function(value)
+        JSlang.slider_float(_LR['速度和操控'], '强制快速刹车', {'JSquickBrakeForce'}, '1.00是普通刹车.', 100, 999, 150, 1,  function(value)
             quickBrakeLvL = value / 100
         end)
 
     -----------------------------------
     -- Boosts
     -----------------------------------
-        JSlang.list(_LR['Vehicle'], 'Boosts', {'JSboosts'}, '')
+        JSlang.list(_LR['Vehicle'], '加速', {'JSboosts'}, '')
 
-        JSlang.toggle_loop(_LR['Boosts'], 'Horn boost', {'JShornBoost'}, 'Makes your car speed up when you honking your horn or activating your siren.', function()
+        JSlang.toggle_loop(_LR['加速'], '喇叭加速', {'JShornBoost'}, '当您按喇叭或激活警报器时,加速您的载具.', function()
             if not (AUDIO.IS_HORN_ACTIVE(my_cur_car) or VEHICLE.IS_VEHICLE_SIREN_ON(my_cur_car)) then return end
             VEHICLE.SET_VEHICLE_FORWARD_SPEED(my_cur_car, ENTITY.GET_ENTITY_SPEED(my_cur_car) + hornBoostMultiplier)
         end)
 
-        JSlang.toggle_loop(_LR['Boosts'], 'Vehicle jump', {'JSVehJump'}, 'Lets you jump with your car if you double tap "W".', function()
+        JSlang.toggle_loop(_LR['加速'], '载具跳跃', {'JSVehJump'}, '当您双击 "W" 时跳跃载具.', function()
             if not is_user_driving_vehicle() then return end
 
             local prevPress = JSkey.get_ms_since_control_last_pressed(2, 'INPUT_MOVE_UP_ONLY')
@@ -2442,11 +2442,11 @@ do
         -----------------------------------
         -- Nitro
         -----------------------------------
-            JSlang.divider(_LR['Boosts'], 'Nitro')
+            JSlang.divider(_LR['加速'], '氮气加速')
 
             local nitroSettings = {level = new.delay(500, 2, 0), power = 1, rechargeTime = new.delay(200, 1, 0)}
 
-            JSlang.toggle_loop(_LR['Boosts'], 'Enable nitro', {'JSnitro'}, 'Enable nitro boost on any vehicle, use it by pressing "X".', function(toggle)
+            JSlang.toggle_loop(_LR['加速'], '启用氮气加速', {'JSnitro'}, '在任何载具上使用氮气加速,按"X"启用.', function(toggle)
                 if JSkey.is_control_just_pressed(2, 'INPUT_VEH_TRANSFORM') and PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) then
                     repeat
                         util.yield_once()
@@ -2477,16 +2477,16 @@ do
                 end
             end)
 
-            JSlang.list(_LR['Boosts'], 'Duration', {'JSnitroDuration'}, 'Lets you set a customize how long the nitro lasts.')
-            generateDelaySettings(_LR['Duration'], 'Duration', nitroSettings.level)
+            JSlang.list(_LR['加速'], '持续时间', {'JSnitroDuration'}, '让您自定义设置氮气加速的持续时间.')
+            generateDelaySettings(_LR['持续时间'], '持续时间', nitroSettings.level)
 
-            JSlang.list(_LR['Boosts'], 'Recharge time', {'JSnitroRecharge'}, 'Lets you set a custom delay of how long it takes for nitro to recharge.')
-            generateDelaySettings(_LR['Recharge time'], 'Recharge time', nitroSettings.rechargeTime)
+            JSlang.list(_LR['加速'], '充能时间', {'JSnitroRecharge'}, '让您自定义设置氮气加速的充能时间.')
+            generateDelaySettings(_LR['充能时间'], '充能时间', nitroSettings.rechargeTime)
 
         -----------------------------------
         -- Shunt boost
         -----------------------------------
-            JSlang.divider(_LR['Boosts'], 'Shunt boost')
+            JSlang.divider(_LR['加速'], '助推')
 
             local shuntSettings = {
                 maxForce = 30.0, force = 30.0, disableRecharge = false,
@@ -2513,7 +2513,7 @@ do
                 forceRecharge()
             end
 
-            JSlang.toggle_loop(_LR['Boosts'], 'Shunt boost', {'JSshuntBoost'}, 'Lets you shunt boost in any vehicle by double tapping "A" or "D".', function()
+            JSlang.toggle_loop(_LR['加速'], '助推', {'JSshuntBoost'}, '通过按"A"或"D"来推动载具.', function()
                 util.create_thread(function()
                     if not is_user_driving_vehicle() then return end
 
@@ -2533,21 +2533,21 @@ do
                 end)
             end)
 
-            JSlang.toggle(_LR['Boosts'], 'Disable recharge', {'JSnoShutRecharge'}, 'Removes the force build-up of the shunt boost.', function(toggle)
+            JSlang.toggle(_LR['加速'], '禁用充能', {'JSnoShutRecharge'}, '禁用充能.', function(toggle)
                 shuntSettings.disableRecharge = toggle
             end)
-            JSlang.slider(_LR['Boosts'], 'Force', {'JSshuntForce'}, 'How much force is applied to your car.', 0, 1000, 30, 1, function(value)
+            JSlang.slider(_LR['加速'], '力量', {'JSshuntForce'}, '多少力量施加在您的载具上.', 0, 1000, 30, 1, function(value)
                 shuntSettings.maxForce = value
             end)
 
     -----------------------------------
     -- Shunt boost
     -----------------------------------
-        JSlang.divider(_LR['Boosts'], 'Veh bounce')
+        JSlang.divider(_LR['加速'], '载具弹跳')
 
         local wasInAir
         local bouncy = 50
-        JSlang.toggle_loop(_LR['Boosts'], 'Veh bounce', {'JSvehBounce'}, 'Adds some bounciness to your vehicle when it falls to the ground.', function()
+        JSlang.toggle_loop(_LR['加速'], '载具弹跳', {'JSvehBounce'}, '载具落地时增加一些弹性.', function()
             local isInAir = ENTITY.IS_ENTITY_IN_AIR(entities.get_user_vehicle_as_handle())
             if wasInAir and not isInAir then
                 local vec = ENTITY.GET_ENTITY_VELOCITY(entities.get_user_vehicle_as_handle())
@@ -2556,16 +2556,16 @@ do
             wasInAir = isInAir
         end)
 
-        JSlang.slider_float(_LR['Boosts'], 'Bounciness multiplier', {'JSbounceMult'}, '', 1, 1000, bouncy, 1, function(value)
+        JSlang.slider_float(_LR['加速'], '弹性倍数', {'JSbounceMult'}, '', 1, 1000, bouncy, 1, function(value)
             bouncy = value
         end)
 
     -----------------------------------
     -- Vehicle doors
     -----------------------------------
-        JSlang.list(_LR['Vehicle'], 'Vehicle doors', {'JSvehDoors'}, '')
+        JSlang.list(_LR['Vehicle'], '载具车门', {'JSvehDoors'}, '')
 
-        JSlang.toggle(_LR['Vehicle doors'], 'Indestructible doors', {'JSinvincibleDoors'}, 'Makes it so your vehicle doors can\'t break off.', function(toggle)
+        JSlang.toggle(_LR['载具车门'], '无敌车门', {'JSinvincibleDoors'}, '让您的车门不会脱落.', function(toggle)
             carSettings.indestructibleDoors.on = toggle
             local vehicleDoorCount =  VEHICLE._GET_NUMBER_OF_VEHICLE_DOORS(my_cur_car)
             for i = -1, vehicleDoorCount do
@@ -2573,7 +2573,7 @@ do
             end
         end)
 
-        JSlang.toggle_loop(_LR['Vehicle doors'], 'Shut doors when driving', {'JSautoClose'}, 'Closes all the vehicle doors when you start driving.', function()
+        JSlang.toggle_loop(_LR['载具车门'], '驾驶时关门', {'JSautoClose'}, '开始驾驶时关闭所有车门.', function()
             if not (is_user_driving_vehicle() and ENTITY.GET_ENTITY_SPEED(my_cur_car) > 1) then return end  --over a speed of 1 because car registers as moving then doors move
 
             if ENTITY.GET_ENTITY_SPEED(my_cur_car) < 10 then
@@ -2595,23 +2595,23 @@ do
         end)
 
         --credit to Wiri, I couldn't get the trunk to close/open so I copied him
-        JSlang.action(_LR['Vehicle doors'], 'Open all doors', {'JScarDoorsOpen'}, 'Made this to test door stuff.', function()
+        JSlang.action(_LR['载具车门'], '打开所有门', {'JScarDoorsOpen'}, '做这个来测试关于门的东西.', function()
             for i, door in ipairs(carDoors) do
                 VEHICLE.SET_VEHICLE_DOOR_OPEN(my_cur_car, i - 1, false, false)
             end
         end)
 
-        JSlang.action(_LR['Vehicle doors'], 'Close all doors', {'JScarDoorsClosed'}, 'Made this to test door stuff.', function()
+        JSlang.action(_LR['载具车门'], '关闭所有门', {'JScarDoorsClosed'}, '做这个来测试关于门的东西.', function()
             VEHICLE.SET_VEHICLE_DOORS_SHUT(my_cur_car, false)
         end)
 
     -----------------------------------
     -- Plane options
     -----------------------------------
-        JSlang.list(_LR['Vehicle'], 'Plane options', {'JSplane'}, '')
+        JSlang.list(_LR['Vehicle'], '飞机选项', {'JSplane'}, '')
 
         local afterBurnerState = false
-        JSlang.toggle_loop(_LR['Plane options'], 'Toggle plane afterburner', {'JSafterburner'}, 'Makes you able to toggle afterburner on planes by pressing "left shift".', function()
+        JSlang.toggle_loop(_LR['飞机选项'], '飞机高温燃气切换', {'JSafterburner'}, '使您能够通过按"左shift"来切换飞机的高温燃气.', function()
             if JSkey.is_key_just_down('VK_LSHIFT') then
                 afterBurnerState = not afterBurnerState
                 VEHICLE.SET_VEHICLE_FORCE_AFTERBURNER(my_cur_car, afterBurnerState)
@@ -2623,12 +2623,12 @@ do
             VEHICLE.SET_VEHICLE_FORCE_AFTERBURNER(my_cur_car, false)
         end)
 
-        JSlang.toggle(_LR['Plane options'], 'Lock vtol', {'JSlockVtol'}, 'Locks the angle of planes vtol propellers.', function(toggle)
+        JSlang.toggle(_LR['飞机选项'], '锁定垂直起降', {'JSlockVtol'}, '锁定平面垂直起降螺旋桨的角度', function(toggle)
             VEHICLE._SET_DISABLE_VEHICLE_FLIGHT_NOZZLE_POSITION(my_cur_car, toggle)
         end)
     -----------------------------------
 
-    local ghost_vehicle_option = JSlang.slider(_LR['Vehicle'], 'Ghost vehicle', {'JSghostVeh'}, 'Makes your vehicle different levels off see through.', 0 , 100, 100, 25, function(value)
+    local ghost_vehicle_option = JSlang.slider(_LR['Vehicle'], '幽灵载具', {'JSghostVeh'}, '修改您载具的不透明度.', 0 , 100, 100, 25, function(value)
         carSettings.ghostCar.on = value != 100
         carSettings.ghostCar.value = value / 25
         carSettings.ghostCar.setOption(value != 100)
@@ -2638,9 +2638,9 @@ do
     -----------------------------------
     -- Vehicle sounds
     -----------------------------------
-        JSlang.list(_LR['Vehicle'], 'Vehicle sounds', {'JSvehSounds'}, '')
+        JSlang.list(_LR['Vehicle'], '载具声音', {'JSvehSounds'}, '')
 
-        JSlang.toggle(_LR['Vehicle sounds'], 'Disable exhaust pops', {'JSdisablePops'}, 'Disables those annoying exhaust pops that your car makes if it has a non-stock exhaust option.', function(toggle)
+        JSlang.toggle(_LR['载具声音'], '禁用偏时点火', {'JSdisablePops'}, '如果您的载具有偏时点火系统,将禁用那些烦人的排气爆裂声音.', function(toggle)
             carSettings.disableExhaustPops.on = toggle
             carSettings.disableExhaustPops.setOption(toggle)
         end)
@@ -2652,32 +2652,32 @@ do
             ['Silent'] = 'MINITANK',
             ['Electric'] = 'CYCLONE',
         }
-        JSlang.slider_text(_LR['Vehicle sounds'], 'Engine sound', {'JSengineSound'}, '', {'Default', 'Silent', 'Electric'}, function(index, value)
+        JSlang.slider_text(_LR['载具声音'], '引擎声音', {'JSengineSound'}, '', {'Default', 'Silent', 'Electric'}, function(index, value)
             AUDIO._FORCE_VEHICLE_ENGINE_AUDIO(entities.get_user_vehicle_as_handle(), if type(car_sounds[value]) == 'string' then car_sounds[value] else car_sounds[value]())
         end)
 
-        JSlang.toggle_loop(_LR['Vehicle sounds'], 'Immersive radio', {'JSemersiveRadio'}, 'Lowers the radio volume when you\'re not in first person mode.', function()
+        JSlang.toggle_loop(_LR['载具声音'], '沉浸式电台', {'JSemersiveRadio'}, '当您不在第一人称模式下时,降低电台的声音.', function()
             AUDIO.SET_FRONTEND_RADIO_ACTIVE(CAM.GET_CAM_VIEW_MODE_FOR_CONTEXT(1) == 4)
         end, function()
             AUDIO.SET_FRONTEND_RADIO_ACTIVE(true)
         end)
 
-        JSlang.toggle(_LR['Vehicle sounds'], 'Npc horn', {'JSnpcHorn'}, 'Makes you horn like a npc. Also makes your car doors silent.', function(toggle)
+        JSlang.toggle(_LR['载具声音'], 'NPC喇叭', {'JSnpcHorn'}, '让您按喇叭像NPC一样. 也能让您的车门静音.', function(toggle)
             carSettings.npcHorn.on = toggle
             VEHICLE._SET_VEHICLE_SILENT(my_cur_car, toggle)
         end)
     -----------------------------------
 
-    JSlang.toggle(_LR['Vehicle'], 'Stance', {'JSstance'}, 'Activates stance on vehicles that support it.', function(toggle)
+    JSlang.toggle(_LR['Vehicle'], '姿态', {'JSstance'}, '在支持切换的载具上激活姿态', function(toggle)
         VEHICLE._SET_REDUCE_DRIFT_VEHICLE_SUSPENSION(my_cur_car, toggle)
     end)
 
-    JSlang.toggle_loop(_LR['Vehicle'], 'To the moon', {'JStoMoon'}, 'Forces you into the sky if you\'re in a vehicle.', function(toggle)
+    JSlang.toggle_loop(_LR['Vehicle'], '飞到月球', {'JStoMoon'}, '如果您在载具内,强制您飞向高空.', function(toggle)
         NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(my_cur_car)
         ENTITY.APPLY_FORCE_TO_ENTITY(my_cur_car, 1, 0, 0, 100.0, 0, 0, 0.5, 0, false, false, true)
     end)
 
-    JSlang.toggle_loop(_LR['Vehicle'], 'Anchor', {'JSanchor'}, 'Forces you into the ground if you\'re in a air born vehicle.', function(toggle)
+    JSlang.toggle_loop(_LR['Vehicle'], '锚', {'JSanchor'}, '如果您的载具在空中,会强制您回到地面.', function(toggle)
         if ENTITY.IS_ENTITY_IN_AIR(my_cur_car) then
             NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(my_cur_car)
             ENTITY.APPLY_FORCE_TO_ENTITY(my_cur_car, 1, 0, 0, -100.0, 0, 0, 0.5, 0, false, false, true)
@@ -2694,7 +2694,7 @@ do
     -----------------------------------
     -- Fake money
     -----------------------------------
-        JSlang.list(_LR['Online'], 'Fake money', {'JSfakeMoney'}, 'Adds fake money, it is only a visual thing and you can\'t spend it.')
+        JSlang.list(_LR['Online'], '假钱', {'JSfakeMoney'}, '添加假钱,只能看不能花.')
 
         local cashFakeMoney = 0
         local bankFakeMoney = 0
@@ -2708,116 +2708,116 @@ do
             HUD.BUSYSPINNER_OFF()
         end
 
-        JSlang.action(_LR['Fake money'], 'Add fake money', {'JSaddFakeMoney'}, 'Adds money once.', function()
+        JSlang.action(_LR['假钱'], '添加假钱', {'JSaddFakeMoney'}, '添加假钱1次.', function()
             HUD.CHANGE_FAKE_MP_CASH(cashFakeMoney, bankFakeMoney)
             transactionPending()
         end)
 
-        JSlang.toggle_loop(_LR['Fake money'], 'Loop fake money', {'JSloopFakeMoney'}, 'Adds loops money with your chosen delay.', function()
+        JSlang.toggle_loop(_LR['假钱'], '循环假钱', {'JSloopFakeMoney'}, '设置循环添加钱的延迟.', function()
             HUD.CHANGE_FAKE_MP_CASH(cashFakeMoney, bankFakeMoney)
             transactionPending()
             util.yield(getTotalDelay(fakeMoneyLoopDelay))
         end)
 
-        JSlang.toggle(_LR['Fake money'], 'Show transaction pending', {'JSfakeTransaction'}, 'Adds a loading transaction pending message when adding fake money.', function(toggle)
+        JSlang.toggle(_LR['假钱'], '显示"交易处理中"', {'JSfakeTransaction'}, '添加假钱的时候在右下角显示"交易处理中"的信息.', function(toggle)
             fakeMoneyTransactionPending = toggle
         end, fakeMoneyTransactionPending)
 
-        JSlang.list(_LR['Fake money'], 'Fake money loop delay', {'JSexpDelay'}, 'Lets you set a custom delay to the fake money loop.')
-        generateDelaySettings(_LR['Fake money loop delay'], 'Fake money loop delay', fakeMoneyLoopDelay)
+        JSlang.list(_LR['假钱'], '假钱循环延迟', {'JSexpDelay'}, '让您为假钱循环设置自定义延迟.')
+        generateDelaySettings(_LR['假钱循环延迟'], '假钱循环延迟', fakeMoneyLoopDelay)
 
-        JSlang.slider(_LR['Fake money'], 'Bank fake money', {'JSbankFakeMoney'}, 'How much fake money that gets added into your bank.', -2000000000, 2000000000, bankFakeMoney, 1, function(value)
+        JSlang.slider(_LR['假钱'], '银行假钱', {'JSbankFakeMoney'}, '将会有多少假钱被添加到您的银行.', -2000000000, 2000000000, bankFakeMoney, 1, function(value)
             bankFakeMoney = value
         end)
 
-        JSlang.slider(_LR['Fake money'], 'Cash fake money', {'JScashFakeMoney'}, 'How much fake money that gets added in cash.', -2000000000, 2000000000, cashFakeMoney, 1, function(value)
+        JSlang.slider(_LR['假钱'], '现金假钱', {'JScashFakeMoney'}, '将会有多少假钱以现金形式添加.', -2000000000, 2000000000, cashFakeMoney, 1, function(value)
             cashFakeMoney = value
         end)
 
     -----------------------------------
     -- Safe monitor
     -----------------------------------
-        JSlang.list(_LR['Online'], 'Safe monitor', {'JSsm'}, 'Safe monitor allows you to monitor your safes. It does NOT affect the money being generated.')
+        JSlang.list(_LR['Online'], '保险箱监视器', {'JSsm'}, '保险箱监视器允许您监视您的保险箱. 它不会影响正在增加的钱')
 
         safeMonitorToggle = false
-        JSlang.toggle(_LR['Safe monitor'], 'Toggle all selected', {'SMtoggleAllSelected'}, 'Toggles every option.', function(toggle)
+        JSlang.toggle(_LR['保险箱监视器'], '启用监视', {'SMtoggleAllSelected'}, '启用监视所有已选择的选项.', function(toggle)
             safeMonitorToggle = toggle
         end)
 
         JS_tbls.safeManagerToggles = {
             {
-                name = 'Nightclub Safe',
+                name = '夜总会保险箱',
                 command = 'SMclub',
-                description = 'Monitors nightclub safe cash, this does NOT affect income.',
+                description = '监视夜总会保险箱的现金,这不会影响收入.',
                 toggle = true,
                 displayText = function()
                     return JSlang.str_trans('Nightclub Cash') ..': '.. STAT_GET_INT('CLUB_SAFE_CASH_VALUE')  / 1000  ..'k / 210k'
                 end
             },
             {
-                name = 'Nightclub Popularity',
+                name = '夜总会人气',
                 command = 'SMclubPopularity',
                 description = '',
                 toggle = false,
                 displayText = function()
-                    return JSlang.str_trans('Nightclub Popularity') ..': '.. math.floor(STAT_GET_INT('CLUB_POPULARITY') / 10)  ..'%'
+                    return JSlang.str_trans('夜总会人气') ..': '.. math.floor(STAT_GET_INT('CLUB_POPULARITY') / 10)  ..'%'
                 end
             },
             {
-                name = 'Nightclub Daily Earnings',
+                name = '夜总会每日收入',
                 command = 'SMnightclubEarnings',
-                description = 'Nightclub daily earnings.\nMaximum daily earnings is 10k.',
+                description = '夜总会每日收入.\n每日最高收入为1万.',
                 toggle = false,
                 displayText = function()
-                    return JSlang.str_trans('Nightclub Daily Earnings') ..': '.. getNightclubDailyEarnings() / 1000  ..'k / day'
+                    return JSlang.str_trans('夜总会每日收入') ..': '.. getNightclubDailyEarnings() / 1000  ..'k / day'
                 end
             },
             {
-                name = 'Arcade safe',
+                name = '游戏厅保险箱',
                 command = 'SMarcade',
-                description = 'Monitors arcade safe cash, this does NOT affect income.\nMaximum daily earnings is 5k if you have all the arcade games.',
+                description = '监视游戏厅保险箱的现金,这不会影响收入.\n如果您拥有所有街机游戏,则每日最高收入为5000.',
                 toggle = true,
                 displayText = function()
                     return JSlang.str_trans('Arcade Cash') ..': '.. STAT_GET_INT('ARCADE_SAFE_CASH_VALUE') / 1000  ..'k / 100k'
                 end
             },
             {
-                name = 'Agency safe',
+                name = '事务所保险箱',
                 command = 'SMagency',
-                description = 'Monitors agency safe cash, this does NOT affect income.\nMaximum daily earnings is 20k.',
+                description = '监视事务所保险箱的现金,这不会影响收入.\n每日最高收入为2万.',
                 toggle = true,
                 displayText = function()
                     return JSlang.str_trans('Agency Cash') ..': '.. STAT_GET_INT('FIXER_SAFE_CASH_VALUE') / 1000  ..'k / 250k'
                 end
             },
             {
-                name = 'Security contracts',
+                name = '安保合约',
                 command = 'SMsecurity',
-                description = 'Displays the number of agency security missions you have completed.',
+                description = '显示您已完成的事务所安保合约的任务数量.',
                 toggle = false,
                 displayText = function()
-                    return JSlang.str_trans('Security contracts') ..': '.. STAT_GET_INT('FIXER_COUNT')
+                    return JSlang.str_trans('安保合约') ..': '.. STAT_GET_INT('FIXER_COUNT')
                 end
             },
             {
-                name = 'Agency daily Earnings',
+                name = '事务所每日收入',
                 command = 'SMagencyEarnings',
-                description = 'Agency daily earnings.\nMaximum daily earnings is 20k if you have completed 200 contracts.',
+                description = '事务所每日收入.\n如果您已完成200份合约,则每日最高收入为2万',
                 toggle = false,
                 displayText = function()
-                    return JSlang.str_trans('Agency Daily Earnings') ..': '.. getAgencyDailyEarnings(STAT_GET_INT('FIXER_COUNT')) / 1000 ..'k / day'
+                    return JSlang.str_trans('事务所每日收入') ..': '.. getAgencyDailyEarnings(STAT_GET_INT('FIXER_COUNT')) / 1000 ..'k / day'
                 end
             },
         }
-        generateToggles(JS_tbls.safeManagerToggles, _LR['Safe monitor'], false)
+        generateToggles(JS_tbls.safeManagerToggles, _LR['保险箱监视器'], false)
 
         local first_open_SM_earnings = {true}
-        JSlang.list(_LR['Safe monitor'], 'Increase safe earnings', {'SMearnings'}, 'Might be risky.', function()
-            listWarning(_LR['Increase safe earnings'], first_open_SM_earnings)
+        JSlang.list(_LR['保险箱监视器'], '增加保险箱收益', {'SMearnings'}, '可能有风险.', function()
+            listWarning(_LR['增加保险箱收益'], first_open_SM_earnings)
         end)
 
         local nightclubpopularity_command = menu.ref_by_path('Online>Quick Progress>Set Nightclub Popularity', 37)
-        JSlang.toggle_loop(_LR['Increase safe earnings'], 'Auto nightclub popularity', {'SMautoClubPop'}, 'Automatically sets the nightclubs popularity to 100 if it results in less than max daily income.', function(toggle)
+        JSlang.toggle_loop(_LR['增加保险箱收益'], '自动增加夜总会人气', {'SMautoClubPop'}, '如果低于每日最大收入,则自动将夜店人气设置为100', function(toggle)
             if getNightclubDailyEarnings() < 50000 then
                 menu.trigger_command(nightclubpopularity_command, 100)
             end
@@ -2825,7 +2825,7 @@ do
 
         local fixer_count_cooldown = false
         local soloPublic_command = menu.ref_by_path('Online>New Session>Create Public Session', 37)
-        JSlang.action(_LR['Increase safe earnings'], 'Increment security contracts completed', {'SMsecurityComplete'}, 'Will put you in a new lobby to make the increase stick.\nI added a cooldown to this button so you cant spam it.\nAlso doesn\'t work past 200', function()
+        JSlang.action(_LR['增加保险箱收益'], '增加安保合约完成数量', {'SMsecurityComplete'}, '会让您进入一个新的公开战局以使增加生效.\n我在按钮上添加了冷却时间,所以您不能一直按它.\n超过200时将不会有效果.', function()
             if fixer_count_cooldown then JSlang.toast('Cooldown active') return end
             if util.is_session_transition_active() then JSlang.toast('You can only use this while in a session.') return end
             if STAT_GET_INT('FIXER_COUNT') >= 200 then JSlang.toast('You already reached 200 completions.') return end
@@ -2844,23 +2844,23 @@ do
         -- warehouse = 473
         -- vehicle cargo = 524
         local propertyBlips = {
-            [1] = { name = JSlang.str_trans('Ceo office'),   sprite = 475 },
-            [2] = { name = JSlang.str_trans('MC clubhouse'), sprite = 492,
-                subProperties = {listName = JSlang.str_trans('MC businesses'), properties = {
-                    [1] = { name = JSlang.str_trans('Weed farm'),           sprite = 496 },
-                    [2] = { name = JSlang.str_trans('Cocaine lockup'),      sprite = 497 },
-                    [3] = { name = JSlang.str_trans('Document forgery'),    sprite = 498 },
-                    [4] = { name = JSlang.str_trans('Methamphetamine Lab'), sprite = 499 },
-                    [5] = { name = JSlang.str_trans('Counterfeit cash'),    sprite = 500 },
+            [1] = { name = JSlang.str_trans('Ceo办公室'),   sprite = 475 },
+            [2] = { name = JSlang.str_trans('摩托帮会所'), sprite = 492,
+                subProperties = {listName = JSlang.str_trans('摩托帮产业'), properties = {
+                    [1] = { name = JSlang.str_trans('大麻'),           sprite = 496 },
+                    [2] = { name = JSlang.str_trans('可卡因'),      sprite = 497 },
+                    [3] = { name = JSlang.str_trans('假证件'),    sprite = 498 },
+                    [4] = { name = JSlang.str_trans('冰毒'), sprite = 499 },
+                    [5] = { name = JSlang.str_trans('假钞'),    sprite = 500 },
                 }}
             },
             [3] = { name = JSlang.str_trans('Bunker'),     sprite = 557 },
-            [4] = { name = JSlang.str_trans('Hangar'),     sprite = 569 },
-            [5] = { name = JSlang.str_trans('Facility'),   sprite = 590 },
-            [6] = { name = JSlang.str_trans('Night club'), sprite = 614 },
-            [7] = { name = JSlang.str_trans('Arcade'),     sprite = 740 },
-            [8] = { name = JSlang.str_trans('Auto shop'),  sprite = 779 },
-            [9] = { name = JSlang.str_trans('Agency'),     sprite = 826 },
+            [4] = { name = JSlang.str_trans('机库'),     sprite = 569 },
+            [5] = { name = JSlang.str_trans('设施'),   sprite = 590 },
+            [6] = { name = JSlang.str_trans('夜总会'), sprite = 614 },
+            [7] = { name = JSlang.str_trans('游戏厅'),     sprite = 740 },
+            [8] = { name = JSlang.str_trans('改装铺'),  sprite = 779 },
+            [9] = { name = JSlang.str_trans('事务所'),     sprite = 826 },
         }
 
         local function getUserPropertyBlip(sprite)
@@ -2915,19 +2915,19 @@ do
             end
         end
 
-        JSlang.list(_LR['Online'], 'Property tp\'s', {'JSpropertyTp'}, 'Lets you teleport to the properties you own.', function()
-            regenerateTpLocations(_LR['Property tp\'s'])
+        JSlang.list(_LR['Online'], '资产传送', {'JSpropertyTp'}, '让您传送到您拥有的资产.', function()
+            regenerateTpLocations(_LR['资产传送'])
         end)
 
-        propertyTpRefs['tmp'] = menu.action(_LR['Property tp\'s'], '', {}, '', function()end)
+        propertyTpRefs['tmp'] = menu.action(_LR['资产传送'], '', {}, '', function()end)
 
     ----------------------------------
     -- Casino
     ----------------------------------
-        JSlang.list(_LR['Online'], 'Casino', {'JScasino'}, 'No theres no recoveries here.')
+        JSlang.list(_LR['Online'], 'Casino', {'JScasino'}, '这里没有刷钱选项.')
 
         local last_LW_seconds = 0
-        JSlang.toggle_loop(_LR['Casino'], 'Lucky wheel cooldown', {'JSlwCool'}, 'Tells you if the lucky wheel is available or how much time is left until it is.', function()
+        JSlang.toggle_loop(_LR['Casino'], '幸运转盘冷却', {'JSlwCool'}, '告诉您幸运转盘是否可用或距离它还有多长冷却时间.', function()
             if STAT_GET_INT_MPPLY('mpply_lucky_wheel_usage') < util.current_unix_time_seconds() then JSlang.toast('Lucky wheel is available.') return end
             local secondsLeft = STAT_GET_INT_MPPLY('mpply_lucky_wheel_usage') - util.current_unix_time_seconds()
             local hours = math.floor(secondsLeft / 3600)
@@ -2939,7 +2939,7 @@ do
             end
         end)
 
-        JSlang.action(_LR['Casino'], 'Casino loss/profit', {'JScasinoLP'}, 'Tells you how much you made or lost in the casino.', function()
+        JSlang.action(_LR['Casino'], '赌场 赢/输', {'JScasinoLP'}, '告诉您在赌场赚了多少或输了多少.', function()
             local chips = STAT_GET_INT_MPPLY('mpply_casino_chips_won_gd')
             if chips > 0 then
                 util.toast(JSlang.str_trans('You\'ve made') ..' '.. chips ..' '.. JSlang.str_trans('chips.'))
@@ -2953,7 +2953,7 @@ do
     ----------------------------------
     -- Time trial
     ----------------------------------
-        JSlang.list(_LR['Online'], 'Time trials', {'JStt'}, '')
+        JSlang.list(_LR['Online'], '时间挑战赛', {'JStt'}, '')
 
         local function ttTimeToString(time)
             local min = math.floor(time / 60000)
@@ -2961,14 +2961,14 @@ do
             return (min == 0 and '' or min ..'min ') .. sec ..'s'
         end
 
-        JSlang.divider(_LR['Time trials'], 'Time trial')
+        JSlang.divider(_LR['时间挑战赛'], '时间挑战赛')
 
-        JSlang.toggle_loop(_LR['Time trials'], 'Best time trial time', {'JSbestTT'}, '', function()
+        JSlang.toggle_loop(_LR['时间挑战赛'], '时间挑战赛 最佳记录', {'JSbestTT'}, '', function()
             util.toast(JSlang.str_trans('Best Time') ..': '.. ttTimeToString((STAT_GET_INT_MPPLY('mpply_timetrialbesttime'))))
             util.yield(100)
         end)
 
-        JSlang.action(_LR['Time trials'], 'Teleport to time trial', {'JStpToTT'}, '', function()
+        JSlang.action(_LR['时间挑战赛'], '传送到时间挑战赛', {'JStpToTT'}, '', function()
             local ttBlip = HUD._GET_CLOSEST_BLIP_OF_TYPE(430)
             if not HUD.DOES_BLIP_EXIST(ttBlip) then
                 JSlang.toast('Couldn\'t find time trial.')
@@ -2977,14 +2977,14 @@ do
             tpToBlip(ttBlip)
         end)
 
-        JSlang.divider(_LR['Time trials'], 'Rc time trial')
+        JSlang.divider(_LR['时间挑战赛'], 'RC匪徒时间挑战赛')
 
-        JSlang.toggle_loop(_LR['Time trials'], 'Best rc time trial time', {'JSbestRcTT'}, '', function()
+        JSlang.toggle_loop(_LR['时间挑战赛'], 'RC匪徒时间挑战赛 最佳记录', {'JSbestRcTT'}, '', function()
             util.toast(JSlang.str_trans('Best Time') ..': '.. ttTimeToString(STAT_GET_INT_MPPLY('mpply_rcttbesttime')))
             util.yield(100)
         end)
 
-        JSlang.action(_LR['Time trials'], 'Teleport to rc time trial', {'JStpToRcTT'}, '', function()
+        JSlang.action(_LR['时间挑战赛'], '传送到RC匪徒时间挑战赛', {'JStpToRcTT'}, '', function()
             local ttBlip = HUD._GET_CLOSEST_BLIP_OF_TYPE(673)
             if not HUD.DOES_BLIP_EXIST(ttBlip) then
                 JSlang.toast('Couldn\'t find rc time trial.')
@@ -3032,7 +3032,7 @@ do
             STREAMING.SET_MODEL_AS_NO_LONGER_NEEDED(hash)
         end
 
-        JSlang.list(_LR['Online'], 'Block areas', {'JSblock'}, 'Block areas in online with invisible walls, but if you over use it it will crash you lol.')
+        JSlang.list(_LR['Online'], '阻挡区域', {'JSblock'}, '用隐形墙阻挡某些区域,让其他人无法进入. 但如果您在加入战局的时候使用它,它会让你崩溃哈哈.')
 
         local blockInProgress = false
         local function blockAvailable(areaBlocked, areaName)
@@ -3052,7 +3052,7 @@ do
             blockInProgress = false
         end
 
-        JSlang.toggle_loop(_LR['Block areas'], 'Custom block', {}, 'Makes you able to block an area in front of you by pressing "B".', function()
+        JSlang.toggle_loop(_LR['阻挡区域'], '自定义阻挡', {}, '使您能够通过按"B"来阻挡您面前的区域.', function()
             local dir = ENTITY.GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(players.user_ped(), 0, 5.0, 0)
             GRAPHICS._DRAW_SPHERE(dir, 0.3, 52, 144, 233, 0.5)
             if JSkey.is_key_down('VK_B') then
@@ -3063,31 +3063,31 @@ do
             end
         end)
 
-        JSlang.list(_LR['Block areas'], 'Block LSC', {'JSblockLSC'}, 'Block lsc from being accessed.')
-        JSlang.list(_LR['Block areas'], 'Block casino', {'JSblockCasino'}, 'Block casino from being accessed.')
-        JSlang.list(_LR['Block areas'], 'Block maze bank', {'JSblockCasino'}, 'Block maze bank from being accessed.')
+        JSlang.list(_LR['阻挡区域'], '阻挡洛圣都改车王', {'JSblockLSC'}, '阻挡进入洛圣都改车王.')
+        JSlang.list(_LR['阻挡区域'], '阻挡赌场', {'JSblockCasino'}, '阻挡进入赌场.')
+        JSlang.list(_LR['阻挡区域'], '阻挡花园银行', {'JSblockCasino'}, '阻挡进入花园银行.')
 
         local blockAreasActions = {
             --Orbital block
-            {root = _LR['Block areas'], name = 'orbital room', coordinates = {{335.95837, 4834.216, -60.99977}}, blocked = false},
+            {root = _LR['阻挡区域'], name = '天基炮发射室', coordinates = {{335.95837, 4834.216, -60.99977}}, blocked = false},
             -- Lsc blocks
-            {root = _LR['Block LSC'], name = 'burton', coordinates = {{-357.66544, -134.26419, 38.23775}}, blocked = false},
-            {root = _LR['Block LSC'], name = 'LSIA', coordinates = {{-1144.0569, -1989.5784, 12.9626}}, blocked = false},
-            {root = _LR['Block LSC'], name = 'la meza', coordinates = {{721.08496, -1088.8752, 22.046721}}, blocked = false},
-            {root = _LR['Block LSC'], name = 'blaine county', coordinates = {{115.59574, 6621.5693, 31.646144}, {110.460236, 6615.827, 31.660228}}, blocked = false},
-            {root = _LR['Block LSC'], name = 'paleto bay', coordinates = {{115.59574, 6621.5693, 31.646144}, {110.460236, 6615.827, 31.660228}}, blocked = false},
-            {root = _LR['Block LSC'], name = 'benny\'s', coordinates = {{-205.6571, -1309.4313, 31.093222}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = '伯顿', coordinates = {{-357.66544, -134.26419, 38.23775}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = 'LSIA', coordinates = {{-1144.0569, -1989.5784, 12.9626}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = '梅萨', coordinates = {{721.08496, -1088.8752, 22.046721}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = '布莱恩县', coordinates = {{115.59574, 6621.5693, 31.646144}, {110.460236, 6615.827, 31.660228}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = '佩立托湾', coordinates = {{115.59574, 6621.5693, 31.646144}, {110.460236, 6615.827, 31.660228}}, blocked = false},
+            {root = _LR['阻挡洛圣都改车王'], name = '本尼车坊', coordinates = {{-205.6571, -1309.4313, 31.093222}}, blocked = false},
             -- Casino blocks
-            {root = _LR['Block casino'], name = 'casino entrance', coordinates = {{924.3438, 49.19933, 81.10636}, {922.5348, 45.917263, 81.10635}}, blocked = false},
-            {root = _LR['Block casino'], name = 'casino garage', coordinates = {{935.29553, -0.5328601, 78.56404}}, blocked = false},
-            {root = _LR['Block casino'], name = 'lucky wheel', coordinates = {{1110.1014, 228.71582, -49.935845}}, blocked = false},
+            {root = _LR['阻挡赌场'], name = '赌场入口', coordinates = {{924.3438, 49.19933, 81.10636}, {922.5348, 45.917263, 81.10635}}, blocked = false},
+            {root = _LR['阻挡赌场'], name = '赌场车库', coordinates = {{935.29553, -0.5328601, 78.56404}}, blocked = false},
+            {root = _LR['阻挡赌场'], name = '幸运转盘', coordinates = {{1110.1014, 228.71582, -49.935845}}, blocked = false},
             --Maze bank block
-            {root = _LR['Block maze bank'], name = 'maze bank entrance', coordinates = {{-81.18775, -795.82874, 44.227295}}, blocked = false},
-            {root = _LR['Block maze bank'], name = 'maze bank garage', coordinates = {{-77.96956, -780.9376, 38.473335}, {-82.82901, -781.81635, 38.50093}}, blocked = false},
+            {root = _LR['阻挡花园银行'], name = '花园银行入口', coordinates = {{-81.18775, -795.82874, 44.227295}}, blocked = false},
+            {root = _LR['阻挡花园银行'], name = '花园银行车库', coordinates = {{-77.96956, -780.9376, 38.473335}, {-82.82901, -781.81635, 38.50093}}, blocked = false},
             --Mc block
-            {root = _LR['Block areas'], name = 'hawick clubhouse', coordinates = {{-17.48541, -195.7588, 52.370953}, {-23.452509, -193.01324, 52.36245}}, blocked = false},
+            {root = _LR['阻挡区域'], name = '霍伊会所', coordinates = {{-17.48541, -195.7588, 52.370953}, {-23.452509, -193.01324, 52.36245}}, blocked = false},
             --Arena war garages
-            {root = _LR['Block areas'], name = 'arena war garages', coordinates = {
+            {root = _LR['阻挡区域'], name = '竞技场车库', coordinates = {
                 {-362.912, -1870.2249, 20.527836}, {-367.41855, -1872.5348, 20.527836},
                 {-375.58344, -1874.6719, 20.527828},  {-379.9853, -1876.0894, 20.527828},
                 {-386.49762, -1880.2793, 20.527842},  {-390.3558, -1883.0833, 20.527842},
@@ -3119,34 +3119,34 @@ do
     -----------------------------------
     -- Whitelist
     -----------------------------------
-        JSlang.list(_LR['Players'], 'Whitelist', {'JSwhitelist'}, 'Applies to most options in this section.')
+        JSlang.list(_LR['Players'], '白名单', {'JSwhitelist'}, '适用于此子菜单的大多数选项.')
 
-        JSlang.toggle(_LR['Whitelist'], 'Exclude self', {'JSWhitelistSelf'}, 'Will make you not explode yourself. Pretty cool option if you ask me ;P', function(toggle)
+        JSlang.toggle(_LR['白名单'], '排除自己', {'JSWhitelistSelf'}, '排除爆炸时炸自己.非常酷的选项 ;P', function(toggle)
             whitelistGroups.user = not toggle
         end)
 
-        JSlang.toggle(_LR['Whitelist'], 'Exclude friends', {'JSWhitelistFriends'}, 'Will make you not explode your friends... if you have any. (;-;)', function(toggle)
+        JSlang.toggle(_LR['白名单'], '排除好友', {'JSWhitelistFriends'}, '排除爆炸时炸到好友...', function(toggle)
             whitelistGroups.friends = not toggle
         end)
 
-        JSlang.toggle(_LR['Whitelist'], 'Exclude strangers', {'JSWhitelistStrangers'}, 'If you only want to explode your friends I guess.', function(toggle)
+        JSlang.toggle(_LR['白名单'], '排除陌生人', {'JSWhitelistStrangers'}, '我猜您如果只想炸您的朋友.', function(toggle)
             whitelistGroups.strangers = not toggle
         end)
 
-        JSlang.text_input(_LR['Whitelist'], 'Whitelist player', {'JSWhitelistPlayer'}, 'Lets you whitelist a single player by name.', function(input)
+        JSlang.text_input(_LR['白名单'], '白名单玩家', {'JSWhitelistPlayer'}, '让您通过名称将单个玩家列入白名单.', function(input)
             whitelistedName = input
         end, '')
 
-        JSlang.list(_LR['Whitelist'], 'Whitelist player list', {'JSwhitelistList'}, 'Custom player list for selecting  players you wanna whitelist.')
+        JSlang.list(_LR['白名单'], '白名单玩家列表', {'JSwhitelistList'}, '自定义玩家列表,用于选择您想要加入白名单的玩家.')
 
         local whitelistTogglesTable = {}
         players.on_join(function(pid)
             local playerName = players.get_name(pid)
-            whitelistTogglesTable[pid] = menu.toggle(_LR['Whitelist player list'], playerName, {'JSwhitelist'.. playerName}, JSlang.str_trans('Whitelist') ..' '.. playerName ..' '.. JSlang.str_trans('from options that affect all players.'), function(toggle)
+            whitelistTogglesTable[pid] = menu.toggle(_LR['白名单玩家列表'], playerName, {'JSwhitelist'.. playerName}, JSlang.str_trans('白名单') ..' '.. playerName ..' '.. JSlang.str_trans('将不会被所有玩家的选项所影响.'), function(toggle)
                 if toggle then
                     whitelistListTable[pid] = pid
                     if notifications then
-                        util.toast(JSlang.str_trans('Whitelisted') ..' '.. playerName)
+                        util.toast(JSlang.str_trans('已白名单') ..' '.. playerName)
                     end
                 else
                     whitelistListTable[pid] = nil --removes the player from the whitelist
@@ -3162,7 +3162,7 @@ do
     -----------------------------------
     -- Anti chat spam
     -----------------------------------
-        JSlang.list(_LR['Players'], 'Anti chat spam', {}, '')
+        JSlang.list(_LR['Players'], '反聊天轰炸', {}, '')
 
         local chatSpamSettings = {
             enabled = false,
@@ -3195,22 +3195,22 @@ do
             end
         end)
 
-        JSlang.toggle(_LR['Anti chat spam'], 'Anti chat spam', {'JSantiChatSpam'}, 'Kicks people if they spam chat.', function(toggle)
+        JSlang.toggle(_LR['反聊天轰炸'], '反聊天轰炸', {'JSantiChatSpam'}, '如果有人不断发送相同的聊天信息则踢他们.', function(toggle)
             chatSpamSettings.enabled = toggle
         end)
 
-        JSlang.toggle(_LR['Anti chat spam'], 'Ignore team chat', {'JSignoreTeamSpam'}, '', function(toggle)
+        JSlang.toggle(_LR['反聊天轰炸'], '忽略团队聊天', {'JSignoreTeamSpam'}, '', function(toggle)
             chatSpamSettings.enabled = toggle
         end, chatSpamSettings.ignoreTeam)
 
-        JSlang.slider(_LR['Anti chat spam'], 'Identical messages', {'JSidenticalChatMessages'}, 'How many identical chat messages a player can send before getting kicked.', 2, 9999, chatSpamSettings.identicalMessages, 1, function(value)
+        JSlang.slider(_LR['反聊天轰炸'], '相同信息', {'JSidenticalChatMessages'}, '玩家在被踢之前可以发送多少条相同的聊天消息.', 2, 9999, chatSpamSettings.identicalMessages, 1, function(value)
             chatSpamSettings.identicalMessages = value
         end)
 
     -----------------------------------
     -- Explosions
     -----------------------------------
-        JSlang.action(_LR['Players'], 'Explode all', {'JSexplodeAll'}, 'Makes everyone explode.', function()
+        JSlang.action(_LR['Players'], '爆炸所有人', {'JSexplodeAll'}, '爆炸所有玩家.', function()
             local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
             for _, pid in pairs(playerList) do
                 local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
@@ -3218,7 +3218,7 @@ do
             end
         end)
 
-        explodeLoopAll = JSlang.toggle_loop(_LR['Players'], 'Explode all loop', {'JSexplodeAllLoop'}, 'Constantly explodes everyone.', function()
+        explodeLoopAll = JSlang.toggle_loop(_LR['Players'], '循环爆炸所有人', {'JSexplodeAllLoop'}, '不断的爆炸所有玩家.', function()
             local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
             for _, pid in pairs(playerList) do
                 local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
@@ -3242,7 +3242,7 @@ do
         [4] = { x = 327.79208, y = 4831.288, z = -59.368515 },
         [5] = { x = 330.61765, y = 4830.225, z = -59.368515 },
     }
-    JSlang.toggle_loop(_LR['Players'], 'Orbital cannon detection', {'JSorbDetection'}, 'Tells you when anyone starts using the orbital cannon', function()
+    JSlang.toggle_loop(_LR['Players'], '天基炮检测', {'JSorbDetection'}, '当有人开始使用天基炮的时候告诉您.', function()
         local playerList = players.list(false, true, true)
         for i = 1, #playerList do
             local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(playerList[i])
@@ -3260,11 +3260,11 @@ do
     -----------------------------------
     -- Coloured otr reveal
     -----------------------------------
-        JSlang.list(_LR['Players'], 'Coloured otr reveal', {}, '')
+        JSlang.list(_LR['Players'], '标记人间蒸发玩家', {}, '')
 
         local markedPlayers = {}
         local otrBlipColour = 58
-        JSlang.toggle_loop(_LR['Coloured otr reveal'], 'Coloured otr reveal', {'JScolouredOtrReveal'}, 'Marks otr players with coloured blips.', function()
+        JSlang.toggle_loop(_LR['标记人间蒸发玩家'], '标记人间蒸发玩家', {'JScolouredOtrReveal'}, '用彩色光点标记人间蒸发的玩家.', function()
             local playerList = players.list(false, true, true)
             for i, pid in pairs(playerList) do
                 if players.is_otr(pid) and not markedPlayers[pid] then
@@ -3289,11 +3289,11 @@ do
             end
         end)
 
-        local otr_colour_slider = JSlang.slider(_LR['Coloured otr reveal'], 'otr reveal colour', {'JSortRevealColour'}, '',1, 81, otrBlipColour, 1, function(value)
+        local otr_colour_slider = JSlang.slider(_LR['标记人间蒸发玩家'], '人间蒸发 显示颜色', {'JSortRevealColour'}, '',1, 81, otrBlipColour, 1, function(value)
             otrBlipColour = value + (value > 71 and 1 or 0) + (value > 77 and 2 or 0)
         end)
 
-        JSlang.toggle_loop(_LR['Coloured otr reveal'], 'Otr rgb reveal', {'JSortRgbReveal'}, '', function()
+        JSlang.toggle_loop(_LR['标记人间蒸发玩家'], '人间蒸发 rgb颜色', {'JSortRgbReveal'}, '', function()
             menu.set_value(otr_colour_slider, (otrBlipColour == 84 and 1 or otrBlipColour + 1))
             util.yield(250)
         end)
@@ -3301,9 +3301,9 @@ do
     -----------------------------------
     -- Vehicle
     -----------------------------------
-        JSlang.list(_LR['Players'], 'Vehicles', {'JSplayersVeh'}, 'Do stuff to all players vehicles.')
+        JSlang.list(_LR['Players'], 'Vehicles', {'JSplayersVeh'}, '对所有玩家的载具进行处理')
 
-        JSlang.toggle(_LR['Vehicles'], 'Lock burnout', {'JSlockBurnout'}, 'Locks all player cars in burnout.', function(toggle)
+        JSlang.toggle(_LR['Vehicles'], '锁定烧胎', {'JSlockBurnout'}, '让所有玩家的载具不能开只能烧胎', function(toggle)
             local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
             for k, playerPid in ipairs(playerList) do
                 local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(playerPid)
@@ -3316,7 +3316,7 @@ do
         end)
 
         local all_torque = 1000
-        JSlang.slider(_LR['Vehicles'], 'Set torque', {'JSsetAllTorque'}, 'Modifies the speed of all player vehicles.', -1000000, 1000000, all_torque, 1, function(value)
+        JSlang.slider(_LR['Vehicles'], '设置扭矩', {'JSsetAllTorque'}, '修改所有玩家载具的速度.', -1000000, 1000000, all_torque, 1, function(value)
             all_torque = value
             util.create_tick_handler(function()
                 local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
@@ -3332,7 +3332,7 @@ do
             end)
         end)
 
-        JSlang.toggle(_LR['Vehicles'], 'Force surface all subs', {'JSforceSurfaceAll'}, 'Forces all Kosatkas to the surface.\nNot compatible with the whitelist.', function(toggle)
+        JSlang.toggle(_LR['Vehicles'], '强制所有潜艇浮出水面', {'JSforceSurfaceAll'}, '强制让所有虎鲸浮出水面.\n与白名单不兼容.', function(toggle)
             local vehHandles = entities.get_all_vehicles_as_handles()
             local surfaced = 0
             for i = 1, #vehHandles do
@@ -3346,7 +3346,7 @@ do
     -----------------------------------
 
 
-    JSlang.toggle_loop(_LR['Players'], 'No fly zone', {'JSnoFly'}, 'Forces all players in air born vehicles into the ground.', function()
+    JSlang.toggle_loop(_LR['Players'], '禁飞区域', {'JSnoFly'}, '强迫所有乘坐飞行载具的玩家回到地面.', function()
         local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
         for _, pid in pairs(playerList) do
             local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
@@ -3361,7 +3361,7 @@ do
         end
     end)
 
-    JSlang.toggle_loop(_LR['Players'], 'Shoot gods', {'JSshootGods'}, 'Disables godmode for other players when aiming at them. Mostly works on trash menus.', function()
+    JSlang.toggle_loop(_LR['Players'], '射击移除无敌', {'JSshootGods'}, '瞄准其他玩家时禁用他们的无敌. 主要适用于一些垃圾菜单.', function()
         local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
         for k, playerPid in ipairs(playerList) do
             local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(playerPid)
@@ -3374,7 +3374,7 @@ do
     -----------------------------------
     -- Aim karma
     -----------------------------------
-        JSlang.list(_LR['Players'], 'Aim karma', {'JSaimKarma'}, 'Do stuff to players that aim at you.')
+        JSlang.list(_LR['Players'], '瞄准惩罚', {'JSaimKarma'}, '对瞄准您的玩家做一些事情.')
 
         karma = {}
         function isAnyPlayerTargetingEntity(playerPed)
@@ -3392,7 +3392,7 @@ do
             return false
         end
 
-        JSlang.toggle_loop(_LR['Aim karma'], 'Shoot', {'JSbulletAimKarma'}, 'Shoots players that aim at you.', function()
+        JSlang.toggle_loop(_LR['瞄准惩罚'], '射击', {'JSbulletAimKarma'}, '射击瞄准您的玩家.', function()
             local userPed = players.user_ped()
             if isAnyPlayerTargetingEntity(userPed) and karma[userPed] then
                 local pos = ENTITY.GET_ENTITY_COORDS(karma[userPed].ped)
@@ -3401,14 +3401,14 @@ do
             end
         end)
 
-        JSlang.toggle_loop(_LR['Aim karma'], 'Explode', {'JSexpAimKarma'}, 'Explodes the player with your custom explosion settings.', function()
+        JSlang.toggle_loop(_LR['瞄准惩罚'], 'Explode', {'JSexpAimKarma'}, '使用您的自定义爆炸设置爆炸玩家.', function()
             local userPed = players.user_ped()
             if isAnyPlayerTargetingEntity(userPed) and karma[userPed] then
                 explodePlayer(karma[userPed].ped, true, expSettings)
             end
         end)
 
-        JSlang.toggle_loop(_LR['Aim karma'], 'Disable godmode', {'JSgodAimKarma'}, 'If a god mode player aims at you this disables their god mode by pushing their camera forwards.', function()
+        JSlang.toggle_loop(_LR['瞄准惩罚'], '禁用无敌', {'JSgodAimKarma'}, '如果开着无敌的玩家瞄准你,这会通过向前推动他们的游戏画面来禁用他们的无敌模式', function()
             local userPed = players.user_ped()
             if isAnyPlayerTargetingEntity(userPed) and karma[userPed] and players.is_godmode(karma[userPed].pid) then
                 local karmaPid = karma[userPed].pid
@@ -3417,7 +3417,7 @@ do
         end)
 
         local stand_player_aim_punish =  menu.ref_by_path('World>Inhabitants>Player Aim Punishments>Anonymous Explosion', 37)
-        JSlang.action(_LR['Aim karma'], 'Stands player aim punishments', {}, 'Link to stands player aim punishments.', function()
+        JSlang.action(_LR['瞄准惩罚'], 'Stand玩家瞄准惩罚', {}, '连接到Stand的玩家瞄准惩罚', function()
             menu.focus(stand_player_aim_punish)
         end)
 end
@@ -3431,7 +3431,7 @@ do
     local irlTime = false
     local setClockCommand = menu.ref_by_path('World>Atmosphere>Clock>Time', 37)
     local smoothTransitionCommand = menu.ref_by_path('World>Atmosphere>Clock>Smooth Transition', 37)
-    JSlang.toggle(_LR['World'], 'irl time', {'JSirlTime'}, 'Makes the in game time match your irl time. Disables stands "Smooth Transition".', function(toggle)
+    JSlang.toggle(_LR['World'], '同步时间', {'JSirlTime'}, '使游戏时间与您的现实时间相匹配. 请禁用Stand的时间 "平滑过渡".', function(toggle)
         irlTime = toggle
         if menu.get_value(smoothTransitionCommand) then menu.trigger_command(smoothTransitionCommand) end
         util.create_tick_handler(function()
@@ -3458,7 +3458,7 @@ do
             127,
             128,
     }
-    JSlang.toggle_loop(_LR['World'], 'Disable numpad', {'JSdisableNumpad'}, 'Disables numpad so you don\'t rotate your plane/submarine while navigating stand', function()
+    JSlang.toggle_loop(_LR['World'], '禁用小键盘', {'JSdisableNumpad'}, '禁用小键盘,因此您在操作Stand时不会旋转您的飞机/潜艇', function()
         if not menu.is_open() or JSkey.is_key_down('VK_LBUTTON') or JSkey.is_key_down('VK_RBUTTON') then return end
         for _, control in pairs(numpadControls) do
             PAD.DISABLE_CONTROL_ACTION(2, control, true)
@@ -3466,7 +3466,7 @@ do
     end)
 
     local mapZoom = 83
-    JSlang.slider(_LR['World'], 'Map zoom level', {'JSmapZoom'}, '', 1, 100, mapZoom, 1, function(value)
+    JSlang.slider(_LR['World'], '地图缩放级别', {'JSmapZoom'}, '', 1, 100, mapZoom, 1, function(value)
         mapZoom = 83
         mapZoom = value
         util.create_tick_handler(function()
@@ -3475,28 +3475,28 @@ do
         end)
     end)
 
-    JSlang.toggle(_LR['World'], 'Enable footsteps', {'JSfootSteps'}, 'Enables foot prints on all surfaces.', function(toggle)
+    JSlang.toggle(_LR['World'], '启用脚印', {'JSfootSteps'}, '在所有表面上留下脚印.', function(toggle)
         GRAPHICS._SET_FORCE_PED_FOOTSTEPS_TRACKS(toggle)
     end)
 
-    JSlang.toggle(_LR['World'], 'Enable vehicle trails', {'JSvehicleTrails'}, 'Enables vehicle trails on all surfaces.', function(toggle)
+    JSlang.toggle(_LR['World'], '启用车辆轨迹', {'JSvehicleTrails'}, '在所有表面上留下车辆的轨迹.', function(toggle)
         GRAPHICS._SET_FORCE_VEHICLE_TRAILS(toggle)
     end)
 
-    JSlang.toggle_loop(_LR['World'], 'Disable all map notifications', {'JSnoMapNotifications'}, 'Removes that constant spam.', function()
+    JSlang.toggle_loop(_LR['World'], '禁用所有地图通知', {'JSnoMapNotifications'}, '自动删除那些不断发送的通知', function()
         HUD.THEFEED_HIDE_THIS_FRAME()
     end)
 
 
-    JSlang.list(_LR['World'], 'Colour overlay', {}, '')
+    JSlang.list(_LR['World'], '颜色覆盖', {}, '')
 
     local colourOverlay = new.colour( 0, 0, 10, 0.1 )
 
-    JSlang.toggle_loop(_LR['Colour overlay'], 'Colour overlay', {'JScolourOverlay'}, 'Applies a colour filter on the game.', function()
+    JSlang.toggle_loop(_LR['颜色覆盖'], '颜色覆盖', {'JScolourOverlay'}, '在游戏上应用颜色过滤器.', function()
         directx.draw_rect(0, 0, 1, 1, colourOverlay)
     end)
 
-    menu.rainbow(JSlang.colour(_LR['Colour overlay']   , 'Set overlay colour', {'JSoverlayColour'}, '', colourOverlay, true, function(colour)
+    menu.rainbow(JSlang.colour(_LR['颜色覆盖']   , '设置覆盖颜色', {'JSoverlayColour'}, '', colourOverlay, true, function(colour)
         colourOverlay = colour
     end))
 
@@ -3516,7 +3516,7 @@ do
             end)
         end
 
-        JSlang.toggle(_LR['Trains'], 'Derail trains', {'JSderail'}, 'Derails and stops all trains.', function(toggle)
+        JSlang.toggle(_LR['Trains'], '火车脱轨', {'JSderail'}, '使所有火车脱轨并停止.', function(toggle)
             local vehPointers = entities.get_all_vehicles_as_pointers()
             trainsStopped = toggle
             for i = 1, #vehPointers do
@@ -3530,13 +3530,13 @@ do
             end
         end)
 
-        JSlang.action(_LR['Trains'], 'Delete trains', {'JSdeleteTrain'}, 'Just because every script has train options, I gotta have an anti train option.', function()
+        JSlang.action(_LR['Trains'], '删除火车', {'JSdeleteTrain'}, '只是因为每个脚本都有火车选项,我必须也有一个反火车选项.', function()
             VEHICLE.DELETE_ALL_TRAINS()
         end)
 
         local markedTrains = {}
         local markedTrainBlips = {}
-        JSlang.toggle_loop(_LR['Trains'], 'Mark nearby trains', {'JSnoMapNotifications'}, 'Marks nearby trains with purple blips.', function()
+        JSlang.toggle_loop(_LR['Trains'], '标记附近的火车', {'JSnoMapNotifications'}, '用紫色光点标记附近的火车.', function()
             local vehPointers = entities.get_all_vehicles_as_pointers()
             removeValues(vehPointers, markedTrains)
 
@@ -3564,26 +3564,26 @@ do
     -----------------------------------
     -- Peds
     -----------------------------------
-        JSlang.list(_LR['World'], 'Peds', {'JSpeds'}, '')
+        JSlang.list(_LR['World'], 'NPC', {'JSpeds'}, '')
 
         local pedToggleLoops = {
-            {name = 'Ragdoll peds', command = 'JSragdollPeds', description = 'Makes all nearby peds fall over lol.', action = function(ped)
+            {name = '摔倒NPC', command = 'JSragdollPeds', description = '让附近的所有NPC都摔倒,哈哈.', action = function(ped)
                 if PED.IS_PED_A_PLAYER(ped) then return end
                 PED.SET_PED_TO_RAGDOLL(ped, 2000, 2000, 0, true, true, true)
             end},
-            {name = 'Death\'s touch', command = 'JSdeathTouch', description = 'Kills peds that touches you.', action = function(ped)
+            {name = '死亡接触', command = 'JSdeathTouch', description = '杀死所有碰到您的NPC', action = function(ped)
                 if PED.IS_PED_A_PLAYER(ped) or PED.IS_PED_IN_ANY_VEHICLE(ped, true) or not ENTITY.IS_ENTITY_TOUCHING_ENTITY(ped, players.user_ped()) then return end
                 ENTITY.SET_ENTITY_HEALTH(ped, 0, 0)
             end},
-            {name = 'Cold peds', command = 'JScoldPeds', description = 'Removes the thermal signature from all peds.', action = function(ped)
+            {name = '寒冷NPC', command = 'JScoldPeds', description = '移除附近NPC的热特征', action = function(ped)
                 if PED.IS_PED_A_PLAYER(ped) then return end
                 PED.SET_PED_HEATSCALE_OVERRIDE(ped, 0)
             end},
-            {name = 'Mute peds', command = 'JSmutePeds', description = 'Because I don\'t want to hear that dude talk about his gay dog any more.', action = function(ped)
+            {name = '静音NPC', command = 'JSmutePeds', description = '因为我不想再听那个家伙谈论他的同性恋狗了.', action = function(ped)
                 if PED.IS_PED_A_PLAYER(ped) then return end
                 AUDIO.STOP_PED_SPEAKING(ped, true)
             end},
-            {name = 'Npc horn boost', command = 'JSnpcHornBoost', description = 'Boosts npcs that horn.', action = function(ped)
+            {name = 'NPC喇叭加速', command = 'JSnpcHornBoost', description = '当NPC按喇叭的时候加速它们的载具.', action = function(ped)
                 local vehicle = PED.GET_VEHICLE_PED_IS_IN(ped, false)
                 if PED.IS_PED_A_PLAYER(ped) or not PED.IS_PED_IN_ANY_VEHICLE(ped, true) or not AUDIO.IS_HORN_ACTIVE(vehicle) then return end
                 AUDIO.SET_AGGRESSIVE_HORNS(true) --Makes pedestrians sound their horn longer, faster and more agressive when they use their horn.
@@ -3591,19 +3591,19 @@ do
             end, onStop = function()
                 AUDIO.SET_AGGRESSIVE_HORNS(false)
             end},
-            {name = 'Npc siren boost', command = 'JSnpcSirenBoost', description = 'Boosts npcs cars with an active siren.', action = function(ped)
+            {name = 'NPC警笛加速', command = 'JSnpcSirenBoost', description = '当NPC响起警车的警笛的时候加速它们的载具.', action = function(ped)
                 local vehicle = PED.GET_VEHICLE_PED_IS_IN(ped, false)
                 if PED.IS_PED_A_PLAYER(ped) or not PED.IS_PED_IN_ANY_VEHICLE(ped, true) or not VEHICLE.IS_VEHICLE_SIREN_ON(vehicle) then return end
                 VEHICLE.SET_VEHICLE_FORWARD_SPEED(vehicle, ENTITY.GET_ENTITY_SPEED(vehicle) + 1.2)
             end},
-            {name = 'Auto kill enemies', command = 'JSautokill', description = 'Just instantly kills hostile peds.', action = function(ped) --basically copy pasted form wiri script
+            {name = '自动杀死敌人', command = 'JSautokill', description = '立即击杀NPC敌人.', action = function(ped) --basically copy pasted form wiri script
                 local rel = PED.GET_RELATIONSHIP_BETWEEN_PEDS(players.user_ped(), ped)
                 if PED.IS_PED_A_PLAYER(ped) or ENTITY.IS_ENTITY_DEAD(ped) or not( (rel == 4 or rel == 5) or PED.IS_PED_IN_COMBAT(ped, players.user_ped()) ) then return end
                 ENTITY.SET_ENTITY_HEALTH(ped, 0, 0)
             end},
         }
         for i = 1, #pedToggleLoops do
-            JSlang.toggle_loop(_LR['Peds'], pedToggleLoops[i].name, {pedToggleLoops[i].command}, pedToggleLoops[i].description, function()
+            JSlang.toggle_loop(_LR['NPC'], pedToggleLoops[i].name, {pedToggleLoops[i].command}, pedToggleLoops[i].description, function()
                 local pedHandles = entities.get_all_peds_as_handles()
                 for j = 1, #pedHandles do
                     pedToggleLoops[i].action(pedHandles[j])
@@ -3614,20 +3614,20 @@ do
             end)
         end
 
-        JSlang.toggle_loop(_LR['Peds'], 'Kill jacked peds', {'JSkillJackedPeds'}, 'Automatically kills peds when stealing their car.', function(toggle)
+        JSlang.toggle_loop(_LR['NPC'], '杀死车主', {'JSkillJackedPeds'}, '抢车的时候自动杀死驾驶载具的NPC', function(toggle)
             if not PED.IS_PED_JACKING(players.user_ped()) then return end
             local jackedPed = PED.GET_JACK_TARGET(players.user_ped())
             util.yield(100)
             ENTITY.SET_ENTITY_HEALTH(jackedPed, 0, 0)
         end)
 
-        JSlang.toggle(_LR['Peds'], 'Riot mode', {'JSriot'}, 'Makes peds hostile.', function(toggle)
+        JSlang.toggle(_LR['NPC'], '暴动模式', {'JSriot'}, '使附近的NPC充满敌意.', function(toggle)
             MISC.SET_RIOT_MODE_ENABLED(toggle)
         end)
 end
 
 
-JSlang.hyperlink(menu_root, 'Join the discord server', 'https://discord.gg/QzqBdHQC9S', 'Join the JerryScript discord server to suggest features, report bugs and test upcoming features.')
+JSlang.hyperlink(menu_root, '加入Discord服务器', 'https://discord.gg/QzqBdHQC9S', '加入 Jerry脚本 的服务器以建议功能、报告BUG和测试即将推出的新功能.')
 
 local credTxt = {}
 
@@ -3705,7 +3705,7 @@ local function scrollCreditsLine(textTable, index)
     end
 end
 
-play_credits_toggle = JSlang.toggle(menu_root, 'Play credits', {}, '', function(toggle)
+play_credits_toggle = JSlang.toggle(menu_root, '查看鸣谢', {}, '', function(toggle)
     creditsPlaying(toggle)
     if not toggle then return end
     for i = 1, #credTxt do
@@ -3734,14 +3734,14 @@ local playerInfoToggles = {}
         end
 
         JSlang.divider(menu.player_root(pid), 'JerryScript') --added a divider here because Holy#9756 was bitching about it in vc
-        local player_root = JSlang.list(menu.player_root(pid), 'JS player options')
+        local player_root = JSlang.list(menu.player_root(pid), 'JS 玩家选项')
         local playerPed = || -> PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
         local playerName = players.get_name(pid)
 
         ----------------------------------
         -- Player info toggle
         ----------------------------------
-            playerInfoToggles[pid] = menu.mutually_exclusive_toggle(player_root, 'Player info', {'JSplayerInfo'}, 'Display information about this player.', playerInfoToggles, function(toggle)
+            playerInfoToggles[pid] = menu.mutually_exclusive_toggle(player_root, '玩家信息', {'JSplayerInfo'}, '显示有关此玩家的信息', playerInfoToggles, function(toggle)
                 if toggle then
                     playerInfoPid = pid --hud is visible when this var is truthy
                 elseif not is_any_exclusive_toggle_on(playerInfoToggles) then
@@ -3754,37 +3754,37 @@ local playerInfoToggles = {}
         -----------------------------------
             local trolling_root = JSlang.list(player_root, 'Trolling', {'JStrolling'}, '')
 
-            JSlang.action(trolling_root, 'Explode player', {'JSexplode'}, 'Explodes this player with your selected options.', function()
+            JSlang.action(trolling_root, '爆炸玩家', {'JSexplode'}, '使用您选择的爆炸选项爆炸此玩家.', function()
                 explodePlayer(playerPed(), false, expSettings)
             end)
 
-            JSlang.toggle_loop(trolling_root, 'Explode loop player', {'JSexplodeLoop'}, 'Loops explosions on them with your selected options.', function()
+            JSlang.toggle_loop(trolling_root, '循环爆炸玩家', {'JSexplodeLoop'}, '使用您选择的选项循环爆炸.', function()
                 explodePlayer(playerPed(), true, expSettings)
                 util.yield(getTotalDelay(expLoopDelay))
                 if not players.exists(pid) then util.stop_thread() end
             end)
 
-            JSlang.action(trolling_root, 'Blame explosions', {'JSexpBlame'}, 'Makes your explosions blamed on them.', function()
+            JSlang.action(trolling_root, '栽赃爆炸', {'JSexpBlame'}, '让您的爆炸归咎于他.', function()
                 expSettings.blamedPlayer = pid
                 if not menu.get_value(exp_blame_toggle) then
                     menu.trigger_command(exp_blame_toggle)
                 end
-                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('Blame') ..': '.. playerName)
+                menu.set_menu_name(exp_blame_toggle, JSlang.str_trans('栽赃') ..': '.. playerName)
             end)
 
-            local damage_root = JSlang.list(trolling_root, 'Damage', {}, '')
+            local damage_root = JSlang.list(trolling_root, '伤害', {}, '')
 
-            JSlang.action(damage_root, 'Primed grenade', {'JSprimedGrenade'}, 'Spawns a grenade on top of them.', function()
+            JSlang.action(damage_root, '手榴弹', {'JSprimedGrenade'}, '在他头上丢下1个手榴弹', function()
                 local pos = players.get_position(pid)
                 MISC.SHOOT_SINGLE_BULLET_BETWEEN_COORDS(pos.x, pos.y, pos.z + 1.4, pos.x, pos.y, pos.z + 1.3, 100, true, -1813897027, players.user_ped(), true, false, 100.0)
             end)
 
-            JSlang.action(damage_root, 'Sticky', {'JSsticky'}, 'Spawns a sticky bomb on them that might stick to their vehicle and you can detonate by pressing "G".', function()
+            JSlang.action(damage_root, '粘弹', {'JSsticky'}, '在他头上丢下1个粘性炸弹,可能会粘在他的载具上,你可以通过按"G"来引爆.', function()
                 local pos = players.get_position(pid)
                 MISC.SHOOT_SINGLE_BULLET_BETWEEN_COORDS(pos.x, pos.y, pos.z + 1 , pos.x, pos.y, pos.z + 1.1, 10, true, 741814745, players.user_ped(), true, false, 100.0)
             end)
 
-            JSlang.toggle_loop(trolling_root, 'Undetected money drop 2022', {'JSfakeMoneyDrop'}, 'Drops money bags that wont give any money.', function()
+            JSlang.toggle_loop(trolling_root, '未被检测的掉钱袋 2022', {'JSfakeMoneyDrop'}, '掉落不会加钱的假钱袋.', function()
                 util.create_thread(function()
                     local hash = 2628187989
                     loadModel(hash)
@@ -3839,29 +3839,29 @@ local playerInfoToggles = {}
                 end
             end
 
-            JSlang.action(trolling_root, 'Entity YEET', {'JSentityYeet'}, 'Pushes all peds and vehicles near them.. into them ;)\nRequires you to be near them or spectating them.', function ()
+            JSlang.action(trolling_root, '实体击杀', {'JSentityYeet'}, '将他附近的所有NPC和载具砸向他 ;)\n您要靠近他或观看他.', function ()
                 yeetEntities()
             end)
 
-            JSlang.toggle_loop(trolling_root, 'Entity Storm', {'JSentityStorm'}, 'Constantly pushes all peds and vehicles near them.. into them :p\nRequires you to be near them or spectating them.', function ()
+            JSlang.toggle_loop(trolling_root, '实体风暴', {'JSentityStorm'}, '不断将他附近的所有NPC和载具砸向他 :p\n您要靠近他或观看他.', function ()
                 yeetEntities()
                 util.yield(getTotalDelay(stormDelay))
                 if not players.exists(pid) then util.stop_thread() end
             end)
 
-            JSlang.slider(trolling_root, 'Range for YEET/Storm', {'JSpushRange'}, 'How close nearby entities have to be to get pushed the targeted player.', 1, 1000, yeetRange, 10, function (value)
+            JSlang.slider(trolling_root, '击杀/风暴 范围', {'JSpushRange'}, '附近实体必须有多近才会被目标玩家推动.', 1, 1000, yeetRange, 10, function (value)
                 yeetRange = value
             end)
 
-            JSlang.slider(trolling_root, 'Multiplier for YEET/Storm', {'JSpushMultiplier'}, 'Multiplier for how much force is applied to entities when they get pushed towards them.', 1, 1000, yeetMultiplier, 5, function(value)
+            JSlang.slider(trolling_root, '击杀/风暴 倍数', {'JSpushMultiplier'}, '实体被推向实体时施加多少力的倍数', 1, 1000, yeetMultiplier, 5, function(value)
                 yeetMultiplier = value
             end)
 
-            local strom_delay_root = JSlang.list(trolling_root, 'Storm delay', {'JSentStormDelay'}, 'Lets you set the delay for how often entities are pushed in entity storm.')
-            generateDelaySettings(strom_delay_root, 'Storm delay', stormDelay)
+            local strom_delay_root = JSlang.list(trolling_root, '风暴延迟', {'JSentStormDelay'}, '让您设置实体风暴中实体飞向目标频率的延迟.')
+            generateDelaySettings(strom_delay_root, '风暴延迟', stormDelay)
         -----------------------------------
 
-        JSlang.toggle_loop(player_root, 'Give shoot gods', {'JSgiveShootGods'}, 'Grants this player the ability to disable players god mode when shooting them.', function()
+        JSlang.toggle_loop(player_root, '给予 关无敌枪', {'JSgiveShootGods'}, '使该玩家能够在射击玩家时禁用其他玩家的无敌(一些垃圾菜单).', function()
             local playerList = getNonWhitelistedPlayers(whitelistListTable, whitelistGroups, whitelistedName)
             for k, playerPid in ipairs(playerList) do
                 local playerPed = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(playerPid)
@@ -3872,7 +3872,7 @@ local playerInfoToggles = {}
             if not players.exists(pid) then util.stop_thread() end
         end)
 
-        JSlang.toggle_loop(player_root, 'Give horn boost', {'JSgiveHornBoost'}, 'Gives them the ability to speed up their car by pressing honking their horn or activating the siren.', function()
+        JSlang.toggle_loop(player_root, '给予 喇叭加速', {'JSgiveHornBoost'}, '使他能够通过按喇叭或激活警报器来加速载具.', function()
             local vehicle = PED.GET_VEHICLE_PED_IS_IN(playerPed(), false)
             if not (AUDIO.IS_HORN_ACTIVE(vehicle) or VEHICLE.IS_VEHICLE_SIREN_ON(vehicle)) then return end
             NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(vehicle)
@@ -3885,10 +3885,10 @@ local playerInfoToggles = {}
         -----------------------------------
         -- Give aim karma
         -----------------------------------
-            local give_karma_root = JSlang.list(player_root, 'Give aim karma', {'JSgiveAimKarma'}, 'Allows you to set punishments for targeting this player.')
+            local give_karma_root = JSlang.list(player_root, '给予 瞄准惩罚', {'JSgiveAimKarma'}, '当有人瞄准他时将受到的惩罚')
 
             --dosnt work on yourself
-            JSlang.toggle_loop(give_karma_root, 'Shoot', {'JSgiveBulletAimKarma'}, 'Shoots players that aim at them.', function()
+            JSlang.toggle_loop(give_karma_root, '射击', {'JSgiveBulletAimKarma'}, '射击瞄准他的玩家.', function()
                 if isAnyPlayerTargetingEntity(playerPed()) and karma[playerPed()] then
                     local pos = ENTITY.GET_ENTITY_COORDS(karma[playerPed()].ped)
                     MISC.SHOOT_SINGLE_BULLET_BETWEEN_COORDS(pos, pos.x, pos.y, pos.z +0.1, 100, true, 100416529, players.user_ped(), true, false, 100.0)
@@ -3896,14 +3896,14 @@ local playerInfoToggles = {}
                 end
             end)
 
-            JSlang.toggle_loop(give_karma_root, 'Explode', {'JSgiveExpAimKarma'}, 'Explosions with your custom explosion settings.', function()
+            JSlang.toggle_loop(give_karma_root, 'Explode', {'JSgiveExpAimKarma'}, '使用您的自定义爆炸设置进行爆炸.', function()
                 if isAnyPlayerTargetingEntity(playerPed()) and karma[playerPed()] then
                     explodePlayer(karma[playerPed()].ped, true, expSettings)
                 end
                 if not players.exists(pid) then util.stop_thread() end
             end)
 
-            JSlang.toggle_loop(give_karma_root, 'Disable godmode', {'JSgiveGodAimKarma'}, 'If a god mode player aims at them this disables the aimers god mode by pushing their camera forwards.', function()
+            JSlang.toggle_loop(give_karma_root, '禁用无敌', {'JSgiveGodAimKarma'}, '如果有开着无敌的玩家瞄准了他,这将使瞄准者的无敌失效.', function()
                 if isAnyPlayerTargetingEntity(playerPed()) and karma[playerPed()] and players.is_godmode(karma[playerPed()].pid) then
                     util.trigger_script_event(1 << karma[playerPed()].pid, {-1388926377, karma[playerPed()].pid, -1762807505, math.random(0, 9999)})
                 end
@@ -3915,7 +3915,7 @@ local playerInfoToggles = {}
         ----------------------------------
             local player_veh_root = JSlang.list(player_root, 'Vehicle')
 
-            JSlang.toggle(player_veh_root, 'Lock burnout', {'JSlockBurnout'}, 'Locks their car in a burnout.', function(toggle)
+            JSlang.toggle(player_veh_root, '锁定烧胎', {'JSlockBurnout'}, '让他的车不能开只能烧胎', function(toggle)
                 if PED.IS_PED_IN_ANY_VEHICLE(playerPed(), true) then
                     local playerVehicle = PED.GET_VEHICLE_PED_IS_IN(playerPed(), false)
                     NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(playerVehicle)
@@ -3924,7 +3924,7 @@ local playerInfoToggles = {}
             end)
 
             local player_torque = 1000
-            JSlang.slider(player_veh_root, 'Set torque', {'JSsetTorque'}, 'Modifies the speed of their vehicle.', -1000000, 1000000, player_torque, 1, function(value)
+            JSlang.slider(player_veh_root, '设置扭矩', {'JSsetTorque'}, '修改他的车辆速度', -1000000, 1000000, player_torque, 1, function(value)
                 player_torque = value
                 util.create_tick_handler(function()
                     if PED.IS_PED_IN_ANY_VEHICLE(playerPed(), true) then
@@ -3936,7 +3936,7 @@ local playerInfoToggles = {}
                 end)
             end)
 
-            JSlang.toggle(player_veh_root, 'Surface submarine', {'JSforceSurface'}, 'Forces their submarine to the surface if they\'re driving it.', function(toggle)
+            JSlang.toggle(player_veh_root, '浮出潜艇', {'JSforceSurface'}, '如果他正在驾驶潜艇,迫使他的潜艇浮出水面.', function(toggle)
                 local vehicle = PED.GET_VEHICLE_PED_IS_IN(playerPed, false)
                 if PED.IS_PED_IN_ANY_VEHICLE(playerPed, true) and ENTITY.GET_ENTITY_MODEL(vehicle) == 1336872304 then
                     VEHICLE.FORCE_SUBMARINE_SURFACE_MODE(vehicle, toggle)
@@ -3946,7 +3946,7 @@ local playerInfoToggles = {}
                 end
             end)
 
-            JSlang.toggle_loop(player_veh_root, 'To the moon', {'JStoMoon'}, 'Forces their vehicle into the sky.', function()
+            JSlang.toggle_loop(player_veh_root, '飞到月球', {'JStoMoon'}, '迫使他们的载具飞上天空.', function()
                 if PED.IS_PED_IN_ANY_VEHICLE(playerPed(), true) then
                     local playerVehicle = PED.GET_VEHICLE_PED_IS_IN(playerPed(), false)
                     NETWORK.NETWORK_REQUEST_CONTROL_OF_ENTITY(playerVehicle)
@@ -3956,7 +3956,7 @@ local playerInfoToggles = {}
                 if not players.exists(pid) then util.stop_thread() end
             end)
 
-            JSlang.toggle_loop(player_veh_root, 'Anchor', {'JSanchor'}, 'Forces their vehicle info the ground if its in the air.', function()
+            JSlang.toggle_loop(player_veh_root, '锚', {'JSanchor'}, '如果他在空中飞行的载具中,会强制他回到地面.', function()
                 if PED.IS_PED_IN_ANY_VEHICLE(playerPed(), true) then
                     local playerVehicle = PED.GET_VEHICLE_PED_IS_IN(playerPed(), false)
                     if ENTITY.IS_ENTITY_IN_AIR(playerVehicle) then
@@ -3971,7 +3971,7 @@ local playerInfoToggles = {}
         -----------------------------------
         -- Entity rain
         -----------------------------------
-            local rain_root = JSlang.list(player_root, 'Entity rain', {'JSrain'}, '')
+            local rain_root = JSlang.list(player_root, '实体雨', {'JSrain'}, '')
 
             local function rain(pid, entity)
                 local pos = players.get_position(pid)
@@ -3987,13 +3987,13 @@ local playerInfoToggles = {}
             end
 
             local rainOptions = {
-                { name = 'Meow rain',    description = 'UWU',                                          animals = {'a_c_cat_01'},                                 spawned = {} },
-                { name = 'Sea rain',     description = '<º)))><',                                      animals = {'a_c_fish', 'a_c_dolphin', 'a_c_killerwhale'}, spawned = {} },
-                { name = 'Dog rain',     description = 'Wooof',                                        animals = {'a_c_retriever', 'a_c_pug', 'a_c_rottweiler'}, spawned = {} },
-                { name = 'Chicken rain', description = '*clucking*',                                   animals = {'a_c_hen'},                                    spawned = {} },
-                { name = 'Monkey rain',  description = 'Idk what sound a monkey does',                 animals = {'a_c_chimp'},                                  spawned = {} },
-                { name = 'Pig rain',     description = '(> (00) <)',                                   animals = {'a_c_pig'},                                    spawned = {} },
-                { name = 'Rat rain',     description = 'Puts a Remote access trojan in your pc. (JK)', animals = {'a_c_rat'},                                    spawned = {} }
+                { name = '喵雨',    description = 'UWU',                                          animals = {'a_c_cat_01'},                                 spawned = {} },
+                { name = '鲸鱼雨',     description = '<º)))><',                                      animals = {'a_c_fish', 'a_c_dolphin', 'a_c_killerwhale'}, spawned = {} },
+                { name = '狗雨',     description = '*傲傲*',                                        animals = {'a_c_retriever', 'a_c_pug', 'a_c_rottweiler'}, spawned = {} },
+                { name = '鸡雨', description = '*咯咯咯*',                                   animals = {'a_c_hen'},                                    spawned = {} },
+                { name = '猴子雨',  description = '不知道猴子会发出什么声音',                 animals = {'a_c_chimp'},                                  spawned = {} },
+                { name = '猪雨',     description = '(> (00) <)',                                   animals = {'a_c_pig'},                                    spawned = {} },
+                { name = '老鼠雨',     description = '在您的电脑中植入远程访问木马. (开个玩笑)', animals = {'a_c_rat'},                                    spawned = {} }
             }
             for i = 1, #rainOptions do
                 JSlang.toggle_loop(rain_root, rainOptions[i].name, {'JS'.. rainOptions[i].name}, rainOptions[i].description, function()
@@ -4010,7 +4010,7 @@ local playerInfoToggles = {}
                 end)
             end
 
-            JSlang.action(rain_root, 'Clear rain', {'JSclear'}, 'Deletes rained entities.', function()
+            JSlang.action(rain_root, '清除实体', {'JSclear'}, '删除所有掉落的实体', function()
                 for i = 1, #rainOptions do
                     for j, spawned in ipairs(rainOptions[i].spawned) do
                         entities.delete_by_handle(spawned)

@@ -2,9 +2,11 @@
 -- by Hexarobi
 -- Install in `Stand/Lua Scripts`
 
-local SCRIPT_VERSION = "1.5"
+local SCRIPT_NAME = "HornSongs"
+local SCRIPT_VERSION = "1.2"
 local SOURCE_URL = "https://github.com/hexarobi/stand-lua-hornsongs"
-local RAW_SOURCE_URL = "https://raw.githubusercontent.com/hexarobi/stand-lua-hornsongs/main/HornSongs.lua"
+local AUTO_UPDATE_HOST = "raw.githubusercontent.com"
+local AUTO_UPDATE_PATH = "/hexarobi/stand-lua-hornsongs/main/HornSongs.lua"
 
 util.require_natives(1660775568)
 
@@ -86,7 +88,7 @@ local function play_note(vehicle, song, note, index)
 local function play_song(song)
     song.beat_length = math.floor(60000 / song.bpm)
     if not PED.IS_PED_IN_ANY_VEHICLE(PLAYER.PLAYER_PED_ID(), true) then
-        util.toast("Cannot play horn unless within a vehicle")
+        util.toast("除非在车内，否则不能吹喇叭")
         return
     end
     local vehicle = PED.GET_VEHICLE_PED_IS_IN(PLAYER.PLAYER_PED_ID(), false)
@@ -104,7 +106,7 @@ end
 --- Songs Menu
 ---
 
-local songs_menu = menu.list(menu.my_root(), "Play Song")
+local songs_menu = menu.list(menu.my_root(), "播放歌曲")
 
 local status, json = pcall(require, "json")
 local function load_song_from_file(filepath)
@@ -112,13 +114,13 @@ local function load_song_from_file(filepath)
     if file then
         local data = json.decode(file:read("*a"))
         if not data.target_version then
-            util.toast("Invalid horn file format. Missing target_version.")
+            util.toast("无效的歌曲文件格式。缺少target_version.")
             return nil
         end
         file:close()
         return data
     else
-        error("Could not read file '" .. filepath .. "'")
+        error("无法读取文件 '" .. filepath .. "'")
     end
 end
 
@@ -136,7 +138,7 @@ end
 local songs_dir = join_path(script_store_dir, "songs")
 songs = load_songs(songs_dir)
 for _, song in pairs(songs) do
-    menu.action(songs_menu, "Play "..song.name, {}, song.description .. "\nBPM: " .. song.bpm, function()
+    menu.action(songs_menu, "播放 "..song.name, {}, song.description .. "\nBPM: " .. song.bpm, function()
         play_song(song)
     end)
 end
@@ -145,51 +147,81 @@ end
 --- Script Meta
 ---
 
-local script_meta_menu = menu.list(menu.my_root(), "Script Meta")
+local script_meta_menu = menu.list(menu.my_root(), "脚本支持")
 
-menu.divider(script_meta_menu, SCRIPT_NAME:gsub(".lua", ""))
-menu.readonly(script_meta_menu, "Version", SCRIPT_VERSION)
-menu.hyperlink(script_meta_menu, "Source", SOURCE_URL, "View source files on Github")
+menu.divider(script_meta_menu, SCRIPT_NAME)
+menu.readonly(script_meta_menu, "版本", SCRIPT_VERSION)
+menu.hyperlink(script_meta_menu, "资源", SOURCE_URL, "在Github上查看源文件")
 
----
---- Auto Update
----
+local version_file = join_path(script_store_dir, "版本.txt")
 
-local function require_or_download(lib_name, download_source_host, download_source_path)
-    local status, lib = pcall(require, lib_name)
-    if (status) then return lib end
-    async_http.init(download_source_host, download_source_path, function(result, headers, status_code)
-        local error_prefix = "Error downloading "..lib_name..": "
-        if status_code ~= 200 then util.toast(error_prefix..status_code) return false end
-        if not result or result == "" then util.toast(error_prefix.."Found empty file.") return false end
-        local file = io.open(filesystem.scripts_dir() .. "lib\\" .. lib_name .. ".lua", "wb")
-        if file == nil then util.toast(error_prefix.."Could not open file for writing.") return false end
-        file:write(result) file:close()
-        util.toast("Successfully installed lib "..lib_name)
-    end, function() util.toast("Error downloading "..lib_name..". Update failed to download.") end)
-    async_http.dispatch()
-    util.yield(3000)    -- Pause to let download finish before continuing
-    require(lib_name)
+local function read_version_id()
+    local f = io.open(version_file)
+    if f then
+        local version = f:read()
+        f:close()
+        return version
+    end
 end
 
-require_or_download(
-    "auto-updater",
-    "raw.githubusercontent.com",
-    "/hexarobi/stand-lua-auto-updater/main/auto-updater.lua"
-)
+local function write_version_id(version_id)
+    local file = io.open(version_file, "wb")
+    if file == nil then
+        util.toast("保存版本ID时出错")
+    end
+    file:write(version_id)
+    file:close()
+end
 
-local auto_update_config = {
-    source_url=RAW_SOURCE_URL,
-    script_name=SCRIPT_NAME,
-    script_relpath=SCRIPT_RELPATH,
-}
--- Manually check for updates with a menu option
-menu.action(script_meta_menu, "Check for Update", {}, "Attempt to update to latest version", function()
-    auto_update(auto_update_config)
+local function replace_current_script(new_script)
+    local file = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
+    if file == nil then
+        util.toast("脚本文件写入时出错")
+    end
+    file:write(new_script.."\n")
+    file:close()
+end
+
+function string.starts(String,Start)
+    return string.sub(String,1,string.len(Start))==Start
+end
+
+menu.action(script_meta_menu, "检查更新", {}, "尝试更新到最新版本", function()
+    async_http.init(AUTO_UPDATE_HOST, AUTO_UPDATE_PATH, function(result, status_code, headers)
+        if status_code == 304 then
+            -- No update found
+            return
+        end
+        if not result or result == "" then
+            util.toast("没有更新.")
+            return
+        end
+        -- Lua scripts should begin with a comment but other HTML responses will not
+        if not string.starts(result, "--") then
+            util.toast("发现无效的更新! 无法应用")
+            util.toast(result)
+            return
+        end
+        replace_current_script(result)
+        if headers then
+            for header_key, header_value in pairs(headers) do
+                if header_key == "etag" then
+                    write_version_id(header_value)
+                end
+            end
+        end
+        -- write_version_id('W/"f0e184e9746c341efd4be01c36825cdf28bb3036c4bc744f1dbbe11c3c3e3031"')
+        util.toast("脚本已更新。 请重新启动.")
+        util.stop_script()
+    end, function()
+        util.toast("脚本更新下载失败.")
+    end)
+    local cached_version_id = read_version_id()
+    if cached_version_id then
+        async_http.add_header("If-None-Match", cached_version_id)
+    end
+    async_http.dispatch()
 end)
-
--- Check for updates anytime the script is run
-auto_update(auto_update_config)
 
 util.create_tick_handler(function()
     if horn_on then
@@ -197,4 +229,3 @@ util.create_tick_handler(function()
     end
     return true
 end)
-

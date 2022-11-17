@@ -148,8 +148,12 @@ function JSlang.str_trans(string)
     return lang.get_string(JSlang.trans(string), lang.get_current())
 end
 
-function JSlang.toast(string)
-    util.toast(JSlang.str_trans(string))
+function JSlang.toast(string, ...)
+    util.toast(JSlang.str_trans(string), ...)
+end
+
+function JSlang.log(string)
+    util.log(JSlang.str_trans(string))
 end
 
 function JSlang.list(root, name, tableCommands, description, ...)

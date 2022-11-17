@@ -1,5 +1,5 @@
 -- LANCESCRIPT RELOADED
-script_version = 9.26
+script_version = 9.58
 all_used_cameras = {}
 util.require_natives("1663599433")
 gta_labels = require('all_labels')
@@ -145,23 +145,6 @@ end
 
 current_toasts = {}
 
-local function modern_toast(text)
-    for _, t in pairs(current_toasts) do 
-        if t.text == text then 
-            return 
-        end 
-    end
-    if notify_sounds then
-        AUDIO.PLAY_SOUND(-1, "OPEN_WINDOW", "LESTER1A_SOUNDS", 0, 0, 1)
-    end
-    table.insert(current_toasts, 
-    {
-        text = text, 
-        start_time = os.clock(),
-        display_time = (0.15 * string.len(text))
-    })
-end
-
 -- toast renderer
 util.create_tick_handler(function()
     local current_y_pos = 0.00
@@ -194,14 +177,7 @@ end)
 
 
 function notify(text)
-    pluto_switch notify_mode do
-        case 1: 
-            util.toast('[' .. translations.script_name_pretty .. '] ' .. text)
-            break
-        case 2: 
-            modern_toast(text)
-            break
-    end
+    util.toast('[' .. translations.script_name_pretty .. '] ' .. text)
 end
 
 -- holiday
@@ -285,13 +261,18 @@ custom_fov_root = menu.list(combat_root, translations.custom_fov, {translations.
 -- END SELF SUBSECTIONS
 -- BEGIN ONLINE SUBSECTIONS
 online_root = menu.list(menu.my_root(), translations.online, {translations.online_cmd}, translations.online_desc)
+players_root = menu.list(menu.my_root(), translations.players, {"lanceplayers"}, "")
+local friends_in_this_session = {}
+local modders_in_this_session = {}
+friends_in_session_list = menu.list_action(players_root, translations.friends_in_session, {"friendsinsession"}, "", friends_in_this_session, function(pid, name) menu.trigger_commands("p" .. players.get_name(pid)) end)
+modders_in_session_list = menu.list_action(players_root, translations.modders_in_session, {"moddersinsession"}, "", modders_in_this_session, function(pid, name) menu.trigger_commands("p" .. players.get_name(pid)) end)
 detections_root = menu.list(online_root, translations.detections, {translations.detections_cmd}, "")
 protections_root = menu.list(online_root, translations.protections, {translations.protections_cmd}, translations.protections_desc)
 randomizer_root = menu.list(online_root, translations.randomizer, {translations.randomizer_cmd}, translations.randomizer_desc)
 speedrun_root = menu.list(online_root, translations.speedrun, {translations.speedrun_cmd}, translations.speedrun_desc)
 chat_presets_root = menu.list(online_root, translations.chatpresets, {translations.chatpresets_cmd}, translations.chatpresets_desc)
 local players_shortcut_command = menu.ref_by_path('Players', 37)
-menu.action(menu.my_root(), translations.players_shortcut, {}, translations.players_shortcut_desc, function(click_type)
+menu.action(players_root, translations.stand_players_shortcut, {}, "", function(click_type)
     menu.trigger_command(players_shortcut_command)
 end)
 
@@ -385,14 +366,17 @@ end
 local alphabet = "abcdefghijklmnopqrstuvwxyzABCEDFGHIJKLMNOPQRSTUVWXYZ0123456789"
 
 function is_user_a_stand_user(pid)
-    if not players.is_marked_as_modder(pid) then
-        return false
+    if pid == players.user() then
+        return true
     end
-    local ref = menu.ref_by_rel_path(menu.player_root(pid), "Classification: Modder>Stand User")
-    if not menu.is_ref_valid(ref) then 
-        return false
+    if players.exists(pid) then
+        for _, cmd in ipairs(menu.player_root(pid):getChildren()) do
+            if cmd:getType() == COMMAND_LIST_CUSTOM_SPECIAL_MEANING and (cmd:refByRelPath("Stand User"):isValid() or cmd:refByRelPath("Stand User (Co-Loading"):isValid()) then
+                return true
+            end
+        end
     end
-    return true
+    return false
 end
 
 function random_string(length)
@@ -521,17 +505,7 @@ function table.load( sfile )
 end
 
 function request_model_load(hash)
-    request_time = os.time()
-    if not STREAMING.IS_MODEL_VALID(hash) then
-        return
-    end
-    STREAMING.REQUEST_MODEL(hash)
-    while not STREAMING.HAS_MODEL_LOADED(hash) do
-        if os.time() - request_time >= 10 then
-            break
-        end
-        util.yield()
-    end
+    util.request_model(hash, 2000)
 end
 
 function request_anim_dict(dict)
@@ -754,6 +728,40 @@ end
 
 menu.action(chat_presets_root, translations.dox, {}, translations.dox_desc, function(click_type)
     chat.send_message("${name}: ${ip} | ${geoip.city}, ${geoip.region}, ${geoip.country}", false, true, true)
+end)
+
+local function shuffle_in_place(t)
+    for i = #t, 2, -1 do
+        local j = math.random(i)
+        t[i], t[j] = t[j], t[i]
+    end
+end
+
+function first_to_upper(str)
+    return (str:gsub("^%l", string.upper))
+end
+
+local function chat_bullshit_data(pid)
+    local first_names = {"JAMES", "JOHN", "ROBERT", "MICHAEL", "WILLIAM", "DAVID", "RICHARD", "CHARLES", "JOSEPH", "THOMAS", "CHRISTOPHER", "DANIEL", "PAUL", "MARK", "DONALD", "GEORGE", "KENNETH", "STEVEN", "EDWARD", "BRIAN", "RONALD", "ANTHONY", "KEVIN", "JASON", "MATTHEW", "GARY", "TIMOTHY", "JOSE", "LARRY", "JEFFREY", "FRANK", "SCOTT", "ERIC", "STEPHEN", "ANDREW", "RAYMOND", "GREGORY", "JOSHUA", "JERRY", "DENNIS", "WALTER", "PATRICK", "PETER", "HAROLD", "DOUGLAS", "HENRY", "CARL", "ARTHUR", "RYAN", "ROGER", "JOE", "JUAN", "JACK", "ALBERT", "JONATHAN", "JUSTIN", "TERRY", "GERALD", "KEITH", "SAMUEL", "WILLIE", "RALPH", "LAWRENCE", "NICHOLAS", "ROY", "BENJAMIN", "BRUCE", "BRANDON", "ADAM", "HARRY", "FRED", "WAYNE", "BILLY", "STEVE", "LOUIS", "JEREMY", "AARON", "RANDY", "HOWARD", "EUGENE", "CARLOS", "RUSSELL", "BOBBY", "VICTOR", "MARTIN", "ERNEST", "PHILLIP", "TODD", "JESSE", "CRAIG", "ALAN", "SHAWN", "CLARENCE", "SEAN", "PHILIP", "CHRIS", "JOHNNY", "EARL", "JIMMY", "ANTONIO"}
+    local last_names = {"smith" , "johnson" , "williams" , "brown" , "jones" , "miller" , "davis" , "garcia" , "rodriguez" , "wilson" , "martinez" , "anderson" , "taylor" , "thomas" , "hernandez" , "moore" , "martin" , "jackson" , "thompson" , "white" , "lopez" , "lee" , "gonzalez" , "harris" , "clark" , "lewis" , "robinson" , "walker" , "perez" , "hall" , "young" , "allen" , "sanchez" , "wright" , "king" , "scott" , "green" , "baker" , "adams" , "nelson" , "hill" , "ramirez" , "campbell" , "mitchell" , "roberts" , "carter" , "phillips" , "evans" , "turner" , "torres" , "parker" , "collins" , "edwards" , "stewart" , "flores" , "morris" , "nguyen" , "murphy" , "rivera" , "cook" , "rogers" , "morgan" , "peterson" , "cooper" , "reed" , "bailey" , "bell" , "gomez" , "kelly" , "howard" , "ward" , "cox" , "diaz" , "richardson" , "wood" , "watson" , "brooks" , "bennett" , "gray" , "james" , "reyes" , "cruz" , "hughes" , "price" , "myers" , "long" , "foster" , "sanders" , "ross" , "morales" , "powell" , "sullivan" , "russell" , "ortiz" , "jenkins" , "gutierrez" , "perry" , "butler" , "barnes" , "fisher"}
+    local addresses = {"777 Brockton Avenue, Abington MA 2351" , "30 Memorial Drive, Avon MA 2322" , "250 Hartford Avenue, Bellingham MA 2019" , "700 Oak Street, Brockton MA 2301" , "66-4 Parkhurst Rd, Chelmsford MA 1824" , "591 Memorial Dr, Chicopee MA 1020" , "55 Brooksby Village Way, Danvers MA 1923" , "137 Teaticket Hwy, East Falmouth MA 2536" , "42 Fairhaven Commons Way, Fairhaven MA 2719" , "374 William S Canning Blvd, Fall River MA 2721" , "121 Worcester Rd, Framingham MA 1701" , "677 Timpany Blvd, Gardner MA 1440" , "337 Russell St, Hadley MA 1035" , "295 Plymouth Street, Halifax MA 2338" , "1775 Washington St, Hanover MA 2339" , "280 Washington Street, Hudson MA 1749" , "20 Soojian Dr, Leicester MA 1524" , "11 Jungle Road, Leominster MA 1453" , "301 Massachusetts Ave, Lunenburg MA 1462" , "780 Lynnway, Lynn MA 1905" , "70 Pleasant Valley Street, Methuen MA 1844" , "830 Curran Memorial Hwy, North Adams MA 1247" , "1470 S Washington St, North Attleboro MA 2760" , "506 State Road, North Dartmouth MA 2747" , "742 Main Street, North Oxford MA 1537" , "72 Main St, North Reading MA 1864" , "200 Otis Street, Northborough MA 1532" , "180 North King Street, Northhampton MA 1060" , "555 East Main St, Orange MA 1364" , "555 Hubbard Ave-Suite 12, Pittsfield MA 1201" , "300 Colony Place, Plymouth MA 2360" , "301 Falls Blvd, Quincy MA 2169" , "36 Paramount Drive, Raynham MA 2767" , "450 Highland Ave, Salem MA 1970" , "1180 Fall River Avenue, Seekonk MA 2771" , "1105 Boston Road, Springfield MA 1119" , "100 Charlton Road, Sturbridge MA 1566" , "262 Swansea Mall Dr, Swansea MA 2777" , "333 Main Street, Tewksbury MA 1876" , "550 Providence Hwy, Walpole MA 2081" , "352 Palmer Road, Ware MA 1082" , "3005 Cranberry Hwy Rt 6 28, Wareham MA 2538" , "250 Rt 59, Airmont NY 10901" , "141 Washington Ave Extension, Albany NY 12205" , "13858 Rt 31 W, Albion NY 14411" , "2055 Niagara Falls Blvd, Amherst NY 14228" , "101 Sanford Farm Shpg Center, Amsterdam NY 12010" , "297 Grant Avenue, Auburn NY 13021" , "4133 Veterans Memorial Drive, Batavia NY 14020" , "6265 Brockport Spencerport Rd, Brockport NY 14420" , "5399 W Genesse St, Camillus NY 13031" , "3191 County rd 10, Canandaigua NY 14424" , "30 Catskill, Catskill NY 12414" , "161 Centereach Mall, Centereach NY 11720" , "3018 East Ave, Central Square NY 13036" , "100 Thruway Plaza, Cheektowaga NY 14225" , "8064 Brewerton Rd, Cicero NY 13039" , "5033 Transit Road, Clarence NY 14031" , "3949 Route 31, Clay NY 13041" , "139 Merchant Place, Cobleskill NY 12043" , "85 Crooked Hill Road, Commack NY 11725" , "872 Route 13, Cortlandville NY 13045" , "279 Troy Road, East Greenbush NY 12061" , "2465 Hempstead Turnpike, East Meadow NY 11554" , "6438 Basile Rowe, East Syracuse NY 13057" , "25737 US Rt 11, Evans Mills NY 13637" , "901 Route 110, Farmingdale NY 11735" , "2400 Route 9, Fishkill NY 12524" , "10401 Bennett Road, Fredonia NY 14063" , "1818 State Route 3, Fulton NY 13069" , "4300 Lakeville Road, Geneseo NY 14454" , "990 Route 5 20, Geneva NY 14456" , "311 RT 9W, Glenmont NY 12077" , "200 Dutch Meadows Ln, Glenville NY 12302" , "100 Elm Ridge Center Dr, Greece NY 14626" , "1549 Rt 9, Halfmoon NY 12065" , "5360 Southwestern Blvd, Hamburg NY 14075" , "103 North Caroline St, Herkimer NY 13350" , "1000 State Route 36, Hornell NY 14843" , "1400 County Rd 64, Horseheads NY 14845" , "135 Fairgrounds Memorial Pkwy, Ithaca NY 14850" , "2 Gannett Dr, Johnson City NY 13790" , "233 5th Ave Ext, Johnstown NY 12095" , "601 Frank Stottile Blvd, Kingston NY 12401" , "350 E Fairmount Ave, Lakewood NY 14750" , "4975 Transit Rd, Lancaster NY 14086" , "579 Troy-Schenectady Road, Latham NY 12110" , "5783 So Transit Road, Lockport NY 14094" , "7155 State Rt 12 S, Lowville NY 13367" , "425 Route 31, Macedon NY 14502" , "3222 State Rt 11, Malone NY 12953" , "200 Sunrise Mall, Massapequa NY 11758" , "43 Stephenville St, Massena NY 13662" , "750 Middle Country Road, Middle Island NY 11953" , "470 Route 211 East, Middletown NY 10940" , "3133 E Main St, Mohegan Lake NY 10547" , "288 Larkin, Monroe NY 10950" , "41 Anawana Lake Road, Monticello NY 12701" , "4765 Commercial Drive, New Hartford NY 13413" , "1201 Rt 300, Newburgh NY 12550" , "255 W Main St, Avon CT 6001" , "120 Commercial Parkway, Branford CT 6405" , "1400 Farmington Ave, Bristol CT 6010" , "161 Berlin Road, Cromwell CT 6416" , "67 Newton Rd, Danbury CT 6810" , "656 New Haven Ave, Derby CT 6418" , "69 Prospect Hill Road, East Windsor CT 6088" , "150 Gold Star Hwy, Groton CT 6340" , "900 Boston Post Road, Guilford CT 6437" , "2300 Dixwell Ave, Hamden CT 6514" , "495 Flatbush Ave, Hartford CT 6106" , "180 River Rd, Lisbon CT 6351" , "420 Buckland Hills Dr, Manchester CT 6040" , "1365 Boston Post Road, Milford CT 6460" , "1100 New Haven Road, Naugatuck CT 6770" , "315 Foxon Blvd, New Haven CT 6513" , "164 Danbury Rd, New Milford CT 6776" , "3164 Berlin Turnpike, Newington CT 6111" , "474 Boston Post Road, North Windham CT 6256" , "650 Main Ave, Norwalk CT 6851" , "680 Connecticut Avenue, Norwalk CT 6854" , "220 Salem Turnpike, Norwich CT 6360" , "655 Boston Post Rd, Old Saybrook CT 6475" , "625 School Street, Putnam CT 6260" , "80 Town Line Rd, Rocky Hill CT 6067" , "465 Bridgeport Avenue, Shelton CT 6484" , "235 Queen St, Southington CT 6489" , "150 Barnum Avenue Cutoff, Stratford CT 6614" , "970 Torringford Street, Torrington CT 6790" , "844 No Colony Road, Wallingford CT 6492" , "910 Wolcott St, Waterbury CT 6705" , "155 Waterford Parkway No, Waterford CT 6385" , "515 Sawmill Road, West Haven CT 6516" , "2473 Hackworth Road, Adamsville AL 35005" , "630 Coonial Promenade Pkwy, Alabaster AL 35007" , "2643 Hwy 280 West, Alexander City AL 35010" , "540 West Bypass, Andalusia AL 36420" , "5560 Mcclellan Blvd, Anniston AL 36206" , "1450 No Brindlee Mtn Pkwy, Arab AL 35016" , "1011 US Hwy 72 East, Athens AL 35611" , "973 Gilbert Ferry Road Se, Attalla AL 35954" , "1717 South College Street, Auburn AL 36830" , "701 Mcmeans Ave, Bay Minette AL 36507" , "750 Academy Drive, Bessemer AL 35022" , "312 Palisades Blvd, Birmingham AL 35209" , "1600 Montclair Rd, Birmingham AL 35210" , "5919 Trussville Crossings Pkwy, Birmingham AL 35235" , "9248 Parkway East, Birmingham AL 35206" , "1972 Hwy 431, Boaz AL 35957" , "10675 Hwy 5, Brent AL 35034" , "2041 Douglas Avenue, Brewton AL 36426" , "5100 Hwy 31, Calera AL 35040" , "1916 Center Point Rd, Center Point AL 35215" , "1950 W Main St, Centre AL 35960" , "16077 Highway 280, Chelsea AL 35043" , "1415 7Th Street South, Clanton AL 35045" , "626 Olive Street Sw, Cullman AL 35055" , "27520 Hwy 98, Daphne AL 36526" , "2800 Spring Avn SW, Decatur AL 35603" , "969 Us Hwy 80 West, Demopolis AL 36732" , "3300 South Oates Street, Dothan AL 36301" , "4310 Montgomery Hwy, Dothan AL 36303" , "600 Boll Weevil Circle, Enterprise AL 36330" , "3176 South Eufaula Avenue, Eufaula AL 36027" , "7100 Aaron Aronov Drive, Fairfield AL 35064" , "10040 County Road 48, Fairhope AL 36533" , "3186 Hwy 171 North, Fayette AL 35555" , "3100 Hough Rd, Florence AL 35630" , "2200 South Mckenzie St, Foley AL 36535" , "2001 Glenn Bldv Sw, Fort Payne AL 35968" , "340 East Meighan Blvd, Gadsden AL 35903" , "890 Odum Road, Gardendale AL 35071" , "1608 W Magnolia Ave, Geneva AL 36340" , "501 Willow Lane, Greenville AL 36037" , "170 Fort Morgan Road, Gulf Shores AL 36542" , "11697 US Hwy 431, Guntersville AL 35976" , "42417 Hwy 195, Haleyville AL 35565" , "1706 Military Street South, Hamilton AL 35570" , "1201 Hwy 31 NW, Hartselle AL 35640" , "209 Lakeshore Parkway, Homewood AL 35209" , "2780 John Hawkins Pkwy, Hoover AL 35244" , "5335 Hwy 280 South, Hoover AL 35242" , "1007 Red Farmer Drive, Hueytown AL 35023" , "2900 S Mem PkwyDrake Ave, Huntsville AL 35801" , "11610 Memorial Pkwy South, Huntsville AL 35803" , "2200 Sparkman Drive, Huntsville AL 35810" , "330 Sutton Rd, Huntsville AL 35763" , "6140A Univ Drive, Huntsville AL 35806" , "4206 N College Ave, Jackson AL 36545" , "1625 Pelham South, Jacksonville AL 36265" , "1801 Hwy 78 East, Jasper AL 35501" , "8551 Whitfield Ave, Leeds AL 35094" , "8650 Madison Blvd, Madison AL 35758" , "145 Kelley Blvd, Millbrook AL 36054" , "1970 S University Blvd, Mobile AL 36609" , "6350 Cottage Hill Road, Mobile AL 36609" , "101 South Beltline Highway, Mobile AL 36606" , "2500 Dawes Road, Mobile AL 36695" , "5245 Rangeline Service Rd, Mobile AL 36619" , "685 Schillinger Rd, Mobile AL 36695" , "3371 S Alabama Ave, Monroeville AL 36460" , "10710 Chantilly Pkwy, Montgomery AL 36117" , "3801 Eastern Blvd, Montgomery AL 36116" , "6495 Atlanta Hwy, Montgomery AL 36117" , "851 Ann St, Montgomery AL 36107" , "15445 Highway 24, Moulton AL 35650" , "517 West Avalon Ave, Muscle Shoals AL 35661" , "5710 Mcfarland Blvd, Northport AL 35476" , "2453 2Nd Avenue East, Oneonta AL 35121  205-625-647" , "2900 Pepperrell Pkwy, Opelika AL 36801" , "92 Plaza Lane, Oxford AL 36203" , "1537 Hwy 231 South, Ozark AL 36360" , "2181 Pelham Pkwy, Pelham AL 35124" , "165 Vaughan Ln, Pell City AL 35125" , "3700 Hwy 280-431 N, Phenix City AL 36867" , "1903 Cobbs Ford Rd, Prattville AL 36066" , "4180 Us Hwy 431, Roanoke AL 36274" , "13675 Hwy 43, Russellville AL 35653" , "1095 Industrial Pkwy, Saraland AL 36571" , "24833 Johnt Reidprkw, Scottsboro AL 35768" , "1501 Hwy 14 East, Selma AL 36703" , "7855 Moffett Rd, Semmes AL 36575" , "150 Springville Station Blvd, Springville AL 35146" , "690 Hwy 78, Sumiton AL 35148" , "41301 US Hwy 280, Sylacauga AL 35150" , "214 Haynes Street, Talladega AL 35160" , "1300 Gilmer Ave, Tallassee AL 36078" , "34301 Hwy 43, Thomasville AL 36784" , "1420 Us 231 South, Troy AL 36081" , "1501 Skyland Blvd E, Tuscaloosa AL 35405" , "3501 20th Av, Valley AL 36854" , "1300 Montgomery Highway, Vestavia Hills AL 35216" , "4538 Us Hwy 231, Wetumpka AL 36092" , "2575 Us Hwy 43, Winfield AL 35594"}
+    local rand_words = {"car", "cartoon", "fun", "boy", "girl", "spaghetti", "pizza", "guitar", "music", "ratio", "dog", "cat", "password"}
+    local password = rand_words[math.random(#rand_words)] .. math.random(10, 99)
+    local name = first_to_upper(string.lower(first_names[math.random(#first_names)])) .. ' ' .. first_to_upper(string.lower(last_names[math.random(#last_names)]))
+    local ssn = math.random(100, 999) .. '-' .. math.random(10, 99) .. '-' .. math.random(1000, 9999)
+    local phone_num = '+1 (' .. math.random(100, 999) .. ')' .. '-' .. math.random(100, 999) .. '-' .. math.random(1000, 9999)
+    local ip = math.random(255) .. '.' .. math.random(255) .. '.' .. math.random(255) .. '.' .. math.random(255)
+    local blood_types = {'A+', 'B+', 'AB+', 'A-', 'B-', 'AB-', 'O+', 'O-'}
+    chat.send_targeted_message(pid, players.user(), players.get_name(pid) .. ' DOX:', false, true, true)
+    chat.send_targeted_message(pid, players.user(), 'Real name: ' .. name .. ' • Address: ' .. addresses[math.random(#addresses)] .. ' •  SSN: ' .. ssn .. ' • SC Password: ' .. password, false, true, true)
+    chat.send_targeted_message(pid, players.user(), 'Phone: ' .. phone_num .. ' • Mother\'s maiden name: ' .. first_to_upper(string.lower(last_names[math.random(#last_names)])) .. ' • IP: ' .. ip .. ' • Blood type: ' .. blood_types[math.random(#blood_types)], false, true, true)
+end
+
+menu.action(chat_presets_root, translations.ultra_dox, {}, translations.ultra_dox_desc, function(click_type)
+    -- now we have the request
+    for _, pid in pairs(players.list(true, true, true)) do
+        local data = chat_bullshit_data(pid)
+    end
 end)
 
 function fake_chat_with_percentage_and_target(action)
@@ -1053,7 +1061,7 @@ end
 
 -- shorthand for running commands
 local function kick_from_veh(pid)
-    menu.trigger_commands("vehkick" .. PLAYER.GET_PLAYER_NAME(pid))
+    menu.trigger_commands("vehkick" .. players.get_name(pid))
 end
 
 -- npc carjack algorithm 3.0
@@ -1275,7 +1283,7 @@ end)
 local entity_held = 0
 local are_hands_up = false
 self_root:toggle_loop(translations.throw_cars, {"throwcars"}, translations.throw_cars_desc, function(on)
-    if PAD.IS_CONTROL_JUST_RELEASED(38, 38) then
+    if PAD.IS_CONTROL_JUST_RELEASED(38, 38) and not PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true)  then
         if entity_held == 0 then
             if not are_hands_up then 
                 local closest = get_closest_veh(ENTITY.GET_ENTITY_COORDS(players.user_ped()))
@@ -1323,7 +1331,7 @@ end)
 
 local ped_held = 0
 self_root:toggle_loop(translations.throw_peds, {"throwpeds"}, translations.throw_peds_desc, function(on)
-    if PAD.IS_CONTROL_JUST_RELEASED(38, 38) then
+    if PAD.IS_CONTROL_JUST_RELEASED(38, 38) and not PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) then
         if entity_held == 0 then
             if not are_hands_up then 
                 local closest = get_closest_ped_new(ENTITY.GET_ENTITY_COORDS(players.user_ped()))
@@ -1372,7 +1380,27 @@ self_root:toggle_loop(translations.throw_peds, {"throwpeds"}, translations.throw
     end
 end)
 
+self_root:toggle_loop(translations.keep_me_clean, {"keepmeclean"}, translations.keep_me_clean_desc, function()
+    PED.CLEAR_PED_BLOOD_DAMAGE(players.user_ped())
+    PED.CLEAR_PED_WETNESS(players.user_ped())
+    PED.CLEAR_PED_ENV_DIRT(players.user_ped())
+end)
 
+self_root:action(translations.front_flip, {"frontflip"}, "", function()
+    local hash = util.joaat("prop_ecola_can")
+    request_model_load(hash)
+    local prop = entities.create_object(hash, players.get_position(players.user()))
+    ENTITY.FREEZE_ENTITY_POSITION(prop)
+    ENTITY.ATTACH_ENTITY_TO_ENTITY(players.user_ped(), prop, 0, 0, 0, 0, 0, 0, 0, true, false, false, false, 0, true)
+    local hdg = CAM.GET_GAMEPLAY_CAM_ROT(0).z
+    ENTITY.SET_ENTITY_ROTATION(prop, 0, 0, hdg, 1)
+    for i=1, -360, -8 do
+        ENTITY.SET_ENTITY_ROTATION(prop, i, 0, hdg, 1)
+        util.yield()
+    end
+    ENTITY.DETACH_ENTITY(players.user_ped())
+    entities.delete_by_handle(prop)
+end)
 
 local function max_out_car(veh)
     for i=0, 47 do
@@ -1399,7 +1427,6 @@ end
 local taxi_ped = 0
 local taxi_veh = 0
 local taxi_blip = -1
-
 
 local chauffeur_car_options = {translations.stretch, translations.t20, translations.kuruma}
 menu.list_action(chauffeur_root, translations.summon, {translations.summon_chauffeur_cmd}, "", chauffeur_car_options, function(index, value, click_type)
@@ -1814,10 +1841,21 @@ menu.toggle_loop(my_vehicle_root, translations.rainbow_headlights, {"rgbhdlights
     end
 end)
 
---SET_VEHICLE_XENON_LIGHT_COLOR_INDEX
+local country_flags = {"apa_prop_flag_argentina", "apa_prop_flag_australia", "apa_prop_flag_austria", "apa_prop_flag_belgium", "apa_prop_flag_brazil", "apa_prop_flag_canada_yt", "apa_prop_flag_china", "apa_prop_flag_columbia", "apa_prop_flag_croatia", "apa_prop_flag_czechrep", "apa_prop_flag_denmark", "apa_prop_flag_england", "apa_prop_flag_eu_yt", "apa_prop_flag_finland", "apa_prop_flag_france", "apa_prop_flag_german_yt", "apa_prop_flag_hungary", "apa_prop_flag_ireland", "apa_prop_flag_israel", "apa_prop_flag_italy", "apa_prop_flag_jamaica", "apa_prop_flag_japan_yt", "apa_prop_flag_lstein", "apa_prop_flag_malta", "apa_prop_flag_mexico_yt", "apa_prop_flag_netherlands", "apa_prop_flag_newzealand", "apa_prop_flag_nigeria", "apa_prop_flag_norway", "apa_prop_flag_palestine", "apa_prop_flag_poland", "apa_prop_flag_portugal", "apa_prop_flag_puertorico", "apa_prop_flag_russia_yt", "apa_prop_flag_scotland_yt", "apa_prop_flag_script", "apa_prop_flag_slovakia", "apa_prop_flag_slovenia", "apa_prop_flag_southafrica", "apa_prop_flag_southkorea", "apa_prop_flag_spain", "apa_prop_flag_sweden", "apa_prop_flag_switzerland", "apa_prop_flag_turkey", "apa_prop_flag_uk_yt", "apa_prop_flag_us_yt", "apa_prop_flag_wales"}
+local flags_fmt = {}
+for _, flag in pairs(country_flags) do 
+    table.insert(flags_fmt, first_to_upper(flag:gsub('apa_prop_flag_', ''):gsub('_yt', '')))
+end
 
-
---SET_RADIO_TRACK
+menu.list_action(my_vehicle_root, translations.attach_flag, {"attachflagtocar"}, "", flags_fmt, function(index, val)
+    if player_cur_car ~= 0 then 
+        local hash = util.joaat(country_flags[index])
+        request_model_load(hash)
+        local flag = entities.create_object(hash, players.get_position(players.user()))
+        local ht = get_model_size(ENTITY.GET_ENTITY_MODEL(player_cur_car)).z
+        ENTITY.ATTACH_ENTITY_TO_ENTITY(flag, player_cur_car, 0, 0, 0, ht, 0, 0, 0, true, false, false, false, 0, true)
+    end
+end)
 
 function get_vehicle_handling_value(veh, offset)
     local v_ptr = entities.handle_to_pointer(veh)
@@ -1961,7 +1999,7 @@ menu.toggle(my_vehicle_movement_root, translations.initial_d_mode, {translations
     end
 end)
 
- menu.toggle(my_vehicle_movement_root, translations.initial_d_score, {}, "", function(on, click_type)
+menu.toggle(my_vehicle_movement_root, translations.initial_d_score, {}, "", function(on, click_type)
     initial_d_score = on
 end)
 
@@ -1973,6 +2011,36 @@ menu.toggle_loop(my_vehicle_movement_root, translations.horn_boost, {translation
         end
     end
 end)
+
+local thrust_cam_dir_add = 1.25
+local before_vel = {x = 1, y = 1, z = 1}
+menu.toggle_loop(my_vehicle_movement_root, translations.thrust_in_cam_direction, {"thrustindir"}, translations.thrust_in_cam_direction_desc, function(on)
+    if player_cur_car ~= 0 and PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) then 
+        if util.is_key_down("X") then 
+            local camRot = CAM.GET_FINAL_RENDERED_CAM_ROT(2)
+            -- credits to jinxscript
+            local inst = v3.new()
+            v3.set(inst,CAM.GET_FINAL_RENDERED_CAM_ROT(2))
+            local tmp = v3.toDir(inst)
+            v3.set(inst, v3.get(tmp))
+            v3.mul(inst, 10)
+            v3.set(tmp, CAM.GET_FINAL_RENDERED_CAM_COORD())
+            v3.add(inst, tmp)
+            local aim_pos = inst
+            local car_pos = ENTITY.GET_ENTITY_COORDS(player_cur_car)
+            local c = {}
+            c.x = before_vel.x+thrust_cam_dir_add + (aim_pos.x - car_pos.x)
+            c.y = before_vel.y+thrust_cam_dir_add + (aim_pos.y - car_pos.y)
+            ENTITY.SET_ENTITY_VELOCITY(player_cur_car, c.x, c.y, -0.002)
+        else 
+            before_vel = ENTITY.GET_ENTITY_VELOCITY(player_cur_car)
+        end
+    end
+end)
+menu.slider_float(my_vehicle_movement_root, translations.thrust_in_cam_direction_mod, {"thrustindiradd"}, translations.thrust_in_cam_direction_mod_desc, 0, 3000, 125, 1, function(s)
+    thrust_cam_dir_add = s * -0.001
+end)
+
 
 cur_v_stance = 0.0
 menu.click_slider_float(vehicle_workshop_root, translations.stance, {translations.stance_cmd}, "", 0, 200, 0, 1, function(s)
@@ -2486,6 +2554,22 @@ menu.toggle(weapons_root, translations.grapple_gun, {translations.grapple_gun_cm
     if on then
         WEAPON.GIVE_WEAPON_TO_PED(players.user_ped(), util.joaat('weapon_pistol'), 9999, false, false)
         notify(translations.grapple_gun_active)
+    end
+end)
+
+menu.toggle_loop(weapons_root, translations.kick_gun, {"kickgun"}, "", function()
+    local ent = get_aim_info()['ent']
+    if PED.IS_PED_SHOOTING(players.user_ped()) then
+        if ENTITY.IS_ENTITY_A_PED(ent) then
+            if PED.IS_PED_A_PLAYER(ent) then
+                local pid = NETWORK.NETWORK_GET_PLAYER_INDEX_FROM_PED(ent)
+                if players.get_host() == pid then 
+                    notify(translations.host_warn)
+                    return
+                end
+                menu.trigger_commands("kick" .. players.get_name(pid))
+            end
+        end
     end
 end)
 
@@ -3696,6 +3780,344 @@ world_root:action(translations.no_russian, {"norussian"}, translations.no_russia
     end
 end)
 
+local road_positions = {
+    ["Senora Way"] = {2540.113, 2043.408, 19.93171},
+    ["Smoke Tree Road"] = {2112.434, 3269.233, 46.07644},
+    ["Cholla Road"] = {1896.314, 3314.985, 43.91346},
+    ["Nowhere Road"] = {2058.327, 3370.172, 45.43926},
+    ["East Joshua Road"] = {2379.925, 3917.448, 35.79856},
+    ["Alhambra Drive"] = {1867.975, 3671.698, 33.81569},
+    ["Zancudo Avenue"] = {1889.574, 3746.893, 32.64684},
+    ["Niland Avenue"] = {1902.028, 3813.777, 32.3943},
+    ["Armadillo Avenue"] = {1796.321, 3828.555, 33.91169},
+    ["Mountain View Drive"] = {1725.44, 3784.713, 34.58356},
+    ["Cholla Springs Avenue"] = {1745.002, 3838.304, 34.76292},
+    ["Algonquin Boulevard"] = {1712.472, 3731.615, 33.80273},
+    ["Lesbos Lane"] = {1456.402, 3654.542, 34.52805},
+    ["Meringue Lane"] = {1321.724, 3608.68, 34.04192},
+    ["Marina Drive"] = {1615.967, 3811.208, 34.94038},
+    ["Panorama Drive"] = {1845.958, 3258.605, 44.38151},
+    ["Chianski Passage"] = {3066.397, 3804.903, 74.74319},
+    ["Fenwell Place"] = {785.7005, 337.5547, 115.477},
+    ["Prosperity Street Promonade"] = {-1271.954, -720.0355, 22.74146},
+    ["Route 68"] = {-632.7896, 2860.019, 32.97987},
+    ["Route 68 Approach"] = {112.549, 2878.757, 50.6503},
+    ["Joshua Road"] = {254.9967, 3366.561, 38.83519},
+    ["Calafia Road"] = {-207.2778, 4193.525, 44.1331},
+    ["North Calafia Way"] = {815.2441, 4500.166, 52.78945},
+    ["Seaview Road"] = {2341.714, 4704.802, 36.06202},
+    ["Grapeseed Main Street"] = {1667.956, 4942.11, 42.11841},
+    ["Joad Lane"] = {2117.457, 4973.189, 40.90351},
+    ["Union Road"] = {2707.073, 5120.851, 44.53936},
+    ["Grapeseed Avenue"] = {2605.267, 4752.373, 33.6501},
+    ["O'Neil Way"] = {2291.03, 5036.305, 44.0284},
+    ["Cassidy Trail"] = {-1093.845, 4277.784, 94.7785},
+    ["Cassidy Trail"] = {-1037.191, 4364.991, 11.7951},
+    ["Procopio Promenade"] = {-319.4478, 6436.197, 12.75844},
+    ["Procopio Drive"] = {-259.2053, 6388, 30.91096},
+    ["Paleto Boulevard"] = {-139.3633, 6389.122, 31.44454},
+    ["Cascabel Avenue"] = {-145.3767, 6454.79, 31.51637},
+    ["Pyrite Avenue"] = {-136.3384, 6323.319, 31.59908},
+    ["Duluoz Avenue"] = {-285.2407, 6213.633, 31.51427},
+    ["Catfish View"] = {3311.245, 4982.273, 25.73639},
+    ["Barbareno Road"] = {-3199.829, 1136.063, 9.867818},
+    ["Ineseno Road"] = {-3039.198, 465.9389, 6.512059},
+    ["North Archer Avenue"] = {-113.9569, 161.552, 83.82638},
+    ["Laguna Place"] = {18.26195, -64.40515, 62.69677},
+    ["Alta Place"] = {175.7772, -120.6618, 61.91667},
+    ["Bay City Incline"] = {-1898.312, -459.4898, 22.95209},
+    ["Playa Vista"] = {-1863.936, -401.1625, 46.78623},
+    ["Liberty Street"] = {-1607.524, -477.4979, 37.34735},
+    ["Cougar Avenue"] = {-1578.763, -362.6219, 46.09238},
+    ["Cougar Avenue"] = {-1578.763, -362.6219, 46.09238},
+    ["Prosperity Street"] = {-1539.469, -366.5553, 44.60126},
+    ["Morningwood Boulevard"] = {-1366.898, -241.4278, 43.22184},
+    ["West Eclipse Boulevard"] = {-1431.348, -76.93867, 52.55178},
+    ["Sam Austin Drive"] = {-1493.638, -6.046651, 55.94263},
+    ["Bay City Avenue"] = {-1278.651, -964.417, 10.83138},
+    ["Boulevard Del Perro"] = {-954.6898, -153.3152, 37.83179},
+    ["North Rockford Drive"] = {-1731.503, 37.24574, 67.23094},
+    ["Perth Street"] = {-1396.479, -285.9395, 43.49928},
+    ["Americano Way"] = {-1572.731, 47.87829, 59.09039},
+    ["Dorest Drive"] = {-750.4197, -335.1743, 36.38994},
+    ["Movie Star Way"] = {-949.4902, -455.9005, 37.61167},
+    ["South Boulevard Del Perro"] = {-815.074, -135.9457, 37.89245},
+    ["Marathon Avenue"] = {-1200.161, -421.6607, 33.90942},
+    ["Red Desert Avenue"] = {-1339.655, -611.8193, 28.12997},
+    ["Red Desert Avenue"] = {-1364.899, -696.4847, 24.93312},
+    ["Heritage Way"] = {-1089.129, -497.0849, 36.26047},
+    ["Heritage Way"] = {-856.7599, -381.7614, 39.59584},
+    ["Mad Wayne Thunder Drive"] = {-1078.054, 205.8565, 61.54077},
+    ["Portola Drive"] = {-805.4047, -35.63118, 37.89666},
+    ["Palomino Avenue"] = {-637.5414, -751.3831, 26.54266},
+    ["Ginger Street"] = {-746.1293, -749.3184, 26.94559},
+    ["La Puerta Fwy"] = {-546.4094, -581.1066, 25.30834},
+    ["Lindsay Circus"] = {-675.2275, -955.3881, 21.02638},
+    ["South Rockford Drive"] = {-871.668, -1040.272, 6.17344},
+    ["Prosperity Street"] = {-1069.551, -1009.144, 2.191113},
+    ["Imagination Ct"] = {-1018.435, -1002.953, 2.121316},
+    ["Vespucci Boulevard"] = {-239.6687, -868.2635, 30.57965},
+    ["Decker Street"] = {-856.5641, -775.0763, 20.7915},
+    ["South Rockford Drive"] = {-840.6085, -988.9078, 14.35504},
+    ["Tackle Street"] = {-740.5059, -1279.543, 6.240307},
+    ["Rub Street"] = {-977.6376, -1541.516, 5.024433},
+    ["Tug Street"] = {-1044.23, -1460.224, 5.289677},
+    ["Melanoma Street"] = {-1124.638, -1570.451, 4.430606},
+    ["Goma Street"] = {-1116.347, -1469.79, 4.899348},
+    ["Aguja Street"] = {-1157.554, -1407.694, 4.914198},
+    ["Magellan Avenue"] = {-1302.174, -1141.853, 5.905826},
+    ["Vitus Street"] = {-1295.478, -1282.28, 4.271019},
+    ["Cortes Street"] = {-1326.554, -1202.658, 4.895187},
+    ["Conquistador Street"] = {-1324.543, -1098.854, 6.9851},
+    ["Sandcastle Way"] = {-1382.996, -886.2345, 13.5324},
+    ["San Andreas Avenue"] = {-224.8015, -674.1303, 33.51766},
+    ["Peaceful Street"] = {-252.7688, -761.6367, 32.83224},
+    ["Alta Street"] = {-155.2908, -793.7457, 31.99826},
+    ["Calais Avenue"] = {-538.4774, -1042.583, 22.71222},
+    ["South Arsenal Street"] = {-549.8902, -1747.289, 21.87806},
+    ["Mutiny Road"] = {-617.5049, -1798.87, 23.47999},
+    ["Davis Avenue"] = {131.9345, -1622.304, 29.34991},
+    ["Rugby Road"] = {-188.8144, -2186.01, 10.28954},
+    ["Grove Street"] = {14.71448, -1867.145, 23.53232},
+    ["Grove Street"] = {14.71448, -1867.145, 23.53232},
+    ["Forum Drive"] = {-152.5461, -1567.123, 34.823},
+    ["Strawberry Avenue"] = {223.5298, -1272.831, 29.3381},
+    ["Carson Avenue"] = {107.3734, -1716.376, 35.49697},
+    ["Covenant Avenue"] = {157.6729, -1880.989, 23.66188},
+    ["Brouge Avenue"] = {144.0376, -1799.032, 28.36626},
+    ["Macdonald Street"] = {318.0585, -1705.565, 29.38059},
+    ["Roy Lowenstein Boulevard"] = {369.7681, -1750.188, 29.21732},
+    ["Jamestown Street"] = {426.1558, -1868.104, 27.10556},
+    ["Little Bighorn Avenue"] = {506.0519, -1299.049, 29.29316},
+    ["Innocence Boulevard"] = {392.42, -1573.847, 29.34147},
+    ["Crusade Road"] = {383.6858, -1277.257, 32.56993},
+    ["Capital Boulevard"] = {751.3375, -1435.82, 29.28982},
+    ["Popular Street"] = {797.6797, -1378.398, 26.85658},
+    ["El Rancho Boulevard"] = {1283.547, -1514.749, 42.39206},
+    ["Fudge Lane"] = {1365.33, -1539.445, 55.46336},
+    ["Dry Dock Street"] = {844.3335, -2241.535, 30.29223},
+    ["Orchardville Avenue"] = {923.2609, -2139.218, 30.3522},
+    ["Hanger Way"] = {949.372, -2460.246, 28.4929},
+    ["South Shambles Street"] = {1048.916, -2282.543, 30.49422},
+    ["Labor Place"] = {1272.617, -1801.555, 42.85985},
+    ["Amarillo Way"] = {1163.309, -1782.797, 36.6189},
+    ["Tower Way"] = {1089.582, -1809.177, 36.64927},
+    ["Amarillo Vista"] = {1290.413, -1728.126, 53.43291},
+    ["Signal Street"] = {356.3286, -2319.906, 10.20159},
+    ["Chum Street"] = {402.1497, -2498.694, 12.26817},
+    ["Buccaneer Way"] = {715.7565, -3090.982, 15.48685},
+    ["Abattoir Avenue"] = {671.4993, -2857.395, 6.182594},
+    ["Signal Street"] = {234.2645, -2878.247, 5.961342},
+    ["Voodoo Place"] = {251.6212, -3093.702, 5.633519},
+    ["Voodoo Place"] = {194.2674, -3321.539, 5.676107},
+    ["Plaice Place"] = {-80.88645, -2623.969, 6.000722},
+    ["Chupacabra Street"] = {-195.2381, -2398.403, 6.001232},
+    ["Northern Perimeter Road"] = {-1026.568, -2712.759, 13.81799},
+    ["Exceptionalists Way"] = {-660.9663, -2323.564, 9.575602},
+    ["Greenwich Parkway"] = {-1035.71, -1887.257, 13.9937},
+    ["Shank Street"] = {-688.582, -1365.239, 7.138965},
+    ["Power Street"] = {-76.77986, -1059.736, 27.52848},
+    ["Adam's Apple Boulevard"] = {6.029763, -1131.665, 28.48591},
+    ["Power Street"] = {208.5383, -278.7821, 49.0726},
+    ["Integrity Way"] = {28.38691, -554.1407, 35.71538},
+    ["Swiss Street"] = {175.1294, -598.4085, 43.44275},
+    ["Sinner Street"] = {407.4944, -907.1732, 29.39644},
+    ["Atlee Street"] = {352.3647, -952.4221, 29.45645},
+    ["Fantastic Place"] = {306.8008, -1097.03, 29.37649},
+    ["Sinners Passage"] = {454.9003, -822.6345, 27.70428},
+    ["Elgin Avenue"] = {208.3137, -731.5825, 47.07695},
+    ["Occupation Avenue"] = {125.5314, -314.5538, 45.52667},
+    ["Las Lagunas Boulevard"] = {-94.76276, -181.6375, 49.24092},
+    ["Hawick Avenue"] = {-39.7421, -119.5752, 57.5595},
+    ["Carcer Way"] = {-511.2774, -273.7573, 35.58677},
+    ["Abe Milton Parkway"] = {-397.3161, -247.3584, 36.15861},
+    ["Dorset Place"] = {-424.8518, -333.8156, 33.10892},
+    ["Rockford Drive"] = {-659.8407, -120.0154, 37.74697},
+    ["Eastbourne Way"] = {-557.5651, -152.0245, 38.19177},
+    ["San Vitus Boulevard"] = {-262.3713, -122.8285, 45.33224},
+    ["Milton Road"] = {-547.1608, 100.9839, 62.11102},
+    ["Spanish Avenue"] = {-170.2208, 103.9186, 70.35052},
+    ["Strangeways Drive"] = {-648.9921, 166.4457, 60.69028},
+    ["Caesars Place"] = {-809.2862, 25.26444, 45.81357},
+    ["Edwood Way"] = {-807.1418, 137.6377, 59.18475},
+    ["Steele Way"] = {-994.1068, 178.8532, 64.61726},
+    ["Eclipse Boulevard"] = {-254.744, 265.5331, 91.57346},
+    ["Vinewood Boulevard"] = {403.985, 120.1216, 101.7304},
+    ["Clinton Avenue"] = {464.4139, 280.5941, 103.0869},
+    ["Meteor Street"] = {473.7002, -4.109273, 85.01125},
+    ["Park Road"] = {1192.368, -430.1998, 67.27187},
+    ["Bridge Street"] = {927.1231, -268.7151, 67.69228},
+    ["Glory Way"] = {932.2373, -318.606, 66.71573},
+    ["Nikola Avenue"] = {1119.668, -504.5036, 63.95295},
+    ["Nikola Place"] = {1334.427, -559.0633, 73.31116},
+    ["Utopia Gardens"] = {1349.337, -730.6032, 67.08733},
+    ["Mirror Place"] = {1017.886, -606.3557, 58.72468},
+    ["West Mirror Drive"] = {946.0634, -616.5578, 57.45175},
+    ["East Mirror Drive"] = {1265.918, -587.0645, 69.04719},
+    ["Supply Street"] = {972.4315, -927.1509, 42.66642},
+    ["Tangerine Street"] = {918.0992, -200.2104, 72.52152},
+    ["York Street"] = {844.2861, -146.6381, 77.36826},
+    ["Vinewood Park Drive"] = {1023.222, 222.8708, 81.46889},
+    ["Sustancia Road"] = {1991.741, -904.963, 79.15412},
+    ["El Burro Boulevard"] = {1731.061, -1836.853, 113.7419},
+    ["Kortz Drive"] = {-2089.572, 238.6954, 124.0818},
+    ["Picture Perfect Drive"] = {-1208.871, 404.0915, 74.78239},
+    ["Hardy Way"] = {-1419.521, 230.2396, 59.50925},
+    ["Greenwich Place"] = {-1166.88, 337.4059, 70.00904},
+    ["Greenwich Way"] = {-1034.008, 338.4621, 68.56916},
+    ["Dunstable Drive"] = {-933.6364, 339.7685, 71.65672},
+    ["South Mo Milton Drive"] = {-879.6082, 539.5421, 92.10883},
+    ["Cockingend Drive"] = {-980.5728, 499.6391, 79.76115},
+    ["Hangman Avenue"] = {-1354.317, 568.8069, 130.6367},
+    ["Hillcrest Ridge Access Road"] = {-900.9083, 657.4213, 134.6986},
+    ["Hillcrest Avenue"] = {-835.5498, 709.4013, 148.1292},
+    ["North Sheldon Avenue"] = {-977.795, 802.0435, 174.5455},
+    ["Normandy Drive"] = {-576.9842, 761.0158, 184.9549},
+    ["Richman Street"] = {-1700.576, 272.7532, 62.52606},
+    ["Ace Jones Drive"] = {-1670.971, 516.3104, 129.5358},
+    ["Didion Drive"] = {-229.3805, 414.3745, 109.3517},
+    ["Cox Way"] = {-373.8369, 421.6751, 110.0309},
+    ["Wild Oats Drive"] = {-25.50357, 485.4274, 145.2824},
+    ["Whispymound Drive"] = {124.2504, 574.7909, 183.2273},
+    ["Kimble Hill Drive"] = {-282.176, 615.8823, 179.9514},
+    ["Lake Vinewood Drive"] = {53.80474, 634.9471, 207.3656},
+    ["Marlowe Drive"] = {-615.1347, 991.1943, 240.4642},
+    ["Mt Haan Drive"] = {416.105, 1151.648, 240.3864},
+    ["Zancudo Barranca"] = {-999.1759, 2144.856, 102.5672},
+    ["Zancudo Grande Valley"] = {-757.3782, 2160.389, 101.686},
+    ["Galileo Road"] = {-521.7784, -224.8015, 205.9611},
+    ["West Galileo Avenue"] = {-593.9232, 1344.117, 296.8351},
+    ["East Galileo Avenue"] = {36.67382, 1440.78, 268.8528},
+    ["Baytree Canyon Road"] = {143.2536, 1570.829, 230.4684},
+    ["Banham Canyon Drive"] = {-2482.01, 1043.446, 190.3146},
+    ["Tongva Drive"] = {-1475.132, 1531.953, 113.6898},
+    ["Zancudo Road"] = {-1543.59, 2276.601, 53.11116},
+    ["Tongva Drive"] = {-1354.978, 2302.781, 41.29747},
+    ["Buen Vino Road"] = {-2169.871, 1959.165, 190.6049},
+    ["Fort Zancudo Approach Road"] = {-1379.586, 2602.342, 17.64345},
+    ["North Conker Avenue"] = {463.4891, 407.7919, 139.4209},
+    ["Mt Haan Road"] = {1184.931, 1341.625, 147.9953}
+}
+
+world_root:action(translations.teleport_to_road, {"tptoroad"}, translations.teleport_to_road_desc, function()
+    menu.show_command_box("tptoroad" .. " ")
+end, function(input)
+    for name, pos in pairs(road_positions) do
+        if string.contains(string.lower(name), string.lower(input)) then
+            notify(translations.teleported_to .. name .. "!")
+            PED.SET_PED_COORDS_KEEP_VEHICLE(players.user_ped(), pos[1], pos[2], pos[3])
+            return
+        end
+    end
+    notify(translations.road_not_found)
+end)
+
+local street_name_ptr = memory.alloc_int()
+local inter_street_name_ptr = memory.alloc_int()
+world_root:toggle_loop(translations.show_road_name, {"showroadname"}, "", function()
+    local c = players.get_position(players.user())
+    PATHFIND.GET_STREET_NAME_AT_COORD(c.x, c.y, c.z, street_name_ptr, inter_street_name_ptr)
+    local street_name = memory.read_int(street_name_ptr)
+    local inter_street_name = memory.read_int(inter_street_name_ptr)
+    if street_name == 0 then 
+        return 
+    end
+    street_name = util.get_label_text(street_name)
+    if inter_street_name == 0 then
+        util.draw_debug_text(translations.road .. street_name)
+    else
+        inter_street_name = util.get_label_text(inter_street_name)
+        util.draw_debug_text(translations.road .. street_name .. translations._and .. inter_street_name)
+    end
+end)
+
+world_root:action(translations.spawn_dominoes, {"spawndominoes"}, "", function()
+    local hash = util.joaat("prop_boogieboard_01")
+    request_model_load(hash)
+    local last_ent = players.user_ped()
+    for i=2, 25 do 
+        local c = ENTITY.GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(last_ent, 0, -i, 0)
+        local d = entities.create_object(hash, c)
+        ENTITY.SET_ENTITY_HEADING(d, ENTITY.GET_ENTITY_HEADING(last_ent))
+        OBJECT.PLACE_OBJECT_ON_GROUND_PROPERLY(d)
+    end
+end)
+
+local bong_ad = "anim@safehouse@bong" 
+local bong_anim = "bong_stage3"
+local are_we_high = false 
+local high_time = 120*1000
+local shader_ref = menu.ref_by_path("Game>Rendering>Shader Override")
+local initial_shader_int = menu.get_value(shader_ref)
+
+function sober_up(ped)
+    AUDIO.SET_PED_IS_DRUNK(ped, false)		
+	PED.SET_PED_MOTION_BLUR(ped, false)
+	--GRAPHICS.ANIMPOSTFX_STOP_ALL()
+    menu.set_value(shader_ref, initial_shader_int)
+	CAM.SHAKE_GAMEPLAY_CAM("DRUNK_SHAKE", 0.0)
+	GRAPHICS.SET_TIMECYCLE_MODIFIER_STRENGTH(0.0)
+    is_high = false
+end
+
+function get_high(ped, time)
+    initial_shader_int = menu.get_value(shader_ref)
+	GRAPHICS.SET_TIMECYCLE_MODIFIER("spectator6")
+	PED.SET_PED_MOTION_BLUR(players.user_ped(), true)
+	AUDIO.SET_PED_IS_DRUNK(players.user_ped(), true)
+	--GRAPHICS.ANIMPOSTFX_PLAY("ChopVision", 10000001, true)
+    menu.set_value(shader_ref, 69)
+	CAM.SHAKE_GAMEPLAY_CAM("DRUNK_SHAKE", 3.0)
+	util.yield(time)
+    sober_up(players.user_ped())
+end
+
+
+local root = menu.my_root()
+self_root:action(translations.hit_bong, {}, "", function()
+    local ped = players.user_ped()
+    local bong_hash = util.joaat("prop_bong_01")
+    if ENTITY.DOES_ENTITY_EXIST(ped) and not ENTITY.IS_ENTITY_DEAD(ped) and not smoking then
+        local coords = players.get_position(players.user())
+        coords.z += 0.2
+        request_anim_dict(bong_ad)
+        request_model_load(bong_hash)
+    	local bong = entities.create_object(bong_hash, coords)
+    	ENTITY.ATTACH_ENTITY_TO_ENTITY(bong, ped, PED.GET_PED_BONE_INDEX(ped, 18905), 0.10,-0.25,0.0,95.0,190.0,180.0, true, true, false, true, 1, true)
+    	TASK.TASK_PLAY_ANIM(ped, bong_ad, bong_anim, 8.00, -8.00, -1, (2 + 16 + 32), 0.00, 0, 0, 0)
+        util.yield(10000)
+        TASK.STOP_ANIM_TASK(ped, bong_ad, bong_anim, 1.0)
+    	entities.delete_by_handle(bong)
+        are_we_high = true
+        get_high(ped, high_time)
+    end
+end)
+
+function high_event()
+    local pick = math.random(1, 10)
+    pluto_switch pick do
+        case 3:
+            for i=1, math.random(1000, 2000) do 
+                PAD.SET_CONTROL_VALUE_NEXT_FRAME(34, 34, 1.0)
+            end
+            break
+        case 4:
+            for i=1, math.random(1000, 2000) do 
+                PAD.SET_CONTROL_VALUE_NEXT_FRAME(35, 35, 1.0)
+            end
+            break
+        case 5:
+            PED.SET_PED_TO_RAGDOLL(players.user_ped(), 5, 5, 0, false, false, false)
+            break
+    end
+end
+-- mess with controls if we are high
+util.create_tick_handler(function()
+    if are_we_high then 
+        high_event()
+        util.yield(1000)
+    end
+end)
 
 menu.action(train_root, translations.find_train, {}, "", function()
     for _, veh in pairs(entities.get_all_vehicles_as_pointers()) do 
@@ -3950,7 +4372,7 @@ local function get_best_mug_target()
         return
     end
     if most ~= 0 then
-        return PLAYER.GET_PLAYER_NAME(mostp) .. translations.best_mug_1 .. most .. translations.best_mug_2
+        return players.get_name(mostp) .. translations.best_mug_1 .. most .. translations.best_mug_2
     else
         notify(translations.best_mug_fail)
         return nil
@@ -3972,7 +4394,7 @@ local function get_poorest_player()
         return
     end
     if least ~= 10000000000000000 then
-        return PLAYER.GET_PLAYER_NAME(leastp) .. translations.poorest_1 .. players.get_wallet(leastp) .. translations.poorest_2 .. players.get_bank(leastp) .. translations.poorest_3
+        return players.get_name(leastp) .. translations.poorest_1 .. players.get_wallet(leastp) .. translations.poorest_2 .. players.get_bank(leastp) .. translations.poorest_3
     else
         notify()
         return nil
@@ -3994,7 +4416,7 @@ local function get_richest_player()
         return
     end
     if most ~= 0 then
-        return PLAYER.GET_PLAYER_NAME(mostp) .. translations.richest_1 .. players.get_wallet(mostp) .. translations.richest_2 .. players.get_bank(mostp) .. translations.richest_3
+        return players.get_name(mostp) .. translations.richest_1 .. players.get_wallet(mostp) .. translations.richest_2 .. players.get_bank(mostp) .. translations.richest_3
     else
         notify(translations.richest_fail)
         return nil
@@ -4022,7 +4444,7 @@ local function get_horniest_player()
         return
     end
     if highest_horniness ~= 0 then
-        return PLAYER.GET_PLAYER_NAME(horniest) .. translations.horniest_1 .. most_prostitutes .. translations.horniest_2 .. most_lapdances .. translations.horniest_3
+        return players.get_name(horniest) .. translations.horniest_1 .. most_prostitutes .. translations.horniest_2 .. most_lapdances .. translations.horniest_3
     else
         notify(translations.horniest_fail)
         return nil
@@ -4109,7 +4531,7 @@ atk_critical_hits = true
 freezetar = -1
 
 local function tp_player_car_to_coords(pid, coord)
-    local name = PLAYER.GET_PLAYER_NAME(pid)
+    local name = players.get_name(pid)
     local car = PED.GET_VEHICLE_PED_IS_IN(PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid), true)
     if car ~= 0 then
         request_control_of_entity(car)
@@ -4853,6 +5275,10 @@ local function set_up_player_actions(pid)
         notify(translations.enter_pm)
         menu.show_command_box(translations.pm_cmd .. players.get_name(pid) ..  " ")
     end, function(message)
+        if #message == 0 then 
+            notify(translations.message_blank)
+            return 
+        end
         local from_msg = "[To you] " .. message
         local to_msg = "[To " .. players.get_name(pid) .. '] ' .. message
         if string.len(from_msg) > 254 or string.len(to_msg) > 254 then 
@@ -4959,20 +5385,20 @@ local function set_up_player_actions(pid)
         num_attackers = s
     end)
 
-    local attacker_hashes = {1459905209, -287649847, 1264920838, -927261102, 1302784073, -1788665315, 307287994, util.joaat('csb_stripper_02'), util.joaat("CS_BradCadaver")}
-    local atk_options = {translations.jack_harlow, translations.niko, translations.chad, translations.mani, translations.lester, translations.dog,  translations.mountain_lion, translations.stripper, translations.brad, translations.custom, translations.custom_aircraft, translations.custom_car, translations.clone_player}
+    local attacker_hashes = {1459905209, -287649847, 1264920838, -927261102, 1302784073, -1788665315, 307287994, util.joaat('csb_stripper_02'), util.joaat("CS_BradCadaver"), util.joaat('ig_lamardavis')}
+    local atk_options = {translations.jack_harlow, translations.niko, translations.chad, translations.mani, translations.lester, translations.dog,  translations.mountain_lion, translations.stripper, translations.brad, translations.lamar, translations.custom, translations.custom_aircraft, translations.custom_car, translations.clone_player}
     menu.list_action(attackers_root, translations.send_normal_attacker, {translations.send_normal_attacker_cmd}, "", atk_options, function(index, value, click_type)
             pluto_switch index do
-                case 10:
+                case 11:
                     send_attacker(util.joaat(atk_ped), pid, false, num_attackers, atkgun)
                     break
-                case 11: 
+                case 12: 
                     send_aircraft_attacker(util.joaat(atk_aircraft), -163714847, pid, num_attackers)
                     break
-                case 12:
+                case 13:
                     send_groundv_attacker(util.joaat(atk_car), 850468060, pid, true, num_attackers, atkgun)
                     break
-                case 13: 
+                case 14: 
                     send_attacker("CLONE", pid, false, num_attackers)
                     break
                 pluto_default:
@@ -5108,6 +5534,9 @@ local function set_up_player_actions(pid)
         local hash = util.joaat("xs_terrain_dyst_ground_07")
         request_model_load(hash)
         local dust = OBJECT.CREATE_OBJECT_NO_OFFSET(hash, coords['x'], coords['y'], coords['z']-36, true, false, false)
+        local hash2 = util.joaat("apa_prop_flag_brazil")
+        request_model_load(hash2)
+        local flag = OBJECT.CREATE_OBJECT_NO_OFFSET(hash2, coords['x'], coords['y'], coords['z'], true, false, false)
         ENTITY.FREEZE_ENTITY_POSITION(dust, true)
     end)
 
@@ -5249,7 +5678,7 @@ local function set_up_player_actions(pid)
         for k,v in pairs(crash_table) do
             crash_str = crash_str .. string.char(crash_table[k])
         end
-        menu.trigger_commands("spectate" .. PLAYER.GET_PLAYER_NAME(players.user()))
+        menu.trigger_commands("spectate" .. players.get_name(players.user()))
         util.yield(500)
         local this_int = 1
         while this_int < 1000 do 
@@ -5265,7 +5694,7 @@ local function set_up_player_actions(pid)
 
     menu.action(chattrolls_root, translations.send_schizo_message, { translations.send_schizo_message_cmd}, translations.send_schizo_message_desc, function(click_type)
         notify(translations.schizo_pls_input)
-        menu.show_command_box(translations.send_schizo_message_cmd .. PLAYER.GET_PLAYER_NAME(pid) .. " ")
+        menu.show_command_box(translations.send_schizo_message_cmd .. players.get_name(pid) .. " ")
         end, function(on_command)
             if #on_command > 140 then
                 notify(translations.chat_too_long)
@@ -5278,7 +5707,7 @@ local function set_up_player_actions(pid)
     menu.action(chattrolls_root, translations.fake_rac_detection_chat, {translations.fake_rac_detection_chat_cmd}, translations.fake_rac_detection_chat_desc, function(click_type)
         local types = {'I3', 'C1'}
         local det_type = types[math.random(1, #types)]
-        chat.send_message('> ' .. PLAYER.GET_PLAYER_NAME(pid) .. translations.triggered_rac_1 .. det_type .. translations.triggered_rac_2, false, true, true)
+        chat.send_message('> ' .. players.get_name(pid) .. translations.triggered_rac_1 .. det_type .. translations.triggered_rac_2, false, true, true)
     end)
 
     menu.action(chattrolls_root, translations.fake_knockoff_breakup, {"fakeknockoffkickdet"}, "", function(click_type)
@@ -5441,27 +5870,6 @@ local function set_up_player_actions(pid)
 
 end
 
-broke_blips = {}
-broke_radar = false
-menu.toggle(aphostile_root, translations.broke_radar, {translations.broke_radar_cmd}, translations.broke_radar_desc, function(on)
-    broke_radar = on
-    mod_uses("player", if on then 1 else -1)
-    if not on then
-        broke_radar = false
-        mod_uses("player", -1)
-        for plyr,blip in pairs(broke_blips) do
-            util.remove_blip(blip)
-            broke_blips[plyr] = nil
-        end
-    end
-end)
-
-broke_threshold = 1000000
-menu.slider(aphostile_root, translations.broke_threshold, {translations.broke_threshold_cmd}, translations.broke_threshold_desc, 100000, 1000000000, 1000000, 100000, function(s)
-    broke_threshold = s
-  end)
-
-
 local text_options = {translations.nudes, translations.random_texts}
 menu.list_action(ap_text_trolls_root, translations.text, {translations.text_all_cmd}, "", text_options, function(index, value, click_type)
     for k,pid in pairs(players.list(false, true, true)) do
@@ -5490,7 +5898,7 @@ menu.action(ap_root, translations.stand_only_chat, {"standpm"}, translations.sta
     notify(translations.enter_pm)
     menu.show_command_box("standpm ")
 end, function(message)
-    message = "[STAND ONLY] " .. message 
+    message = translations.stand_brackets .. message 
     for _, pid in players.list(true, true, true) do
         if is_user_a_stand_user(pid) or pid == players.user() then
             chat.send_targeted_message(pid, players.user(), message, true)
@@ -5553,19 +5961,15 @@ menu.list_action(apgiveveh_root, translations.give_vehicle, {translations.give_a
     end
 end)
 
-local show_voicechatters = true
-online_root:toggle(translations.show_me_whos_using_voicechat, {translations.show_me_whos_using_voicechat_cmd}, translations.show_me_whos_using_voicechat_desc, function(on) 
-    while show_voicechatters do
-        for _, pid in pairs(players.list(true, true, true)) do
-            if NETWORK.NETWORK_IS_PLAYER_TALKING(pid) then
-                util.draw_debug_text(PLAYER.GET_PLAYER_NAME(pid) .. " is talking")
-            end
+online_root:toggle_loop(translations.show_me_whos_using_voicechat, {translations.show_me_whos_using_voicechat_cmd}, translations.show_me_whos_using_voicechat_desc, function(on) 
+    for _, pid in pairs(players.list(true, true, true)) do
+        if NETWORK.NETWORK_IS_PLAYER_TALKING(pid) then
+            util.draw_debug_text(players.get_name(pid) .. " is talking")
         end
-        util.yield()
     end
-end, true)
+end)
 
-online_root:toggle_loop(translations.auto_remove_bounty, {}, "", function()
+protections_root:toggle_loop(translations.auto_remove_bounty, {}, "", function()
     if util.is_session_started() then
         if memory.read_int(memory.script_global(1835502 + 4 + 1 + (players.user() * 3))) == 1 then
             memory.write_int(memory.script_global(2815059 + 1856 + 17), -1)
@@ -5575,6 +5979,113 @@ online_root:toggle_loop(translations.auto_remove_bounty, {}, "", function()
     end
     util.yield(5000)
 end)
+
+local kosatka_missile_blips = {}
+local draw_kosatka_blips = false
+protections_root:toggle(translations.warn_kosatka_missiles, {}, "", function(on)
+    draw_kosatka_blips = on
+    while true do
+        if not draw_kosatka_blips then 
+            for hdl, blip in pairs(kosatka_missile_blips) do 
+                kosatka_missile_blips[hdl] = nil
+                util.remove_blip(blip)
+            end
+            break 
+        end
+        if util.is_session_started() then
+            local missile_ct = 0
+            for _, ent_ptr in pairs(entities.get_all_objects_as_pointers()) do 
+                if entities.get_model_hash(ent_ptr) == util.joaat("h4_prop_h4_airmissile_01a") then
+                    local hdl = entities.pointer_to_handle(ent_ptr)
+                    local pos = entities.get_position(ent_ptr)
+                    if kosatka_missile_blips[hdl] == nil then 
+                        local blip = HUD.ADD_BLIP_FOR_COORD(pos.x, pos.y, pos.z)
+                        HUD.SET_BLIP_SPRITE(blip, 548)
+                        HUD.SET_BLIP_COLOUR(blip, 59)
+                        HUD.SET_BLIP_ROTATION(blip, math.ceil(ENTITY.GET_ENTITY_HEADING(hdl)))
+                        kosatka_missile_blips[hdl] = blip
+                    else
+                        HUD.SET_BLIP_ROTATION(kosatka_missile_blips[hdl], math.ceil(ENTITY.GET_ENTITY_HEADING(hdl)+180))
+                        HUD.SET_BLIP_COORDS(kosatka_missile_blips[hdl], pos.x, pos.y, pos.z)
+                    end
+                    missile_ct += 1
+                end
+            end
+            if missile_ct > 0 then 
+                util.draw_debug_text(missile_ct .. translations.kosatka_missile_alert)
+            end
+            for hdl, blip in pairs(kosatka_missile_blips) do 
+                if not ENTITY.DOES_ENTITY_EXIST(hdl) then
+                    kosatka_missile_blips[hdl] = nil
+                    util.remove_blip(blip)
+                end
+            end
+        end
+        util.yield()
+    end
+end)
+
+
+local orbital_blips = {}
+local draw_orbital_blips = false
+protections_root:toggle(translations.warn_orb, {}, "", function(on)
+    draw_orbital_blips = on
+    while true do
+        if not draw_orbital_blips then 
+            for pid, blip in pairs(orbital_blips) do 
+                util.remove_blip(blip)
+                orbital_blips[pid] = nil
+            end
+            break 
+        end
+        for _, pid in players.list(true, true, true) do
+            local cam_rot = players.get_cam_rot(pid)
+            local cam_pos = players.get_cam_pos(pid)
+            if cam_pos.z >= 390.0 and cam_pos.z <= 850.0 and cam_rot.x == 270.0 and cam_rot.y == 0.0 and cam_rot.z == 0.0 and players.is_in_interior(pid) then 
+                util.draw_debug_text(players.get_name(pid) .. translations.orbital_cannon_warn)
+                if orbital_blips[pid] == nil then 
+                    local blip = HUD.ADD_BLIP_FOR_COORD(cam_pos.x, cam_pos.y, cam_pos.z)
+                    HUD.SET_BLIP_SPRITE(blip, 588)
+                    HUD.SET_BLIP_COLOUR(blip, 59)
+                    HUD.SET_BLIP_NAME_TO_PLAYER_NAME(blip, pid)
+                    orbital_blips[pid] = blip
+                else
+                    HUD.SET_BLIP_COORDS(orbital_blips[pid], cam_pos.x, cam_pos.y, cam_pos.z)
+                end
+            else
+                if orbital_blips[pid] ~= nil then 
+                    util.remove_blip(orbital_blips[pid])
+                    orbital_blips[pid] = nil
+                end
+            end
+        end
+        util.yield()
+    end
+end)
+
+local orb_cannon_prop = nil
+local block_orb_cannon = fase
+protections_root:toggle(translations.block_orb_cannon, {}, "", function(on)
+    block_orb_cannon = on
+    while true do 
+        if not block_orb_cannon then 
+            if orb_cannon_prop ~= nil then 
+                entities.delete_by_handle(orb_cannon_prop)
+            end
+            break
+        end
+        if orb_cannon_prop == nil or not ENTITY.DOES_ENTITY_EXIST(orb_cannon_prop) then
+            local hash = util.joaat("h4_prop_h4_garage_door_01a")
+            request_model_load(hash)
+            orb_cannon_prop = entities.create_object(hash, {x=0, y=0, z=0})
+            ENTITY.SET_ENTITY_HEADING(orb_cannon_prop, 125)
+            ENTITY.SET_ENTITY_COORDS(orb_cannon_prop, 335.8, 4833.9, -59)
+            ENTITY.FREEZE_ENTITY_POSITION(orb_cannon_prop, true)
+        end
+        util.yield()
+    end
+end)
+
 
 antioppressor = false
 menu.toggle(protections_root, translations.antioppressor, { translations.antioppressor_cmd},  translations.antioppressor_desc, function(on)
@@ -5609,6 +6120,12 @@ menu.toggle(protections_root, translations.peaceful_mode, {}, translations.peace
     peaceful_mode = on
     mod_uses("player", if on then 1 else -1)
 end)
+
+do_vpn_warn = false
+menu.toggle(protections_root, translations.no_vpn_warn, {"novpnwarn"}, translations.no_vpn_warn_desc, function(on)
+    do_vpn_warn = on
+end, false)
+
 
 
 random_name_spoof = false
@@ -5758,22 +6275,45 @@ function do_ped_suicide(ped)
     entities.delete_by_handle(ped)
 end
 
-local known_players_this_game_session = {}
-players.on_join(function(pid)
-    set_up_player_actions(pid)
-
-    if players.user() ~= pid then
-        -- detections
-        if players.get_name(pid) == "UndiscoveredPlayer" then 
-            util.yield()
+-- custom player list handler
+util.create_tick_handler(function()
+    for _, pid in players.list(true, true, true) do 
+        local hdl = pid_to_handle(pid)
+        if NETWORK.NETWORK_IS_FRIEND(hdl) or players.user() == pid then 
+            if friends_in_this_session[pid] == nil then
+                friends_in_this_session[pid] = players.get_name(pid) .. ' [' .. players.get_tags_string(pid) .. ']'
+                menu.set_list_action_options(friends_in_session_list, friends_in_this_session)
+            end
         end
 
+        if players.is_marked_as_modder(pid) then 
+            if modders_in_this_session[pid] == nil then
+                modders_in_this_session[pid] = players.get_name(pid) .. ' [' .. players.get_tags_string(pid) .. ']'
+                menu.set_list_action_options(modders_in_session_list, modders_in_this_session)
+            end
+        end
+    end
+end)
+
+local known_players_this_game_session = {}
+players.on_join(function(pid)
+    if players.get_name(pid) == "UndiscoveredPlayer" then 
+        util.yield()
+    end
+    set_up_player_actions(pid)
+
+    if players.user() == pid then 
+        if not players.is_using_vpn(pid) and do_vpn_warn then 
+            notify(translations.no_vpn_warn_alert)
+        end
+    else
+        -- detections
         start_teleport_detection_thread(pid)
 
         -- hiii 2take1 people! if you're looking for an RID, you can surely look in the old commits; but thats my old account!
         -- no more creepy tracking 4 u! go outside :))
         if detection_lance then
-            if players.get_kd(pid) == 11892 then
+            if players.get_rank(pid) == 11892 then
                 notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.lance_detection_notify)
             end
         end
@@ -5802,14 +6342,14 @@ players.on_join(function(pid)
 
 end)
 
-players.dispatch_on_join()
-
-players.on_leave(function(pid)
-    if broke_blips[pid] ~= nil then
-        broke_blips[pid] = nil
-        util.remove_blip(broke_blips[pid])
-    end
+players.on_leave(function(pid, name)
+    friends_in_this_session[pid] = nil
+    menu.set_list_action_options(friends_in_session_list, friends_in_this_session)
+    modders_in_this_session[pid] = nil
+    menu.set_list_action_options(modders_in_session_list, modders_in_this_session)
 end)
+
+players.dispatch_on_join()
 
 all_sex_voicenames = {
     "S_F_Y_HOOKER_01_WHITE_FULL_01",
@@ -5843,7 +6383,7 @@ players_thread = util.create_thread(function (thr)
                                     local plyr = NETWORK.NETWORK_GET_PLAYER_INDEX_FROM_PED(killer)
                                     local killer_hdl = pid_to_handle(killer)
                                     if plyr ~= 0 and ped ~= killer then
-                                        local name = PLAYER.GET_PLAYER_NAME(plyr)
+                                        local name = players.get_name(plyr)
                                         if plyr == players.user() then 
                                             -- ur a loser if u disable this
                                             menu.trigger_commands("bealone")
@@ -5878,11 +6418,11 @@ players_thread = util.create_thread(function (thr)
                                 FIRE.ADD_EXPLOSION(coords['x'], coords['y'], coords['z'], 70, 100.0, false, true, 0.0)
                                 break
                             case 3:
-                                menu.trigger_commands("kill " .. PLAYER.GET_PLAYER_NAME(pid))
+                                menu.trigger_commands("kill " .. players.get_name(pid))
                                 break
                         end
                         if anti_aim_notify then
-                            notify(PLAYER.GET_PLAYER_NAME(pid) .. translations.is_aiming_at_you)
+                            notify(players.get_name(pid) .. translations.is_aiming_at_you)
                         end
                     end
                 end
@@ -5957,30 +6497,7 @@ players_thread = util.create_thread(function (thr)
                         end
                     end
                 end
-
-                if broke_radar then
-                    total_asset = players.get_wallet(pid) + players.get_bank(pid)
-                    if total_asset < broke_threshold then
-                        b_coords = ENTITY.GET_ENTITY_COORDS(PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid), true)
-                        if broke_blips[pid] == nil then
-                            blip = HUD.ADD_BLIP_FOR_RADIUS(b_coords.x, b_coords.y, b_coords.z, 100.0)
-                            broke_blips[pid] = blip
-                            HUD.SET_BLIP_COLOUR(blip, 81)
-                            HUD.SET_BLIP_ALPHA(blip, 128)
-                        else
-                            blip = broke_blips[pid]
-                        end
-                        HUD.SET_BLIP_COORDS(blip, b_coords.x, b_coords.y, b_coords.z)
-                    else
-                        if broke_blips[pid] ~= nil then
-                            blip = broke_blips[pid]
-                            util.remove_blip(blip)
-                            broke_blips[pid] = nil
-                        end
-                    end
-                end
             end
-        
         end
         util.yield()
     end
@@ -6050,23 +6567,6 @@ menu.action(god_graphics_root, translations.unapply_god_graphics, {}, "", functi
     menu.trigger_commands("shader off")
     menu.trigger_commands("lodscale 1.00")
 end)
-
-menu.action(lancescript_root, translations.test_notification, {"testnotify"}, "", function(on_click)
-    notify(random_string(10))
-end)
-
-menu.toggle(lancescript_root, translations.disable_notification_system, {}, translations.disable_notification_system_desc, function(on)
-    if on then 
-        notify_mode = 1 
-    else
-        notify_mode = 2 
-    end
-end)
-
-menu.toggle(lancescript_root, translations.notification_system_sounds, {}, "", function(on)
-    notify_sounds = on
-end, true)
-
 
 
 
@@ -6431,6 +6931,13 @@ util.on_stop(function()
     for k,v in all_used_cameras do 
         CAM.SET_CAM_ACTIVE(v, false)
         CAM.DESTROY_CAM(v, true)
+    end
+    for hdl, blip in pairs(kosatka_missile_blips) do 
+        util.remove_blip(blip)
+    end
+
+    for pid, blip in pairs(orbital_blips) do 
+        util.remove_blip(blip)
     end
     CAM.RENDER_SCRIPT_CAMS(false, true, 100, true, true, 0)
 end)

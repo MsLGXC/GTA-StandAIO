@@ -132,7 +132,7 @@ end
 ---@return boolean
 local IsAnyPoliceVehicle = function(vehicle)
 	local modelHash = ENTITY.GET_ENTITY_MODEL(vehicle)
-	pluto_switch int_to_uint(modelHash)do
+	switch int_to_uint(modelHash)do
 		case 0x79FBB0C5:
 		case 0x9F05F101:
 		case 0x71FA16EA:

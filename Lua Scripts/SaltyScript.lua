@@ -3,7 +3,7 @@ util.keep_running()
 
 local script_version = 0.1
 util.toast("欢迎来到 SaltyScript!\n" .. "希望你会喜欢. :)")
-async_http.init("raw.githubusercontent.com", "/SmileFaceStand/SaltyScript/main/version.txt", function(output)
+async_http.dispatch("raw.githubusercontent.com", "/SmileFaceStand/SaltyScript/main/version.txt", function(output)
     local latest_version = tonumber(output)
     if script_version ~= latest_version then
         util.toast("SaltyScript已过时. 版本 " .. output .. " 可用.")

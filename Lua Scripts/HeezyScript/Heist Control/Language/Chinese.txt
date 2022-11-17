@@ -40,6 +40,7 @@ Diamond Casino Heist = 名钻赌场
 Doomsday Heist = 末日豪劫
 Classic Heist = 公寓任务
 LS Tuners Robbery = 改装铺合约
+ULP Missions = ULP任务
 The Contract: Agency = 事务所合同
 Master Unlocker = 解锁大师
 Tools = 工具
@@ -99,6 +100,7 @@ Simulate Bag to 3 players = 修改背包容量为三个玩家
 Simulate Bag to 4 players = 修改背包容量为四个玩家
 Infinite Bag = 无限背包
 Skip Hacking = 跳过指纹锁
+Skip Drilling = 跳过钻孔
 Skip Sewer Cutter = 跳过下水道切割
 Use with Cayo Perico Heist > Custom Teleport > Island > Drainage! = 使用佩里科岛抢劫>自定义传送>豪宅外部传送点>下水道，或者达到位置后再启用
 Open Plasma Glass Immediately = 立即打开玻璃
@@ -178,6 +180,7 @@ Set Heist to Default [Reset] = 将劫案设置为默认[重置]
 Silent & Sneaky Approach = 隐迹潜踪
 BigCon Approach = 兵不厌诈
 Aggressive Approach = 气势汹汹
+Silent & Sneaky and Aggressive Approach = 隐迹潜踪和气势汹汹
 $3.5 Millions & For All Players = 所有玩家350万美元
 ALWAYS choose Low Level Buyer! = 永远选择最低出价的买家!
 
@@ -260,6 +263,9 @@ Riot = 暴徒系列
 Oni = 鬼面系列
 Hockey = 冰球系列
 
+Heist Planning [Board 3] = 抢劫面板 [面板 3]
+Remove Drills = 移除钻头
+
 Unlock Scan Card Level = 解锁门禁卡级别
 Duggan Guards = 杜根警卫
 0 - Strongest Guards = 最强警卫
@@ -285,10 +291,12 @@ Skip Agatha Baker missions to the last one = 跳过贝克女士的任务，到�
 --- [ # Doomsday Heist ] ---
 
 [Final Heist] = [最终抢劫]
+Make sure you are in the your facility = 只能在设施里面进行传送
 The Data Breaches ACT I = 数据泄露 ACT I
 The Bogdan Problem ACT II = 波格丹危机 ACT II
 The Doomsday Scenario ACT III = 末日降临 ACT III
 
+Heist Screen on Facility = 抢劫屏幕
 Heist board = 抢劫面板
 Prisoner cell = 会议室
 
@@ -334,6 +342,14 @@ Reset Missions (only) = 重置任务 (only)
 Reset Contracts = 重置合同
 Reset Total Gains & Completed Missions = 重置总收益和完成任务
 
+--- [ # ULP Missions ] ---
+Intelligence = 情报
+Counterintelligence = 反情报
+Extraction = 撤离
+Asset Seizure = 资产扣押
+Operation Paper Trail = 觅迹行动
+Cleanup = 清场
+Teleport To IAA Headquarters = 传送到IAA总部
 
 --- [ # The Contract : Agency ] ---
 
@@ -378,6 +394,12 @@ Unlock Awards = 解锁奖项
 The Contract DLC = 合约DLC 
 Unlock Animal Masks = 解锁动物面具
 Unlock DJ Pooh Shirts = 解锁DJ Pooh t恤
+
+The Criminal Enterprises DLC = 犯罪集团DLC
+Jackets / Sweaters / Hoodies / Shirts = 夹克/毛衣/连帽衫/衬衫
+Pants / Caps / Hats = 裤子/制服帽/帽子
+Earphones / Masks / Tech Demon = 耳机/面具/科技恶魔
+Shoes (Sliders) / Tiger = 鞋子(滑轮)/老虎
 
 Buildings = 建筑
 Arcade Unlockers = 游戏厅解锁器
@@ -433,6 +455,7 @@ Vehicle Cargo = 载具货物
 Air Freight Cargo = 空运货物
 Client Job = 委托人工作
 Launch Kosatka Missiles = 发射虎鲸导弹
+CEO Vehicles = CEO载具
 
 Multipliers = 经验倍率调节器
 LS Car Meet = LS 汽车赛
@@ -484,6 +507,9 @@ Ron's Cut of Air Freight Cargo = 罗恩对空运货物的削减
 Tony's Cut of Nightclub = 托尼对夜店的削减
 Resupply MC Business = 补给MC业务
 Resupply Bunker = 补给地堡
+Changing Appearance = 改变外观
+Renaming CEO/MC = 重命名CEO/摩托帮
+CEO Abilities = CEO技能
 
 Casino Services: Chips = 赌场服务筹码
 Make sure don't buy chip more than 1.5M per a day (real-time). Otherwise, you can be banned! = 每天购买的筹码不要超过1.5M不然可能会封号
@@ -533,10 +559,13 @@ Auto Sightseer = 全自动观光客
 If you expect Transaction Error, stop using this feature and have to restart your game to fix it. = 如果出现交易错误请暂停使用，重启游戏即可
 
 Instant Finish Heists & Others = 快速完成任务
-Cayo / Tuners / Agency = 联系人任务
-Casino Aggressive / Doomsday / Classic = 赌场豪劫/末日浩劫/经典抢劫
+Cayo / Tuners / ULP / Agency = 佩岛/改装铺/ULP/合约
+Note that not working on ULP Missions - Superyatch = 请注意在ULP任务-超级游艇启作用
+Casino Aggressive / Classic = 赌场豪劫/经典抢劫
+Doomsday = 末日浩劫
 Sightseer = 观光客
 Headhunter = 猎杀专员
+Air Cargo = 空运货物
 
 
 Heist Cooldown Timer = 抢劫冷却计时器
@@ -558,6 +587,7 @@ Remove Weapons = 删除武器
 Kill = 杀死
 Cams = 摄像头
 Delete = 删除
+Shoot = 射击
 
 Bypass Locked Doors = 绕过锁着的门
 Speed of Improved No Clip = 增加无碰撞的速度
@@ -573,9 +603,13 @@ Terrobyte = 恐霸
 Kosatka = 虎鲸
 Dingy = 小艇
 Ballistic Armor = 重型防弹装甲
+LJT's Airstrike = 喷气机空袭
+Ammunation Supply = 弹药箱
+Boat Pickup = 水上皮卡
 
 Info Spoofing = 信息欺骗
 Value = 数值
+Wallet Money = 假钱
 Total Money = 总金额
 Wallet Money=现金
 Kills = 杀死
@@ -656,6 +690,14 @@ Custom Stat Reader = 自定义属性读取器
 Copy Stat Value = 复制属性值
 Read Stat = 读取属性
 Sucessfully read! = 成功读取!
+
+Auto Collect Targets = 自动拾取道具
+Collects targets via clicking left mouse button. Note that there are some delays before disabling completely. = 点击自动拾取道具.关闭后会有点延迟
+Motion Skip = 运动跳过
+a.k.a Pause Menu Glitch = 又名暂停菜单故障
+Skips Conversation With NPCs = 跳过与NPC的对话
+All = 全部
+One Line = 一行
 
 Language Setting = 语言设置
 How To Translate = 如何翻译

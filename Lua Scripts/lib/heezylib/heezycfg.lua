@@ -13,3 +13,5 @@ menu.trigger_commands("scriptshost off")-- 自动获取脚本主机
 menu.trigger_commands("alwayshost off")-- 自动获取主机
 menu.trigger_commands("chaofeng off")-- 攻击嘲讽
 menu.trigger_commands("hostqu off")-- 主机序列
+menu.trigger_commands("ndrawconsole off")-- 绘制控制台
+menu.trigger_commands("ntime off")-- 显示时间(绘制控制台)

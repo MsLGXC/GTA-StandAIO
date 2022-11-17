@@ -1,6 +1,6 @@
 local translations = {
     language =  "中文",
-    missing_translations =  "[LANCESCRIPT] 缺少一些翻译.在解决此问题之前,某些功能将替换为其翻译键.",
+    missing_translations =  "[LANCESCRIPT] 缺少一些翻译.在解决此问题之前,某些功能将会被替换为其翻译键原文.",
     off =  "关闭",
     on =  "开启",
     success =  "成功",
@@ -72,7 +72,7 @@ local translations = {
     gametweaks_desc =  "定制GTA游戏",
     misc =  "其他",
     misc_cmd =  "lancescriptmisc",
-    misc_desc =  "杂项\n汉化者MrLGXC\nq群1051701387",
+    misc_desc =  "杂项\n汉化-MrLGXC",
     discord =  "加入discord-原作者xSetrox",
     reapermode =  "收割者模式",
     reapermode_cmd =  "reapermode",
@@ -975,8 +975,8 @@ local translations = {
     sound_trolling_cmd = "soundtrolling",
     voice_trolls = "语音恶搞",
     voice_trolls_cmd = "voicetrolls",
-    ponsonbys_diss = "庞森比女士迪丝",
-    kifflom = "基夫隆",
+    ponsonbys_diss = "膨风精品（服装店）店员叼你",
+    kifflom = "基夫隆（厄普西隆邪教的三神之一）",
     laughter_torment = "笑声折磨",
     laughter_torment_cmd = "torment",
     laughter_torment_desc = "他们会反复听到笑声.",
@@ -1286,6 +1286,47 @@ local translations = {
     remember_no_russian = "记住：不准说俄语.",
     removed_bounty = "已删除的赏金: $",
     laser_eyes_desc = "按住E键使用。成为祖国人。",
+    thrust_in_cam_direction = "相机方向推力",
+    thrust_in_cam_direction_desc = "按住X并保持此状态,将载具推向摄相机所面对的方向。用于维持漂移状态。",
+    thrust_in_cam_direction_mod = "相机方向推力的速度",
+    thrust_in_cam_direction_mod_desc = "相机方向的推力需要增加多少额外速度",
+    ultra_dox = "极端假DOX",
+    ultra_dox_desc = "显示关于每个人的大量虚假信息。这是本地化的消息，所以每个玩家只能看到自己的（假的）信息。这些信息是完全随机的，因此不涉及任何真实数据。",
+    attach_flag = "附加标志",
+    keep_me_clean = "让我保持干净",
+    keep_me_clean_desc = "防止血液、污垢和潮湿出现在您的身体上",
+    no_vpn_warn = "无VPN警告",
+    no_vpn_warn_desc = "如果您在未使用VPN的情况下进行在线游戏,将向您发出警告。如果在重新启动之前打开VPN,这可能仍然会报告您正在使用VPN。",
+    no_vpn_warn_alert = "!!! 警告：您正在游玩线上模式,但当前未使用VPN",
+    -- 9.4.8
+    teleport_to_road = "传送至道路",
+    teleport_to_road_desc = "输入道路名称，如果找到，您将传送到它。这将有利于第一条找到的路，所以如果你没有得到你想要的，试着更具体一些。",
+    teleported_to = "传送到 ",
+    road_not_found = "未找到道路 :(. 如果你确定这条路存在并且拼写正确,也许可以告诉Lance,这样他就可以添加它?",
+    show_road_name = "显示当前道路名称",
+    road = "道路: ",
+    _and = " 和 ",
+    stand_brackets = "[STAND] ",
+    kick_gun = "踢出枪",
+    host_warn = "您正试图踢出的玩家是主机",
+    front_flip = "做前空翻",
+    -- 9.5.8
+    spawn_dominoes = "生成多米诺骨牌",
+    hit_joint = "吸大麻",
+    hit_joint_desc = "当选项开启时, 按住J来吸大麻",
+    hit_bong = "Hit bong",
+    friends_in_session = "好友在战局中",
+    modders_in_session = "作弊者在战局中",
+    players = "玩家",
+    stand_players_shortcut = "Stand玩家列表的快捷方式",
+    message_blank = "消息为空.",
+    warn_kosatka_missiles = "虎鲸导弹警告",
+    warn_kosatka_missiles_desc = "在地图上绘制虎鲸导弹，并显示当前有多少虎鲸导弹处于活动状态",
+    kosatka_missile_alert = " 虎鲸导弹（或多个）目前活动",
+    warn_orb = "天基炮使用警告",
+    orbital_cannon_warn = " 正在使用天基炮",
+    block_orb_cannon = "阻止天基炮房间",
+    block_orb_cannon_desc = "在天基炮的房间前生成一个永久车库门道具，防止任何人使用它.",
     -- lance遗漏的翻译及补全...甚至我不知道自己为什么要补...（因为这有什么意义?)
     teleport_all_peds_to_me = "传送所有行人到我", 
     angry_firefighter = "愤怒的消防员",
@@ -1297,7 +1338,7 @@ local translations = {
 
 setmetatable(translations, {
     __index = function (self, key)
-        util.log("!!! 在翻译文件中找不到键 (".. key .. "). 脚本仍然可以工作,但这应该很快得到修复.")
+        util.log("!!! 在翻译文件中找不到键值 (".. key .. "). 脚本仍然可以工作,但这应该很快得到修复.")
         return key
     end
 })

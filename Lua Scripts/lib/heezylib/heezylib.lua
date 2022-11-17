@@ -1041,6 +1041,57 @@ end
             object_uses = object_uses + incr
         end
     end
+--宠物
+function getgroupsize(group)
+    local unkPtr, sizePtr = memory.alloc(1), memory.alloc(1)
+    PED.GET_GROUP_SIZE(group, unkPtr, sizePtr)
+    return memory.read_int(sizePtr)
+end
+
+mygroup = PLAYER.GET_PLAYER_GROUP(players.user())
+
+dogs = table.freeze({
+    "Rottweiler",
+    "Husky",
+    "Poodle",
+    "Pug",
+    "Retriever",
+    "Westy",
+    "Shepherd",
+    "Cat_01",
+})
+
+doganimations = {
+    "WORLD_DOG_SITTING_ROTTWEILER",
+    "WORLD_DOG_SITTING_RETRIEVER",
+    "WORLD_DOG_SITTING_SHEPHERD",
+    "WORLD_DOG_SITTING_SMALL",
+}
+
+activedogs = {}
+
+function GenerateNametagOnPed(ped, nametag)
+    util.create_thread(function()
+        while ENTITY.DOES_ENTITY_EXIST(ped) do
+            local headpos = PED.GET_PED_BONE_COORDS(ped, 0x796e, 0,0,0)
+            GRAPHICS.SET_DRAW_ORIGIN(headpos.x, headpos.y, headpos.z+0.4, 0)
+
+            HUD.SET_TEXT_COLOUR(200,200,200,220)
+            HUD.SET_TEXT_SCALE(1, 0.5)
+            HUD.SET_TEXT_CENTRE(true)
+            HUD.SET_TEXT_FONT(4)
+            HUD.SET_TEXT_OUTLINE()
+
+            HUD.BEGIN_TEXT_COMMAND_DISPLAY_TEXT("STRING")
+            HUD.ADD_TEXT_COMPONENT_SUBSTRING_PLAYER_NAME(nametag)
+            HUD.END_TEXT_COMMAND_DISPLAY_TEXT(0,0,0)
+            GRAPHICS.CLEAR_DRAW_ORIGIN()
+            util.yield()
+        end
+        HUD.END_TEXT_COMMAND_DISPLAY_TEXT(0,0,0)
+        GRAPHICS.CLEAR_DRAW_ORIGIN()
+    end)
+end
 --骑牛
 function set_ped_apathy(ped, value)
     PED.SET_PED_CONFIG_FLAG(ped, 208, value)

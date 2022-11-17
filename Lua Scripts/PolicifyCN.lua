@@ -2103,7 +2103,7 @@ menu.list_select(script_meta_menu, "发布分支", {}, "从主要版切换到开
 end)
 menu.hyperlink(script_meta_menu, "Github源代码-原作者hexarobi", "https://github.com/hexarobi/stand-lua-policify", "在Github上查看源文件")
 menu.hyperlink(script_meta_menu, "Discord-原作者hexarobi", "https://discord.gg/RF4N7cKz", "打开Discord服务器")
-menu.hyperlink(script_meta_menu, "qq群-汉化者MrLGXC", "https://jq.qq.com/?_wv=1027&k=mJbsd7Fy", "打开qq群")
+menu.hyperlink(script_meta_menu, "qq群-汉化者MrLGXC", "https://jq.qq.com/?_wv=1027&k=U8WbVRCJ", "打开qq群")
 menu.divider(script_meta_menu, "帮助")
 menu.readonly(script_meta_menu, "Jackz用于编写载具生成器", "大部分Policify都是基于Jackz Vehicle Builder的代码，如果没有这个基础，就不可能实现")
 

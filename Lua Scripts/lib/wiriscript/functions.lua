@@ -31,7 +31,8 @@ Config = {
 	healthtxtpos = {
 		x = 0.03,
 		y = 0.05
-	}
+	},
+	handlingAutoload = {}
 }
 
 ---@alias HudColour integer
@@ -1074,7 +1075,7 @@ end
 ---@param colour integer
 ---@return integer
 function get_hud_colour_from_org_colour(colour)
-	pluto_switch colour do
+	switch colour do
 		case 0:
 			return 192
 		case 1:
@@ -1378,6 +1379,19 @@ function is_phone_open()
 		return true
 	end
 	return false
+end
+
+
+---@param name string
+---@param pattern string
+---@param callback fun(address: integer)
+function memory_scan(name, pattern, callback)
+	local address = memory.scan(pattern)
+
+	if address == NULL then error("Failed to find " .. name) end
+
+	callback(address)
+	util.log("Found %s", name)
 end
 
 --------------------------

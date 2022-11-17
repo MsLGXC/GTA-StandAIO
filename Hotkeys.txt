@@ -1,0 +1,22 @@
+Tree Compatibility Version: 42
+Self
+	Weapons
+		Triggerbot
+			Triggerbot: #
+		Fill All Ammo: Mouse 5
+Vehicle
+	Movement
+		Super Drive
+			Super Drive: Mouse 4
+Online
+	Quick Progress
+		Refill Snacks & Armour: Mouse 5
+Stand
+	Settings
+		Input
+			Keyboard Input Scheme
+				Command Box: Numpad *
+	Lua Scripts
+		lancescript_reloaded
+			世界
+				超级清除: Numpad -

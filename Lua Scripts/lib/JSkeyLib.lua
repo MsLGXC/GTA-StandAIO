@@ -688,12 +688,12 @@ function JSkey.set_input_exclusive(controlType, control)
     PAD.SET_INPUT_EXCLUSIVE(controlTypes[controlType] or controlType, controls[control] or control)
 end
 
-function JSkey.disable_control_action(controlType, control, disable)
-    PAD.DISABLE_CONTROL_ACTION(controlTypes[controlType] or controlType, controls[control] or control, disable)
+function JSkey.disable_control_action(controlType, control)
+    PAD.DISABLE_CONTROL_ACTION(controlTypes[controlType] or controlType, controls[control] or control, true)
 end
 
-function JSkey.enable_control_action(controlType, control, enable)
-    PAD.ENABLE_CONTROL_ACTION(controlTypes[controlType] or controlType, controls[control] or control, enable)
+function JSkey.enable_control_action(controlType, control)
+    PAD.ENABLE_CONTROL_ACTION(controlTypes[controlType] or controlType, controls[control] or control, true)
 end
 
 function JSkey.disable_all_control_actions(controlType)

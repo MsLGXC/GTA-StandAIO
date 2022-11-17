@@ -11,7 +11,7 @@ gVersion = 27
 util.require_natives(1663599433)
 
 local required <const> = {
-	"lib/natives-1660775568-uno.lua",
+	"lib/natives-1663599433.lua",
 	"lib/wiriscript/functions.lua",
 	"lib/wiriscript/ufo.lua",
 	"lib/wiriscript/guided_missile.lua",
@@ -86,7 +86,8 @@ end
 if filesystem.exists(configFile) then
 	for s, tbl in pairs(Ini.load(configFile)) do
 		for k, v in pairs(tbl) do
-			if Config[s] and Config[s][k] ~= nil then Config[s][k] = v end
+			Config[s] = Config[s] or {}
+			Config[s][k] = v
 		end
 	end
 	util.log("Configuration loaded")
@@ -1981,8 +1982,7 @@ generate_features = function(pId)
 	end
 
 
-	local name = translate("Trolling - Enemy Vehicles", "Send Enemy Vehicle")
-	menu.action_slider(enemyVehiclesOpt, name, {}, "", options, function(index, option)
+	menu.action_slider(enemyVehiclesOpt, translate("Trolling - Enemy Vehicles", "Send Enemy Vehicle"), {}, "", options, function(index, option)
 		local i = 0
 		while i < count and players.exists(pId) do
 			if option == "Minitank" then
@@ -4620,7 +4620,7 @@ CFlyingHandlingData =
 
 SubHandlingData =
 {
-	CBikeHandlingData = 
+	CBikeHandlingData =
 	{
 		{"fLeanFwdCOMMult", 0x0008},
 		{"fLeanFwdForceMult", 0x000C},
@@ -4770,81 +4770,84 @@ SubHandlingData =
 -- HANDLING SECTION
 -------------------------------------
 
-HandlingType =
+local subHandlingClasses =
 {
-	Bike = 0,
-	Flying = 1,
-	VerticalFlying = 2,
-	Boat = 3,
-	SeaPlane = 4,
-	Submarine = 5,
-	Train = 6,
-	Trailer = 7,
-	Car = 8,
-	Weapon = 9,
-	SpecialFlight = 10,
+	[0]  = "CBikeHandlingData",
+	[1]  = "CFlyingHandlingData",
+	[2]  = "CFlyingHandlingData2",
+	[3]  = "CBoatHandlingData",
+	[4]  = "CSeaPlaneHandlingData",
+	[5]  = "CSubmarineHandlingData",
+	[6]  = "CTrainHandlingData",
+	[7]  = "CTrailerHandlingData",
+	[8]  = "CCarHandlingData",
+	[9]  = "CVehicleWeaponHandlingData",
+	[10] = "CSpecialFlightHandlingData",
 }
 
----@param address integer
----@param index integer
+
+---@param subHandling integer
 ---@return integer
-local get_vtable_entry_pointer = function(address, index)
-    return memory.read_long(memory.read_long(address) + (8 * index))
+local function get_sub_handling_type(subHandling)
+	local funAddress = memory.read_long(memory.read_long(subHandling) + 16)
+	return util.call_foreign_function(funAddress, subHandling)
 end
 
----@class SubHandling
----@field type integer
----@field address integer
 
----@param pVehicle integer #pointer to CAutomobile
----@return SubHandling[]
-local function get_vehicle_sub_handling(pVehicle)
-	local CHandlingData = memory.read_long(pVehicle + 0x918) -- b2699
-	local subHandlingArray = memory.read_long(CHandlingData + 0x158)
-	local numSubHandling = memory.read_ushort(CHandlingData + 0x160)
-	local tbl = {}
+---@param handlingData integer
+---@return {type: integer, address: integer}[]
+local function get_sub_handling_array(handlingData)
+	local subHandlingArray = memory.read_long(handlingData + 0x158)
+	local numSubHandling = memory.read_ushort(handlingData + 0x160)
+	local arr = {}
+	local index = 0
+	local t = -1
 
-	for i = 0, numSubHandling -1 do
-		local subHandlingData = memory.read_long(subHandlingArray + i*8)
-		if subHandlingData ~= NULL then
-			local GetSubhandlingType_addr = get_vtable_entry_pointer(subHandlingData, 2)
-			local type = util.call_foreign_function(GetSubhandlingType_addr, subHandlingData)
-			local subTbl = {type = type, address = subHandlingData}
-			if table.find(HandlingType, type) then tbl[#tbl+1] = subTbl end
+	while true do
+		local subHandling = memory.read_long(subHandlingArray + index * 8)
+		if subHandling == NULL then
+			goto NotFound
 		end
+
+		t = get_sub_handling_type(subHandling)
+		if t >= 0 and t <= 10 then
+			table.insert(arr, {type = t, address = subHandling})
+		end
+
+	::NotFound::
+		index = index + 1
+		if index >= numSubHandling then break end
 	end
-	return tbl
+
+	return arr
 end
 
----@param t integer #The subhandling type.
----@return string
-local function get_sub_handling_type_name(t)
-	if t == HandlingType.Bike then
-		return "CBikeHandlingData"
-	elseif t == HandlingType.Flying then
-		return "CFlyingHandlingData"
-	elseif t == HandlingType.VerticalFlying then
-		return "CFlyingHandlingData2"
-	elseif t == HandlingType.Boat then
-		return "CBoatHandlingData"
-	elseif t == HandlingType.SeaPlane then
-		return "CSeaPlaneHandlingData"
-	elseif t == HandlingType.Submarine then
-		return "CSubmarineHandlingData"
-	elseif t == HandlingType.Train then
-		return "CTrainHandlingData"
-	elseif t == HandlingType.Trailer then
-		return "CTrailerHandlingData"
-	elseif t == HandlingType.Car then
-		return "CCarHandlingData"
-	elseif t == HandlingType.Weapon then
-		return "CVehicleWeaponHandlingData"
-	elseif t == HandlingType.SpecialFlight then
-		return "CSpecialFlightHandlingData"
-	else
-		error("got unexpected handling type")
-	end
+
+local GetVehicleModelInfo = 0
+memory_scan("GVMI", "48 89 5C 24 ? 57 48 83 EC 20 8B 8A ? ? ? ? 48 8B DA", function (address)
+	GetVehicleModelInfo = memory.rip(address + 0x2A)
+end)
+
+
+local GetHandlingDataFromIndex = 0
+memory_scan("GHDFI", "40 53 48 83 EC 30 48 8D 54 24 ? 0F 29 74 24 ?", function (address)
+	GetHandlingDataFromIndex = memory.rip(address + 0x37)
+end)
+
+
+---@param modelHash Hash
+---@return integer CVehicleModelInfo*
+local function get_vehicle_model_info(modelHash)
+	return util.call_foreign_function(GetVehicleModelInfo, modelHash, NULL)
 end
+
+
+---@param modelInfo integer CVehicleModelInfo*
+---@return integer CHandlingData*
+local function get_vehicle_model_handling_data(modelInfo)
+	return util.call_foreign_function(GetHandlingDataFromIndex, memory.read_uint(modelInfo + 0x4B8))
+end
+
 
 -------------------------------------
 -- HANDLING DATA
@@ -4855,424 +4858,517 @@ HandlingData =
 {
 	reference = 0,
 	name = "",
-	baseAddress = NULL,
-	isVisible = true,
+	address = NULL,
+	visible = true,
 	offsets = {},
-	isOpen = false,
+	open = false,
 }
 HandlingData.__index = HandlingData
 
+
 ---@param parent integer
 ---@param name string
----@param baseAddress? integer
----@param offsets {[1]: string, [2]: integer}[] #Each table must have the param name, and offset from base address.
+---@param address integer
+---@param offsets {[1]:string, [2]:integer}[]
 ---@return HandlingData
-function HandlingData.new(parent, name, baseAddress, offsets)
-	assert(type(offsets) == "table", "offsets must be a table, got " .. type(offsets))
-	local self = setmetatable({}, HandlingData)
-	self.baseAddress = baseAddress
-	self.name = name
-	self.reference = menu.list(parent, name, {}, "", function ()
-		self.isOpen = true
-		if self.baseAddress == NULL then menu.focus(parent) end
+HandlingData.new = function (parent, name, address, offsets)
+	local self = setmetatable({address = address, name = name, offsets = offsets}, HandlingData)
+	self.reference = menu.list(parent, name, {}, "", function()
+		self.open = true
 	end, function()
-		self.isOpen = false
+		self.open = false
 	end)
+
 	menu.divider(self.reference, name)
-	self.offsets = offsets
-	for _, o in ipairs(offsets) do
-		local optname, offset <const> = o[1], o[2]
-		self:createOpt(self.reference, optname, offset)
-	end
+	for _, tbl in ipairs(offsets) do self:addOption(self.reference, tbl[1], tbl[2]) end
 	return self
 end
 
 
+---@param self HandlingData
 ---@param parent integer
 ---@param name string
 ---@param offset integer
-function HandlingData:createOpt(parent, name, offset)
-	menu.action(parent, name, {}, "", function ()
-		self:writeValueFromUser(offset)
+HandlingData.addOption = function(self, parent, name, offset)
+	local value = memory.read_float(self.address + offset) * 100
+
+	menu.slider_float(parent, name, {name}, "", -1e6, 1e6, math.floor(value), 1, function(new)
+		memory.write_float(self.address + offset, new / 100)
 	end)
 end
 
 
----@param offset integer
-function HandlingData:writeValueFromUser(offset)
-	local label = customLabels.EnterValue
-	while true do
-		assert(self.baseAddress ~= 0, "base address is a null pointer")
-		local value = memory.read_float(self.baseAddress + offset)
-		local defaultText = tostring(round(value, 5))
-		local newValue = get_input_from_screen_keyboard(label, 20, defaultText)
-		if newValue == "" then break end
-		if not tonumber(newValue) then
-			label = customLabels.ValueMustBeNumber
-		else
-			memory.write_float(self.baseAddress + offset, tonumber(newValue))
-			break
-		end
-		util.yield(250)
-	end
+HandlingData.Remove = function(self)
+	menu.delete(self.reference)
 end
 
 
----@param visible boolean
-function HandlingData:setVisible(visible)
-	if self.isVisible == visible then return end
-	menu.set_visible(self.reference, visible)
-	self.isVisible = visible
-end
-
-
----@return table<string, number>
 function HandlingData:get()
-	assert(self.baseAddress ~= NULL, "base address is a null pointer")
-	local result = {}
+	local r = {}
+
 	for _, tbl in ipairs(self.offsets) do
-		local optname, offset <const> = tbl[1], tbl[2]
-		local value = memory.read_float(self.baseAddress + offset)
-		result[optname] = round(value, 5)
+		local value = memory.read_float(self.address + tbl[2])
+		r[tbl[1]] = round(value, 3)
 	end
-	return result
+
+	return r
 end
 
 
----@param values {[1]: string, [2]: number}[] #Each table must have the param name (string) and value (number).
 function HandlingData:set(values)
-	assert(self.baseAddress ~= NULL, self.name .. "'s base address is a null pointer")
 	local count = 0
+
 	for _, tbl in ipairs(self.offsets) do
-		local optname, offset <const> = tbl[1], tbl[2]
-		local value = values[optname]
-		assert(value == nil or type(value) == "number", "expected field " .. optname .. " to be a number or nil, got " .. type(value))
-		if value then memory.write_float(self.baseAddress + offset, value); count = count + 1 end
+		local value = values[tbl[1]]
+
+		if not value then
+			goto label_continue
+		end
+
+		memory.write_float(self.address + tbl[2], value)
+		count = count + 1
+
+	::label_continue::
 	end
-	util.log("%d/%d parameters loaded for %s", count, #self.offsets, self.name)
 end
 
+
 -------------------------------------
--- FILELIST
+-- HANDLING EDITOR
 -------------------------------------
 
----@class SubOpt
----@field name string
----@field callback fun(filename: string, ext: string, path: string)
 
----@class FilesList
-FilesList =
-{
-	reference = 0,
-	dir = "",
-	---@type string
-	ext = nil,
-	isOpen = false,
-	fileOpts = {},
-	---@type SubOpt[]
-	subOpts = {},
-}
-FilesList.__index = FilesList
+---@class VehicleList
+VehicleList = {selected = 0, root = 0, name = "", onClick = nil}
+VehicleList.__index = VehicleList
 
 ---@param parent integer
 ---@param name string
----@param directory string
----@param ext? string #The extension the file must match to be loaded.
----@return FilesList
-function FilesList.new(parent, name, directory, ext)
-	local self = setmetatable({}, FilesList)
-	self.dir = directory
-	self.ext = ext
-	self.subOpts, self.fileOpts = {}, {}
+---@param onClick fun(vehicle: Hash)?
+---@return VehicleList
+function VehicleList.new(parent, name, onClick)
+	local self = setmetatable({name = name, onClick = onClick}, VehicleList)
+	self.root = menu.list(parent, name, {}, "")
 
-	self.reference = menu.list(parent, name, {}, "", function ()
-		self.isOpen = true
-		self:reload()
-	end, function ()
-		self.isOpen = false
+	local classLists = {}
+	for _, vehicle in ipairs(util.get_vehicles()) do
+		local nameHash = util.joaat(vehicle.name)
+		local class = VEHICLE.GET_VEHICLE_CLASS_FROM_NAME(nameHash)
+
+		if not classLists[class] then
+			classLists[class] = menu.list(self.root, util.get_label_text("VEH_CLASS_" .. class), {}, "")
+		end
+
+		local menuName = util.get_label_text(vehicle.name)
+		if menuName == "NULL" then
+			goto label_coninue
+		end
+
+		menu.action(classLists[class], util.get_label_text(vehicle.name), {}, "", function()
+			self:setSelected(nameHash, vehicle.name)
+			menu.focus(self.root)
+		end)
+	::label_coninue::
+	end
+
+	return self
+end
+
+
+---@param nameHash Hash
+---@param vehicleName string?
+function VehicleList:setSelected(nameHash, vehicleName)
+	if not vehicleName then
+		vehicleName = VEHICLE.GET_DISPLAY_NAME_FROM_VEHICLE_MODEL(nameHash)
+	end
+	menu.set_menu_name(self.root, self.name .. ": " .. util.get_label_text(vehicleName))
+	self.selected = nameHash
+	if self.onClick then self.onClick(nameHash) end
+end
+
+
+-------------------------------------
+-- FILE LIST
+-------------------------------------
+
+---@class FileList
+FileList = {
+	dir = "",
+	ext = "json",
+	open = false,
+	reference = 0,
+	options = {},
+	fileOpts = {},
+	onClick = nil
+}
+FileList.__index = FileList
+
+
+---@param parent integer
+---@param name string
+---@param options table
+---@param dir string
+---@param ext string
+---@param onClick fun(opt: integer, fileName: string, path: string)
+---@return FileList
+function FileList.new(parent, name, options, dir, ext, onClick)
+	local self = setmetatable({dir = dir, ext = ext, options = options}, FileList)
+	self.fileOpts = {}
+	self.onClick = onClick
+
+	self.reference = menu.list(parent, name, {}, "", function()
+		self.open = true
+		self:load()
+	end, function()
+		self.open = false
 		self:clear()
 	end)
+
 	return self
 end
 
 
-function FilesList:load()
-	if not self.dir or not filesystem.exists(self.dir) or
-	not filesystem.is_dir(self.dir) then
+function FileList:load()
+	if not self.dir or not filesystem.exists(self.dir) then
 		return
 	end
+
 	for _, path in ipairs(filesystem.list_files(self.dir)) do
 		local name, ext = string.match(path, '^.+\\(.+)%.(.+)$')
-		if not self.ext or self.ext == ext then self:createOpt(name, ext, path) end
+		if not self.ext or self.ext == ext then self:createOpt(name, path) end
 	end
 end
 
 
----@param filename string
----@param ext string
+---@param fileName string
 ---@param path string
-function FilesList:createOpt(filename, ext, path)
-	local list <const> = menu.list(self.reference, filename, {}, "")
-	for _, subOpt in ipairs(self.subOpts) do
-		menu.action(list, subOpt.name, {subOpt.name .. filename}, "", function () subOpt.callback(filename, ext, path) end)
+function FileList:createOpt(fileName, path)
+	local list = menu.list(self.reference, fileName, {}, "")
+
+	for i, opt in ipairs(self.options) do
+		menu.action(list, opt, {}, "", function() self.onClick(i, fileName, path) end)
 	end
+
 	self.fileOpts[#self.fileOpts+1] = list
 end
 
 
----@param filename string #Must include file extension.
----@param content string
-function FilesList:add(filename, content)
-	assert(self.dir ~= "", "tried to add a file to a null directory")
-	if not filesystem.exists(self.dir) then
-		filesystem.mkdir(self.dir)
+function FileList:clear()
+	if #self.fileOpts == 0 then
+		return
 	end
 
-	local name, ext = string.match(filename, '^(.+)%.(.+)$')
-	assert(name and ext, "couldn't match file name or extension")
-	if filesystem.exists(self.dir .. filename) then
-		local count = 2
-		repeat
-			filename = string.format("%s (%s).%s", name, count, ext)
-			count = count + 1
-		until not filesystem.exists(self.dir .. filename)
-	end
-
-	local file <close> = assert(io.open(self.dir .. filename, "w"))
-	file:write(content)
-end
-
-
-function FilesList:clear()
-	if #self.fileOpts == 0 then return end
 	for i, ref in ipairs(self.fileOpts) do
 		menu.delete(ref); self.fileOpts[i] = nil
 	end
 end
 
 
-function FilesList:reload()
-	self:clear(); self:load()
+---@param file string #Must include file extension.
+---@param content string
+function FileList:add(file, content)
+	assert(self.dir ~= "", "tried to add a file to a null directory")
+	if not filesystem.exists(self.dir) then
+		filesystem.mkdir(self.dir)
+	end
+
+	local name, ext = string.match(file, '^(.+)%.(.+)$')
+	local count = 1
+
+	while filesystem.exists(self.dir .. file) do
+		count = count + 1
+		file = string.format("%s (%s).%s", name, count, ext)
+	end
+
+	local file <close> = assert(io.open(self.dir .. file, "w"))
+	file:write(content)
 end
 
 
+function FileList:reload()
+	self:clear()
+	self:load()
+end
+
+-------------------------------------
+-- AUTOLOAD LIST
+-------------------------------------
+
+
+local handlingTrans <const> =
+{
+	SetVehicle = translate("Handling Editor", "Set Vehicle"),
+	CurrentVehicle = translate("Handling Editor", "Current Vehicle"),
+	SaveHandling = translate("Handling Editor", "Save Handling Data"),
+	SavedFiles = translate("Handling Editor", "Saved Files"),
+	Load = translate("Handling Editor", "Load"),
+	Delete = translate("Handling Editor", "Delete"),
+	Autoload = translate("Handling Editor", "Autoload"),
+	Saved = translate("Handling Editor", "Handling file saved"),
+	Loaded = translate("Handling Editor", "Handling file successfully loaded"),
+	WillAutoload = translate("Handling Editor", "File '%s' will be autoloaded"),
+	HandlingEditor = translate("Handling Editor", "Handling Editor"),
+	AutoloadedFiles = translate("Handling Editor", "Autoloaded Files"),
+	ClickToDelete = translate("Handling Editor", "Click to delete"),
+	SavedHelp = translate("Handling Editor", "Saved handling files for the selected vehicle model")
+}
+
+
+---@class AutoloadList
+AutoloadList = {reference = 0, options = {}}
+AutoloadList.__index = AutoloadList
+
+
+---@param parent integer
 ---@param name string
----@param onClick fun(name:string, ext: string, path: string)
-function FilesList:addSubOpt(name, onClick)
-	table.insert(self.subOpts, {name = name, callback = onClick})
+---@return AutoloadList
+function AutoloadList.new(parent, name)
+	local self = setmetatable({options = {}}, AutoloadList)
+
+	self.reference = menu.list(parent, name, {}, "")
+	return self
 end
 
-function FilesList:isLoaded() return #self.fileOpts > 0 end
+
+---@param vehLabel string
+---@param file string
+function AutoloadList:push(vehLabel, file)
+	local vehName = util.get_label_text(vehLabel)
+
+	if self.options[vehName] then
+		menu.delete(self.options[vehName])
+	end
+
+	self.options[vehName] = menu.action(self.reference, string.format("%s: %s", vehName, file), {}, handlingTrans.ClickToDelete, function()
+		Config.handlingAutoload[vehLabel] = nil
+		menu.delete(self.options[vehName])
+	end)
+end
+
 
 -------------------------------------
 -- HANDLING EDITOR
 -------------------------------------
 
----@class HandlingEditor
+
+---@class HandlingData
 HandlingEditor =
 {
-	reference = 0,
-	isOpen = false,
-	---@type table<string, HandlingData>
-	subHandlingData = {},
-	ref_vehicleName = 0,
-	ref_save = 0,
-	---@type FilesList
-	savedFiles = nil,
-	---@type HandlingData
-	handlingData = nil, -- CHandlingData instance
-	state = 0,
-	lastVehicle = 0,
-	boxColour = {r = 255, g = 255, b = 255, a = 80}
+	references = {root = 0, meta = 0},
+	handlingData = nil,
+	subHandlings = {},
+	currentVehicle = 0,
+	open = false,
+	---@type FileList
+	filesList = nil,
+	---@type AutoloadList
+	autoloads = nil
 }
 HandlingEditor.__index = HandlingEditor
 
 
-local msgs =
-{
-	SuccessfullySaved = translate("Handling Editor", "Handling data successfully saved"),
-	SuccessfullyLoaded = translate("Handling Editor", "Handling data successfully loaded"),
-}
 
 ---@param parent integer
----@param menuname string
----@param commands table
----@param helpTxt string
----@return HandlingEditor
-function HandlingEditor.new(parent, menuname, commands, helpTxt)
-	local self = setmetatable({}, HandlingEditor)
-	self.reference = menu.list(parent, menuname, commands, helpTxt, function ()
-		self.isOpen = true
-	end, function ()
-		self.isOpen = false
+---@param name string
+---@return HandlingData
+function HandlingEditor.new(parent, name)
+	local self = setmetatable({subHandlings = {}, references = {}}, HandlingEditor)
+	self.references.root = menu.list(parent, name, {}, "", function()
+		self.open = true
+	end, function() self.open = false end)
+
+
+	local vehList = VehicleList.new(self.references.root, handlingTrans.SetVehicle, function (vehicle)
+		self:SetCurrentVehicle(vehicle)
 	end)
 
-	self.ref_vehicleName = menu.readonly(self.reference, translate("Handling Editor", "Vehicle"), "???")
 
-	local name_save <const> = translate("Handling Editor", "Save")
-	self.ref_save = menu.action(self.reference, name_save, {"savehandling"}, "", function ()
+	menu.action(self.references.root, handlingTrans.CurrentVehicle, {}, "", function ()
+		local vehicle = entities.get_user_vehicle_as_handle()
+		if vehicle ~= 0 then vehList:setSelected(ENTITY.GET_ENTITY_MODEL(vehicle)) end
+	end)
+
+
+	self.references.meta = menu.list(self.references.root, "Meta", {}, "")
+
+	menu.action(self.references.meta, handlingTrans.SaveHandling, {}, "", function()
 		local ok, msg = self:save()
-		if not ok then return notification:help(capitalize(msg), HudColour.red) end
-		notification:normal(msgs.SuccessfullySaved, HudColour.purpleDark)
+		if not ok then
+			return notification:help(capitalize(msg), HudColour.red)
+		end
+		notification:normal(handlingTrans.Saved, HudColour.purpleDark)
 	end)
 
-	local name_savedFiles <const> = translate("Handling Editor", "Saved Files")
-	self.savedFiles = FilesList.new(self.reference, name_savedFiles, "", "json")
-	do
-		self.savedFiles:addSubOpt(translate("Handling Editor", "Load"), function (name, ext, path)
+
+	local fileOpts <const> =
+	{
+		handlingTrans.Load,
+		handlingTrans.Autoload,
+		handlingTrans.Delete,
+	}
+
+	self.filesList = FileList.new(self.references.meta, handlingTrans.SavedFiles, fileOpts, "", "json", function (opt, fileName, path)
+		if  opt == 1 then
 			local ok, msg = self:load(path)
-			if not ok then return notification:help(capitalize(msg), HudColour.red) end
-			notification:normal(msgs.SuccessfullyLoaded, HudColour.purpleDark)
-		end)
+			if not ok then
+				return notification:help(capitalize(msg), HudColour.red)
+			end
+			self:SetCurrentVehicle(self.currentVehicle) -- reloading
+			notification:normal(handlingTrans.Loaded, HudColour.purpleDark)
 
-		self.savedFiles:addSubOpt(translate("Handling Editor", "Delete"), function (name, ext, path)
-			local ok, msg = os.remove(path)
-			if not ok then return notification:help(msg, HudColour.red) end
-			self.savedFiles:reload()
-		end)
-	end
+		elseif opt == 3 then
+			os.remove(path)
+			self.filesList:reload()
 
-	menu.hyperlink(self.reference, translate("Handling Editor", "Tutorial"), "https://gtamods.com/wiki/Handling.meta", "")
+		elseif opt == 2 then
+			local name = VEHICLE.GET_DISPLAY_NAME_FROM_VEHICLE_MODEL(self.currentVehicle)
+			if name == "CARNOTFOUND" then
+				return
+			end
+			Config.handlingAutoload[name] = fileName
+			self.autoloads:push(name, fileName)
+			notification:normal(string.format(handlingTrans.WillAutoload, fileName), HudColour.purpleDark)
+		end
+	end)
+
+	menu.set_help_text(self.filesList.reference, handlingTrans.SavedHelp)
+	self.autoloads = AutoloadList.new(self.references.meta, handlingTrans.AutoloadedFiles)
 	return self
 end
 
 
----@param name string
-function HandlingEditor:setVehicleName(name)
-	menu.set_value(self.ref_vehicleName, name)
-end
 
-
-function HandlingEditor:removeSubHandlingData()
-	if not next(self.subHandlingData) then return end
-	for _, subHandling in pairs(self.subHandlingData) do
-		menu.delete(subHandling.reference)
+---@param hash Hash
+function HandlingEditor:SetCurrentVehicle(hash)
+	if self.handlingData then self:clear() end
+	self.currentVehicle = hash
+	local root = self.references.root
+	local modelInfo = get_vehicle_model_info(hash)
+	if modelInfo == NULL then
+		return
 	end
-	self.subHandlingData = {}
-end
 
-
-function HandlingEditor:onTick()
-	local vehicle = entities.get_user_vehicle_as_handle()
-	if self.isOpen and ENTITY.DOES_ENTITY_EXIST(vehicle) and not ENTITY.IS_ENTITY_DEAD(vehicle, false) and
-	VEHICLE.IS_VEHICLE_DRIVEABLE(vehicle, false) then
-		if menu.is_open() then
-			draw_bounding_box(vehicle, true, self.boxColour)
-		end
-
-		if vehicle ~= self.lastVehicle or not self.handlingData then
-			if self.handlingData then
-				menu.delete(self.handlingData.reference)
-				self.handlingData = nil
-			end
-			self:removeSubHandlingData()
-
-			local pVehicle = entities.handle_to_pointer(vehicle)
-			if pVehicle == NULL then return end
-			local CHandlingData_addr = memory.read_long(pVehicle + 0x918)
-			self.handlingData = HandlingData.new(self.reference, "CHandlingData", CHandlingData_addr, CHandlingData)
-
-			local model = ENTITY.GET_ENTITY_MODEL(vehicle)
-			local vehicleName = VEHICLE.GET_DISPLAY_NAME_FROM_VEHICLE_MODEL(model)
-			self:setVehicleName(util.get_label_text(vehicleName))
-
-			for _, subHandling in ipairs(get_vehicle_sub_handling(pVehicle)) do
-				local name = get_sub_handling_type_name(subHandling.type)
-				local offsets = SubHandlingData[name]
-				if offsets and not self.subHandlingData[name] then
-					self.subHandlingData[name] =
-					HandlingData.new(self.reference, name, subHandling.address, offsets)
-				end
-			end
-
-			self.savedFiles.dir = wiriDir .. "handling\\" .. string.lower(vehicleName) .. "\\"
-			if self.savedFiles.isOpen then self.savedFiles:reload() end
-			self.lastVehicle = vehicle
-		end
-	elseif self.handlingData then
-		self:removeSubHandlingData()
-		self:setVehicleName("???")
-		menu.delete(self.handlingData.reference)
-		self.handlingData = nil
-		self.savedFiles:clear()
-		self.savedFiles.dir = nil
+	local handlingAddress = get_vehicle_model_handling_data(modelInfo)
+	if handlingAddress == NULL then
+		return
 	end
+
+	self.handlingData = HandlingData.new(root, "CHandlingData", handlingAddress, CHandlingData)
+	local subHandlings = get_sub_handling_array(handlingAddress)
+
+	for _, subHandling in ipairs(subHandlings) do
+		if subHandling.address == NULL then
+			continue
+		end
+		local name = subHandlingClasses[subHandling.type]
+		local offsets = SubHandlingData[name]
+		if not self.subHandlings[name] then self.subHandlings[name] = HandlingData.new(root, name, subHandling.address, offsets) end
+	end
+
+	local vehicleName = memory.read_string(modelInfo + 0x298)
+	self.filesList.dir = wiriDir .. "handling\\" .. string.lower(vehicleName) .. "\\"
 end
 
 
-local trans = {
-	VehicleNotFound = translate("Handling Editor", "User vehicle not found"),
-	SaveCanceled = translate("Handling Editor", "Save canceled")
-}
+
+function HandlingEditor:clear()
+	self.handlingData:Remove()
+	for _, h in pairs(self.subHandlings) do h:Remove() end
+
+	self.handlingData = nil
+	self.subHandlings = {}
+	self.currentVehicle = 0
+	self.filesList.dir = ""
+end
+
+
 
 ---@return boolean
 ---@return string? errmsg
 function HandlingEditor:save()
-	local vehicle = entities.get_user_vehicle_as_handle()
-	if not ENTITY.DOES_ENTITY_EXIST(vehicle)
-	or self.handlingData.baseAddress == NULL then
-		return false, trans.VehicleNotFound
+	if not self.handlingData then
+		return false, "handling data not found"
 	end
+
 	local input = ""
 	local label = customLabels.EnterFileName
+
 	while true do
 		input = get_input_from_screen_keyboard(label, 31, "")
 		if input == "" then
-			return false, trans.SaveCanceled
+			return false, "save canceled"
 		end
 		if not input:find '[^%w_%.%-]' then break end
 		label = customLabels.InvalidChar
-		util.yield(250)
+		util.yield(200)
 	end
+
 	local data = {}
 	data[self.handlingData.name] = self.handlingData:get()
-	for _, subHandling in pairs(self.subHandlingData) do
+
+	for _, subHandling in pairs(self.subHandlings) do
 		data[subHandling.name] = subHandling:get()
 	end
-	self.savedFiles:add(input .. ".json", json.stringify(data, nil, 4))
+
+	self.filesList:add(input .. ".json", json.stringify(data, nil, 4))
 	return true, nil
 end
+
 
 
 ---@param path string
 ---@return boolean
 ---@return string? errmsg
 function HandlingEditor:load(path)
-	local vehicle = entities.get_user_vehicle_as_handle()
-	if not ENTITY.DOES_ENTITY_EXIST(vehicle) or
-	self.handlingData.baseAddress == NULL then
-		return false, "user vehicle not found"
+	if not self.handlingData then
+		return false, "handling data not found"
 	end
+
 	if not filesystem.exists(path) then
 		return false, "file does not exist"
 	end
+
 	local ok, result = json.parse(path, false)
-	if not ok then return false, result end
-	local handlingData = result.CHandlingData
-	if type(handlingData) ~= "table" then
-		return false, "field: CHandlingData was not found in the parsed file"
-	end
-	self.handlingData:set(handlingData)
-	local handlingTypes <const> = get_vehicle_sub_handling(entities.handle_to_pointer(vehicle))
-	local count = 0
-
-	for _, ht in ipairs(handlingTypes) do
-		local name <const> = get_sub_handling_type_name(ht.type)
-		local data = result[name]
-		if type(data) == "table" then
-			local subHandling = self.subHandlingData[name]
-			if subHandling then subHandling:set(data); count = count + 1 end
-		end
+	if not ok then
+		return false, result
 	end
 
-	util.log("%d / %d subhandlings loaded", count, #handlingTypes)
-	return true
+	self.handlingData:set(result.CHandlingData)
+
+	for name, subHandling in pairs(self.subHandlings) do
+		if result[name] then subHandling:set(result[name]) end
+	end
+
+	return true, nil
 end
 
 
-local handlingEditor <const> =
-HandlingEditor.new(vehicleOptions, translate("Handling Editor", "Handling Editor"), {}, "")
-util.log("Handling Editor initialized")
+---@return integer
+function HandlingEditor:autoload()
+	local count = 0
+
+	for vehicle, file in pairs(Config.handlingAutoload) do
+		local path =  wiriDir .. "handling\\" .. string.lower(vehicle) .. "\\" .. file .. ".json"
+		local modelHash = util.joaat(vehicle)
+
+		self:SetCurrentVehicle(modelHash)
+		if  self:load(path) then
+			self.autoloads:push(vehicle, file)
+			count = count + 1
+		end
+	end
+
+	if self.handlingData then self:clear() end
+	return count
+end
+
+
+
+g_handlingEditor = HandlingEditor.new(vehicleOptions, handlingTrans.HandlingEditor)
+
+local numFilesLoaded = g_handlingEditor:autoload()
+util.log("%d handling file(s) loaded", numFilesLoaded)
+
 
 -------------------------------------
 -- UFO
@@ -5336,10 +5432,12 @@ menu.toggle_loop(vehicleOptions, translate("Vehicle", "Vehicle Instant Lock-On")
 	if address == NULL then return end
 	local lockOn = VehicleLockOn.new(address)
 	modifiedLockOn = modifiedLockOn or lockOn
+
 	if lockOn ~= modifiedLockOn then
 		modifiedLockOn:reset()
 		modifiedLockOn = lockOn
 	end
+
 	if modifiedLockOn:getValue() ~= 0.0 then
 		modifiedLockOn:setValue(0.0)
 	end
@@ -5372,7 +5470,7 @@ menu.toggle_loop(vehicleOptions, translate("Vehicle Effects", "Vehicle Effects")
 		request_fx_asset(effect[1])
 		for _, boneName in pairs({"wheel_lf", "wheel_lr", "wheel_rf", "wheel_rr"}) do
 			local bone = ENTITY.GET_ENTITY_BONE_INDEX_BY_NAME(vehicle, boneName)
-			
+
 			GRAPHICS.USE_PARTICLE_FX_ASSET(effect[1])
 			GRAPHICS.START_PARTICLE_FX_NON_LOOPED_ON_ENTITY_BONE(
 				effect[2],
@@ -5783,7 +5881,7 @@ end
 ---@param ped Ped
 local IsPedAnyAnimal  = function(ped)
 	local modelHash = ENTITY.GET_ENTITY_MODEL(ped)
-	pluto_switch int_to_uint(modelHash) do
+	switch int_to_uint(modelHash) do
 		case 0xC2D06F53:
 		case 0xCE5FF074:
 		case 0x573201B8:
@@ -5822,7 +5920,7 @@ end
 ---@param ped Ped
 local IsPedFromAnyArmedForce = function (ped)
 	local modelHash = ENTITY.GET_ENTITY_MODEL(ped)
-	pluto_switch int_to_uint(modelHash) do
+	switch int_to_uint(modelHash) do
 		case 0x15F8700D:
 		case 0x625D6958:
 		case 0xEDBC7546:
@@ -6285,6 +6383,7 @@ function BodyguardMenu.new(parent, name, command_names)
 		if self.group.defaults.invincible then member:setInvincible(true) end
 	end, false, true)
 
+
 	menu.action(self.ref, translate("Bg Menu", "Clone Myself"), {"clonebg"}, "", function ()
 		if self.group:getSize() >= 7 then
 			return notification:help(trans.ReachedMaxNumBodyguards, HudColour.red)
@@ -6300,40 +6399,42 @@ function BodyguardMenu.new(parent, name, command_names)
 		if self.group.defaults.invincible then member:setInvincible(true) end
 	end)
 
-	local saved = FilesList.new(self.ref, translate("Bg Menu", "Saved"), wiriDir .. "bodyguards", "json")
 
-	saved:addSubOpt(translate("Bg Menu", "Spawn"), function(name, ext, path)
-		if self.group:getSize() >= 7 then
-			return notification:help(trans.ReachedMaxNumBodyguards, HudColour.red)
+	local savedFileOpts = {translate("Bg Menu", "Spawn"), translate("Bg Menu", "Delete File")}
+	local saved
+	saved = FileList.new(self.ref, translate("Bg Menu", "Saved"), savedFileOpts, wiriDir .. "bodyguards", "json", function (opt, name, path)
+		if opt == 1 then
+			if self.group:getSize() >= 7 then
+				return notification:help(trans.ReachedMaxNumBodyguards, HudColour.red)
+			end
+			local ok, result = json.parse(path)
+			if not ok then return notification:help(result, HudColour.red) end
+
+			local modelHash <const> = result.ModelHash
+			request_model(modelHash)
+			local member = Member:createMember(modelHash)
+			self.group:pushMember(member)
+
+			local weaponHash = result.WeaponHash
+			if IsPedAnyAnimal(member.handle) and
+			weaponHash ~= util.joaat("weapon_animal") then
+				weaponHash = util.joaat("weapon_animal")
+			end
+
+			local ok, errmsg = member:setOutfit(result.Outfit)
+			if not ok then
+				notification:help(trans.InvalidOutfit, HudColour.red, name, errmsg)
+			end
+
+			member:giveWeapon(weaponHash)
+			member:createMgr(self.ref, name)
+			if self.group.defaults.invincible then member:setInvincible(true) end
+
+		else
+			local ok, errmsg = os.remove(path)
+			if not ok then return notification:help(errmsg, HudColour.red) end
+			saved:reload()
 		end
-		local ok, result = json.parse(path)
-		if not ok then return notification:help(result, HudColour.red) end
-
-		local modelHash <const> = result.ModelHash
-		request_model(modelHash)
-		local member = Member:createMember(modelHash)
-		self.group:pushMember(member)
-
-		local weaponHash = result.WeaponHash
-		if IsPedAnyAnimal(member.handle) and
-		weaponHash ~= util.joaat("weapon_animal") then
-			weaponHash = util.joaat("weapon_animal")
-		end
-
-		local ok, errmsg = member:setOutfit(result.Outfit)
-		if not ok then
-			notification:help(trans.InvalidOutfit, HudColour.red, name, errmsg)
-		end
-
-		member:giveWeapon(weaponHash)
-		member:createMgr(self.ref, name)
-		if self.group.defaults.invincible then member:setInvincible(true) end
-	end)
-
-	saved:addSubOpt(translate("Bg Menu", "Delete File"), function (name, ext, path)
-		local ok, errmsg = os.remove(path)
-		if not ok then return notification:help(errmsg, HudColour.red) end
-		saved:reload()
 	end)
 
 	self:createCommands(self.ref)
@@ -7007,7 +7108,7 @@ if Config.general.language ~= "english" then
 		Config.general.language = "english"
 		Ini.save(configFile, Config)
 		menu.show_warning(actionId, CLICK_MENU, warningMsg, function()
-			util.stop_script()
+			util.restart_script()
 		end)
 	end)
 end
@@ -7023,7 +7124,7 @@ for _, path in ipairs(filesystem.list_files(languageDir)) do
 		Config.general.language = filename
 		Ini.save(configFile, Config)
         menu.show_warning(actionId, CLICK_MENU, warningMsg, function()
-            util.stop_script()
+            util.restart_script()
         end)
 	end)
 ::LABEL_CONTINUE::
@@ -7173,7 +7274,7 @@ local align
 
 
 credits = 
-menu.toggle_loop(script, translate("WiriScript", "Show Credit"), {}, "", function()
+menu.toggle_loop(script, translate("WiriScript", "Show Credits"), {}, "", function()
 	if gShowingIntro then
 		-- nothing
 	elseif openingCredits:HAS_LOADED() then
@@ -7293,18 +7394,7 @@ util.log("On join dispatched")
 -- MEMORY SCANS / FOREIGN FUNCTS
 -------------------------------------
 
----@param name string
----@param pattern string
----@param callback fun(address: integer)
-function memoryScan(name, pattern, callback)
-	local address = memory.scan(pattern)
-	assert(address ~= NULL, "memory scan failed: " .. name)
-	callback(address)
-	util.log("Found %s", name)
-end
-
-
-memoryScan("GetNetGamePlayer", "48 83 EC ? 33 C0 38 05 ? ? ? ? 74 ? 83 F9", function (address)
+memory_scan("GNGP", "48 83 EC ? 33 C0 38 05 ? ? ? ? 74 ? 83 F9", function (address)
 	GetNetGamePlayer_addr = address
 end)
 
@@ -7312,7 +7402,7 @@ end)
 	UnregisterNetworkObject_addr = address - 0xB
 end)]]
 
-memoryScan("CNetworkObjectMgr", "48 8B 0D ? ? ? ? 45 33 C0 E8 ? ? ? ? 33 FF 4C 8B F0", function (address)
+memory_scan("NOM", "48 8B 0D ? ? ? ? 45 33 C0 E8 ? ? ? ? 33 FF 4C 8B F0", function (address)
 	CNetworkObjectMgr = memory.rip(address + 3)
 end)
 
@@ -7428,7 +7518,6 @@ while true do
 	GuidedMissile.mainLoop()
 	UFO.mainLoop()
 	OrbitalCannon.mainLoop()
-	handlingEditor:onTick()
 	PedHealthBar:mainLoop()
 	util.yield_once()
 end

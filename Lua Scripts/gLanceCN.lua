@@ -155,8 +155,8 @@ async_http.init("pastebin.com", "/raw/nrMdhHwE", function(result)
 end)
 async_http.dispatch()
 
-async_http.init("pastebin.com", "/raw/HScMyPPf", function(result)
-    menu.hyperlink(menu.my_root(), "加入qq群", result, "这是不是作者的群，是汉化者MrLGXC的")
+async_http.init("pastebin.com", "/raw/CgKQVJMY", function(result)
+    menu.hyperlink(menu.my_root(), "加入qq群", result, "这是不是作者的群,是汉化者MrLGXC的")
 end)
 async_http.dispatch()
 

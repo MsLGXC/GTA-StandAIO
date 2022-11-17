@@ -28,6 +28,7 @@
 > 在此处下载线上Mod包 v5+v4[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
 > 在此处下载线上Mod包 v5+v4[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
 > 在此处下载线上Mod包（由于本人空间不足所以只有v5）[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
+> ps:v5最低配置要求，3070ti及以上+i712代及以上+24g内存频率3200及以上+固态硬盘读取速度5000m/s以上，否则你的游戏可能经常性的变成土豆 如果没达到配置并且忍受不了土豆，退回v4（不需要任何配置，只要你电脑能正常玩gta...)
 
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
@@ -37,7 +38,7 @@
 
 # 最后一个发布
 ```bash
-更新于游戏版本1.63，stand版本0.90.5
+更新于游戏版本1.63，stand版本0.92.4
 ```
 # 为爱发电 用心制造
 > **但有人问：为什么选择月球?**<br>
@@ -52,6 +53,7 @@
 # 注意事项
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
+> **无论如何，您应该优先使用原脚本中的功能而不是二代目或任何国产脚本中复制缝合的功能（尤其是“模组加载器”）大部分缝合限于作者的技术原因无法及时更新，所以他们通常是很老的代码或根本是一堆破烂**<br>
 > **在线模式中最多同步80个实体，超出后仅本地显示。若别人无法看到请先清除旧的实体**<br>
 > **若使用Menyoo生成载具后异常，请重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
@@ -91,8 +93,6 @@
   - [x] AcjokerScript (汉化-lu_zi)
 
   - [x] JinxScript__CN (汉化-BLackMist)
-
-  - [x] KeramiScript (汉化-空白白)
 
   - [x] jackz_vehicle_builder (汉化-谷歌翻译)
 
@@ -150,19 +150,15 @@
 
 </details>
 <details>
-  <summary>Headers</summary>
+  <summary>Hotkeys.txt</summary>
 
-  - [x] MrLGXC自用主题所需的头图
+  - [x] 与配置对应的快捷键设置，会覆盖你原来的所有快捷键，如果不想要可以不放
 
 </details>
 <details>
-  <summary>[高级]mods v4</summary>
+  <summary>Headers</summary>
 
-  - [ ] nib系列 （过于自慰已移除）
-
-  - [ ] bf北风系列 （由于作者贩卖免费资源遭数平台封杀已移除）
-
-  - [x] MrLGXC的线上模组v4 （可用，正在加紧更新无脑化安装)
+  - [x] MrLGXC自用主题所需的头图
 
 </details>
 

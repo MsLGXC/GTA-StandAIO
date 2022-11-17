@@ -5,9 +5,9 @@
 LOADING_SCRIPT = true
     LANG_SETTINGS = {}
     LANG_SETTINGS.GENERATE_TEMPLATE = false
-    LANG_SETTINGS.LANG_DIR = filesystem.store_dir() .. 'AcjokerScript\\Languages\\'
+    LANG_SETTINGS.LANG_DIR = filesystem.resources_dir() .. 'AcjokerScript\\Languages\\'
     LANG_SETTINGS.STRING_FILES = {
-        filesystem.scripts_dir() ..'AcjokerScript.lua',
+        filesystem.scripts_dir() ..SCRIPT_RELPATH,
     }
     LANG_SETTINGS.VAR_NAME = 'AClang'
 
