@@ -1326,7 +1326,34 @@ local translations = {
     warn_orb = "Warn Orbital Cannon usage",
     orbital_cannon_warn = " is using Orbital Cannon",
     block_orb_cannon = "Block Orbital Cannon room",
-    block_orb_cannon_desc = "Spawns a persistent garage door prop in front of the orbital cannon room, preventing anyone from using it."
+    block_orb_cannon_desc = "Spawns a persistent garage door prop in front of the orbital cannon room, preventing anyone from using it.",
+    nuke = "Nuke",
+    nuke_desc = "Blow up this player as well as all nearby peds and cars",
+    natives_error = "It looks like LanceScript's required natives file did not load properly. This file should automatically get downloaded by Stand, so wait a bit and then try again. If the issue continues, try setting your computer's DNS to use Cloudflare's DNS servers (1.1.1.1 and 1.0.0.1).\nNatives file required: ",
+    natives_error_2 = "I've also highlighted the file that needs to be (properly) installed in your Stand :)",
+    -- 9.8.0
+    bomb_shower = "Bomb shower",
+    -- please use caps lock for this one :)
+    happy_holidays = "HAPPY HOLIDAYS",
+    hit_bong_desc = "You should stay high for 2 minutes. If this fucks up (probably because your Stand\'s profile has auto-save on or something like that), run the command \"shader off\" in Stand.",
+    toggle_shift_drift = "Toggle shift-drift",
+    toggle_shift_drift_desc = "You should bind a hotkey to this toggle, otherwise this feature becomes kinda useless.",
+    draw_car_angle = "Draw car angle",
+    draw_car_angle_desc = "Draws the angle of the car relative to your camera's positioning from it. Useful for seeing how sharp your drifting is.",
+    draw_control_values = "Draw control pressures",
+    draw_control_values_desc = "Draws control values/\"normals\", so you can see how hard you are pressing each button. This is essentially useless if you aren\'t using a controller, but it will still work.",
+    manual_mode = "Manual mode",
+    manual_mode_desc = "Simulates a manual transmission. Bind keys to the 2 sequential shifting controls below and use them. There is no neutral (yet?), and you can \"stall\" if you shift badly. Also gears like reverse act strangely, and the game seems like it tries to rev match whatever gear you\'re in if you\'re bad at shifting.",
+    next_gear = "Next gear",
+    previous_gear = "Previous gear",
+    manual_transmission = "Manual transmission",
+    drink_milk = "Drink milk",
+    drink_milk_desc = "Sobers up your ped while high",
+    nitro = "Nitro",
+    nitro_desc = "Enables Nitro boost in any vehicle. Use your boost key as normal with this enabled.",
+    in_seconds = "In seconds",
+    nitro_duration = "Nitro duration",
+    nitro_power = "Nitro power"
 }
 
 setmetatable(translations, {

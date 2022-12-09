@@ -1,6 +1,6 @@
 -- Constructor Translations
 
-local SCRIPT_VERSION = "0.28"
+local SCRIPT_VERSION = "0.29"
 local translations = {}
 
 ---
@@ -445,6 +445,21 @@ translations.lang["zh"] = {
     ["Set configuration options relating to spawning constructs."] = "设置生成constructs有关的配置选项",
     ["Translators"] = "翻译",
     ["Auto-Update"] = "自动更新",
+    ["Rotation Order"] = "旋转顺序",
+    ["Set the order that rotations should be applied."] = "设置旋转顺序",
+    ["Additional options available for Ped entities."] = "人物可用选项.",
+    ["Make a new copy of this entity, at the same location as the original"] = "为该实体制作一个新的副本，位置与原实体相同",
+    ["Make a new copy of this entity, but at the mirror location about the X-axis"] = "为该实体制作一个新的副本，位置在X轴镜像位置.",
+    ["Make a new copy of this entity, but at the mirror location about the Y-axis"] = "为该实体制作一个新的副本，位置在Y轴镜像位置.",
+    ["Make a new copy of this entity, but at the mirror location about the Z-axis"] = "为该实体制作一个新的副本，位置在Z轴镜像位置.",
+    ["Move your player to the construct, or vice versa."] = "玩家传到构造或构造传送到玩家.",
+    ["Information about the construct"] = "有关该构造的信息",
+    ["Position and Rotation options"] = "位置和旋转选项",
+    ["Configuration options for this entity"] = "该实体的配置选项",
+    ["Modify other entities attached to this entity"] = "修改附加到此实体的其他实体",
+    ["Make a copy of this attachment"] = "复制此附件",
+    ["Move your player nearby the construct, but not inside of it."] = "将玩家传送到构造附近",
+    ["Move the construct to be nearby your player"] = "将构造移动到玩家附近",
     ["Automatically install updates as they are released. Disable if you cannot successfully fetch updates as normal."] = "作者更新lua时会自动进行更新,如果你无法更新,请取消自动更新.",
 }
 
@@ -454,5 +469,6 @@ translations.lang["zh"] = {
 
 translations.inject_custom_translations()
 return translations
+
 
 

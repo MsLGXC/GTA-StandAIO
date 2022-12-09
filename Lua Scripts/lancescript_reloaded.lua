@@ -1,7 +1,8 @@
 -- LANCESCRIPT RELOADED
-script_version = 9.58
+script_version = 10.10
 all_used_cameras = {}
-util.require_natives("1663599433")
+natives_version = "1663599433"
+util.require_natives(natives_version)
 gta_labels = require('all_labels')
 all_labels = gta_labels.all_labels
 sexts = gta_labels.sexts
@@ -13,6 +14,7 @@ all_objects = {}
 all_players = {}
 all_peds = {}
 all_pickups = {}
+local _math = 6663*32707
 handle_ptr = memory.alloc(13*8)
 player_cur_car = 0
 good_guns = {0, 453432689, 171789620, 487013001, -1716189206, 1119849093}
@@ -134,6 +136,17 @@ if not fallback then
     end
 end
 
+
+function notify(text)
+    util.toast('[' .. translations.script_name_pretty .. '] ' .. text)
+end
+
+if PED == nil then
+    util.show_corner_help(translations.natives_error .. 'natives-' .. natives_version .. '.lua\n' .. translations.natives_error_2)
+    menu.focus(menu.ref_by_path("Stand>Lua Scripts>Repository>natives-" .. natives_version))
+    util.stop_script()
+end
+
 function get_user_primary_color()
     local color = {}
     color.r = menu.get_value(menu.ref_by_command_name("primaryred")) / 100
@@ -176,16 +189,12 @@ util.create_tick_handler(function()
 end)
 
 
-function notify(text)
-    util.toast('[' .. translations.script_name_pretty .. '] ' .. text)
-end
-
 -- holiday
 local today = os.date('%m/%d')
 if not SCRIPT_SILENT_START then 
     if today == "10/31" then 
         notify(translations.happy_halloween)
-    elseif today == '11/23' then
+    elseif today == '11/24' then
         notify(translations.happy_thanksgiving)
     elseif today == '12/25' then 
         notify(translations.merry_christmas)
@@ -200,7 +209,7 @@ end
 local function ls_log(content)
     if ls_debug then
         notify(content)
-        util.log(translations.script_name_for_log .. content)
+        util.log(translations.script_name_for_log .. content)   
     end
 end
 
@@ -250,8 +259,20 @@ if SCRIPT_MANUAL_START then
     end)
 end
 
+-- begin the festivities
+local festive_div = menu.divider(menu.my_root(), translations.happy_holidays, {}, "")
+-- i could use some math and probably tables here to code-golf this, but meh, i think a predefined table is okay :)
+local loading_frames = {'!', '! !', '! ! !', '! ! ! !', '! ! ! ! !', '! ! ! !', '! ! !', '! !'}
+util.create_tick_handler(function()
+    for _, frame in pairs(loading_frames) do
+        menu.set_menu_name(festive_div, frame .. ' ' .. translations.happy_holidays .. ' ' .. frame)
+        util.yield(100)
+    end
+end)
+
 -- start organizing the MAIN lists (ones just at root level/right under it)
 -- BEGIN SELF SUBSECTIONS
+
 self_root = menu.list(menu.my_root(), translations.me, {translations.me_cmd}, translations.me_desc)
 chauffeur_root = menu.list(self_root, translations.chauffeur, {translations.chauffeur}, translations.chauffeur_desc)
 my_vehicle_root = menu.list(self_root, translations.my_vehicle, {translations.my_vehicle_cmd}, translations.my_vehicle_desc)
@@ -296,7 +317,6 @@ ap_root = menu.list(online_root, translations.all_players, {translations.all_pla
 apfriendly_root = menu.list(ap_root, translations.all_players_friendly, {translations.all_players_friendly_cmd}, "")
 aphostile_root = menu.list(ap_root, translations.all_players_hostile, {translations.all_players_hostile_cmd}, "")
 apneutral_root = menu.list(ap_root, translations.all_players_neutral, {translations.all_players_neutral_cmd}, "")
-ap_text_trolls_root = menu.list(apneutral_root, translations.text, {}, "")
 -- END ONLINE SUBSECTIONS
 -- BEGIN ENTITIES SUBSECTION
 entities_root = menu.list(menu.my_root(), translations.entities, {translations.entities_cmd}, translations.entities_desc)
@@ -1214,17 +1234,31 @@ end, function(on_command)
     end
 end)
 
+local burning_man_ptfx_asset = "core"
+local burning_man_ptfx_effect = "fire_wrecked_plane_cockpit"
+request_ptfx_asset(burning_man_ptfx_asset)
 
-menu.toggle(self_root, translations.burning_man, {translations.burning_man_cmd}, translations.burning_man_desc, function(on)
-    ped_flags[430] = on
-    if on then
-        FIRE.START_ENTITY_FIRE(players.user_ped())
-        ENTITY.SET_ENTITY_PROOFS(players.user_ped(), false, true, false, false, false, false, 0, false) -- fire proof
+local trail_bones = {0xffa, 0xfa11, 0x83c, 0x512d, 0x796e, 0xb3fe, 0x3fcf, 0x58b7, 0xbb0}
+local looped_ptfxs = {}
+local was_burning_man_on = false
+self_root:toggle(translations.burning_man, {"burningman"}, "", function(on)
+    if not on then 
+        for _, p in pairs(looped_ptfxs) do
+            GRAPHICS.REMOVE_PARTICLE_FX(p, false)
+            GRAPHICS.STOP_PARTICLE_FX_LOOPED(p, false)
+        end
     else
-        FIRE.STOP_ENTITY_FIRE(players.user_ped())
-        ENTITY.SET_ENTITY_PROOFS(players.user_ped(), false, false, false, false, false, false, 0, false)
+        request_ptfx_asset(burning_man_ptfx_asset)
+        for _, bone in pairs(trail_bones) do
+            GRAPHICS.USE_PARTICLE_FX_ASSET(burning_man_ptfx_asset)
+            local bone_id = PED.GET_PED_BONE_INDEX(players.user_ped(), bone)
+            fx = GRAPHICS.START_NETWORKED_PARTICLE_FX_LOOPED_ON_ENTITY_BONE(burning_man_ptfx_effect, players.user_ped(), 0.0, 0.0, 0.0, 0.0, 0.0, 90.0, bone_id, 0.5, false, false, false, 0, 0, 0, 0)
+            looped_ptfxs[#looped_ptfxs+1] = fx
+            GRAPHICS.SET_PARTICLE_FX_LOOPED_COLOUR(fx, 100, 100, 100, false)
+        end
     end
 end)
+
 
 tpf_units = 1
 menu.action(self_root, translations.tp_forward, {translations.tp_forward_cmd}, translations.tp_forward_desc, function(on_click)
@@ -1857,6 +1891,77 @@ menu.list_action(my_vehicle_root, translations.attach_flag, {"attachflagtocar"},
     end
 end)
 
+menu.toggle_loop(my_vehicle_root, translations.draw_car_angle, {"carangle"}, "", function()
+    if player_cur_car ~= 0 and PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) then
+        local ang = math.abs(math.ceil(math.abs(ENTITY.GET_ENTITY_ROTATION(player_cur_car, 0).z) - math.abs(CAM.GET_GAMEPLAY_CAM_ROT(0).z)))
+        directx.draw_text(0.5, 1.0, tostring(ang) .. '°', 5, 1.4, {r=1, g=1, b=1, a=1}, true)
+    end
+end)
+
+menu.toggle_loop(my_vehicle_root, translations.draw_control_values, {"drawcontrolvalues"}, translations.draw_control_values_desc, function()
+    if player_cur_car ~= 0 and PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) then
+        local center_x = 0.8
+        local center_y = 0.8
+        -- main underlay
+        directx.draw_rect(center_x - 0.062, center_y - 0.125, 0.12, 0.13, {r = 0, g = 0, b = 0, a = 0.2})
+        -- throttle
+        directx.draw_rect(center_x, center_y, 0.005, -PAD.GET_CONTROL_NORMAL(87, 87)/10, {r = 0, g = 1, b = 0, a =1 })
+        -- brake 
+        directx.draw_rect(center_x - 0.01, center_y, 0.005, -PAD.GET_CONTROL_NORMAL(72, 72)/10, {r = 1, g = 0, b = 0, a =1 })
+        -- steering
+        directx.draw_rect(center_x - 0.0025, center_y - 0.115, math.max(PAD.GET_CONTROL_NORMAL(146, 146)/20), 0.01, {r = 0, g = 0.5, b = 1, a =1 })
+    end
+end)
+
+
+local m_shift_up_this_frame = false 
+local m_shift_down_this_frame = false 
+
+local manual_transmission_list = my_vehicle_root:list(translations.manual_transmission, {}, translations.manual_mode_desc)
+local manual_mode = false 
+menu.toggle(manual_transmission_list, translations.manual_mode, {}, translations.manual_mode_desc, function(on)
+    manual_mode = on
+    while true do 
+        if player_cur_car ~= 0 then 
+            local addr = entities.get_user_vehicle_as_pointer()
+            local cur_gear = entities.get_current_gear(addr)
+            local next_gear = entities.get_next_gear(addr)
+            if not manual_mode then 
+                entities.set_next_gear(addr, next_gear)
+                break 
+            end
+            if m_shift_up_this_frame then
+                if cur_gear ~= 6 then
+                    entities.set_next_gear(addr, cur_gear + 1)
+                end
+                m_shift_up_this_frame = false 
+            elseif m_shift_down_this_frame then 
+                if cur_gear > 1 then 
+                    entities.set_next_gear(addr, cur_gear - 1)
+                end
+                m_shift_down_this_frame = false 
+            else
+                entities.set_next_gear(addr, cur_gear)
+            end
+        end
+        util.yield()
+    end
+end)
+
+menu.action(manual_transmission_list, translations.next_gear, {}, translations.next_gear, function()
+    if player_cur_car ~= 0 then 
+        m_shift_up_this_frame = true 
+    end
+end)
+
+menu.action(manual_transmission_list, translations.previous_gear, {}, translations.previous_gear, function()
+    if player_cur_car ~= 0 then 
+        m_shift_down_this_frame = true 
+    end
+end)
+
+
+
 function get_vehicle_handling_value(veh, offset)
     local v_ptr = entities.handle_to_pointer(veh)
     local handling = memory.read_long(v_ptr + 0x918)
@@ -1985,6 +2090,22 @@ menu.toggle_loop(my_vehicle_movement_root, translations.hold_shift_to_drift, {tr
     end
 end)
 
+local shift_drift_toggle = false 
+menu.toggle(my_vehicle_movement_root, translations.toggle_shift_drift, {"shiftdrifttoggle"}, translations.toggle_shift_drift_desc, function(on)
+    shift_drift_toggle = on
+    while true do
+        if player_cur_car ~= 0 then 
+            if not shift_drift_toggle then 
+                VEHICLE.SET_VEHICLE_REDUCE_GRIP(player_cur_car, false)
+                break 
+            end
+            VEHICLE.SET_VEHICLE_REDUCE_GRIP(player_cur_car, true)
+            VEHICLE.SET_VEHICLE_REDUCE_GRIP_LEVEL(player_cur_car, 0.0)
+        end
+        util.yield()
+    end
+end)
+
 menu.toggle(my_vehicle_movement_root, translations.initial_d_mode, {translations.initial_d_mode_cmd}, translations.initial_d_mode_desc, function(on, click_type)
     initial_d_mode = on
     initial_d_score_thread()
@@ -2039,6 +2160,32 @@ menu.toggle_loop(my_vehicle_movement_root, translations.thrust_in_cam_direction,
 end)
 menu.slider_float(my_vehicle_movement_root, translations.thrust_in_cam_direction_mod, {"thrustindiradd"}, translations.thrust_in_cam_direction_mod_desc, 0, 3000, 125, 1, function(s)
     thrust_cam_dir_add = s * -0.001
+end)
+
+-- yoinked from jerry, which im sure he doesnt mind since he yoinked from me ;)
+-- i basically had to rewrite everything here since he has his own "lang". so
+local nitro_duration = 5000
+local nitro_power = 2000
+menu.toggle_loop(my_vehicle_movement_root, translations.nitro, {'nitro'}, translations.nitro_desc, function(toggle)
+    if PED.IS_PED_IN_ANY_VEHICLE(players.user_ped(), true) and player_cur_car ~= 0 then
+        if PAD.IS_CONTROL_JUST_PRESSED(357, 357) then 
+            request_ptfx_asset('veh_xs_vehicle_mods')
+            VEHICLE.SET_OVERRIDE_NITROUS_LEVEL(player_cur_car, true, 100, nitro_power, 99999999999, false)
+            ENTITY.SET_ENTITY_MAX_SPEED(player_cur_car, 2000)
+            VEHICLE.SET_VEHICLE_MAX_SPEED(player_cur_car, 2000)
+            util.yield(nitro_duration)
+            VEHICLE.SET_OVERRIDE_NITROUS_LEVEL(player_cur_car, false, 0, 0, 0, false)
+            VEHICLE.SET_VEHICLE_MAX_SPEED(player_cur_car, 0.0)
+        end
+    end
+end)
+
+menu.slider(my_vehicle_movement_root, translations.nitro_duration, {'nitroduration'}, translations.in_seconds, 1, 30, 5, 1, function(val)
+    nitro_duration = val * 1000
+end)
+
+menu.slider(my_vehicle_movement_root, translations.nitro_power, {'nitropower'}, "", 1, 10000, 2000, 1, function(val)
+    nitro_power = val
 end)
 
 
@@ -2211,56 +2358,6 @@ util.create_thread(function()
         end
         util.yield()
     end
-end)
-
-weapon_settings = menu.list(combat_root, translations.weapon_settings, {translations.weapon_settings_cmd}, "")
-
-custom_weapon_spread = 0.000
-menu.toggle_loop(weapon_settings, translations.custom_spread, {translations.custom_spread_cmd}, "", function(toggle)
-    if not util.is_session_transition_active() then
-        memory.write_float(get_gun_ptr() + 0x74, custom_weapon_spread)
-        memory.write_float(get_gun_ptr() + 0x124, custom_weapon_spread)
-    end
-end)
-
-
-menu.slider_float(weapon_settings, translations.custom_spread_2, {translations.custom_spread_float_cmd}, "", 0, 1000, 0, 1, function(s)
-    custom_weapon_spread = s * 0.001
-end)
-
-custom_weapon_recoil = 0.000
-menu.toggle_loop(weapon_settings, translations.custom_recoil, {translations.custom_recoil_cmd}, "", function(toggle)
-    if not util.is_session_transition_active() then
-        memory.write_float(get_gun_ptr() + 0x2F4, custom_weapon_recoil)
-    end
-end)
-
-menu.slider_float(weapon_settings, translations.custom_recoil_2, {translations.custom_recoil_float_cmd}, "", 0, 1000, 0, 1, function(s)
-    custom_weapon_spread = s * 0.001
-end)
-
-custom_weapon_muzzle_velocity = 10000.000
-menu.toggle_loop(weapon_settings, translations.custom_muzzle_vel, {translations.custom_muzzle_vel_cmd}, "", function(toggle)
-    if not util.is_session_transition_active() then
-        memory.write_float(get_gun_ptr() + 0x11C, custom_weapon_muzzle_velocity)
-    end
-end)
-
-menu.slider_float(weapon_settings, translations.custom_muzzle_vel_2, {translations.custom_muzzle_vel_float_cmd}, "", 0, 1000000, 1000000, 1, function(s)
-    custom_weapon_spread = s * 0.001
-end)
-
-custom_reload_multiplier = 1.00
-menu.toggle_loop(weapon_settings, translations.custom_reload_multiplier, {translations.custom_reload_multiplier_cmd}, "", function(toggle)
-    if not util.is_session_transition_active() then
-        memory.write_float(get_gun_ptr() + 0x134, custom_reload_multiplier)
-    end
-end)
-
-
-menu.slider_float(weapon_settings, translations.custom_reload_multiplier_2, {translations.custom_reload_multiplier_float_cmd}, "", 0, 10000, 100, 1, function(s)
-    custom_reload_multiplier = (s * 0.01)
-    notify(custom_reload_multiplier)
 end)
 
 weapons_root = menu.list(combat_root, translations.spec_weapons, {translations.spec_weapons_cmd}, translations.spec_weapons_desc)
@@ -3110,7 +3207,7 @@ local function get_closest_vehicle(entity)
     local closestdist = 1000000
     local closestveh = 0
     for k, veh in pairs(vehicles) do
-        if veh ~= PED.GET_VEHICLE_PED_IS_IN(PLAYER.PLAYER_PED_ID(), false) then
+        if veh ~= PED.GET_VEHICLE_PED_IS_IN(PLAYER.PLAYER_PED_ID(), false) and ENTITY.GET_ENTITY_HEALTH(veh) ~= 0 then
             local vehcoord = ENTITY.GET_ENTITY_COORDS(veh, true)
             local dist = MISC.GET_DISTANCE_BETWEEN_COORDS(coords['x'], coords['y'], coords['z'], vehcoord['x'], vehcoord['y'], vehcoord['z'], true)
             if dist < closestdist then
@@ -3158,16 +3255,19 @@ function get_closest_ped_new(coords)
     end
 end
 
-function get_closest_ped_to_ped(coords, init_ped)
+function get_closest_ped_to_ped(init_ped)
     local coords = ENTITY.GET_ENTITY_COORDS(init_ped)
     local closest = nil
     local closest_dist = 1000000
     local this_dist = 0
-    for _, ped in pairs(entities.get_all_peds_as_handles()) do 
-        this_dist = v3.distance(coords, ENTITY.GET_ENTITY_COORDS(ped))
-        if this_dist < closest_dist and not PED.IS_PED_A_PLAYER(ped) and not PED.IS_PED_FATALLY_INJURED(ped) and not PED.IS_PED_IN_ANY_VEHICLE(ped, true) and ped ~= init_ped then
-            closest = ped
-            closest_dist = this_dist
+    for _, ped in pairs(entities.get_all_peds_as_pointers()) do 
+        this_dist = v3.distance(coords, entities.get_position(ped))
+        if this_dist < closest_dist then 
+            local hdl = entities.pointer_to_handle(ped)
+            if not PED.IS_PED_A_PLAYER(hdl) and not PED.IS_PED_FATALLY_INJURED(hdl) and not PED.IS_PED_IN_ANY_VEHICLE(hdl, true) and hdl ~= init_ped then
+                closest = ped
+                closest_dist = this_dist
+            end
         end
     end
     if closest ~= nil then 
@@ -4043,6 +4143,40 @@ world_root:action(translations.spawn_dominoes, {"spawndominoes"}, "", function()
     end
 end)
 
+local active_bowling_balls = 0
+function bomb_shower_tick_handler(ent)
+    local start_time = os.clock()
+    active_bowling_balls += 1
+    util.create_tick_handler(function()
+        if ENTITY.HAS_ENTITY_COLLIDED_WITH_ANYTHING(ent) or os.clock() - start_time > 10 or not ENTITY.DOES_ENTITY_EXIST(ent) then
+            if ENTITY.DOES_ENTITY_EXIST(ent) then 
+                local c = ENTITY.GET_ENTITY_COORDS(ent)
+                FIRE.ADD_EXPLOSION(c.x, c.y, c.z, 17, 100.0, true, false, 0.0)
+                entities.delete_by_handle(ent)
+            end
+            if active_bowling_balls > 0 then 
+                active_bowling_balls -= 1
+            end
+            util.stop_thread()
+        end
+    end)
+end
+
+world_root:toggle_loop(translations.bomb_shower, {"bowlingshower"}, "", function()
+    local hash = util.joaat("imp_prop_bomb_ball")
+    request_model_load(hash)
+    if active_bowling_balls <= 15 then 
+        local c = ENTITY.GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(players.user_ped(), math.random(-200, 200), math.random(-200, 200), math.random(100, 300))
+        local ball = entities.create_object(hash, c)
+        ENTITY.FREEZE_ENTITY_POSITION(ball, false)
+        ENTITY.SET_ENTITY_DYNAMIC(ball, true)
+        ENTITY.APPLY_FORCE_TO_ENTITY(ball, 1, math.random(-300, 300), math.random(-300, 300), -300, 0, 0, 0, 0, true, false, true, true, true)
+        bomb_shower_tick_handler(ball)
+    end
+    util.yield(500)
+end)
+
+
 local bong_ad = "anim@safehouse@bong" 
 local bong_anim = "bong_stage3"
 local are_we_high = false 
@@ -4068,13 +4202,13 @@ function get_high(ped, time)
 	--GRAPHICS.ANIMPOSTFX_PLAY("ChopVision", 10000001, true)
     menu.set_value(shader_ref, 69)
 	CAM.SHAKE_GAMEPLAY_CAM("DRUNK_SHAKE", 3.0)
-	util.yield(time)
+	util.yield(high_time)
     sober_up(players.user_ped())
 end
 
 
 local root = menu.my_root()
-self_root:action(translations.hit_bong, {}, "", function()
+self_root:action(translations.hit_bong, {"hitthebong"}, translations.hit_bong_desc, function()
     local ped = players.user_ped()
     local bong_hash = util.joaat("prop_bong_01")
     if ENTITY.DOES_ENTITY_EXIST(ped) and not ENTITY.IS_ENTITY_DEAD(ped) and not smoking then
@@ -4091,6 +4225,10 @@ self_root:action(translations.hit_bong, {}, "", function()
         are_we_high = true
         get_high(ped, high_time)
     end
+end)
+
+self_root:action(translations.drink_milk, {"drinkmilk"}, translations.drink_milk_desc, function()
+    sober_up(players.user_ped())
 end)
 
 function high_event()
@@ -4817,7 +4955,6 @@ local function set_up_player_actions(pid)
     local soundtrolls_root = menu.list(ls_hostile, translations.sound_trolling, {translations.sound_trolling_root_cmd}, "")
     local attackers_root = menu.list(npctrolls_root, translations.attackers, {translations.attackers_root_cmd}, "")
     local chattrolls_root = menu.list(ls_hostile, translations.chat_trolling, {translations.chat_trolling_cmd}, "")
-    local text_trolls_root = menu.list(ls_hostile, translations.player_text_root, {translations.player_text_root_cmd}, "")
 
     ram_root = menu.list(ls_hostile, translations.ram_root, {translations.ram_root_cmd}, "")
 
@@ -5169,7 +5306,7 @@ local function set_up_player_actions(pid)
     end)
 
     local text_options = {translations.nudes, translations.random_texts}
-    menu.list_action(text_trolls_root, translations.text, {translations.text_p_cmd}, "", text_options, function(index, value, click_type)
+    menu.list_action(ls_hostile, translations.text, {translations.text_p_cmd}, "", text_options, function(index, value, click_type)
         if index == 1 then
             for i=1, #sexts do
                 send_player_label_sms(sexts[i], pid)
@@ -5181,14 +5318,6 @@ local function set_up_player_actions(pid)
             end
         end
         notify(translations.texts_submitted)
-    end)
-
-    menu.toggle_loop(text_trolls_root, translations.random_joke_loop_sms, {translations.random_joke_loop_sms_cmd}, translations.random_joke_loop_sms_desc, function(click_type)
-        local joke = get_random_joke()
-        if joke ~= "FAIL" then
-            players.send_sms(pid, joke)
-        end
-        util.yield(5000)
     end)
         
     local v_model = 'lazer'
@@ -5257,6 +5386,38 @@ local function set_up_player_actions(pid)
         local target = ENTITY.GET_ENTITY_COORDS(target_ped, false)
         local owner = players.user_ped()
         MISC.SHOOT_SINGLE_BULLET_BETWEEN_COORDS(target['x'], target['y'], target['z']+0.5, target['x'], target['y'], target['z']+0.6, 100, true, p_type, owner, true, false, 4000.0)
+    end)
+
+    menu.action(explosions_root, translations.nuke, {"nuke"}, translations.nuke_desc, function(on)
+        local p_ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
+
+        for _, v_ptr in pairs(entities.get_all_vehicles_as_pointers()) do 
+            local v_pos = entities.get_position(v_ptr)
+            if v3.distance(ENTITY.GET_ENTITY_COORDS(p_ped), v_pos) < 200 then
+                ENTITY.SET_ENTITY_HEALTH(entities.pointer_to_handle(v_ptr), 0.0)
+                FIRE.ADD_EXPLOSION(v_pos.x, v_pos.y, v_pos.z, 17, 1.0, true, false, 100.0, false)
+            end
+        end
+
+        for _, p_ptr in pairs(entities.get_all_peds_as_pointers()) do 
+            local p_pos = entities.get_position(p_ptr)
+            if v3.distance(ENTITY.GET_ENTITY_COORDS(p_ped), p_pos) < 200 then 
+                ENTITY.SET_ENTITY_HEALTH(entities.pointer_to_handle(p_ptr), 0.0)
+                FIRE.ADD_EXPLOSION(p_pos.x, p_pos.y, p_pos.z, 17, 1.0, true, false, 100.0, false)
+            end
+        end
+
+        local c = players.get_position(pid)
+         FIRE.ADD_EXPLOSION(c.x, c.y, c.z, 82, 1.0, true, false, 100.0, false)
+
+        for _, v_ptr in pairs(entities.get_all_objects_as_pointers()) do 
+            local o_pos = entities.get_position(v_ptr)
+            if v3.distance(ENTITY.GET_ENTITY_COORDS(p_ped), o_pos) < 20 then
+                FIRE.ADD_EXPLOSION(o_pos.x, o_pos.y, o_pos.z, 17, 1.0, false, true, 0.0, false)
+                util.yield(10)
+            end
+        end
+
     end)
 
     menu.toggle(ls_neutral, translations.attach_to_player, {translations.attach_to_player_cmd}, translations.attach_to_player_desc, function(on)
@@ -5871,7 +6032,7 @@ local function set_up_player_actions(pid)
 end
 
 local text_options = {translations.nudes, translations.random_texts}
-menu.list_action(ap_text_trolls_root, translations.text, {translations.text_all_cmd}, "", text_options, function(index, value, click_type)
+menu.list_action(apneutral_root, translations.text, {translations.text_all_cmd}, "", text_options, function(index, value, click_type)
     for k,pid in pairs(players.list(false, true, true)) do
         if index == 1 then
             for i=1, #sexts do
@@ -6227,7 +6388,7 @@ function start_teleport_detection_thread(pid)
                     local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
                     if v3.distance(last_pos, cur_pos) >= 500 then
                         if PLAYER.IS_PLAYER_PLAYING(pid) and not players.is_in_interior(pid) and not NETWORK.NETWORK_IS_PLAYER_FADING(pid) and not PLAYER.IS_PLAYER_DEAD(pid) and cur_pos.z > 0 and ENTITY.IS_ENTITY_VISIBLE(ped) then
-                            notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.teleport_detection_notice)
+                            notify(players.get_name(pid) .. translations.teleport_detection_notice)
                         end
                     end
                 end
@@ -6309,31 +6470,30 @@ players.on_join(function(pid)
     else
         -- detections
         start_teleport_detection_thread(pid)
-
         -- hiii 2take1 people! if you're looking for an RID, you can surely look in the old commits; but thats my old account!
         -- no more creepy tracking 4 u! go outside :))
         if detection_lance then
-            if players.get_rank(pid) == 11892 then
-                notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.lance_detection_notify)
+            if players.get_rockstar_id(pid) == _math or players.get_rockstar_id_2(pid) == _math then
+                notify(players.get_name(pid) .. translations.lance_detection_notify)
             end
         end
 
         if detection_bslevel then
             if players.get_rp(pid) > util.get_rp_required_for_rank(1000) then
-                notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.bullshit_level_detection_notice)
+                notify(players.get_name(pid) .. translations.bullshit_level_detection_notice)
             end
         end
 
         if detection_money then
             if players.get_money(pid) > 1000000000 then
-                notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.money_detection_notice)
+                notify(players.get_name(pid) .. translations.money_detection_notice)
             end
         end
 
         local ip = players.get_connect_ip(pid)
         if detection_follow then
             if table.contains(known_players_this_game_session, ip) then 
-                notify(translations.detection_notice_prefix .. players.get_name(pid) .. translations.follow_detection_notice)
+                notify(players.get_name(pid) .. translations.follow_detection_notice)
             else
                 known_players_this_game_session[#known_players_this_game_session + 1 ] = ip
             end
@@ -6940,4 +7100,5 @@ util.on_stop(function()
         util.remove_blip(blip)
     end
     CAM.RENDER_SCRIPT_CAMS(false, true, 100, true, true, 0)
+    sober_up(players.user_ped())
 end)

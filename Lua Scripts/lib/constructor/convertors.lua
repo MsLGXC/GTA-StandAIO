@@ -1,7 +1,7 @@
 -- Construct Convertors
 -- Transforms various file formats into Construct format
 
-local SCRIPT_VERSION = "0.28"
+local SCRIPT_VERSION = "0.29"
 local convertor = {
     SCRIPT_VERSION = SCRIPT_VERSION
 }
@@ -1513,6 +1513,61 @@ local function map_ini_data_flavor_7(construct_plan, data)
 end
 
 ---
+--- INI Mapper Flavor #8
+---
+
+local function map_ini_attachment_flavor_8(attachment, data)
+    if data["Model"] ~= nil then attachment.hash = data["Model"] end
+    if attachment.model == nil and attachment.hash ~= nil then
+        attachment.model = util.reverse_joaat(attachment.hash)
+    end
+    if attachment.name == nil then attachment.name = attachment.model end
+    constructor_lib.default_attachment_attributes(attachment)
+    attachment.type = "OBJECT"
+    attachment.options.is_attached = false
+    attachment.always_spawn_at_position = true
+
+    --if data["offx"] ~= nil then attachment.offset.x = tonumber(data["offx"]) end
+    --if data["offy"] ~= nil then attachment.offset.y = tonumber(data["offy"]) end
+    --if data["offz"] ~= nil then attachment.offset.z = tonumber(data["offz"]) end
+
+    if data["x"] ~= nil then attachment.position.x = tonumber(data["x"]) end
+    if data["y"] ~= nil then attachment.position.y = tonumber(data["y"]) end
+    if data["z"] ~= nil then attachment.position.z = tonumber(data["z"]) end
+
+    if data["qx"] ~= nil then
+        attachment.quaternion = {
+            x = tonumber(data["qx"]),
+            y = tonumber(data["qy"]),
+            z = tonumber(data["qz"]),
+            w = tonumber(data["qw"]),
+        }
+    end
+
+    if data["Dynamic"] ~= nil then attachment.options.is_dynamic = toboolean(data["Dynamic"]) end
+
+    -- Unused
+    -- h (height?)
+    -- offz (offset z?)
+
+end
+
+local function map_ini_data_flavor_8(construct_plan, data)
+    map_ini_attachment_flavor_8(construct_plan, data["1"])
+    if data.Player ~= nil then
+        -- TODO: Handle teleport coords
+    end
+    for attachment_index = 2, MAX_NUM_ATTACHMENTS do
+        local attached_object = data[tostring(attachment_index)]
+        if attached_object ~= nil and attached_object.Model then
+            local attachment = {}
+            map_ini_attachment_flavor_8(attachment, attached_object)
+            table.insert(construct_plan.children, attachment)
+        end
+    end
+end
+
+---
 --- INI Flavor Finder
 ---
 
@@ -1525,6 +1580,7 @@ end
 -- type 5 has AllObjects and AllVehicles (Boat-fsx.ini) (seems like theres an iniparser glitch in this one)
 -- type 6 is like type 2, but some keys are different, namely the numbers for attachments are called "Attached Object x" (Tankamid.ini)
 -- type 7 is 2Take1's format
+-- type 8 has quaternions
 local function get_ini_flavor(data)
     if data.Vehicle ~= nil and data.Vehicle.Model ~= nil and data.Vehicle.PrimaryPaintT == nil and (data.AllVehicles == nil or data.AllVehicles.Count == nil) then
         return 1
@@ -1539,6 +1595,8 @@ local function get_ini_flavor(data)
         return 6
     elseif data.VEHICLE ~= nil and data.VEHICLE.hash ~= nil and data.VEHICLE.isPrimaryColorCostum ~= nil then
         return 7
+    elseif data.Player ~= nil and data["1"] ~= nil and data["1"].qx ~= nil then
+        return 8
     end
 end
 
@@ -1557,6 +1615,8 @@ local function map_ini_data(construct_plan, data)
         return map_ini_data_flavor_6(construct_plan, data)
     elseif construct_plan.temp.ini_flavor == 7 then
         return map_ini_data_flavor_7(construct_plan, data)
+    elseif construct_plan.temp.ini_flavor == 8 then
+        return map_ini_data_flavor_8(construct_plan, data)
     end
 end
 

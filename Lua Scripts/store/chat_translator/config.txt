@@ -1,3 +1,0 @@
-colorselec = 1
-teamchatlabel = "隊伍"
-allchatlabel = "所有人"

@@ -1,4 +1,4 @@
--- Auto-Updater v1.6.3
+-- Auto-Updater v1.6.4
 -- by Hexarobi
 -- For Lua Scripts for the Stand Mod Menu for GTA5
 -- https://github.com/hexarobi/stand-lua-auto-updater
@@ -244,6 +244,7 @@ end
 function run_auto_update(auto_update_config)
     expand_auto_update_config(auto_update_config)
     debug_log("Running auto-update on "..auto_update_config.script_filename.."...", TOAST_ALL)
+    if not auto_update_config.is_dependency then util.set_busy(true) end
     if is_due_for_update_check(auto_update_config) then
         is_download_complete = nil
         util.create_thread(function()
@@ -294,6 +295,7 @@ function run_auto_update(auto_update_config)
             save_version_data(auto_update_config)
         end
     end
+    if not auto_update_config.is_dependency then util.set_busy(false) end
     return true
 end
 
