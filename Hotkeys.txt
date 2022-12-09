@@ -1,14 +1,16 @@
 Tree Compatibility Version: 42
 Self
 	Weapons
-		Triggerbot
-			Triggerbot: #
 		Fill All Ammo: Mouse 5
+	Set Wanted Level: Mouse 4
 Vehicle
 	Movement
 		Super Drive
-			Super Drive: Mouse 4
+			Super Drive: X
+	Fix Vehicle: Mouse 4
 Online
+	Protections
+		Block Blaming: U
 	Quick Progress
 		Refill Snacks & Armour: Mouse 5
 Stand
@@ -18,5 +20,9 @@ Stand
 				Command Box: Numpad *
 	Lua Scripts
 		lancescript_reloaded
+			自我
+				我的战斗/武器
+					沉默自瞄
+						沉默自瞄: #
 			世界
 				超级清除: Numpad -
