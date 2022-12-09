@@ -4,8 +4,10 @@ Tree Compatibility Version: 42
 Self
 	Appearance
 		Outfit
+			Disable In-Vehicle Hair Scaling: On
 			Lock Outfit: 
-		No Blood: On
+		Animations
+			Partial Movement: On
 	Weapons
 		Gravity Gun
 			Contrived Physics: On
@@ -232,6 +234,7 @@ Online
 					Notification: Enabled
 					Write To Log File: Enabled
 					Write To Console: Enabled
+			Stand User Identification: Off
 			Any Detection
 				Notification: Enabled
 				Write To Log File: Enabled
@@ -352,6 +355,10 @@ Online
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Blocked Network Event
+				Write To Log File: Friends & Strangers
+				Write To Console: Friends & Strangers
+			Modded Driveby Weapon
+				Notification: Enabled
 				Write To Log File: Friends & Strangers
 				Write To Console: Friends & Strangers
 		Syncs
@@ -506,6 +513,7 @@ Online
 		IP Address Spoofing
 			Spoofed IP Address: 139.138.231.17
 		Host Token Spoofing
+			Host Token Spoofing: off
 			Kick Host When Joining As Next In Queue
 				Exclude Friends: On
 				Exclude Crew Members: On
@@ -514,10 +522,10 @@ Online
 				Host Spoofing: On
 				虚假主机 - RID: 204496396
 		Crew Spoofing
-			ID: 65139793
-			Tag: LGXC
-			Name: w-Top Of The World-w
-			Motto: But you'll always be the home I wanna come home to
+			ID: 0
+			Tag: 
+			Name: 
+			Alternative Badge: Off
 		Rank Spoofing
 			Spoofed Rank: 457
 	Reactions
@@ -583,6 +591,10 @@ Players
 		Excludes
 			Exclude Crew Members: On
 World
+	Inhabitants
+		Clear Area
+			Proximity: 100.00
+			Ignore Mission Entities: On
 	Atmosphere
 		Clock
 			Smooth Transition: Off
@@ -678,31 +690,18 @@ Stand
 				射击移除无敌: On
 			World
 				禁用小键盘: On
-		JinxScript_CN_2.82_v2: On
-			自我选项
-				对无敌玩家开启幽灵模式: On
-				自动索赔载具: On
-			作弊检测
-				无敌模式: On
-				载具无敌模式: On
-				未发布车辆: On
-				改装武器: On
-				改装载具: On
-				自由镜头检测: On
-				超级驾驶检测: On
-				观看检测: On
-			保护选项
-				新拦截劫匪
-					自我: On
-				防笼子
-					启用笼子拦截: On
+		JinxScript_CN_3.02: On
 		lancescript_reloaded: On
 			自我
 				我的载具
+					移动
+						氮气: On
+						氮气持续时间: 1
 					电影视角自动驾驶: On
 				我的战斗/武器
 					沉默自瞄
 						沉默自瞄NPC: On
+						视野: 30
 						显示目标: Off
 			在线
 				检测
@@ -712,12 +711,56 @@ Stand
 					高存款: On
 				保护
 					管理员退出: Off
+					自动移除赏金: On
+					虎鲸导弹警告: On
+					天基炮使用警告: On
+				告诉我谁在使用语音聊天: On
 			世界
 				射弹
 					画警告标志: On
 					弹丸的光点: On
 		LanceSpoonerCN: On
 		MusinessBanager: On
+			Special Cargo
+				绕过 购买任务 冷却: On
+				绕过 出售任务 冷却: On
+				自动完成 购买任务: On
+				自动完成 出售任务: On
+				Max Crate Sourcing Amount: On
+				Minimize Delivery Time: On
+			Nightclub
+				绕过 出售任务 冷却: On
+				Cargo
+					Max Production Speed: On
+				Weapons
+					Max Production Speed: On
+				Cocaine
+					Max Production Speed: On
+				Meth
+					Max Production Speed: On
+				Weed
+					Max Production Speed: On
+				Forgery
+					Max Production Speed: On
+				Cash
+					Max Production Speed: On
+				Nightclub Safe
+					Maximum Capacity: 300000
+					Revenue: 300000
+			摩托帮产业
+				Forgery
+					Max Production Speed: On
+				Weed
+					Max Production Speed: On
+				Cash
+					Max Production Speed: On
+				Meth
+					Max Production Speed: On
+				Cocaine
+					Max Production Speed: On
+			Bunker
+				Max Production Speed: On
+				Supply->Product Ratio: 1
 		PolicifyCN: On
 		SaltyScript: On
 		SprunkStop: On
