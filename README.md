@@ -25,6 +25,7 @@
 
 > 如果你对线上mod包感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
 > 当前发布的mod包版本v5,v4<br>
+# 注意，GTA当前已更新至1.64,mod可能无法正常进入游戏！！！等待更新或自行测试！！！
 > 在此处下载线上Mod包 v5+v4[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
 > 在此处下载线上Mod包 v5+v4[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
 > 在此处下载线上Mod包（由于本人空间不足所以只有v5）[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
