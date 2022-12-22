@@ -21,15 +21,14 @@
 </div>
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
-> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=96pRYJde)，一起搞♂(迫真)!<br><br>
+> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=WfN0bIsi)，一起搞♂(迫真)!<br><br>
 
 > 如果你对线上mod包感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
-> 当前发布的mod包版本v5,v4<br>
-# 注意，GTA当前已更新至1.64,mod可能无法正常进入游戏！！！等待更新或自行测试！！！
-> 在此处下载线上Mod包 v5+v4[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
-> 在此处下载线上Mod包 v5+v4[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
-> 在此处下载线上Mod包（由于本人空间不足所以只有v5）[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link)<br><br><br>
-> ps:v5最低配置要求，3070ti及以上+i712代及以上+24g内存频率3200及以上+固态硬盘读取速度5000m/s以上，否则你的游戏可能经常性的变成土豆 如果没达到配置并且忍受不了土豆，退回v4（不需要任何配置，只要你电脑能正常玩gta...)
+> 当前发布的mod包版本 rov6,bov4<br>
+> 在此处下载线上Mod包 rov6+bov4[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
+> 在此处下载线上Mod包 rov6+bov4[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
+> 在此处下载线上Mod包 rov5     [谷歌云] 由于空间不足已停止上传<br><br><br>
+> ps:ro框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数，并稍微降低了土豆发生的几率。
 
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
