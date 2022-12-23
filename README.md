@@ -25,8 +25,8 @@
 
 > 如果你对线上mod包感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
 > 当前发布的mod包版本 rov6,bov4<br>
-> 在此处下载线上Mod包 rov6+bov4[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC)<br>
-> 在此处下载线上Mod包 rov6+bov4[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj) 访问码:v1q5<br>
+> 在此处下载线上Mod包 rov6+bov4[百度云](链接：https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
+> 在此处下载线上Mod包 rov6+bov4[天翼云](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
 > 在此处下载线上Mod包 rov5     [谷歌云] 由于空间不足已停止上传<br><br><br>
 > ps:ro框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数，并稍微降低了土豆发生的几率。
 
