@@ -168,11 +168,12 @@
 
 ## 1.使用发行版 (推荐)
 
-可以前往[Release](https://github.com/MrLGXC/GTA-StandAIO/releases)页面下载最新的发行版，您还可以选择[百度云](https://pan.baidu.com/s/1mkK8Uuux1RDX9gGquy0y-A?pwd=LGXC )、[天翼云](https://cloud.189.cn/t/RnqyUbFVNVZj ) 访问码:v1q5、[谷歌云](https://drive.google.com/drive/folders/1cIovbge_-DZKOE0BmOM_-rscjPhED9BY?usp=share_link )。以上三个云盘可能不会立刻更新。
+[![Github](https://shields.io/badge/GITHUB-RELEASE-4476AF?logo=github&style=for-the-badge)](https://github.com/MrLGXC/GTA-StandAIO/releases)
 
 ## 2.使用每夜版（不推荐）
 
-可以前往[Code\main](https://codeload.github.com/MrLGXC/GTA-StandAIO/zip/refs/heads/main)下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
+[![Github](https://shields.io/badge/GITHUB-CODE\MAIN-4476AF?logo=github&style=for-the-badge)](https://ghproxy.com/https://github.com/MrLGXC/GTA-StandAIO/archive/refs/heads/main.zip)<br>
+点击此处下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
 
 ### *安装方法*
 双击"点此打开stand根目录.lnk"<br>
