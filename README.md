@@ -2,7 +2,7 @@
 
 ![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
 ![maven](https://img.shields.io/badge/Stand-0.94-pink)
-![maven](https://img.shields.io/badge/AIO-v26B-blue)
+![maven](https://img.shields.io/badge/AIO-v26b-blue)
 ![maven](https://img.shields.io/badge/Modpack-v6-red)
   
   <h1>StandAIO</h1>
