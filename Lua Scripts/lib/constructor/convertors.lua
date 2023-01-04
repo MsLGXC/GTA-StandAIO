@@ -1,7 +1,7 @@
 -- Construct Convertors
 -- Transforms various file formats into Construct format
 
-local SCRIPT_VERSION = "0.29"
+local SCRIPT_VERSION = "0.32"
 local convertor = {
     SCRIPT_VERSION = SCRIPT_VERSION
 }
@@ -39,15 +39,20 @@ local function debug_log(message, additional_details)
     end
 end
 
+local function trim(value)
+    if type(value) == "string" then
+        value = value:gsub("%s+", "")
+    end
+    return value
+end
+
 local function toboolean(value)
+    value = trim(value)
     return not (value == nil or value == false or value == "" or value == "false" or value == "0" or value == 0 or value == {})
 end
 
 local function parse_number(value)
-    if type(value) == "string" then
-        value = value:gsub("%s+", "")
-    end
-    return tonumber(value)
+    return tonumber(trim(value))
 end
 
 local function read_file(filepath)
@@ -345,6 +350,243 @@ convertor.convert_jackz_to_construct_plan = function(jackz_build_data)
 end
 
 ---
+--- PhantomX CraftLab Convertor
+---
+
+local function find_root_entity(data)
+    for _, craftlab_item in pairs(data.craftlab) do
+        if craftlab_item.entity.attach_data == nil then
+            return craftlab_item
+        end
+    end
+end
+
+local function set_table_value_by_path(current_table, path, value)
+    local path_parts = path:split(".")
+    for i = 1, (#path_parts - 1) do
+        if type(current_table) ~= "table" then
+            util.toast("Non-table in map path "..path, TOAST_ALL)
+            return
+        end
+        if current_table[path_parts[i]] == nil then
+            current_table[path_parts[i]] = {}
+        end
+        current_table = current_table[path_parts[i]]
+    end
+    if type(current_table) == "table" then
+        current_table[path_parts[#path_parts]] = value
+    else
+        util.toast("Invalid map path "..path, TOAST_ALL)
+    end
+end
+
+local function map_fields(field_map, attachment, entity)
+    for craftlab_key, constructor_key in pairs(field_map) do
+        if type(constructor_key) == "table" then
+            map_fields(constructor_key, attachment, entity[craftlab_key])
+        else
+            local craftlab_value = entity[craftlab_key]
+            if craftlab_value ~= nil then
+                set_table_value_by_path(attachment, constructor_key, craftlab_value)
+            end
+        end
+    end
+end
+
+local function map_craftlab_vehicle(attachment, entity)
+    if entity.vehicle_data == nil then return end
+    if attachment.vehicle_attributes == nil then attachment.vehicle_attributes = {} end
+
+    local craftlab_constructor_field_map = {
+        -- brake lights
+        dashboard_color="paint.dashboard_color",
+        dirt_level="paint.dirt_level",
+        doors={
+            is_broken_0="doors.broken.frontleft",
+            is_broken_1="doors.broken.frontright",
+            is_broken_2="doors.broken.backleft",
+            is_broken_3="doors.broken.backright",
+            is_broken_4="doors.broken.hood",
+            is_broken_5="doors.broken.trunk",
+            is_broken_6="doors.broken.trunk2",
+        },
+        enveff_scale="paint.fade",
+        -- extras TODO
+        headlight_color="headlights_color",
+        headlight_multiplier="headlights.multiplier",
+        -- heli
+        -- indicator_lights
+        interior_color="paint.interior_color",
+        is_custom_primary_color="paint.primary.is_custom",
+        is_custom_secondary_color="paint.secondary.is_custom",
+        is_engine_running="options.engine_running",
+        -- is_locked
+        is_windscreen_detached="options.is_windscreen_detached",
+        -- light_state
+        livery="paint.livery",
+        -- mod_slot TODO
+        neon={
+            is_enabled_0="neon.lights.left",
+            is_enabled_1="neon.lights.right",
+            is_enabled_2="neon.lights.front",
+            is_enabled_3="neon.lights.back",
+        },
+        number_plate_text="options.license_plate_text",
+        number_plate_text_index="options.license_plate_type",
+        pearl_color="paint.primary.pearlescent_color",
+        primary_color="paint.primary.vehicle_standard_color",
+        rgb_colors={
+            custom_primary_colour_b="paint.primary.custom_color.b",
+            custom_primary_colour_g="paint.primary.custom_color.g",
+            custom_primary_colour_r="paint.primary.custom_color.r",
+            custom_secondary_colour_b="paint.secondary.custom_color.b",
+            custom_secondary_colour_g="paint.secondary.custom_color.g",
+            custom_secondary_colour_r="paint.secondary.custom_color.r",
+            neon_lights_colour_b="vehicle_attributes.neon.color.b",
+            neon_lights_colour_g="vehicle_attributes.neon.color.g",
+            neon_lights_colour_r="vehicle_attributes.neon.color.r",
+            tyre_smoke_colour_b="wheels.tire_smoke_color.b",
+            tyre_smoke_colour_g="wheels.tire_smoke_color.g",
+            tyre_smoke_colour_r="wheels.tire_smoke_color.r"
+        },
+        --roof_state="",
+        scorched_render="options.is_scorched", -- not in vehicle attribs
+        secondary_color="paint.secondary.vehicle_standard_color",
+        --siren_light="",
+        --tyres={
+        --    is_burst_left_front="vehicle_attributes.wheels.tires_burst[]",
+        --    is_burst_left_mid= false,
+        --    is_burst_left_mid6= false,
+        --    is_burst_left_rear= false,
+        --    is_burst_right_front= false,
+        --    is_burst_right_mid= false,
+        --    is_burst_right_mid6= false,
+        --    is_burst_right_rear= false
+        --}
+        tyres_can_burst="wheels.bulletproof_tires",
+        wheel_color="paint.extra_colors.wheel",
+        wheel_type="wheels.wheel_type",
+        window_tint="options.window_tint",
+        windows={
+            is_deleted_left_front="windows.broken.frontleft",
+            is_deleted_left_rear="windows.broken.rearleft",
+            is_deleted_right_front="windows.broken.frontright",
+            is_deleted_right_rear="windows.broken.rearright"
+        },
+    }
+
+    map_fields(craftlab_constructor_field_map, attachment.vehicle_attributes, entity.vehicle_data)
+
+    if attachment.vehicle_attributes.mods == nil then attachment.vehicle_attributes.mods = {} end
+    for index = 0, 49 do
+        local value
+        if index >= 17 and index <= 22 then
+            value = entity.vehicle_data.mod_slot["mod_toggle_"..index]
+        else
+            value = entity.vehicle_data.mod_slot["mod_index_"..index]
+        end
+        attachment.vehicle_attributes.mods["_"..index] = value
+        -- Mod Variation
+    end
+
+    if attachment.vehicle_attributes.extras == nil then attachment.vehicle_attributes.extras = {} end
+    for index = 0, 60 do
+        attachment.vehicle_attributes.extras["_"..index] = entity.vehicle_data.extras["exist_"..index]
+    end
+
+end
+
+
+local function map_craftlab_entity(attachment, entity)
+    if entity.model ~= nil then attachment.hash = entity.model end
+    if attachment.model == nil and attachment.hash ~= nil then
+        attachment.model = util.reverse_joaat(attachment.hash)
+    end
+    constructor_lib.default_attachment_attributes(attachment)
+
+    if entity.string_name ~= nil then attachment.name = entity.string_name end
+    if entity.type ~= nil then
+        if entity.type == 5 then
+            attachment.type = "OBJECT"
+        elseif entity.type == 3 then
+            attachment.type = "VEHICLE"
+        end
+    end
+
+    if entity.visible ~= nil then attachment.options.is_visible = entity.visible end
+    if entity.alpha_level ~= nil then attachment.options.alpha = entity.alpha_level end
+    if entity.collision ~= nil then attachment.options.has_collision = entity.collision end
+    if entity.dynamic ~= nil then attachment.options.is_dynamic = entity.dynamic end
+    if entity.freeze ~= nil then attachment.options.is_frozen = entity.freeze end
+    if entity.gravity ~= nil then attachment.options.has_gravity = entity.gravity end
+    if entity.invincible ~= nil then attachment.options.invincible = entity.invincible end
+
+    if entity.is_attached ~= nil then attachment.options.is_attached = entity.is_attached end
+    if entity.unique_number ~= nil then attachment.initial_handle = entity.unique_number end
+
+    if entity.object_data ~= nil then
+        if entity.object_data.Lights ~= nil then attachment.options.is_light_on = entity.object_data.Lights end
+    end
+
+    if entity.attach_data ~= nil then
+        if entity.attach_data.attached_to_number ~= nil then attachment.parents_initial_handle = entity.attach_data.attached_to_number end
+        if entity.attach_data.attached_to_bone ~= nil then attachment.options.bone_index = entity.attach_data.attached_to_bone end
+
+        if entity.attach_data.x ~= nil then attachment.offset.x = entity.attach_data.x end
+        if entity.attach_data.y ~= nil then attachment.offset.y = entity.attach_data.y end
+        if entity.attach_data.z ~= nil then attachment.offset.z = entity.attach_data.z end
+
+        if entity.attach_data.pitch ~= nil then attachment.rotation.x = entity.attach_data.pitch end
+        if entity.attach_data.roll ~= nil then attachment.rotation.y = entity.attach_data.roll end
+        if entity.attach_data.yaw ~= nil then attachment.rotation.z = entity.attach_data.yaw end
+    end
+
+    if entity.placement ~= nil then
+        if entity.placement.pos_x ~= nil then attachment.position.x = entity.placement.pos_x end
+        if entity.placement.pos_y ~= nil then attachment.position.y = entity.placement.pos_y end
+        if entity.placement.pos_z ~= nil then attachment.position.z = entity.placement.pos_z end
+
+        if entity.placement.rot_pitch ~= nil then attachment.world_rotation.x = entity.placement.rot_pitch end
+        if entity.placement.rot_roll ~= nil then attachment.world_rotation.y = entity.placement.rot_roll end
+        if entity.placement.rot_yaw ~= nil then attachment.world_rotation.z = entity.placement.rot_yaw end
+    end
+
+    if entity.vehicle_data ~= nil then
+        map_craftlab_vehicle(attachment, entity)
+    end
+
+end
+
+convertor.convert_craftlab_to_construct_plan = function(data)
+
+    local construct_plan = constructor_lib.table_copy(constructor_lib.construct_base)
+    construct_plan.temp.source_file_type = "PhantomX CraftLab"
+
+    debug_log("Parsed CraftLab: "..inspect(data))
+
+    local root_entity = find_root_entity(data)
+    if not root_entity then
+        util.toast("Could not find root entity", TOAST_ALL)
+        return
+    end
+    map_craftlab_entity(construct_plan, root_entity.entity)
+
+    for _, entity in pairs(data.craftlab) do
+        if entity ~= root_entity then
+            local attachment = {}
+            map_craftlab_entity(attachment, entity.entity)
+            table.insert(construct_plan.children, attachment)
+        end
+    end
+
+    convertor.rearrange_by_initial_attachment(construct_plan)
+
+    debug_log("Loaded CraftLab construct plan: "..inspect(construct_plan))
+
+    return construct_plan
+end
+
+---
 --- JSON to Construct Plan Convertor
 ---
 
@@ -352,11 +594,12 @@ convertor.convert_json_to_construct_plan = function(construct_plan_file)
     local raw_data = read_file(construct_plan_file.filepath)
     if not raw_data or raw_data == "" then return end
     local construct_plan = json.decode(raw_data)
-    convertor.convert_raw_construct_to_construct_plan(construct_plan)
-    construct_plan.temp.source_file_type = "Construct"
     if construct_plan.version and string.find(construct_plan.version, "Jackz") then
-        --debug_log("JSON data "..inspect(construct_plan))
         construct_plan = convertor.convert_jackz_to_construct_plan(construct_plan)
+    elseif construct_plan.craftlab then
+        construct_plan = convertor.convert_craftlab_to_construct_plan(construct_plan)
+    else
+        construct_plan = convertor.convert_raw_construct_to_construct_plan(construct_plan)
     end
     return construct_plan
 end
@@ -384,23 +627,42 @@ local function find_attachment_by_initial_handle(attachment, initial_handle)
     end
 end
 
-local function rearrange_by_initial_attachment(attachment, parent_attachment, root_attachment)
-    if parent_attachment == nil then root_attachment = attachment end
-    if parent_attachment ~= nil and attachment.parents_initial_handle and (attachment.parents_initial_handle ~= parent_attachment.initial_handle) then
+convertor.swap_new_children_for_old = function(attachment)
+    if attachment.new_children ~= nil then
+        attachment.children = attachment.new_children
+        attachment.new_children = nil
+    end
+    for _, child_attachment in pairs(attachment.children) do
+        convertor.swap_new_children_for_old(child_attachment)
+    end
+end
+
+convertor.build_new_children = function(attachment, root_attachment)
+    debug_log("Building new children "..tostring(attachment.name).." ["..tostring(attachment.initial_handle).."]")
+    if attachment.parents_initial_handle then
         local new_parent = find_attachment_by_initial_handle(root_attachment, attachment.parents_initial_handle)
         if new_parent then
-            constructor_lib.array_remove(parent_attachment.children, function(t, i)
-                local child_attachment = t[i]
-                return child_attachment ~= attachment
-            end)
-            table.insert(new_parent.children, attachment)
+            debug_log("Adding new child "..tostring(attachment.name).." ["..tostring(attachment.initial_handle).."] to "..tostring(new_parent.name).." ["..tostring(new_parent.initial_handle).."]")
+            --constructor_lib.array_remove(parent_attachment.children, function(t, i)
+            --    local child_attachment = t[i]
+            --    return child_attachment ~= attachment
+            --end)
+            if new_parent.new_children == nil then new_parent.new_children = {} end
+            table.insert(new_parent.new_children, attachment)
         else
             util.toast("Could not rearrange attachment "..attachment.name.." to "..attachment.parents_initial_handle, TOAST_ALL)
         end
     end
-    for _, child_attachment in pairs(attachment.children) do
-        rearrange_by_initial_attachment(child_attachment, attachment, root_attachment)
+    if attachment.children then
+        for _, child_attachment in pairs(attachment.children) do
+            convertor.build_new_children(child_attachment, root_attachment)
+        end
     end
+end
+
+convertor.rearrange_by_initial_attachment = function(attachment)
+    convertor.build_new_children(attachment, attachment)
+    convertor.swap_new_children_for_old(attachment, attachment)
 end
 
 local function value_splitter(value)
@@ -680,7 +942,7 @@ convertor.convert_xml_to_construct_plan = function(xmldata)
         end
     end
 
-    rearrange_by_initial_attachment(construct_plan)
+    convertor.rearrange_by_initial_attachment(construct_plan)
 
     --debug_log("Loaded XML construct plan: "..inspect(construct_plan))
 
@@ -1043,7 +1305,7 @@ local function map_ini_data_flavor_3(construct_plan, data)
         map_ini_vehicle_toggles_flavor_3(construct_plan, data.Vehicle)
         for attachment_index = 0, MAX_NUM_ATTACHMENTS do
             local attached_object = data[tostring(attachment_index)]
-            if attached_object ~= nil and attached_object.Model > 0 then
+            if attached_object ~= nil and attached_object.Model ~= 0 then
                 local attachment = {}
                 attachment.type = "OBJECT"
                 map_ini_attachment_flavor_3(attachment, attached_object)
@@ -1218,6 +1480,47 @@ local function map_ini_vehicle_extras_flavor_4(attachment, data)
     end
 end
 
+local function map_ini_ped_flavor_4(attachment, data)
+    map_ini_attachment_flavor_4(attachment, data)
+    if attachment.ped_attributes == nil then attachment.ped_attributes = {} end
+
+    if attachment.ped_attributes.components == nil then attachment.ped_attributes.components = {} end
+    for component_index = 0, 11 do
+        if attachment.ped_attributes.components["_"..component_index] == nil then attachment.ped_attributes.components["_"..component_index] = {} end
+        if data["Component"..component_index] ~= nil then
+            attachment.ped_attributes.components["_"..component_index].drawable_variation = data["Component"..component_index]
+        end
+        if data["Texture"..component_index] ~= nil then
+            attachment.ped_attributes.components["_"..component_index].texture_variation = data["Texture"..component_index]
+        end
+        if data["Palette"..component_index] ~= nil then
+            attachment.ped_attributes.components["_"..component_index].palette_variation = data["Palette"..component_index]
+        end
+    end
+
+    local prop_parts = {
+        {index=0, name="Hats"},
+        {index=1, name="Glasses"},
+        {index=2, name="Ears"},
+        --{index=6, name="Watch"},
+        --{index=7, name="Bracelet"},
+    }
+    if attachment.ped_attributes.props == nil then attachment.ped_attributes.props = {} end
+    for _, prop_part in pairs(prop_parts) do
+        if attachment.ped_attributes.components["_"..prop_part.index] == nil then attachment.ped_attributes.components["_"..prop_part.index] = {} end
+        if data["Prop"..prop_part.name] ~= nil then attachment.ped_attributes.props["_"..prop_part.index].drawable_variation = data["Prop"..prop_part.name] end
+        if data["Texture"..prop_part.name] ~= nil then attachment.ped_attributes.props["_"..prop_part.index].texture_variation = data["Texture"..prop_part.name] end
+    end
+
+    if data.ScenarioName ~= nil then
+        attachment.ped_attributes.animation_scenario = constructor_lib.trim(data.ScenarioName)
+    end
+
+    --PedType = 4
+    --ScenarioPlaying = true
+    --BlockFleeing = false
+
+end
 
 local function map_ini_data_flavor_4(construct_plan, data)
     if data.Vehicle0 ~= nil then
@@ -1254,10 +1557,21 @@ local function map_ini_data_flavor_4(construct_plan, data)
         end
         for object_index = 0, tonumber(data.AllObjects.Count) - 1 do
             local attached_object = data["Object".. object_index]
-            if attached_object ~= nil and attached_object.Hash > 0 then
+            if attached_object ~= nil and attached_object.Hash ~= 0 then
+                debug_log("Processing object "..object_index)
                 local attachment = {}
                 attachment.type = "OBJECT"
                 map_ini_attachment_flavor_4(attachment, attached_object)
+                table.insert(construct_plan.children, attachment)
+            end
+        end
+        for ped_index = 0, tonumber(data.AllPeds.Count) - 1 do
+            local attached_ped = data["Ped".. ped_index]
+            if attached_ped ~= nil and attached_ped.Hash ~= 0 then
+                debug_log("Processing ped "..ped_index)
+                local attachment = {}
+                attachment.type = "PED"
+                map_ini_ped_flavor_4(attachment, attached_ped)
                 table.insert(construct_plan.children, attachment)
             end
         end
@@ -1266,7 +1580,7 @@ local function map_ini_data_flavor_4(construct_plan, data)
         construct_plan.is_player = true
         for object_index = 0, tonumber(data.AllObjects.Count) - 1 do
             local attached_object = data["Object".. object_index]
-            if attached_object ~= nil and attached_object.Hash > 0 then
+            if attached_object ~= nil and attached_object.Hash ~= 0 then
                 local attachment = {}
                 attachment.type = "OBJECT"
                 map_ini_attachment_flavor_4(attachment, attached_object)
@@ -1644,7 +1958,7 @@ convertor.convert_ini_to_construct_plan = function(construct_plan_file)
     end
     construct_plan.temp.source_file_type = "INI Flavor "..construct_plan.temp.ini_flavor
     map_ini_data(construct_plan, data)
-    rearrange_by_initial_attachment(construct_plan)
+    convertor.rearrange_by_initial_attachment(construct_plan)
 
     --debug_log("Loaded INI construct plan: "..inspect(construct_plan))
 
@@ -1662,4 +1976,3 @@ end
 ---
 
 return convertor
-

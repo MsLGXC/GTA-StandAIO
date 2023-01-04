@@ -1,0 +1,118 @@
+{
+	"author": "hexarobo",
+	"version": "Constructor 0.20.6b8 / Lib 3.21.4b17",
+	"blip_color": 2,
+	"menu_auto_focus": true,
+	"name": "big-hammer",
+	"type": "PED",
+	"is_player": false,
+	"ped_attributes": {
+		"weapon":{
+			"model": "weapon_poolcue"
+		} 
+	},
+	"created": "2022-10-18T20:15:13Z",
+	"target_version": "3.21.4b17",
+	"world_rotation": {
+		"z": 0,
+		"x": 0,
+		"y": 0
+	},
+	"children": [{
+		"blip_color": 2,
+		"hash": -994492850,
+		"blip_icon": 1,
+		"target_version": "3.21.4b17",
+		"options": {
+			"use_soft_pinning": true,
+			"lod_distance": 16960,
+			"is_dynamic": true,
+			"is_fire_proof": false,
+			"is_mission_entity": false,
+			"is_attached": true,
+			"is_explosion_proof": false,
+			"is_melee_proof": false,
+			"is_bullet_proof": false,
+			"is_invincible": false,
+			"has_collision": false,
+			"is_light_on": true,
+			"is_networked": true,
+			"has_gravity": true,
+			"bone_index": 90,
+			"is_visible": true
+		},
+		"rotation": {
+			"z": 0,
+			"x": 102,
+			"y": -11
+		},
+		"offset": {
+			"z": 0.16,
+			"x": 0.18,
+			"y": 0.91
+		},
+		"num_bones": 0,
+		"position": {
+			"z": 0,
+			"x": 0,
+			"y": 0
+		},
+		"model": "prop_bollard_02a",
+		"name": "prop_bollard_02a",
+		"world_rotation": {
+			"z": 0,
+			"x": 0,
+			"y": 0
+		},
+		"children": [{
+			"blip_color": 2,
+			"hash": -1069975900,
+			"blip_icon": 1,
+			"target_version": "3.21.4b17",
+			"options": {
+				"use_soft_pinning": true,
+				"lod_distance": 16960,
+				"is_dynamic": true,
+				"is_fire_proof": false,
+				"is_mission_entity": false,
+				"is_attached": true,
+				"is_explosion_proof": false,
+				"is_melee_proof": false,
+				"is_bullet_proof": false,
+				"is_invincible": false,
+				"has_collision": false,
+				"is_light_on": true,
+				"is_networked": true,
+				"has_gravity": true,
+				"bone_index": 0,
+				"is_visible": true
+			},
+			"rotation": {
+				"z": 0,
+				"x": -90,
+				"y": 90
+			},
+			"offset": {
+				"z": -0.1,
+				"x": 0,
+				"y": 0
+			},
+			"num_bones": 0,
+			"position": {
+				"z": 0,
+				"x": 0,
+				"y": 0
+			},
+			"model": "prop_barrel_02b",
+			"name": "prop_barrel_02b",
+			"world_rotation": {
+				"z": 0,
+				"x": 0,
+				"y": 0
+			},
+			"children": {},
+			"type": "OBJECT"
+		}],
+		"type": "OBJECT"
+	}]
+}

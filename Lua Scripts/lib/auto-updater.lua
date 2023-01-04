@@ -330,4 +330,3 @@ return {
     run_auto_update = run_auto_update,
     require_with_auto_update = require_with_auto_update,
 }
-

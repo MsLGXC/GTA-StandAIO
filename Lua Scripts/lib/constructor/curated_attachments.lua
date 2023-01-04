@@ -1,6 +1,6 @@
 -- Curated Attachments
 
-local SCRIPT_VERSION = "0.26"
+local SCRIPT_VERSION = "0.31"
 
 local curated_attachments <const> = {
     {
@@ -576,7 +576,8 @@ local curated_attachments <const> = {
                               hash = 1777363799,
                               name = "Washington",
                               type = "VEHICLE"
-                          } },
+                          }
+                },
                 name = "Sedan"
             }, {
                 is_folder = true,
@@ -585,11 +586,11 @@ local curated_attachments <const> = {
                               name = "Astron",
                               type = "VEHICLE"
                           },
-                          --{
-                          --    hash = 2803699023,
-                          --    name = "Astron Custom",
-                          --    type = "VEHICLE"
-                          --},
+                    --{
+                    --    hash = 2803699023,
+                    --    name = "Astron Custom",
+                    --    type = "VEHICLE"
+                    --},
                           {
                               hash = 3486135912,
                               name = "Baller",
@@ -669,6 +670,10 @@ local curated_attachments <const> = {
                           }, {
                               hash = 662793086,
                               name = "I-Wagen",
+                              type = "VEHICLE"
+                          }, {
+                              hash = 1550581940,
+                              name = "Issi Rally",
                               type = "VEHICLE"
                           }, {
                               hash = 461465043,
@@ -835,6 +840,10 @@ local curated_attachments <const> = {
                               name = "Buccaneer Custom",
                               type = "VEHICLE"
                           }, {
+                              hash = 2361724968,
+                              name = "Broadway",
+                              type = "VEHICLE"
+                          },{
                               hash = 3675036420,
                               name = "Buffalo STX",
                               type = "VEHICLE"
@@ -907,6 +916,10 @@ local curated_attachments <const> = {
                               name = "Ellie",
                               type = "VEHICLE"
                           }, {
+                              hash = 3045179290,
+                              name = "Eudora",
+                              type = "VEHICLE"
+                          },{
                               hash = 2175389151,
                               name = "Faction",
                               type = "VEHICLE"
@@ -1079,6 +1092,10 @@ local curated_attachments <const> = {
                               name = "Burger Shot Stallion",
                               type = "VEHICLE"
                           }, {
+                              hash = 3833117047,
+                              name = "Tahoma Coupe",
+                              type = "VEHICLE"
+                          }, {
                               hash = 972671128,
                               name = "Tampa",
                               type = "VEHICLE"
@@ -1089,6 +1106,10 @@ local curated_attachments <const> = {
                           }, {
                               hash = 1456744817,
                               name = "Tulip",
+                              type = "VEHICLE"
+                          },{
+                              hash = 268758436,
+                              name = "Tulip M-100",
                               type = "VEHICLE"
                           }, {
                               hash = 4245851645,
@@ -1450,6 +1471,10 @@ local curated_attachments <const> = {
                               hash = 1304459735,
                               name = "Growler",
                               type = "VEHICLE"
+                          },{
+                              hash = 4163619118,
+                              name = "Hotring Everon",
+                              type = "VEHICLE"
                           }, {
                               hash = 1115909093,
                               name = "Hotring Sabre",
@@ -1460,7 +1485,7 @@ local curated_attachments <const> = {
                               type = "VEHICLE"
                           }, {
                               hash = 1854776567,
-                              name = "Issi Sport",
+                              name = "Issi",
                               type = "VEHICLE"
                           }, {
                               hash = 3963499524,
@@ -1546,6 +1571,10 @@ local curated_attachments <const> = {
                               hash = 3789743831,
                               name = "Omnis e-GT",
                               type = "VEHICLE"
+                          },{
+                              hash = 2100457220,
+                              name = "Panthere",
+                              type = "VEHICLE"
                           }, {
                               hash = 3847255899,
                               name = "Paragon R",
@@ -1565,6 +1594,10 @@ local curated_attachments <const> = {
                           }, {
                               hash = 3663644634,
                               name = "Penumbra FF",
+                              type = "VEHICLE"
+                          },{
+                              hash = 1076201208,
+                              name = "300R",
                               type = "VEHICLE"
                           }, {
                               hash = 2765724541,
@@ -1763,6 +1796,10 @@ local curated_attachments <const> = {
                               name = "Emerus",
                               type = "VEHICLE"
                           }, {
+                              hash = 1748565021,
+                              name = "Entity MT",
+                              type = "VEHICLE"
+                          }, {
                               hash = 2174267100,
                               name = "Entity XXR",
                               type = "VEHICLE"
@@ -1913,6 +1950,10 @@ local curated_attachments <const> = {
                           }, {
                               hash = 3052358707,
                               name = "Vigilante",
+                              type = "VEHICLE"
+                          },{
+                              hash = 669204833,
+                              name = "Virtue",
                               type = "VEHICLE"
                           }, {
                               hash = 3296789504,
@@ -2078,6 +2119,10 @@ local curated_attachments <const> = {
                               hash = 1086534307,
                               name = "Manchez Scout",
                               type = "VEHICLE"
+                          },{
+                              hash = 1384502824,
+                              name = "Manchez Scout C",
+                              type = "VEHICLE"
                           }, {
                               hash = 3660088182,
                               name = "Nemesis",
@@ -2095,6 +2140,10 @@ local curated_attachments <const> = {
                               name = "Oppressor Mk II",
                               type = "VEHICLE"
                           }, {
+                              hash = 2908631255,
+                              name = "Powersurge",
+                              type = "VEHICLE"
+                          },{
                               hash = 3385765638,
                               name = "PCJ 600",
                               type = "VEHICLE"
@@ -2205,6 +2254,10 @@ local curated_attachments <const> = {
                           }, {
                               hash = 2859047862,
                               name = "Bodhi",
+                              type = "VEHICLE"
+                          }, {
+                              hash = 996383885,
+                              name = "Boor",
                               type = "VEHICLE"
                           }, {
                               hash = 2815302597,
@@ -2718,6 +2771,10 @@ local curated_attachments <const> = {
                               hash = 4174679674,
                               name = "Journey",
                               type = "VEHICLE"
+                          },{
+                              hash = 2667889793,
+                              name = "Journey II",
+                              type = "VEHICLE"
                           }, {
                               hash = 3984502180,
                               name = "Minivan",
@@ -2771,6 +2828,10 @@ local curated_attachments <const> = {
                               name = "Surfer",
                               type = "VEHICLE"
                           }, {
+                              hash = 3259477733,
+                              name = "Surfer Custom",
+                              type = "VEHICLE"
+                          },{
                               hash = 1951180813,
                               name = "Taco Van",
                               type = "VEHICLE"
@@ -3090,6 +3151,10 @@ local curated_attachments <const> = {
                               hash = 368211810,
                               name = "Cargo Plane",
                               type = "VEHICLE"
+                          },{
+                              hash = 2336777441,
+                              name = "Cargo Plane 2",
+                              type = "VEHICLE"
                           }, {
                               hash = 3650256867,
                               name = "Cuban 800",
@@ -3315,7 +3380,11 @@ local curated_attachments <const> = {
                         hash = 3989239879,
                         name = "Brickade",
                         type = "VEHICLE"
-                    }, {
+                    },{
+                        hash = 2718380883,
+                        name = "Brickade 6x6",
+                        type = "VEHICLE"
+                    },{
                         hash = 3581397346,
                         name = "Bus",
                         type = "VEHICLE"
@@ -3706,6 +3775,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "General Street",
+                        model = "A_F_M_GenStreet_01",
+                        type = "PED",
+                    },
+                    {
                         name = "K town 1",
                         model = "a_f_m_ktown_01",
                         type = "PED",
@@ -4014,6 +4088,11 @@ local curated_attachments <const> = {
                     {
                         name = "African American",
                         model = "a_m_m_afriamer_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Bank Robber",
+                        model = "A_M_M_BankRobber_01",
                         type = "PED",
                     },
                     {
@@ -4644,6 +4723,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Chimp 2",
+                        model = "A_C_Chimp_02",
+                        type = "PED",
+                    },
+                    {
                         name = "Chop",
                         model = "a_c_chop",
                         type = "PED",
@@ -4731,6 +4815,11 @@ local curated_attachments <const> = {
                     {
                         name = "Rabbit",
                         model = "a_c_rabbit_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Rabbit 2",
+                        model = "A_C_Rabbit_02",
                         type = "PED",
                     },
                     {
@@ -4892,6 +4981,11 @@ local curated_attachments <const> = {
                     {
                         name = "Dr Friedlander",
                         model = "cs_drfriedlander",
+                        type = "PED",
+                    },
+                    {
+                        name = "Dr Friedlander 2",
+                        model = "CS_DrFriedlander_02",
                         type = "PED",
                     },
                     {
@@ -5067,6 +5161,11 @@ local curated_attachments <const> = {
                     {
                         name = "Nervous Ron",
                         model = "cs_nervousron",
+                        type = "PED",
+                    },
+                    {
+                        name = "Nervous Ron 2",
+                        model = "CS_NervousRon_02",
                         type = "PED",
                     },
                     {
@@ -5265,6 +5364,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Chef 3",
+                        model = "CSB_Chef_03",
+                        type = "PED",
+                    },
+                    {
                         name = "Chinese Goon",
                         model = "csb_chin_goon",
                         type = "PED",
@@ -5282,6 +5386,11 @@ local curated_attachments <const> = {
                     {
                         name = "Customer",
                         model = "csb_customer",
+                        type = "PED",
+                    },
+                    {
+                        name = "Dax",
+                        model = "CSB_Dax",
                         type = "PED",
                     },
                     {
@@ -5332,6 +5441,16 @@ local curated_attachments <const> = {
                     {
                         name = "Janitor",
                         model = "csb_janitor",
+                        type = "PED",
+                    },
+                    {
+                        name = "Luchadora",
+                        model = "CSB_Luchadora",
+                        type = "PED",
+                    },
+                    {
+                        name = "Lab Rat",
+                        model = "CSB_Labrat",
                         type = "PED",
                     },
                     {
@@ -5489,6 +5608,11 @@ local curated_attachments <const> = {
                     {
                         name = "Grove Street Female",
                         model = "g_f_y_families_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Fooliganz",
+                        model = "G_F_M_Fooliganz_01",
                         type = "PED",
                     },
                     {
@@ -6527,6 +6651,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Acid Lab Cook",
+                        model = "IG_AcidLabCook",
+                        type = "PED",
+                    },
+                    {
                         name = "Agent",
                         model = "ig_agent",
                         type = "PED",
@@ -6617,6 +6746,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Chef 3",
+                        model = "IG_Chef_03",
+                        type = "PED",
+                    },
+                    {
                         name = "Cheng SR",
                         model = "ig_chengsr",
                         type = "PED",
@@ -6652,6 +6786,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Dax",
+                        model = "IG_Dax",
+                        type = "PED",
+                    },
+                    {
                         name = "Denise",
                         model = "ig_denise",
                         type = "PED",
@@ -6677,6 +6816,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Dr Friedlander 2",
+                        model = "IG_DrFriedlander_02",
+                        type = "PED",
+                    },
+                    {
                         name = "Fabien",
                         model = "ig_fabien",
                         type = "PED",
@@ -6697,6 +6841,21 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Furry",
+                        model = "IG_Furry",
+                        type = "PED",
+                    },
+                    {
+                        name = "Fooliganz 1",
+                        model = "IG_Fooliganz_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Fooliganz 2",
+                        model = "IG_Fooliganz_02",
+                        type = "PED",
+                    },
+                    {
                         name = "Gerald",
                         model = "ig_g",
                         type = "PED",
@@ -6707,8 +6866,18 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Gun Van Seller",
+                        model = "IG_GunVanSeller",
+                        type = "PED",
+                    },
+                    {
                         name = "Hao",
                         model = "ig_hao",
+                        type = "PED",
+                    },
+                    {
+                        name = "Hippy Leader",
+                        model = "IG_HippyLeader",
                         type = "PED",
                     },
                     {
@@ -6772,6 +6941,11 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Lab Rat",
+                        model = "IG_Labrat",
+                        type = "PED",
+                    },
+                    {
                         name = "Lamar Davis",
                         model = "ig_lamardavis",
                         type = "PED",
@@ -6799,6 +6973,11 @@ local curated_attachments <const> = {
                     {
                         name = "Lifeinvader Employee",
                         model = "ig_lifeinvad_02",
+                        type = "PED",
+                    },
+                    {
+                        name = "Luchadora",
+                        model = "IG_Luchadora",
                         type = "PED",
                     },
                     {
@@ -6884,6 +7063,11 @@ local curated_attachments <const> = {
                     {
                         name = "Nervous Ron",
                         model = "ig_nervousron",
+                        type = "PED",
+                    },
+                    {
+                        name = "Nervous Ron 2",
+                        model = "IG_NervousRon_02",
                         type = "PED",
                     },
                     {
@@ -7438,6 +7622,11 @@ local curated_attachments <const> = {
                     {
                         name = "Tattoo Artist",
                         model = "u_m_y_tattoo_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Yule Monster",
+                        model = "U_M_M_YuleMonster",
                         type = "PED",
                     },
                     {
@@ -8157,6 +8346,16 @@ local curated_attachments <const> = {
                         type = "PED",
                     },
                     {
+                        name = "Fooliganz",
+                        model = "G_M_M_Fooliganz_01",
+                        type = "PED",
+                    },
+                    {
+                        name = "Friedlander Goons",
+                        model = "G_M_M_FriedlanderGoons_01",
+                        type = "PED",
+                    },
+                    {
                         name = "Goons 1",
                         model = "G_M_M_Goons_01",
                         type = "PED",
@@ -8291,6 +8490,12 @@ local curated_attachments <const> = {
                         model = "S_M_M_StudioSouEng_02",
                         type = "PED",
                     },
+                    {
+                        name = "Hazmat Worker",
+                        model = "S_M_M_HazmatWorker_01",
+                        type = "PED",
+                    },
+
                 }
             },
         },

@@ -1243,4 +1243,3 @@ constants.ped_weapons = {
 }
 
 return constants
-
