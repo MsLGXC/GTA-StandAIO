@@ -89,7 +89,7 @@ green = {
     b = 0, 
     a = 1
 }
-menu.toggle(chesusu, "车速表显示", {}, "", function(state)
+menu.toggle(chesusu, "车速表显示", {"speedometerdisplay"}, "", function(state)
     UItoggle = state
 local lights, high_lights = memory.alloc_int(), memory.alloc_int()
 while UItoggle do 

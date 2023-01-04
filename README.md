@@ -1,7 +1,9 @@
-<div align="center">
-  <a href="https://i.pximg.net/img-original/img/2022/02/17/00/14/45/96308619_p0.jpg">
-  <img src=".github/黒金.jpg" alt="从zbp借来的看板娘" width = "400">
-  </a><br>
+<div align=center><img width="320" height="320" src="https://raw.githubusercontent.com/MrLGXC/GTA-StandAIO/main/Elaina.jpg"/></div>
+
+![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
+![maven](https://img.shields.io/badge/Stand-0.94-pink)
+![maven](https://img.shields.io/badge/AIO-v26B-blue)
+![maven](https://img.shields.io/badge/Modpack-v6-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>

@@ -2,7 +2,7 @@ slaxdom = require("lib/heezylib/slaxdom")
 slaxml = require("lib/heezylib/slaxml")
 lunajson = require("lib/heezylib/lunajson")
 local iniparser = require("lib/heezylib/iniparser")
-local fail_text = "该文件不能被加载，可能是不支持的格式.请在 Discord 上提交一份错误报告，并附上你刚刚尝试加载的载具文件."
+local fail_text = "该文件不能被加载，可能是不支持的格式."
 local instruction_text = "\n按住shift和ctrl，然后点击一个载具，从你的目录中删除这个载具.按住空格，点击一个载具，添加到你的收藏夹."
 
 
@@ -34,7 +34,6 @@ function request_model_load(hash)
     end
 end
 
-
 function hasValue( tbl, str )
     local f = false
     for i = 1, #tbl do
@@ -50,14 +49,7 @@ end
 
 -- credit to https://stackoverflow.com/questions/1426954/split-string-in-lua
 function split_str(inputstr, sep)
-    if sep == nil then
-            sep = "%s"
-    end
-    local t={}
-    for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-            table.insert(t, str)
-    end
-    return t
+    return string.split(inputstr, sep)
 end
 
 function to_boolean(text)
@@ -78,7 +70,7 @@ function get_element_text(el)
 end
 
 
-store_dir = filesystem.store_dir() .. '\\HeezyScript\\'
+store_dir = filesystem.scripts_dir() .. '\\HeezyScript\\'
 
 if not filesystem.is_dir(store_dir) then
     filesystem.mkdirs(store_dir)
@@ -86,6 +78,7 @@ if not filesystem.is_dir(store_dir) then
         util.toast("将您的载具和地图放入Lua Scripts / HeezyScript / heezy vehicle 或 heezy map:)")
     end
 end
+
 
 vehicles_dir = store_dir .. '\\heezy vehicles\\'
 if not filesystem.is_dir(vehicles_dir) then
@@ -154,9 +147,9 @@ function get_file_type(file_path)
     return ext
 end
 
-menu.divider(xij, "载具")
+menu.divider(model_options, "载具")
 
-menu.action(xij, "搜索载具模组", {"lssearchv"}, "", function(click_type)
+menu.action(model_options, "搜索载具模组", {"lssearchv"}, "", function(click_type)
     menu.show_command_box("lssearchv" .. " ")
     end, function(on_command)
         local results = search_vehicle(on_command)
@@ -181,7 +174,7 @@ function load_vehicle(path)
             json_load_vehicle(path)
             break 
         pluto_default:
-            util.toast("这不是受支持的文件.")
+            util.toast("This is not a supported file.")
     end
 end
 
@@ -192,7 +185,7 @@ function load_map(path)
             menyoo_load_map(path)
             break
         pluto_default:
-            util.toast("This is not a supported file.")
+            util.toast("这不是受支持的文件.")
     end
 end
 
@@ -212,7 +205,7 @@ function favorite_map(file_name)
     get_all_maps_in_dir()
 end
 
-local load_vehicle_action = menu.list_action(xij, "加载模组载具", {}, "加载载具. " .. instruction_text, all_vehicles, function(index, value)
+local load_vehicle_action = menu.list_action(model_options, "加载模组载具", {}, "加载载具. " .. instruction_text, all_vehicles, function(index, value)
     local path = vehicles_dir .. '\\' .. value
     if util.is_key_down(0x10) and util.is_key_down(0x11) then
         os.remove(path)
@@ -225,11 +218,11 @@ local load_vehicle_action = menu.list_action(xij, "加载模组载具", {}, "加
     end
 end)
 
-loaded_vehicles_root = menu.list(xij, "已加载的载具", {"lancespoonerloadedvehicles"}, "你已经加载的载具")
+loaded_vehicles_root = menu.list(model_options, "已加载的载具", {"lancespoonerloadedvehicles"}, "你已经加载的载具")
 
 
-menu.divider(xij, "地图")
-menu.action(xij, "搜索地图模组", {"lssearchmap"}, "", function(click_type)
+menu.divider(model_options, "地图")
+menu.action(model_options, "搜索地图模组", {"lssearchmap"}, "", function(click_type)
     menu.show_command_box("lssearchmap" .. " ")
     end, function(on_command)
         local results = search_map(on_command)
@@ -241,7 +234,7 @@ menu.action(xij, "搜索地图模组", {"lssearchmap"}, "", function(click_type)
         end
 end)
 
-local load_map_action = menu.list_action(xij, "加载XML地图", {}, "加载地图. " .. instruction_text, all_maps, function(index, value)
+local load_map_action = menu.list_action(model_options, "加载XML地图", {}, "加载地图.  " .. instruction_text, all_maps, function(index, value)
     local path = maps_dir .. '\\' .. value
     if util.is_key_down(0x10) and util.is_key_down(0x11) then
         os.remove(path)
@@ -253,16 +246,16 @@ local load_map_action = menu.list_action(xij, "加载XML地图", {}, "加载地�
         load_map(path)
     end
 end)
-loaded_maps_root = menu.list(xij, "已加载的地图", {"lancespoonerloadedmaps"}, "你已经加载的地图")
+loaded_maps_root = menu.list(model_options, "已加载的地图", {"lancespoonerloadedmaps"}, "你已经加载的地图")
 
 
-menu.divider(xij, "收藏夹")
+menu.divider(model_options, "喜爱")
 
-local load_favorite_vehicle_action = menu.list_action(xij, "最爱的载具", {}, "加载载具.", favorite_vehicles, function(index, value)
+local load_favorite_vehicle_action = menu.list_action(model_options, "最爱的载具", {}, "加载载具..", favorite_vehicles, function(index, value)
     load_vehicle(vehicles_dir .. '\\' .. value)
 end)
 
-local load_favorite_map_action = menu.list_action(xij, "最爱的地图", {}, "加载地图.", favorite_maps, function(index, value)
+local load_favorite_map_action = menu.list_action(model_options, "最爱的地图", {}, "加载地图.", favorite_maps, function(index, value)
     load_map(maps_dir .. '\\' .. value)
 end)
 
@@ -319,18 +312,39 @@ util.create_thread(function()
     end
 end)
 
-menu.divider(xij, "杂项")
+menu.divider(model_options, "杂项")
 v_search_results = {}
-v_search_results_action = menu.list_action(xij, "载具搜索结果", {"lsvsearchresults"}, "", v_search_results, function(index, value)
+v_search_results_action = menu.list_action(model_options, "载具搜索结果", {"lsvsearchresults"}, instruction_text, v_search_results, function(index, value)
     local path = vehicles_dir .. '\\' .. value
-    load_vehicle(path)
+    if util.is_key_down(0x10) and util.is_key_down(0x11) then
+        os.remove(path)
+        util.toast(value .. " deleted! :)")
+        get_all_vehicles_in_dir()
+        menu.set_list_action_options(v_search_results_action, {})
+    elseif util.is_key_down(0x20) then 
+        favorite_vehicle(value)
+        menu.set_list_action_options(v_search_results_action, {})
+    else
+        load_vehicle(path)
+    end
 end)
 
 m_search_results = {}
-m_search_results_action = menu.list_action(xij, "地图搜索结果", {"lsmsearchresults"}, "", m_search_results, function(index, value)
+m_search_results_action = menu.list_action(model_options, "地图搜索结果", {"lsmsearchresults"}, instruction_text, m_search_results, function(index, value)
     local path = maps_dir .. '\\' .. value
-    menyoo_load_map(path)
+    if util.is_key_down(0x10) and util.is_key_down(0x11) then
+        os.remove(path)
+        util.toast(value .. " deleted! :)")
+        get_all_maps_in_dir()
+        menu.set_list_action_options(m_search_results_action, {})
+    elseif util.is_key_down(0x20) then 
+        favorite_map(value)
+        menu.set_list_action_options(m_search_results_action, {})
+    else
+        menyoo_load_map(path)
+    end
 end)
+
 
 
 function menyoo_preprocess_ped(ped, att_data, entity_initial_handles)
@@ -406,7 +420,9 @@ function menyoo_preprocess_entity(entity, data)
     data['IsExplosionProof'] = nil_handler(data['IsExplosionProof'], false)
     data['IsMeleeProof'] = nil_handler(data['IsMeleeProof'], false)
     ENTITY.FREEZE_ENTITY_POSITION(entity, to_boolean(data['FrozenPos']))
-    ENTITY.SET_ENTITY_ALPHA(entity, tonumber(data['OpacityLevel']), false)
+    if tonumber(data['OpacityLevel']) ~= 255 then 
+        ENTITY.SET_ENTITY_ALPHA(entity, tonumber(data['OpacityLevel']), false)
+    end
     ENTITY.SET_ENTITY_INVINCIBLE(entity, to_boolean(data['IsInvincible']))
     ENTITY.SET_ENTITY_VISIBLE(entity, to_boolean(data['IsVisible']), 0)
     ENTITY.SET_ENTITY_HAS_GRAVITY(entity, to_boolean(data['HasGravity']))
@@ -497,7 +513,7 @@ end
 
 function menyoo_load_map(path)
     local all_entities = {}
-    util.toast("您的地图正在加载!...")
+    util.toast("Your map is loading!...")
     local entity_initial_handles = {}
     local xml_tbl = parse_xml(path).root
     -- n appears to be the enum of the kid, k is the actual kid table
@@ -582,7 +598,7 @@ function menyoo_load_map(path)
         return 
     end
     mm_maproot = menu.list(loaded_maps_root, path:gsub(maps_dir, "") .. ' [' .. mmblip .. ']', {"lancespoonerloadedmaps" .. mmblip}, "你已经加载的地图")
-    menu.action(mm_maproot, "传送至此地图", {"menyoomteleportto" .. mmblip}, "传送至此地图.", function(on_click)
+    menu.action(mm_maproot, "传送至此地图", {"menyoomteleportto" .. mmblip}, "传送至此地图", function(on_click)
         ENTITY.SET_ENTITY_COORDS_NO_OFFSET(PLAYER.PLAYER_PED_ID(), mmpos.x, mmpos.y, mmpos.z, false, false, false)
     end)
 
@@ -920,7 +936,9 @@ function ini_preprocess_vehicle(vehicle, data, ini_type, veh_index)
         ENTITY.SET_ENTITY_HAS_GRAVITY(vehicle, v_root.Gravity or true)
         ENTITY.FREEZE_ENTITY_POSITION(vehicle, v_root.Freeze or false)
         ENTITY.SET_ENTITY_RENDER_SCORCHED(vehicle, v_root.ScorchedRender or false)
-        ENTITY.SET_ENTITY_ALPHA(vehicle, v_root.Alpha or 255, false) 
+        if v_root.Alpha ~= 255 and v_root.Alpha ~= nil then
+            ENTITY.SET_ENTITY_ALPHA(vehicle, v_root.Alpha, false)
+        end
         VEHICLE.SET_VEHICLE_DIRT_LEVEL(vehicle, v_root.Dirt or 0.0) 
         VEHICLE.SET_VEHICLE_ENGINE_ON(vehicle, v_root.IsEngineOn, true, false)
         VEHICLE.SET_VEHICLE_LIGHT_MULTIPLIER(vehicle, v_root.HeadlightMultiplier or 1.0)
@@ -946,7 +964,7 @@ function ini_load_vehicle(file_name)
     local data
     success, data = pcall(iniparser.parse, file_name, vehicles_dir)
     if not success then 
-        util.toast("加载这个INI时出现了错误!请检查INI文件，然后重试. ")
+        util.toast("Something bad happened when trying to load this INI! Please check the INI file and try again. ")
     end
     local all_entities = {}
     local ini_type = -1
@@ -1158,7 +1176,7 @@ function ini_load_vehicle(file_name)
         HUD.SET_BLIP_SPRITE(this_blip, 77)
         HUD.SET_BLIP_COLOUR(this_blip, 47)
 
-        menu.action(this_veh_root, "删除", {"deletelancespoonerv" .. initial_vehicle}, "Delete this vehicle. Make it cease to exist.", function(on_click)
+        menu.action(this_veh_root, "Delete", {"deletelancespoonerv" .. initial_vehicle}, "Delete this vehicle. Make it cease to exist.", function(on_click)
             for k,v in pairs(all_entities) do
                 entities.delete_by_handle(v)
             end
@@ -1166,7 +1184,7 @@ function ini_load_vehicle(file_name)
             util.remove_blip(this_blip)
         end)
 
-        menu.action(this_veh_root, "传送至载具内", {"teleportemenyoov" .. initial_vehicle}, "", function(on_click)
+        menu.action(this_veh_root, "Teleport inside", {"teleportemenyoov" .. initial_vehicle}, "", function(on_click)
             PED.SET_PED_INTO_VEHICLE(PLAYER.PLAYER_PED_ID(), initial_vehicle, -1)
         end)
 
@@ -1277,52 +1295,147 @@ function json_preprocess_vehicle(vehicle, data, initial_vehicle)
     VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(vehicle, "LANCE")
 end
 
+local function preprocess_constructor_vehicle(veh, data, is_initial) 
+    if data.headlights.headlights_type then 
+        VEHICLE.TOGGLE_VEHICLE_MOD(veh, 22, true)
+    end
+    VEHICLE.SET_VEHICLE_XENON_LIGHT_COLOR_INDEX(veh, data.headlights.headlights_color)
+    -- headlights_type = false? what?
+    VEHICLE.SET_VEHICLE_ENVEFF_SCALE(veh, data.paint.fade or 0)
+    --VEHICLE.SET_VEHICLE_EXTRA_COLOUR_5(veh, colors['LrInterior'])
+    VEHICLE.SET_VEHICLE_EXTRA_COLOUR_6(veh, data.paint.dashboard_color)
+    VEHICLE.SET_VEHICLE_LIVERY(veh, data.paint.livery)
+    VEHICLE.SET_VEHICLE_DIRT_LEVEL(veh, data.paint.dirt_level)
+    --VEHICLE.SET_VEHICLE_EXTRA_COLOURS(veh, data.paint.extra_colors.pearlescent, data.paint.extra_colors.wheel)
+    local any_custom_paint_used = false
+
+    if data.paint.primary.is_custom then 
+        local p_colors = data.paint.primary.custom_color
+        VEHICLE.SET_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh, p_colors.r, p_colors.g, p_colors.b)
+        any_custom_paint_used = true
+    end
+
+    if data.paint.secondary.is_custom then 
+        local s_colors = data.paint.secondary.custom_color
+        VEHICLE.SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, s_colors.r, s_colors.g, s_colors.b)
+        any_custom_paint_used = true
+    end
+
+    if not any_custom_paint_used then 
+        VEHICLE.SET_VEHICLE_COLOURS(veh, data.paint.primary.vehicle_standard_color, data.paint.secondary.vehicle_standard_color)
+    end
+    VEHICLE.SET_VEHICLE_TYRE_SMOKE_COLOR(veh, data.wheels.tire_smoke_color.r, data.wheels.tire_smoke_color.g, data.wheels.tire_smoke_color.b)
+    -- realistically, no tires will ever be set to be burst, and menus will 9/10 times auto-fix the car, so why do these vehicle formats insist on adding support for it lol
+    VEHICLE.SET_VEHICLE_WHEEL_TYPE(veh, data.wheels.wheel_type)
+    for k,v in pairs(data.mods) do
+        k = k:gsub('_', '')
+        VEHICLE.SET_VEHICLE_MOD(veh, tonumber(k), tonumber(v), true)
+    end
+
+    -- why just an empty list for neon colors and not default it to white or smth?
+
+    VEHICLE.SET_VEHICLE_NEON_COLOUR(veh, data.neon or 0, data.NeonG or 0, data.NeonB or 0)
+
+    for i=0, 3 do 
+        if data.neon.lights[i] then 
+            VEHICLE.SET_VEHICLE_NEON_ENABLED(veh, i, true)
+        end
+    end
+
+    if data.options.bulletproof_tires == 1 then 
+        VEHICLE.SET_VEHICLE_TYRES_CAN_BURST(veh, false)
+    end
+
+    if not is_initial then
+        VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT(veh, data.options.license_plate_text or "LANCE")
+        VEHICLE.SET_VEHICLE_NUMBER_PLATE_TEXT_INDEX(veh, data.options.license_plate_type or 0)
+        ENTITY.SET_ENTITY_PROOFS(veh, data.options.is_bullet_proof, data.options.is_fire_proof, data.options.is_explosion_proof, not data.options.has_collision, data.options.is_melee_proof, false, true, false)
+        if not data.options.is_visible and data.options.is_visible ~= nil then 
+            ENTITY.SET_ENTITY_VISIBLE(veh, false, false)
+        end
+    end
+    ENTITY.SET_ENTITY_INVINCIBLE(veh, true)
+end
+
 local supported_jackz_versions = {'1.1.0', '1.3.0', '1.3.1', '1.4.0'}
 function json_load_vehicle(path)
     local all_entities = {}
     local success = false
     local fp = io.open(path, "r")
     if not fp then 
-        util.toast("打开错误 " .. path)
+        util.toast("Error opening " .. path)
         return
     end
     local json_string = fp:read("*all")
     local json_tbl = lunajson.decode(json_string)
-    if json_tbl.version ~= nil then 
-        local disp_version = string.gsub(json_tbl.version, 'Jackz自定义载具 ', '')
-        if not table.contains(supported_jackz_versions, disp_version) then 
-            util.toast("LanceSpooner不支持这个Jackz或JSON版本 (版本 " .. disp_version .. "). 正在尝试加载此文件，有可能无法正常工作.如果此模组显示正常，请告诉我，已便我可以减少这类提示!")
+    local is_constructor_file = false
+    if json_tbl.version ~= nil then
+        if string.contains(json_tbl.version, 'Constructor') then 
+            is_constructor_file = true 
+        else
+            local disp_version = string.gsub(json_tbl.version, 'Jackz Custom Vehicle ', '')
+            if not table.contains(supported_jackz_versions, disp_version) then 
+                util.toast("This Jackz JSON edition is not known to be supported by LanceSpooner (version " .. disp_version .. "). We'll try to load it anyways but some things may not work. If it does work, let us know so we can show this message less!")
+            end
         end
     else
-        util.toast("这辆Jackz载具可能是非常久远的版本(或者这根本不是Jackz载具). 但是仍在尝试加载，可能会出现不好的情况.")
+        util.toast("We could not determine what type of JSON vehicle this is. Things may break, but we'll try to load it anyways.")
     end
-    local base = json_tbl.base
-    if base.model == nil then 
-        util.toast(fail_text)
-        return
-    end
-    local v_hash = base.model
-    request_model_load(v_hash)
-    local c = players.get_position(players.user())
-    local initial_vehicle = entities.create_vehicle(v_hash, c, ENTITY.GET_ENTITY_HEADING(players.user_ped()))
-    all_entities[#all_entities + 1] = initial_vehicle
-    json_preprocess_vehicle(initial_vehicle, base, initial_vehicle)
+    local initial_vehicle = 0
+    if is_constructor_file then
+        local v_hash = json_tbl.hash
+        request_model_load(v_hash)
+        local coords = players.get_position(players.user())
+        initial_vehicle = entities.create_vehicle(v_hash, coords, ENTITY.GET_ENTITY_HEADING(players.user_ped()))
+        preprocess_constructor_vehicle(initial_vehicle, json_tbl.vehicle_attributes)
+        ENTITY.SET_ENTITY_PROOFS(initial_vehicle, json_tbl.options.is_bullet_proof, json_tbl.options.is_fire_proof, json_tbl.options.is_explosion_proof, not json_tbl.options.has_collision, json_tbl.options.is_melee_proof, false, true, false)
+        if not json_tbl.options.is_visible then 
+            ENTITY.SET_ENTITY_VISIBLE(initial_vehicle, false, false)
+        end
+        for _, c in pairs(json_tbl.children) do
+            if c.type == "OBJECT" then
+                local o_hash = c.hash
+                request_model_load(v_hash)
+                local this_obj = entities.create_object(o_hash, coords)
+                ENTITY.SET_ENTITY_PROOFS(this_obj, c.options.is_bullet_proof, c.options.is_fire_proof, c.options.is_explosion_proof, not c.options.has_collision, c.options.is_melee_proof, false, true, false)
+                if not c.options.is_visible then 
+                    ENTITY.SET_ENTITY_VISIBLE(this_obj, false, false)
+                end
+                if c.options.is_attached or c.options.is_attached == nil then 
+                    ENTITY.ATTACH_ENTITY_TO_ENTITY(this_obj, initial_vehicle, c.bone_index, c.offset.x, c.offset.y, c.offset.z, c.rotation.x, c.rotation.y, c.rotation.z, true, c.options.use_soft_pinning, true, false, 2, true)
+                end
+                ENTITY.SET_ENTITY_INVINCIBLE(this_obj, true)
+            end
+        end
+    else
+        local base = json_tbl.base
+        if base.model == nil then 
+            util.toast(fail_text)
+            return
+        end
+        local v_hash = base.model
+        request_model_load(v_hash)
+        local c = players.get_position(players.user())
+        initial_vehicle = entities.create_vehicle(v_hash, c, ENTITY.GET_ENTITY_HEADING(players.user_ped()))
+        all_entities[#all_entities + 1] = initial_vehicle
+        json_preprocess_vehicle(initial_vehicle, base, initial_vehicle)
 
-    for k,o in pairs(json_tbl.objects) do 
-        request_model_load(o.model)
-        local this_obj = entities.create_object(o.model, c)
-        all_entities[#all_entities + 1] = this_obj
-        ENTITY.SET_ENTITY_VISIBLE(this_obj, o.visible, 0)
-        ENTITY.ATTACH_ENTITY_TO_ENTITY(this_obj, initial_vehicle, 0, o.offset.x, o.offset.y, o.offset.z, o.rotation.x, o.rotation.y, o.rotation.z, true, false, true, false, 2, true)
-    end
+        for k,o in pairs(json_tbl.objects) do 
+            request_model_load(o.model)
+            local this_obj = entities.create_object(o.model, c)
+            all_entities[#all_entities + 1] = this_obj
+            ENTITY.SET_ENTITY_VISIBLE(this_obj, o.visible, 0)
+            ENTITY.ATTACH_ENTITY_TO_ENTITY(this_obj, initial_vehicle, 0, o.offset.x, o.offset.y, o.offset.z, o.rotation.x, o.rotation.y, o.rotation.z, true, false, true, false, 2, true)
+        end
 
-    if json_tbl.vehicles ~= nil then 
-        for k,veh in pairs(json_tbl.vehicles) do 
-            local v_hash = veh.model
-            request_model_load(v_hash)
-            local this_veh = entities.create_vehicle(v_hash, c, ENTITY.GET_ENTITY_HEADING(players.user_ped()))
-            all_entities[#all_entities + 1] = this_veh
-            json_preprocess_vehicle(this_veh, veh, initial_vehicle)
+        if json_tbl.vehicles ~= nil then 
+            for k,veh in pairs(json_tbl.vehicles) do 
+                local v_hash = veh.model
+                request_model_load(v_hash)
+                local this_veh = entities.create_vehicle(v_hash, c, ENTITY.GET_ENTITY_HEADING(players.user_ped()))
+                all_entities[#all_entities + 1] = this_veh
+                json_preprocess_vehicle(this_veh, veh, initial_vehicle)
+            end
         end
     end
 
@@ -1334,7 +1447,7 @@ function json_load_vehicle(path)
         HUD.SET_BLIP_SPRITE(this_blip, 77)
         HUD.SET_BLIP_COLOUR(this_blip, 47)
 
-        menu.action(this_veh_root, "删除", {"deletelancespoonerv" .. initial_vehicle}, "Delete this vehicle. Make it cease to exist.", function(on_click)
+        menu.action(this_veh_root, "删除", {"deletelancespoonerv" .. initial_vehicle}, "删除载具.", function(on_click)
             for k,v in pairs(all_entities) do
                 entities.delete_by_handle(v)
             end

@@ -28,7 +28,7 @@ Custom Payout = Custom Percentage
 You didn't input the value. Please input it! = You didn't specify the value. Please specify it!
 Enable = Enable
 Sucessfully set! = Successfully set!
-# Would you like to restart HC now? = Would you like to restart HC now?
+Would you like to restart HC now? = Would you like to restart HC now?
 Others = Others
 Good bye, thank you for using HC! :D = Good bye, thank you for using HC! :D
 
@@ -342,7 +342,7 @@ Agency Studio (Mission) = Agency Studio (Mission)
 Final Contract: Don't Fuck with Dre = Finale: Don't Fuck with Dre
 
 Modify Final Contract Payout (2 Millions) = Modify Finale's Payout (2 Million)
-Skip Cooldown of Payphone hits & contracts = Skip The Cooldown Of Contracts and Payphone Hits 
+Skip Cooldown of Payphone hits & contracts = Skip The Cooldown Of Contracts and Payphone Hits
 Make sure enabled before starting any contract or hit. = Make sure it's enabled before starting any contracts or hits.
 Remove Security Missions Cooldown = Remove Security Mission's Cooldown
 Complete all Missions = Complete All Missions
@@ -613,7 +613,7 @@ Note: MP0_ or MP1_ will be selected by HC automatically, therefore don't write i
 Custom Stat Reader = Custom Stat Reader
 Copy Stat Value = Copy Stat Value
 Read Stat = Read Stat
-Sucessfully read! = Sucessfully read!
+Sucessfully read! = Successfully read!
 
 Language Setting = Language Setting
 How To Translate = How To Translate

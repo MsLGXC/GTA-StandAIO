@@ -36,7 +36,7 @@ if not filesystem.scripts_dir(hhud_dir_dir) then
 end
 
 gpws = true
-menu.toggle(cccar , "警报", {"gpws"}, "", function(on)
+menu.toggle(aircrafthud, "警报", {"gpws"}, "", function(on)
     gpws = on
 end, true)
 
@@ -239,7 +239,7 @@ util.create_thread(function()
     end
 end)
 
-menu.toggle(cccar , "飞机HUD显示", {}, "", function(state)
+menu.toggle(aircrafthud , "飞机HUD显示", {"aircrafthuddisplay"}, "", function(state)
     UItoggle = state
 while UItoggle do 
     mst_warn = ""

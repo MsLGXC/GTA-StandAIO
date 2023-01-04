@@ -11,21 +11,23 @@
 -- Other Credits:
 --      - kektram#8996 (743564698699563020); significantly assisted with parse optimizations, and other areas such as garbage collection.
 
+-- Hacked by Hexarobi to support strings.
+
 local ini <const> = {
-    version = "0.2.7",
+    version = "0.2.8",
     __debug = false
 }
 
 -- Localizing things we'll use often, for faster access.
 -- This allows Lua to index the stack instead of performing a hash lookup each time we make a call to _G.
 local type <const>,
-      f_open <const>,
-      str_sub <const>,
-      str_len <const>,
-      tostring <const>,
-      tonumber <const>,
-      str_gmatch <const>,
-      default_path = type, io.open, string.sub, string.len, tostring, tonumber, string.gmatch, nil
+f_open <const>,
+str_sub <const>,
+str_len <const>,
+tostring <const>,
+tonumber <const>,
+str_gmatch <const>,
+default_path = type, io.open, string.sub, string.len, tostring, tonumber, string.gmatch, nil
 
 if menu then
     default_path = filesystem.scripts_dir() .. '\\store\\'
@@ -106,12 +108,12 @@ function ini.parse(path, cwd)
     assert(type(path) == "string", "ini.parse 'path' must be a string.")
 
     -- Decipher `path` and decide whether it's absolute or relative.
-    local path = cwd .. path 
+    local path = cwd .. path
 
     local res <const>,
-          cache <const>,
-          section = {}, { lines = {}, values = {}, keys = {} }, nil -- Inline cache gave smaller execution times.
-    
+    cache <const>,
+    section = {}, { lines = {}, values = {}, keys = {} }, nil -- Inline cache gave smaller execution times.
+
     local file <close> = f_open(path)
 
     -- This gets messy because we must minimize function calls; they're very expensive in Lua.
@@ -179,6 +181,8 @@ function ini.parse(path, cwd)
                                 else
                                     serialized_val = bVal
                                 end
+                            elseif value then
+                                serialized_val = value
                             end
 
                             cache.values[value] = serialized_val
@@ -205,8 +209,8 @@ function ini.parse(path, cwd)
 
     res.save = function (_path, skip_keys)
         local cats <const>,
-              resl <const>,
-              skip <const> = {}, {}, {}
+        resl <const>,
+        skip <const> = {}, {}, {}
 
         if type(skip_keys) == "table" then
             for _, k in next, skip_keys do
