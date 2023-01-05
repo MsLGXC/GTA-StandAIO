@@ -29,7 +29,7 @@
 > 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-4476AF?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-4476AF?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
-> [![Pan](https://shields.io/badge/Google Drive-ROV5-4476AF?logo=googledrive&style=for-the-badge)] 由于空间不足已停止上传<br><br><br>
+> [![Pan](https://shields.io/badge/GoogleDrive-ROV5-4476AF?logo=googledrive&style=for-the-badge)] 由于空间不足已停止上传<br><br><br>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数（相比v5），并稍微降低了土豆发生的几率。
 
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
