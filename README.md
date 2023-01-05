@@ -26,7 +26,7 @@
 > 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=WfN0bIsi)，一起搞♂(迫真)!<br><br>
 
 > 如果你对线上mod包感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
-> 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br>
+> 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br><br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
 > ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br><br>
