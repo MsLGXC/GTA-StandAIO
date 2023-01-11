@@ -1,11 +1,14 @@
 Finished Tutorial: Yes
+Understands Commands: Yes
+Understands Sliders: Yes
+Understands Profiles: Yes
+Understands Context Menu: Yes
 Understands Command Chaining: Yes
-Tree Compatibility Version: 42
+Tree Compatibility Version: 43
 Self
 	Appearance
 		Outfit
 			Disable In-Vehicle Hair Scaling: On
-			Lock Outfit: 
 		Animations
 			Partial Movement: On
 	Weapons
@@ -62,6 +65,7 @@ Online
 			Notification: On
 			Write To Log File: On
 			Write To Console: On
+			Show "Was Blocked From Joining": On
 		Player Leave Notifications
 			Notification: On
 			Write To Log File: On
@@ -101,26 +105,13 @@ Online
 				Block Incoming Syncs: Enabled
 				Block Outgoing Syncs: Enabled
 				Log Their Network Events: Enabled
-				Log Incoming Syncs: Enabled
-				Log Outgoing Syncs: Enabled
 			Kick Event
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Modded Event
 				Write To Log File: Enabled
 				Write To Console: Enabled
-			CEO/MC Ban
-				Block: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-			CEO/MC Ban (Not My CEO)
-				Write To Log File: Enabled
-				Write To Console: Enabled
 			CEO/MC Kick
-				Block: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-			CEO/MC Kick (Not My Boss)
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Start Freemode Mission
@@ -181,14 +172,26 @@ Online
 				Block: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
+			Kick From Interior
+				Write To Log File: Enabled
+				Write To Console: Enabled
 			Freeze
-				Block: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Force Camera Forward
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Love Letter Kick Blocking Event
+				Block: Enabled
+				Write To Log File: Enabled
+				Write To Console: Enabled
+			Camera Shaking Event
+				Write To Log File: Enabled
+				Write To Console: Enabled
+			Explosion Spam
+				Write To Log File: Enabled
+				Write To Console: Enabled
+			Ragdoll Event
 				Block: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
@@ -361,6 +364,15 @@ Online
 				Notification: Enabled
 				Write To Log File: Friends & Strangers
 				Write To Console: Friends & Strangers
+			Chatting Without Typing
+				Write To Log File: Strangers
+				Write To Console: Strangers
+			Bounty Spam
+				Write To Log File: Enabled
+				Write To Console: Enabled
+			Modded Bounty
+				Write To Log File: Enabled
+				Write To Console: Enabled
 		Syncs
 			Cage
 				Write To Log File: Enabled
@@ -377,9 +389,6 @@ Online
 			Advertisement
 				Block: Enabled
 				Love Letter Kick: Strangers
-			Bypassed Profanity Filter
-				Write To Log File: Enabled
-				Write To Console: Enabled
 		Session Script Start
 			Arcade Game
 				Notification: Enabled
@@ -445,6 +454,7 @@ Online
 		Breakup Kick Reactions
 			Write To Log File: On
 			Write To Console: On
+			Block: On
 			Karma: On
 		Knockoff Breakup Kick Reactions
 			Myself
@@ -492,9 +502,8 @@ Online
 		Reactions
 			Advertisement
 				Block: Enabled
-			Bypassed Profanity Filter
-				Write To Log File: Enabled
-				Write To Console: Enabled
+			Chat Spam
+				Block: Enabled
 		Typing Indicator
 			Typing Indicator: On
 		Log Chat Messages
@@ -512,12 +521,9 @@ Online
 			Spoofed RID: 63457
 		IP Address Spoofing
 			Spoofed IP Address: 139.138.231.17
-		Host Token Spoofing
-			Host Token Spoofing: off
-			Kick Host When Joining As Next In Queue
-				Exclude Friends: On
-				Exclude Crew Members: On
 		Session Spoofing
+			Hide Session: Non-Existent Session
+			Session Type: Closed Crew
 			Host
 				Host Spoofing: On
 				虚假主机 - RID: 204496396
@@ -560,6 +566,7 @@ Online
 		Disable Insurance Payments: On
 		Halloween Event: On
 		Peyote Plants: On
+	Reveal Off The Radar Players: On
 	Rockstar Admin DLC: On
 Players
 	Settings
@@ -587,6 +594,15 @@ Players
 			VPN: Hidden
 		AR Beacon On Focused Players
 			Exclude Me: Off
+		Hoisted Tags
+			In Timeout: On
+			Modder: On
+			Modder or Admin: On
+			Admin: On
+			Attacked You: On
+			Host: On
+			Next Host: On
+			Script Host: On
 	All Players
 		Excludes
 			Exclude Crew Members: On
@@ -626,7 +642,7 @@ Stand
 				Unfocused Text Colour: CCCCCCFF
 				Unfocused Right-Bound Text Colour: 66CCCCFF
 				Unfocused Texture Colour: 66CCCCFF
-				HUD Colour: F67FFFFF
+				HUD Colour: 7FFFE9FF
 					Rainbow Mode: 10
 				AR Colour: 0576E4FF
 				Minigame Colour: 0576E4FF
@@ -641,7 +657,7 @@ Stand
 			Cursor
 				Scroll Gap: 0
 				Rounded: On
-				Colour: EE00FFFF
+				Colour: 00FFD8FF
 					Rainbow Mode: 10
 			Tabs
 				Width: 90
@@ -654,7 +670,7 @@ Stand
 			Notifications
 				Custom Position: 605, 1050
 				Width: 394
-				Border Colour: EE00FF82
+				Border Colour: 00FFD882
 					Rainbow Mode: 10
 				Flash Colour: 19181619
 				Background Colour: 00000064
@@ -671,105 +687,34 @@ Stand
 				Lists: On
 		Info Text
 			Scale: 20
+		Session Joining
+			Automatically Change Targeting Mode: On
+			Check If Join Will Succeed: On
 	Lua Scripts
-		AcjokerScript: On
-			Online
-				Increase Kosatka Missile Range: On
 		Actions: On
+		Chat Interface: On
 		Constructor: On
 		CxScript: On
 		EntityThrottler: On
 		gLanceCN: On
 		head_bangCN: On
-		Heezy二代目V5.9.5: On
+		Heezy二代目V6.1.4: On
+			其他选项
+				使用帮助: Off
 		Heist Control: On
 		HornSongs: On
 		jackz_vehicles: On
-		JerryScript: On
-			Players
-				射击移除无敌: On
-			World
-				禁用小键盘: On
-		JinxScript_CN_3.02: On
+		JinxScript_CN_3.31: On
 		lancescript_reloaded: On
-			自我
-				我的载具
-					移动
-						氮气: On
-						氮气持续时间: 1
-					电影视角自动驾驶: On
-				我的战斗/武器
-					沉默自瞄
-						沉默自瞄NPC: On
-						视野: 30
-						显示目标: Off
-			在线
-				检测
-					远程传送/修改速度: On
-					正跟踪我: On
-					扯淡的等级: On
-					高存款: On
-				保护
-					管理员退出: Off
-					自动移除赏金: On
-					虎鲸导弹警告: On
-					天基炮使用警告: On
-				告诉我谁在使用语音聊天: On
-			世界
-				射弹
-					画警告标志: On
-					弹丸的光点: On
 		LanceSpoonerCN: On
 		MusinessBanager: On
-			Special Cargo
-				绕过 购买任务 冷却: On
-				绕过 出售任务 冷却: On
-				自动完成 购买任务: On
-				自动完成 出售任务: On
-				Max Crate Sourcing Amount: On
-				Minimize Delivery Time: On
-			Nightclub
-				绕过 出售任务 冷却: On
-				Cargo
-					Max Production Speed: On
-				Weapons
-					Max Production Speed: On
-				Cocaine
-					Max Production Speed: On
-				Meth
-					Max Production Speed: On
-				Weed
-					Max Production Speed: On
-				Forgery
-					Max Production Speed: On
-				Cash
-					Max Production Speed: On
-				Nightclub Safe
-					Maximum Capacity: 300000
-					Revenue: 300000
-			摩托帮产业
-				Forgery
-					Max Production Speed: On
-				Weed
-					Max Production Speed: On
-				Cash
-					Max Production Speed: On
-				Meth
-					Max Production Speed: On
-				Cocaine
-					Max Production Speed: On
-			Bunker
-				Max Production Speed: On
-				Supply->Product Ratio: 1
 		PolicifyCN: On
-		SaltyScript: On
 		SprunkStop: On
 		train_control.cn: On
 		WiriScript: On
-			保镖菜单
-				小组
-					关联小组: 喜欢玩家
 	ASI Mods
 		Settings
 			Use Temp Folder: On
 			Deceive Online Checks: On
+		GTAV.HeapAdjuster: On
+	Console: On

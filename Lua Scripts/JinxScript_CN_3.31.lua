@@ -1,8 +1,8 @@
---倒卖狗不得好死,给你妈凑买棺材板的钱呢是吧？-- 
---jinx Scirpt中文区翻译: lu_zi / BlackMist 臣服 -- 
+--倒卖狗不得好死,给你妈凑买棺材板的钱呢是吧?-- 
+--Jinx Scirpt中文区翻译: lu_zi / BlackMist 臣服 -- 
 util.require_natives("natives-1663599433-uno")
 local response = false
-local localVer = 3.3
+local localVer = 3.31
 local currentVer
 async_http.init("raw.githubusercontent.com", "/Prisuhm/JinxScript/main/JinxScriptVersion", function(output)
     currentVer = tonumber(output)
@@ -45,31 +45,31 @@ local function BitTest(bits, place)
 end
 
 local function IsPlayerUsingOrbitalCannon(player)
-    return BitTest(memory.read_int(memory.script_global((2657589 + (player * 466 + 1) + 427))), 0) -- Global_2657589[PLAYER::PLAYER_ID() /*466*/].f_427), 0
+    return BitTest(memory.read_int(memory.script_global((2657589 + (player * 466 + 1) + 427))), 0) -- 全局参数_2657589[玩家::玩家_ID() /*466*/].f_427), 0
 end
 
 local function IsPlayerFlyingAnyDrone(player)
-   return BitTest(memory.read_int(memory.script_global(1853910 + (player * 862 + 1) + 267 + 365)), 26) -- Global_1853910[PLAYER::PLAYER_ID() /*862*/].f_267.f_365, 26
+   return BitTest(memory.read_int(memory.script_global(1853910 + (player * 862 + 1) + 267 + 365)), 26) -- 全局参数_1853910[玩家::玩家_ID() /*862*/].f_267.f_365, 26
 end
 
 local function IsPlayerUsingGuidedMissile(player)
-    return (memory.read_int(memory.script_global(2657589 + 1 + (player * 466) + 321 + 10)) ~= -1 and IsPlayerFlyingAnyDrone(player)) -- Global_2657589[PLAYER::PLAYER_ID() /*466*/].f_321.f_10 
+    return (memory.read_int(memory.script_global(2657589 + 1 + (player * 466) + 321 + 10)) ~= -1 and IsPlayerFlyingAnyDrone(player)) -- 全局参数_2657589[玩家::玩家_ID() /*466*/].f_321.f_10 
 end
 
 local function IsPlayerInRcBandito(player)
-    return BitTest(memory.read_int(memory.script_global(1853348 + (player * 834 + 1) + 267 + 348)), 29)  -- Global_1853348[PLAYER::PLAYER_ID() /*834*/].f_267.f_348, 29
+    return BitTest(memory.read_int(memory.script_global(1853348 + (player * 834 + 1) + 267 + 348)), 29)  -- 全局参数_1853348[玩家::玩家_ID() /*834*/].f_267.f_348, 29
 end
 
 local function IsPlayerInRcTank(player)
-    return BitTest(memory.read_int(memory.script_global(1853348 + (player * 834 + 1) + 267 + 428 + 2)), 16) -- Global_1853910[PLAYER::PLAYER_ID() /*862*/].f_267.f_428.f_2
+    return BitTest(memory.read_int(memory.script_global(1853348 + (player * 834 + 1) + 267 + 428 + 2)), 16) -- 全局参数_1853910[玩家::玩家_ID() /*862*/].f_267.f_428.f_2
 end
 
 local function get_spawn_state(pid)
-    return memory.read_int(memory.script_global(((2657589 + 1) + (pid * 466)) + 232)) -- Global_2657589[PLAYER::PLAYER_ID() /*466*/].f_232
+    return memory.read_int(memory.script_global(((2657589 + 1) + (pid * 466)) + 232)) -- 全局参数_2657589[玩家::玩家_ID() /*466*/].f_232
 end
 
 local function get_interior_player_is_in(pid)
-    return memory.read_int(memory.script_global(((2657589 + 1) + (pid * 466)) + 245)) -- Global_2657589[bVar0 /*466*/].f_245
+    return memory.read_int(memory.script_global(((2657589 + 1) + (pid * 466)) + 245)) -- 全局参数_2657589[bVar0 /*466*/].f_245
 end
 
 local function is_player_in_interior(pid)
@@ -77,7 +77,7 @@ local function is_player_in_interior(pid)
 end
 
 local function IsPlayerInKosatka(player)
-    return BitTest(memory.read_int(memory.script_global(1853910 + (player * 862 + 1 ) + 267 + 479)), 2) -- Global_1853910[PLAYER::PLAYER_ID() /*862*/].f_267.f_479, 2
+    return BitTest(memory.read_int(memory.script_global(1853910 + (player * 862 + 1 ) + 267 + 479)), 2) -- 全局参数_1853910[玩家::玩家_ID() /*862*/].f_267.f_479, 2
 end
 
 
@@ -117,7 +117,7 @@ local function BlockSyncs(pid, callback)
 end
 
 local All_business_properties = {
-    -- Clubhouses
+    -- 会所
     "罗伊洛文斯坦大道 1334 号",
     "佩罗海滩 7 号",
     "艾尔金大街 75 号",
@@ -263,7 +263,7 @@ local interiors = {
     {"酷刑室", {x=147.170, y=-2201.804, z=4.688}},
     {"矿道", {x=-595.48505, y=2086.4502, z=131.38136}},
     {"欧米茄车库", {x=2330.2573, y=2572.3005, z=46.679367}},
-    {"50车位车库", {x=520.0, y=-2625.0, z=-50.0}},
+    {"50 车位车库", {x=520.0, y=-2625.0, z=-50.0}},
     {"服务器机房", {x=2474.0847, y=-332.58887, z=92.9927}},
     {"角色捏脸房间", {x=402.91586, y=-998.5701, z=-99.004074}},
     {"Lifeinvader 大楼", {x=-1082.8595, y=-254.774, z=37.763317}},
@@ -278,20 +278,20 @@ local interiors = {
     {"杜根房子", {x=1395.2512, y=1141.6833, z=114.63437}},
     {"弗洛伊德公寓", {x=-1156.5099, y=-1519.0894, z=10.632717}},
     {"麦克家", {x=-813.8814, y=179.07889, z=72.15914}},
-    {"富兰克林家（旧）", {x=-14.239959, y=-1439.6913, z=31.101551}},
-    {"富兰克林家（新）", {x=7.3125067, y=537.3615, z=176.02803}},
+    {"富兰克林家 (旧)", {x=-14.239959, y=-1439.6913, z=31.101551}},
+    {"富兰克林家 (新)", {x=7.3125067, y=537.3615, z=176.02803}},
     {"崔佛家", {x=1974.1617, y=3819.032, z=33.436287}},
     {"莱斯斯家", {x=1273.898, y=-1719.304, z=54.771}},
     {"莱斯特的纺织厂", {x=713.5684, y=-963.64795, z=30.39534}},
     {"莱斯特的纺织厂办事处", {x=707.2138, y=-965.5549, z=30.412853}},
     {"冰毒实验室", {x=1391.773, y=3608.716, z=38.942}},
-    {"致幻剂实验室", {x=484.69, y=-2625.36, z=-49}},
+    {"致幻剂实验室", {x=484.69, y=-2625.36, z=-49.0}},
     {"停尸房实验室", {x=495.0, y=-2560.0, z=-50.0}},
     {"人道实验室", {x=3625.743, y=3743.653, z=28.69009}},
     {"汽车旅馆客房", {x=152.2605, y=-1004.471, z=-99.024}},
     {"警察局", {x=443.4068, y=-983.256, z=30.689589}},
     {"太平洋标准银行金库", {x=263.39627, y=214.39891, z=101.68336}},
-    {"布莱恩郡银行", {x=-109.77874, y=6464.8945, z=31.626724}}, -- credit to fluidware for telling me about this one
+    {"布莱恩郡银行", {x=-109.77874, y=6464.8945, z=31.626724}}, -- 感谢 Fluidware 告诉我这个坐标
     {"龙舌兰酒吧", {x=-564.4645, y=275.5777, z=83.074585}},
     {"废料厂车库", {x=485.46396, y=-1315.0614, z=29.2141}},
     {"失落摩托帮", {x=980.8098, y=-101.96038, z=74.84504}},
@@ -309,7 +309,7 @@ local interiors = {
     {"FIB 47层", {x=134.5835, y=-766.486, z=234.152}},
     {"FIB 49层", {x=134.635, y=-765.831, z=242.152}},
     {"大公鸡", {x=-31.007448, y=6317.047, z=40.04039}},
-    {"脱衣舞俱乐部DJ位置", {x=121.398254, y=-1281.0024, z=29.480522}},
+    {"脱衣舞俱乐部 DJ 位置", {x=121.398254, y=-1281.0024, z=29.480522}},
 }
 
 local station_name = {
@@ -351,7 +351,6 @@ local values = {
 
 local unreleased_vehicles = {
     "virtue",
-    "powersurge",
     "broadway",
     "panthere",
     "issi8",
@@ -379,7 +378,7 @@ local teleport = menu.list(menu.my_root(), "传送选项", {}, "")
 local detections = menu.list(menu.my_root(), "作弊检测", {}, "")
 local bailOnAdminJoin = false
 local protections = menu.list(menu.my_root(), "保护选项", {}, "")
-menu.toggle(protections, "R*开发人员加入反应", {}, "", function(on)
+menu.toggle(protections, "R* 开发人员加入反应", {}, "", function(on)
     bailOnAdminJoin = on
 end)
 
@@ -395,7 +394,7 @@ local function player_list(pid)
     end
 end
 
-local function handle_player_list(pid) -- thanks to dangerman and aaron for showing me how to delete players properly
+local function handle_player_list(pid) -- 感谢 Dangerman 和 Aaron 向我展示如何正确删除玩家
     local ref = menus[pid]
     if not players.exists(pid) then
         if ref then
@@ -421,14 +420,14 @@ local function player(pid)
     end
 
     if pid ~= players.user() and players.get_rockstar_id(pid) == 0xAE8F8C2 then
-        util.toast(lang.get_string(0xD251C4AA, lang.get_current()):gsub("{(.-)}", {player = players.get_name(pid), reason = "Based Gigachad\n(它们非常有实力! 谨慎行事!)"}), TOAST_DEFAULT)
+        util.toast(lang.get_string(0xD251C4AA, lang.get_current()):gsub("{(.-)}", {player = players.get_name(pid), reason = "堪比 Gigachad!\n(它们非常有实力! 谨慎行事!)"}), TOAST_DEFAULT)
     end
 
     menu.divider(menu.player_root(pid), "Jinx Script")
     local bozo = menu.list(menu.player_root(pid), "Jinx Script", {"JinxScript"}, "\n* 点击打开尊贵的Jinx脚本玩家选项\n* 免费的大爹级原创综合开源脚本\n* 作者: Prisuhm\n")
 
     local friendly = menu.list(bozo, "友好", {}, "")
-    menu.action(friendly, "给他/她升级", {}, "给予该玩家17万RP经验,可从1级提升至25级.\n一名玩家只能用一次嗷", function()
+    menu.action(friendly, "给TA升级", {}, "给予该玩家 17 万RP经验,可从 1 级提升至 25 级.\n一名玩家只能用一次嗷", function()
         util.trigger_script_event(1 << pid, {697566862, pid, 5, 0, 1, 1, 1})
         for i = 0, 9 do
             util.trigger_script_event(1 << pid, {697566862, pid, 0, i, 1, 1, 1})
@@ -468,8 +467,8 @@ local function player(pid)
     end)
 
     local player_jinx_army = {}
-    local army_player = menu.list(friendly, "宠物猫Jinx军队", {}, "整点小猫哄着你玩玩?\n删不掉的时候觉得烦的话换战局\n能少生成就少生成吧")
-    menu.click_slider(army_player, "生成宠物猫Jinx军队", {}, "", 1, 256, 30, 1, function(val)
+    local army_player = menu.list(friendly, "宠物猫 Jinx 军队", {}, "整点小猫哄着你玩玩?\n删不掉的时候觉得烦的话换战局\n能少生成就少生成吧")
+    menu.click_slider(army_player, "生成宠物猫 Jinx 军队", {}, "", 1, 256, 30, 1, function(val)
         local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
         local pos = ENTITY.GET_ENTITY_COORDS(ped, false)
         pos.y = pos.y - 5
@@ -486,7 +485,7 @@ local function player(pid)
         end 
     end)
 
-    menu.action(army_player, "清除Jinx宠物猫", {}, "有几只清不掉的时候你就傻了 嘿嘿\n追着你喵喵叫 嘿嘿", function()
+    menu.action(army_player, "清除 Jinx 宠物猫", {}, "有几只清不掉的时候你就傻了 嘿嘿\n追着你喵喵叫 嘿嘿", function()
         for i, ped in ipairs(entities.get_all_peds_as_handles()) do
             if PED.IS_PED_MODEL(ped, util.joaat("a_c_cat_01")) then
                 entities.delete_by_handle(ped)
@@ -501,7 +500,7 @@ local function player(pid)
     for station, name in pairs(station_name) do
         stations[#stations + 1] = station
     end
-    menu.list_action(radio, "广播电台", {}, "", stations, function(index, value)
+    menu.list_action(radio, "电台类型", {}, "", stations, function(index, value)
         local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
         local pos = players.get_position(players.user())
         local player_veh = PED.GET_VEHICLE_PED_IS_IN(ped)
@@ -679,7 +678,6 @@ local function player(pid)
             "足球",
             "橘子",
             "特技坡道",
-
         },
         objects = {
             "prop_ld_ferris_wheel",
@@ -737,7 +735,7 @@ local function player(pid)
     end)
 
     local glitchVehCmd
-    glitchVehCmd = player_toggle_loop(griefing, pid, "鬼畜载具", {"glitchvehicle"}, "在所有的菜单上都能工作,并且不会被检测.", function() -- credits to soul reaper for base concept
+    glitchVehCmd = player_toggle_loop(griefing, pid, "鬼畜载具", {"glitchvehicle"}, "在所有的菜单上都能工作,并且不会被检测.", function() -- 感谢 Soul Reaper 提供基本概念
         local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
         local pos = ENTITY.GET_ENTITY_COORDS(ped, false)
         local player_veh = PED.GET_VEHICLE_PED_IS_USING(ped)
@@ -833,7 +831,7 @@ local function player(pid)
         util.yield()    
     end)
 
-    local gravity = menu.list(griefing, "重力玩家", {}, "在所有菜单上都能使用,但可以被检测到,对开启无敌的玩家失效.") -- hi 2t1 luatards
+    local gravity = menu.list(griefing, "重力玩家", {}, "在所有菜单上都能使用,但可以被检测到,对开启无敌的玩家失效.") -- 你好,2take1 luatards
     local force = 1.00
     menu.slider_float(gravity, "重力倍数", {"force"}, "", 0, 100, 100, 10, function(value)
         force = value / 100
@@ -878,7 +876,7 @@ local function player(pid)
         FIRE.ADD_EXPLOSION(players.get_position(pid), 29, 0.60, false, true, 0.0, true)
     end)
 
-    menu.action(griefing,  "踢出室内", {}, "强制将玩家踢出室内.", function() -- very innovative!
+    menu.action(griefing,  "踢出室内", {}, "强制将玩家踢出室内.", function() -- 非常新颖的功能!
         local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
         local pos = ENTITY.GET_ENTITY_COORDS(ped, false)
         local glitch_hash = util.joaat("p_spinning_anus_s")
@@ -935,27 +933,27 @@ local function player(pid)
         switch name do
             case "Yacht":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 1})
-                util.toast("游艇邀请已发送")
+                util.toast("游艇邀请已发送.")
             break
             case "Office":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 2})
-                util.toast("办公室邀请已发送")
+                util.toast("办公室邀请已发送.")
             break
             case "Clubhouse":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 3})
-                util.toast("会所邀请已发送")
+                util.toast("会所邀请已发送.")
             break
             case "Office Garage":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 4})
-                util.toast("办公室车库邀请已发送")
+                util.toast("办公室车库邀请已发送.")
             break
             case "Custom Auto Shop":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 5})
-                util.toast("载具改装铺邀请已发送")
+                util.toast("载具改装铺邀请已发送.")
             break
             case "Apartment":
                 util.trigger_script_event(1 << pid, {-1891171016, pid, 6})
-                util.toast("公寓邀请已发送")
+                util.toast("公寓邀请已发送.")
             break
         end
     end)
@@ -1023,7 +1021,7 @@ local function player(pid)
             spawned_objects[i] = nil
             entitycount += 1
         end
-        util.toast("删除了 " .. entitycount .. "个已生成的笼子")
+        util.toast("删除了 " .. entitycount .. "个已生成的笼子.")
     end)
 
     menu.action(griefing, "杀死室内玩家", {}, "这崽种不在公寓里则没法使用\n你可以尝试用公寓邀请给他拉到一个公寓\n再来试试这个功能", function()
@@ -1143,13 +1141,13 @@ local function player(pid)
         end
     end)
 
-    local tp_player = menu.list(bozo, "传送玩家到", {}, "已被大部分菜单阻挡.")
+    local tp_player = menu.list(bozo, "传送玩家到...", {}, "已被大部分菜单阻挡.")
     local clubhouse = menu.list(tp_player, "摩托帮会所", {}, "")
     local facility = menu.list(tp_player, "设施", {}, "")
     local arcade = menu.list(tp_player, "游戏厅", {}, "")
     local warehouse = menu.list(tp_player, "仓库", {}, "")
     local cayoperico = menu.list(tp_player, "佩里科岛", {}, "")
-    local interiors = menu.list(tp_player, "室内", {}, "") -- thx to aaron for sending me the labels and their numbers for most of the interiors <3
+    local interiors = menu.list(tp_player, "室内", {}, "") -- 感谢 Aaron 发来大多数室内空间的标签和编号<3
 
     for id, name in pairs(All_business_properties) do
         if id <= 12 then
@@ -1193,11 +1191,11 @@ local function player(pid)
         util.trigger_script_event(1 << pid, {-168599209, players.user(), pid, -1, 1, 1, 0, 1, 0}) 
     end)
 	
-    menu.action(cayoperico, "佩里科岛(有过场动画)", {"tpcayo"}, "已被大部分菜单阻挡.", function()
+    menu.action(cayoperico, "佩里科岛 (有过场动画)", {"tpcayo"}, "已被大部分菜单阻挡.", function()
         util.trigger_script_event(1 << pid, {-93722397, pid, 0, 0, 3, 1})
     end)
 
-    menu.action(cayoperico, "佩里科岛(无过场动画)", {"tpcayo2"}, "已被大部分菜单阻挡.", function()
+    menu.action(cayoperico, "佩里科岛 (无过场动画)", {"tpcayo2"}, "已被大部分菜单阻挡.", function()
         util.trigger_script_event(1 << pid, {-93722397, pid, 0, 0, 4, 1})
     end)
 
@@ -1210,20 +1208,20 @@ local function player(pid)
     end)
 
     local interior_tps = {
-        [70] = "地堡", -- 70 thru 80 are bunkers
+        [70] = "地堡", -- 70 到 80 都是地堡
         [81] = "机动作战中心",
-        [83] = "机库", -- 83 thru 87 are hangars
+        [83] = "机库", -- 83 到 87 都是机库
         [88] = "复仇者",
-        [89] = "设施", -- 89 thru 97 are facilities
-        [102] = "夜总会车库",-- 102 thru 111 are garages
+        [89] = "设施", -- 89 到 97 都是设施
+        [102] = "夜总会车库",-- 102 到 111 都是夜总会车库
         [117] = "恐霸",
         [122] = "竞技场工作室",
         [123] = "名钻赌场",
         [124] = "顶层公寓",
-        [128] = "游戏厅车库", -- 128 thru 133 are garages
+        [128] = "游戏厅车库", -- 128 到 133 都是游戏厅车库
         [146] = "夜总会",
         [147] = "虎鲸",
-        [149] = "改装铺", -- 149 thru 153 are auto shops
+        [149] = "改装铺", -- 149 到 153 都是改装铺
         [155] = "事务所",
     }
 
@@ -1249,7 +1247,7 @@ players.dispatch_on_join()
 
 local unlocks = menu.list(self, "解锁选项")
 menu.toggle_loop(unlocks, "解锁 50 车位车库", {}, "", function()
-    if memory.read_byte(memory.script_global(262145 + 32688)) ~= 0 then-- thx aero for this global <3
+    if memory.read_byte(memory.script_global(262145 + 32688)) ~= 0 then-- 感谢 Aero 告诉我这个全局参数 <3
         memory.write_byte(memory.script_global(262145 + 32688), 0) 
     end
 
@@ -1258,7 +1256,7 @@ menu.toggle_loop(unlocks, "解锁 50 车位车库", {}, "", function()
     end
 end)
 
-menu.toggle_loop(unlocks, "解锁出租车任务", {}, "", function() -- credit to sapphire for all of this <3
+menu.toggle_loop(unlocks, "解锁出租车任务", {}, "", function() -- 感谢 Sapphire 告诉我这个功能的一切 <3
     if memory.read_byte(memory.script_global(262145 + 33770)) ~= 1 then
         memory.write_byte(memory.script_global(262145 + 33770), 1)
     return end
@@ -1277,7 +1275,7 @@ end)
 
 menu.toggle_loop(self, "快速重生", {"fastrespawn"}, "", function()
     local ped_ptr = entities.handle_to_pointer(players.user_ped())
-    local gwobaw = memory.script_global(2672505 + 1684 + 756) -- Global_2672505.f_1684.f_756
+    local gwobaw = memory.script_global(2672505 + 1684 + 756) -- 全局参数_2672505.f_1684.f_756
     if entities.get_health(ped_ptr) < 100 then
         GRAPHICS.ANIMPOSTFX_STOP_ALL()
         memory.write_int(gwobaw, memory.read_int(gwobaw) | 1 << 1)
@@ -1411,11 +1409,11 @@ end, function()
     end
 end)
 
-menu.toggle_loop(self, "友好的AI", {""}, "AI不会瞄准你.", function()
+menu.toggle_loop(self, "友好的 AI", {""}, "AI 将不会瞄准你.", function()
     PED.SET_PED_RESET_FLAG(players.user_ped(), 124, true)
 end)
 
-menu.toggle_loop(self, "自动接受并加入游戏", {}, "将自动接受游戏邀请.", function() -- credits to soulreaper for sending me this :D
+menu.toggle_loop(self, "自动接受并加入游戏", {}, "将自动接受游戏邀请.", function() -- 感谢 Soul Reaper 告诉我这个 :D
     local message_hash = HUD.GET_WARNING_SCREEN_MESSAGE_HASH()
     if message_hash == 15890625 or message_hash == -398982408 or message_hash == -587688989 then
         PAD.SET_CONTROL_VALUE_NEXT_FRAME(2, 201, 1.0)
@@ -1437,7 +1435,7 @@ util.create_tick_handler(function()
     end
 end)
 
-menu.toggle_loop(missions, "达克斯冷却", {}, "移除达克斯工作的冷却时间", function() -- thx icedoomfist for the state name <3
+menu.toggle_loop(missions, "达克斯冷却", {}, "移除达克斯工作的冷却时间", function() -- 感谢 Icedoomfist 告诉我这个状态名 <3
     STATS.STAT_SET_INT(util.joaat("MP"..util.get_char_slot().."_XM22JUGGALOWORKCDTIMER"), -1, true)
 end)
 
@@ -1455,7 +1453,7 @@ end)
 menu.action(missions, "清理敌人", {}, "", function()
     local counter = 0
     for _, ped in ipairs(entities.get_all_peds_as_handles()) do
-        if HUD.GET_BLIP_COLOUR(HUD.GET_BLIP_FROM_ENTITY(ped)) == 1 or TASK.GET_IS_TASK_ACTIVE(ped, 352) then -- shitty way to go about it but hey, it works (most of the time).
+        if HUD.GET_BLIP_COLOUR(HUD.GET_BLIP_FROM_ENTITY(ped)) == 1 or TASK.GET_IS_TASK_ACTIVE(ped, 352) then -- 一个糟糕的实现方法,但是,欸嘿,它能用(大多数时间).
             ENTITY.SET_ENTITY_HEALTH(ped, 0)
             counter += 1
             util.yield()
@@ -1543,7 +1541,7 @@ chat.on_message(function(sender, reserved, text, team_chat, networked, is_auto)
         if only_translate_foreign and player_lang == my_lang then
             return
         end
-        -- credit to the original chat translator for the api code
+        -- 归功于原始聊天翻译器的 API 代码
         local translation
         if players_on_cooldown[sender] == nil then
             async_http.init("translate.googleapis.com", "/translate_a/single?client=gtx&sl=auto&tl=" .. iso_my_lang .."&dt=t&q=".. encoded_text, function(data)
@@ -1563,7 +1561,7 @@ chat.on_message(function(sender, reserved, text, team_chat, networked, is_auto)
             end)
 		    async_http.dispatch()
         else
-            util.toast(player_name .. "发送了一条信息,在翻译的冷却时间内. 如果该玩家在聊天中乱发垃圾信息,请考虑踢掉他,以防止被谷歌翻译暂时停止.")
+            util.toast(player_name .. " 发送了一条信息,在翻译的冷却时间内. 如果该玩家在聊天中乱发垃圾信息,请考虑踢掉他,以防止被谷歌翻译暂时停止.")
         end
     end
 end)
@@ -1912,7 +1910,7 @@ for id, data in pairs(weapon_stuff) do
 end
 
 local jinx_pet
-jinx_toggle = menu.toggle_loop(funfeatures, "宠物猫J inx", {}, "招一只可爱的小猫咪\n跟着你喵喵叫\n好可爱我好喜欢！", function()
+jinx_toggle = menu.toggle_loop(funfeatures, "宠物猫 Jinx", {}, "招一只可爱的小猫咪\n跟着你喵喵叫\n好可爱我好喜欢!", function()
     if not jinx_pet or not ENTITY.DOES_ENTITY_EXIST(jinx_pet) then
         local jinx = util.joaat("a_c_cat_01")
         request_model(jinx)
@@ -2010,7 +2008,6 @@ menu.toggle_loop(detections, "未发布的载具", {}, "检测是否有玩家在
     end
 end)
 
-
 menu.toggle_loop(detections, "隐藏武器", {}, "检测是否有玩家使用无法获得的武器.", function()
     for _, pid in ipairs(players.list(false, true, true)) do
         local ped = PLAYER.GET_PLAYER_PED_SCRIPT_INDEX(pid)
@@ -2047,11 +2044,11 @@ menu.toggle_loop(detections, "自由镜头检测", {}, "检测是否有玩家使
         local vel = ENTITY.GET_ENTITY_VELOCITY(ped)
         if not util.is_session_transition_active() and players.exists(pid)
         and get_interior_player_is_in(pid) == 0 and get_spawn_state(pid) ~= 0
-        and not PED.IS_PED_IN_ANY_VEHICLE(ped, false) -- too many false positives occured when players where driving. so fuck them. lol.
+        and not PED.IS_PED_IN_ANY_VEHICLE(ped, false) -- 当玩家开车时有很多误报,所以去他妈的.lol.
         and not NETWORK.NETWORK_IS_PLAYER_FADING(pid) and ENTITY.IS_ENTITY_VISIBLE(ped) and not PED.IS_PED_DEAD_OR_DYING(ped)
         and not PED.IS_PED_CLIMBING(ped) and not PED.IS_PED_VAULTING(ped) and not PED.IS_PED_USING_SCENARIO(ped)
         and not TASK.GET_IS_TASK_ACTIVE(ped, 160) and not TASK.GET_IS_TASK_ACTIVE(ped, 2)
-        and v3.distance(ENTITY.GET_ENTITY_COORDS(players.user_ped(), false), players.get_position(pid)) <= 395.0 -- 400 was causing false positives
+        and v3.distance(ENTITY.GET_ENTITY_COORDS(players.user_ped(), false), players.get_position(pid)) <= 395.0 --如果数值为 400 会导致误报
         and ENTITY.GET_ENTITY_HEIGHT_ABOVE_GROUND(ped) > 5.0 and not ENTITY.IS_ENTITY_IN_AIR(ped) and entities.player_info_get_game_state(ped_ptr) == 0
         and oldpos.x ~= currentpos.x and oldpos.y ~= currentpos.y and oldpos.z ~= currentpos.z 
         and vel.x == 0.0 and vel.y == 0.0 and vel.z == 0.0 then
@@ -2091,15 +2088,16 @@ menu.toggle_loop(detections, "观看检测", {}, "检测是否有玩家在观看
 end)
 
 menu.toggle_loop(detections, "雷霆加入检测", {}, "检测是否有玩家使用了雷霆加入.", function()
-    for _, pid in ipairs(players.list(false, true, true)) do
-        if not util.is_session_transition_active() and get_spawn_state(pid) == 0 and players.get_script_host() == pid  then
+    for _, pid in ipairs(players.list(true, true, true)) do
+        if get_spawn_state(players.user()) == 0 then return end
+        if get_spawn_state(pid) == 0 and players.get_script_host() == pid and not PLAYER.IS_PLAYER_PLAYING(pid) then
             util.toast(players.get_name(pid) .. " 触发了检测(雷霆加入),现在已被归类为作弊者")
         end
     end
 end)
 
 local anti_mugger = menu.list(protections, "拦截劫匪")
-menu.toggle_loop(anti_mugger, "自我拦截", {}, "防止自己被抢劫.", function() -- thx nowiry for improving my method :D
+menu.toggle_loop(anti_mugger, "自我拦截", {}, "防止自己被抢劫.", function() -- 感谢 Nowiry 改进我的方法 :D
     if NETWORK.NETWORK_IS_SCRIPT_ACTIVE("am_gang_call", 0, true, 0) then
         local ped_netId = memory.script_local("am_gang_call", 63 + 10 + (0 * 7 + 1))
         local sender = memory.script_local("am_gang_call", 287)
@@ -2296,37 +2294,37 @@ end)
 
 
 local misc = menu.list(menu.my_root(), "其他选项", {}, "")
-menu.hyperlink(misc, "Jinx脚本中文交流群", "https://jq.qq.com/?_wv=1027&k=Mh1p1Aty")
-menu.hyperlink(menu.my_root(), "加入官方Discord", "https://discord.gg/hjs5S93kQv")
+menu.hyperlink(misc, "Jinx 脚本中文交流群", "https://jq.qq.com/?_wv=1027&k=Mh1p1Aty")
+menu.hyperlink(menu.my_root(), "加入官方 Discord", "https://discord.gg/hjs5S93kQv")
 local credits = menu.list(misc, "鸣谢", {}, "")
 local jinx = menu.list(credits, "Jinx", {}, "")
 menu.hyperlink(jinx, "Tiktok", "https://www.tiktok.com/@bigfootjinx")
 menu.hyperlink(jinx, "Twitter", "https://twitter.com/bigfootjinx")
 menu.hyperlink(jinx, "Instagram", "https://www.instagram.com/bigfootjinx")
 menu.hyperlink(jinx, "Youtube", "https://www.youtube.com/channel/UC-nkxad5MRDuyz7xstc-wHQ?sub_confirmation=1")
-menu.action(credits, "ICYPhoenix", {}, "如果他没有将我的名字改为OP Jinx Lua,我将永远不会制作这个脚本或想过制作这个脚本", function()
+menu.action(credits, "ICYPhoenix", {}, "如果他没有将我的名字改为 OP Jinx Lua,我将永远不会想过制作这个脚本", function()
 end)
-menu.action(credits, "Sapphire", {}, "当我第一次启动 Lua 以及开始学习Stand API和natives时,他处理了我所有的困难并帮助了很多人", function()
+menu.action(credits, "Sapphire", {}, "当我第一次启动 Lua 以及开始学习 Stand API 和 natives 时,他处理了我所有的困难而且帮助了很多人.", function()
 end)
-menu.action(credits, "aaronlink127", {}, "帮助处理数学问题,还帮助处理自动更新程序和其他一些功能", function()
+menu.action(credits, "aaronlink127", {}, "帮助处理数学问题,还帮助处理自动更新程序和其他一些功能.", function()
 end)
-menu.action(credits, "Ren", {}, "提出合理建议", function()
+menu.action(credits, "Ren", {}, "提出合理建议.", function()
 end)
-menu.action(credits, "well in that case", {}, "用于制作Pluto并让我的部分代码看起来更好,运行更流畅", function()
+menu.action(credits, "well in that case", {}, "用于制作 Pluto 并让我的部分代码运行起来更好更流畅.", function()
 end)
-menu.action(credits, "jerry123", {}, "清理我的某些代码并告诉我可以改进的地方", function()
+menu.action(credits, "jerry123", {}, "告诉我代码可以改进的地方.", function()
 end)
-menu.action(credits, "Scriptcat", {}, "从我制作这个脚本开始就陪着我,告诉我一些有用的 Lua 技巧,并教导我开始学习Stand API和natives", function()
+menu.action(credits, "Scriptcat", {}, "从我制作这个脚本开始就陪着我,告诉我一些有用的 Lua 技巧,并教导我学习 Stand API 和 natives.", function()
 end)
-menu.action(credits, "ERR_NET_ARRAY", {}, "帮助编辑", function()
+menu.action(credits, "ERR_NET_ARRAY", {}, "帮助编辑.", function()
 end)
-menu.action(credits, "d6b.", {}, "给我赠送Discord Nitro", function()
+menu.action(credits, "d6b.", {}, "给我赠送 Discord Nitro.  ", function()
 end)
 
-local translation = menu.list(credits, "翻译人员", {}, "translation")
-menu.action(translation, "lu_zi / 鹿子", {}, "中文区翻译,翻译了太多版本于2022/9/4离开Jinx.", function()
+local translator = menu.list(credits, "翻译人员", {}, "translator")
+menu.action(translator, "lu_zi / 鹿子", {}, "中文区翻译.", function()
 end)
-menu.action(translation, "BLackMist / 臣服", {}, "中文区翻译,目前Jinx翻译者.", function()
+menu.action(translator, "BLackMist / 臣服", {}, "中文区翻译.", function()
 end)
 
 util.keep_running()

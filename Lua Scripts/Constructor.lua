@@ -2863,3 +2863,4 @@ util.create_tick_handler(free_edit_mode_tick)
 --end)
 
 util.on_stop(cleanup_constructs_handler)
+
