@@ -15,11 +15,21 @@
   | --- | --- |
   | [MAFINS/MenyooSP](https://github.com/MAFINS/MenyooSP) | C++\ASI |
   | [xSetrox/lancescript-reloaded](https://github.com/xSetrox/lancescript-reloaded) | Lua |
+  | [xSetrox/lance-spooner](https://github.com/xSetrox/lance-spooner) | Lua |
   | [xSetrox/gLance](https://github.com/xSetrox/gLance) | Lua |
   | [xSetrox/nextConsole](https://github.com/xSetrox/nextConsole) | Lua |
   | [nowiry/WiriScript](https://github.com/nowiry/WiriScript) | Lua |
+  | [hexarobi/stand-lua-constructor](https://github.com/hexarobi/stand-lua-constructor) | Lua |
   | [hexarobi/stand-lua-policify](https://github.com/hexarobi/stand-lua-policify) | Lua |
-
+  | [hexarobi/stand-lua-sprunkstop](https://github.com/hexarobi/stand-lua-sprunkstop) | Lua |
+  | [hexarobi/stand-lua-hornsongs](https://github.com/hexarobi/stand-lua-hornsongs) | Lua |
+  | [Prisuhm/JinxScript](https://github.com/Prisuhm/JinxScript) | Lua |
+  | [IceDoomfist/Stand-Heist-Control](https://github.com/IceDoomfist/Stand-Heist-Control) | Lua |
+  | [SmileFaceStand/SaltyScript](https://github.com/SmileFaceStand/SaltyScript) | Lua |
+  | [d6bDev/EntityThrottler](https://github.com/d6bDev/EntityThrottler) | Lua |
+  | [jackz/jackz_vehicle_builder](https://github.com/Jackzmc/lua-scripts) | Lua |
+  | [jackz/jackz_vehicles](https://github.com/Jackzmc/lua-scripts) | Lua |
+ 
 </div>
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
