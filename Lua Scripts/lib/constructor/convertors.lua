@@ -1,7 +1,7 @@
 -- Construct Convertors
 -- Transforms various file formats into Construct format
 
-local SCRIPT_VERSION = "0.32"
+local SCRIPT_VERSION = "0.33"
 local convertor = {
     SCRIPT_VERSION = SCRIPT_VERSION
 }
@@ -56,7 +56,7 @@ local function parse_number(value)
 end
 
 local function read_file(filepath)
-    local file = io.open(filepath, "r")
+    local file, err = io.open(filepath, "r")
     if file then
         local status, data = pcall(function() return file:read("*a") end)
         if not status then
@@ -66,7 +66,7 @@ local function read_file(filepath)
         file:close()
         return data
     else
-        error("Could not read file '" .. filepath .. "'", TOAST_ALL)
+        error("Could not read file '" .. filepath .. "': " .. err, TOAST_ALL)
     end
 end
 
@@ -824,6 +824,9 @@ local function map_placement_options(attachment, placement)
     if placement.IsFireProof ~= nil then attachment.options.is_fire_proof = toboolean(placement.IsFireProof) end
     if placement.IsExplosionProof ~= nil then attachment.options.is_explosion_proof = toboolean(placement.IsExplosionProof) end
     if placement.IsMeleeProof ~= nil then attachment.options.is_melee_proof = toboolean(placement.IsMeleeProof) end
+    if placement.ObjectProperties ~= nil and placement.ObjectProperties.TextureVariation ~= nil then
+        attachment.options.object_tint = placement.ObjectProperties.TextureVariation
+    end
     --IsOnlyDamagedByPlayer = placement.IsOnlyDamagedByPlayer
     if placement.IsCollisionProof ~= nil then attachment.options.has_collision = not toboolean(placement.IsCollisionProof) end
 end
@@ -1976,3 +1979,4 @@ end
 ---
 
 return convertor
+

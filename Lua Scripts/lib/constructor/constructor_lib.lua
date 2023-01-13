@@ -4,7 +4,7 @@
 -- Allows for constructing custom vehicles and maps
 -- https://github.com/hexarobi/stand-lua-constructor
 
-local SCRIPT_VERSION = "0.32"
+local SCRIPT_VERSION = "0.33"
 
 local constructor_lib = {
     LIB_VERSION = SCRIPT_VERSION,
@@ -204,6 +204,7 @@ constructor_lib.default_entity_attributes = function(attachment)
     if attachment.options.bone_index == nil then attachment.options.bone_index = 0 end
     if attachment.options.is_dynamic == nil then attachment.options.is_dynamic = true end
     if attachment.options.lod_distance == nil then attachment.options.lod_distance = 16960 end
+    if attachment.options.object_tint == nil then attachment.options.object_tint = 0 end
     if attachment.options.is_attached == nil then attachment.options.is_attached = (not constructor_lib.is_attachment_root(attachment)) end
     if attachment.options.is_frozen == nil and attachment.options.is_attached ~= true and attachment.type == "OBJECT" then
         attachment.options.is_frozen = true
@@ -221,6 +222,7 @@ constructor_lib.serialize_entity_attributes = function(attachment)
     attachment.position = {x=pos.x, y=pos.y, z=pos.z}
     local rot = ENTITY.GET_ENTITY_ROTATION(attachment.handle, attachment.rotation_order)
     attachment.world_rotation = {x=rot.x, y=rot.y, z=rot.z}
+    attachment.options.object_tint = OBJECT.GET_OBJECT_TINT_INDEX(attachment.handle)
 end
 
 constructor_lib.deserialize_entity_attributes = function(attachment)
@@ -267,6 +269,10 @@ constructor_lib.deserialize_entity_attributes = function(attachment)
                 attachment.options.is_explosion_proof, attachment.options.is_melee_proof,
                 false, 0, false
         )
+    end
+
+    if attachment.options.object_tint ~= nil then
+        OBJECT.SET_OBJECT_TINT_INDEX(attachment.handle, attachment.options.object_tint)
     end
 
 end
@@ -1675,6 +1681,7 @@ constructor_lib.default_ped_attributes = function(attachment)
     if attachment.ped_attributes.props == nil then attachment.ped_attributes.props = {} end
     if attachment.ped_attributes.components == nil then attachment.ped_attributes.components = {} end
     if attachment.ped_attributes.weapon == nil then attachment.ped_attributes.weapon = {} end
+    if attachment.ped_attributes.ignore_events == nil then attachment.ped_attributes.ignore_events = true end
     for prop_index = 0, 9 do
         if attachment.ped_attributes.props["_"..prop_index] == nil then attachment.ped_attributes.props["_"..prop_index] = {} end
         if attachment.ped_attributes.props["_"..prop_index].drawable_variation == nil then attachment.ped_attributes.props["_"..prop_index].drawable_variation = -1 end
@@ -1742,6 +1749,9 @@ constructor_lib.deserialize_ped_attributes = function(attachment)
     constructor_lib.deserialize_ped_weapon(attachment)
     if attachment.ped_attributes.armour then
         PED.SET_PED_ARMOUR(attachment.handle, attachment.ped_attributes.armour)
+    end
+    if attachment.ped_attributes.ignore_events ~= nil then
+        PED.SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(attachment.handle, attachment.ped_attributes.ignore_events)
     end
     if attachment.options.is_on_fire == true then
         FIRE.START_ENTITY_FIRE(attachment.handle)
@@ -1842,3 +1852,4 @@ end
 ---
 
 return constructor_lib
+

@@ -1,8 +1,9 @@
 <div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MrLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
 ![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
-![maven](https://img.shields.io/badge/Stand-0.94-pink)
-![maven](https://img.shields.io/badge/AIO-v26b-blue)
+![maven](https://img.shields.io/badge/GTA-1.64-green)
+![maven](https://img.shields.io/badge/Stand-0.97-pink)
+![maven](https://img.shields.io/badge/AIO-v27-blue)
 ![maven](https://img.shields.io/badge/Modpack-v6-red)
   
   <h1>StandAIO</h1>
@@ -44,13 +45,8 @@
 
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
-# 紧急公告
-## 关于2022//11/3 19:20 流光星辰的4年1700人大群[春田椛椛幼稚园]惨遭封停的回应
-# *成功不是终点，失败也并非末日 最重要的是继续前进的勇气*
-
-# 最后一个发布
 ```bash
-更新于游戏版本1.63，stand版本0.93.4
+我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
 ```
 # 为爱发电 用心制造
 > **但有人问：为什么选择月球?**<br>
@@ -102,8 +98,6 @@
 
   - [x] HornSongs (汉化-Zelda Two)
 
-  - [x] AcjokerScript (汉化-lu_zi)
-
   - [x] JinxScript__CN (汉化-BLackMist)
 
   - [x] jackz_vehicle_builder (汉化-谷歌翻译)
@@ -116,9 +110,7 @@
 
   - [x] Actions (汉化-)
 
-  - [x] JerryScript (汉化-)
-
-  - [x] train_control.cn (汉化-)
+  - [x] train_control.cn (汉化-Vermouth)
 
   - [x] heezy二代目 (缝合，原生中文)
 
@@ -138,7 +130,7 @@
 
   - [x] Menyoo TOXX9.5 (基于原版1.40由守望社区大佬TOXX魔改，带机翻)
 
-  - [x] [Menyoo MAFINS 1.71](https://github.com/MAFINS/MenyooSP)
+  - [x] [Menyoo MAFINS 1.76](https://github.com/MAFINS/MenyooSP)
 
   - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
 

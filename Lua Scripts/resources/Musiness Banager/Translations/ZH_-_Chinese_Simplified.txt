@@ -1,5 +1,5 @@
 @Author=zzzz#5116
-@Version=0.3.2
+@Version=1.0.1
 ! Thank you for choosing to translate Musiness Banager into your language!
 ! Please do not change anything before the "="!,
 ! Additions in the labels list will be marked with "+ " before the label, but without the quotes. You can search the file for "+ " every update to find the new labels!
@@ -129,6 +129,8 @@ OPENSCREEN=打开 {1} 屏幕
 OPENSCREEN_DESC=打开 {1} 屏幕.
 ! {1} could be [TERRORBYTE] or [WAREHOUSE]
 SELLACRATE=出售一个特种货物板条箱
+SCAFKLOOP=自动循环挂机刷钱
+TRIGGERSCSOURCE=触发技术人员来源
 SELLACRATE_DESC=自动出售一个特种货物板条箱.
 SCMONEYLOOP=挂机循环刷钱
 SCMONEYLOOP_DESC=为了获得最佳效果,最好有一个稳定的网络和高的游戏帧数.

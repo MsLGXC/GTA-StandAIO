@@ -4,7 +4,7 @@
 -- Allows for constructing custom vehicles and maps
 -- https://github.com/hexarobi/stand-lua-constructor
 
-local SCRIPT_VERSION = "0.32"
+local SCRIPT_VERSION = "0.33"
 local AUTO_UPDATE_BRANCHES = {
     { "main", {}, "More stable, but updated less often.", "main", },
     { "dev", {}, "Cutting edge updates, but less stable.", "dev", },
@@ -66,6 +66,7 @@ CONSTRUCTOR_CONFIG = {
     auto_update = true,
     auto_update_check_interval = 86400,
     freecam_speed = 1,
+    change_parent_keep_position = true,
 }
 -- Short local alias
 local config = CONSTRUCTOR_CONFIG
@@ -1013,6 +1014,7 @@ local function create_construct_from_vehicle(vehicle_handle)
     construct.hash = ENTITY.GET_ENTITY_MODEL(vehicle_handle)
     construct.model = VEHICLE.GET_DISPLAY_NAME_FROM_VEHICLE_MODEL(construct.hash)
     constructor_lib.default_attachment_attributes(construct)
+    constructor_lib.serialize_attachment(construct)
     add_spawned_construct(construct)
     return construct
 end
@@ -1238,7 +1240,7 @@ end
 ---
 
 local function read_file(filepath)
-    local file = io.open(filepath, "r")
+    local file, err = io.open(filepath, "r")
     if file then
         local status, data = pcall(function() return file:read("*a") end)
         if not status then
@@ -1248,7 +1250,7 @@ local function read_file(filepath)
         file:close()
         return data
     else
-        error("Could not read file '" .. filepath .. "'", TOAST_ALL)
+        error("Could not read file '" .. filepath .. "': " .. err, TOAST_ALL)
     end
 end
 
@@ -1297,7 +1299,7 @@ local function load_construct_plan_file(construct_plan_file)
         construct_plan = load_construct_plan_from_ini_file(construct_plan_file)
     end
     if not construct_plan then return end
-    if construct_plan.name then construct_plan.name = construct_plan_file.filename end
+    if construct_plan.name == nil then construct_plan.name = construct_plan_file.filename or "Unknown" end
     if not construct_plan or (construct_plan.hash == nil and construct_plan.model == nil and not construct_plan.is_player) then
         util.toast(t("Failed to load construct from file ")..construct_plan_file.filepath, TOAST_ALL)
         debug_log("Failed to load construct \nPlan:"..inspect(construct_plan_file).."\nLoaded construct plan "..inspect(construct_plan))
@@ -1340,6 +1342,7 @@ local function load_construct_plans_files_from_dir(directory)
 end
 
 local function load_all_construct_plan_files_from_dir(directory)
+    if not filesystem.exists(directory) then return {} end
     local construct_plan_files = load_construct_plans_files_from_dir(directory)
     for _, filepath in ipairs(filesystem.list_files(directory)) do
         if filesystem.is_dir(filepath) then
@@ -1481,32 +1484,41 @@ local function rebuild_attachment_debug_menu(attachment)
     build_attachment_debug_menu(attachment)
 end
 
-local function rebuild_reattach_to_menu(attachment, current, path, depth)
-    debug_log(
-            "Rebuilding reattach to menu "..tostring(attachment.name),
-            {attachment=attachment, current=current, path=path, depth=depth}
-    )
-    if current == nil then current = attachment.root end
-    if path == nil then path = {} end
-    if depth == nil then depth = 0 end
+local function build_change_parent_menu_item(attachment, current, path, depth)
     depth = depth + 1
     if depth > 100 then error(t("Max depth reached while reattaching")) return end
     table.insert(path, current.name)
     if attachment ~= current then   -- cant reattach to yourself or your children
-        menu.action(attachment.menus.option_parent_attachment, table.concat(path, " > "), {}, "", function()
+        local new_parent_item = menu.action(attachment.menus.option_parent_attachment, table.concat(path, " > "), {}, "", function()
             debug_log("Reattaching "..attachment.name.." to "..current.name)
             local previous_parent = attachment.parent
+            constructor_lib.serialize_entity_attributes(attachment)
             constructor_lib.separate_attachment(attachment)
             attachment.parent = current
             attachment.root = current.root
+            if config.change_parent_keep_position then
+                attachment.offset = ENTITY.GET_OFFSET_FROM_ENTITY_GIVEN_WORLD_COORDS(current.handle, attachment.position.x, attachment.position.y, attachment.position.z)
+            end
             constructor_lib.attach_entity(attachment)
             table.insert(current.children, attachment)
             rebuild_attachment(attachment.root)
         end)
+        menu.on_focus(new_parent_item, function(direction) if direction ~= 0 then current.is_editing = true end end)
+        menu.on_blur(new_parent_item, function(direction) if direction ~= 0 then current.is_editing = false end end)
         for _, child_attachment in pairs(current.children) do
-            rebuild_reattach_to_menu(attachment, child_attachment, constructor_lib.table_copy(path), depth)
+            build_change_parent_menu_item(attachment, child_attachment, constructor_lib.table_copy(path), depth)
         end
     end
+end
+
+local function build_change_parent_menu(attachment, current, path, depth)
+    if attachment.menus.option_change_parent_keep_position ~= nil then return end
+    debug_log("Rebuilding reattach to menu "..tostring(attachment.name))
+    attachment.menus.option_change_parent_keep_position = menu.toggle(attachment.menus.option_parent_attachment, t("Keep Position"), {}, t("If enabled, the attachment will keep it's position when changing parent (tho rotations may be effected) otherwise it will keep its offset from parent."), function(on)
+        config.change_parent_keep_position = on
+    end, config.change_parent_keep_position)
+    menu.divider(attachment.menus.option_parent_attachment, t("New Parent"))
+    build_change_parent_menu_item(attachment, attachment.root, {}, 0)
 end
 
 local function search(search_params)
@@ -1554,7 +1566,7 @@ end
 
 constructor.add_attachment_info_menu = function(attachment)
 
-    attachment.menus.info = menu.list(attachment.menus.main, "Info", {}, t("Information about the construct"), function()
+    attachment.menus.info = menu.list(attachment.menus.main, t("Info"), {}, t("Information about the construct"), function()
         if attachment.menus.name ~= nil then return end
 
         attachment.menus.name = menu.text_input(attachment.menus.info, t("Name"), { "constructorsetattachmentname"..attachment.id}, t("Set name of the attachment"), function(value)
@@ -1768,11 +1780,103 @@ end
 --- Vehicle Options Menu
 ---
 
+local vehicle_mod_menus = {
+    { name="Performance", type="separator" },
+    { name="Engine", index=11 },
+    { name="Brakes", index=12 },
+    { name="Transmission", index=13 },
+    { name="Turbo", index=18 },
+    { name="Armor", index=16 },
+
+    { name="Wheels", type="separator" },
+    { name="Wheel Type", type="custom", func=function(attachment)
+        menu.slider(attachment.menus.vehicle_options_ls_customs, "Wheel Type", {}, "", -1, 13, attachment.vehicle_attributes.wheels.wheel_type or -1, 1, function(value)
+            attachment.vehicle_attributes.wheels.wheel_type = value
+            constructor_lib.deserialize_vehicle_attributes(attachment)
+        end)
+    end },
+    { name="Wheels", index=23 },
+    { name="Rear Wheel", index=24 },
+
+    { name="Visual", type="separator" },
+    { name="Spoiler", index=0 },
+    { name="Front Bumper", index=1 },
+    { name="Rear Bumper", index=2 },
+    { name="Side Skirts", index=3 },
+    { name="Exhaust", index=4 },
+    { name="Chassis / Roll Cage", index=5 },
+    { name="Grille", index=6 },
+    { name="Hood", index=7 },
+    { name="Rearview Mirror / Fender", index=8 },
+    { name="Right Fender", index=9 },
+    { name="Roof", index=10 },
+    { name="Horn", index=14 },
+    { name="Suspension", index=15 },
+    --{ name="UNK17", index=17 },
+    --{ name="UNK19", index=19 },
+    { name="Tire Smoke", index=20 },
+    --{ name="UNK21", index=21 },
+    { name="Xenon Headlights", index=22 },
+
+    --{ name="Benny's", type="separator" },
+    -- Benny's
+    { name="Plate Holder", index=25 },
+    { name="Vanity Plates", index=26 },
+    { name="Trim", index=27 },
+    { name="Ornaments", index=28 },
+    { name="Dashboard", index=29 },
+    { name="Dial", index=30 },
+    { name="Door Speaker", index=31 },
+    { name="Seats", index=32 },
+    { name="Steering Wheel", index=33 },
+    { name="Shifter", index=34 },
+    { name="Plaques", index=35 },
+    { name="Speakers", index=36 },
+    { name="Trunk", index=37 },
+    { name="Hydrulics", index=38 },
+    { name="Engine Block", index=39 },
+    { name="Air Filter", index=40 },
+    { name="Struts", index=41 },
+    { name="Arch Cover", index=42 },
+    { name="Canards / Antennas", index=43 },
+    { name="Trim", index=44 },
+    { name="Tank", index=45 },
+    { name="Windows", index=46 },
+    { name="UNK47", index=47 },
+    { name="Livery", index=48 },
+}
+
 constructor.add_attachment_vehicle_menu = function(attachment)
     if attachment.type ~= "VEHICLE" then return end
     if attachment.vehicle_attributes == nil then attachment.vehicle_attributes = {} end
     if attachment.menus.vehicle_options ~= nil then return end
     attachment.menus.vehicle_options = menu.list(attachment.menus.options, t("Vehicle Options"), {}, t("Additional options available for all vehicle entities"))
+
+    attachment.menus.vehicle_options_ls_customs = menu.list(attachment.menus.vehicle_options, t("LS Customs"), {}, "Vehicle modifications normally available in Los Santos Customs")
+
+    for _, vehicle_mod in pairs(vehicle_mod_menus) do
+        if vehicle_mod.type == "separator" then
+            menu.divider(attachment.menus.vehicle_options_ls_customs, vehicle_mod.name)
+        elseif vehicle_mod.type == "custom" and type(vehicle_mod.func) == "function" then
+            vehicle_mod.func(attachment)
+        else
+            if vehicle_mod.index >= 17 and vehicle_mod.index <= 22 then
+                menu.toggle(attachment.menus.vehicle_options_ls_customs, vehicle_mod.name, {}, "", function(value)
+                    attachment.vehicle_attributes.mods["_"..vehicle_mod.index] = value
+                    constructor_lib.deserialize_vehicle_mods(attachment)
+                end, attachment.vehicle_attributes.mods["_"..vehicle_mod.index])
+            else
+                local max = VEHICLE.GET_NUM_VEHICLE_MODS(attachment.handle, vehicle_mod.index) - 1
+                if max > 0 then
+                    menu.slider(attachment.menus.vehicle_options_ls_customs, vehicle_mod.name, {}, "", -1, max, attachment.vehicle_attributes.mods["_"..vehicle_mod.index] or -1, 1, function(value)
+                        attachment.vehicle_attributes.mods["_"..vehicle_mod.index] = value
+                        constructor_lib.deserialize_vehicle_mods(attachment)
+                    end)
+                end
+            end
+        end
+    end
+
     menu.toggle_loop(attachment.menus.vehicle_options, t("Engine Always On"), {}, t("If enabled, vehicle will stay running even when unoccupied"), function()
         attachment.options.engine_running = true
         VEHICLE.SET_VEHICLE_ENGINE_ON(attachment.handle, true, true, true)
@@ -1956,6 +2060,10 @@ constructor.add_attachment_ped_menu = function(attachment)
         attachment.ped_attributes.armor = value
         constructor_lib.deserialize_ped_attributes(attachment)
     end)
+    attachment.menus.option_ped_ignore_events = menu.toggle(attachment.menus.ped_options, t("Ignore Events"), {}, t("If enabled, the ped will ignore events going on that might otherwise cause the ped to flee or cower."), function(value)
+        attachment.ped_attributes.ignore_events = value
+        constructor_lib.deserialize_ped_attributes(attachment)
+    end, attachment.ped_attributes.ignore_events)
     attachment.menus.option_on_fire = menu.toggle(attachment.menus.ped_options, t("On Fire"), {}, t("Will the ped be burning on fire, or not"), function(on)
         attachment.options.is_on_fire = on
         constructor_lib.deserialize_ped_attributes(attachment)
@@ -1973,6 +2081,26 @@ constructor.add_attachment_ped_menu = function(attachment)
     for _, ped_prop in pairs(constants.ped_props) do
         create_ped_prop_menu(attachment, attachment.menus.ped_options_props, ped_prop.index, ped_prop.name)
     end
+
+    attachment.menus.ped_options_animation = menu.list(attachment.menus.ped_options, t("Animation"))
+    menu.divider(attachment.menus.ped_options_animation, t("Dictionary"))
+    menu.text_input(attachment.menus.ped_options_animation, t("Dictionary"), {"constructoranimationdictionary"..attachment.id}, "Set the animation dictionary available for the animation name to load from.", function(animation_dict)
+        attachment.ped_attributes.animation_dict = animation_dict
+        constructor_lib.animate_peds(attachment)
+    end, attachment.ped_attributes.animation_dict or "")
+    menu.text_input(attachment.menus.ped_options_animation, t("Name"), {"constructoranimationname"..attachment.id}, "Set the animation name to load from the dictionary.", function(animation_name)
+        attachment.ped_attributes.animation_name = animation_name
+        constructor_lib.animate_peds(attachment)
+    end, attachment.ped_attributes.animation_name or "")
+    menu.hyperlink(attachment.menus.ped_options_animation, t("Animation List"), "https://gtahash.ru/animations/")
+    menu.divider(attachment.menus.ped_options_animation, t("Scenario"))
+    menu.text_input(attachment.menus.ped_options_animation, t("Scenario"), {"constructoranimationscenario"..attachment.id}, "Set the animation scenario, separate from dictionary and name.", function(animation_scenario)
+        attachment.ped_attributes.animation_scenario = animation_scenario
+        constructor_lib.animate_peds(attachment)
+    end, attachment.ped_attributes.animation_scenario or "")
+    menu.hyperlink(attachment.menus.ped_options_animation, t("Scenario List"), "https://gtaforums.com/topic/796181-list-of-scenarios-for-peds/")
+
+
 end
 
 ---
@@ -1990,7 +2118,7 @@ constructor.add_child_attachment_menu = function(attachment)
             constructor_lib.attach_entity(attachment)
         end, attachment.options.is_attached)
         attachment.menus.option_parent_attachment = menu.list(attachment.menus.attachment_options, t("Change Parent"), {}, t("Select a new parent for this child. Construct will be rebuilt to accommodate changes."), function()
-            rebuild_reattach_to_menu(attachment)
+            build_change_parent_menu(attachment)
         end)
         attachment.menus.option_edit_rotation_order = menu.list_select(attachment.menus.attachment_options, t("Rotation Order"), {"constructorrotationorder"..attachment.id}, t("Set the order that rotations should be applied."), constants.rotation_orders, attachment.rotation_order + 1, function(index)
             attachment.rotation_order = constants.rotation_orders[index][4]
@@ -2052,6 +2180,11 @@ constructor.add_attachment_entity_options = function(attachment)
         attachment.menus.option_alpha = menu.slider(attachment.menus.more_options, t("Alpha"), {}, t("The amount of transparency the object has. Local only!"), 0, 255, attachment.options.alpha, 51, function(value)
             attachment.options.alpha = value
             constructor_lib.attach_entity(attachment)
+        end)
+
+        attachment.menus.option_object_tint = menu.slider(attachment.menus.more_options, t("Object Tint"), {}, t("The color of the object"), 0, 15, attachment.options.object_tint or 0, 1, function(value)
+            attachment.options.object_tint = value
+            constructor_lib.deserialize_entity_attributes(attachment)
         end)
 
         attachment.menus.option_mission_entity = menu.toggle(attachment.menus.more_options, t("Mission Entity"), {}, t("If attachment is treated as a mission entity."), function(on)
@@ -2684,7 +2817,7 @@ local player_menu_actions = function(pid)
     menus.constructor_player_menu = menu.divider(menu.player_root(pid), t("Constructor"))
 
     menus.spawn_commands = menu.list(menu.player_root(pid), t("Chat Spawn Commands"))
-    local construct_plan_files = load_all_construct_plan_files_from_dir(CONSTRUCTS_DIR.."/"..config.chat_spawnable_dir)
+    local construct_plan_files = load_all_construct_plan_files_from_dir(CONSTRUCTS_DIR..config.chat_spawnable_dir)
     for _, construct_plan_file in pairs(construct_plan_files) do
         if not construct_plan_file.is_directory and is_file_type_supported(construct_plan_file.ext) then
             menu.action(menus.spawn_commands, construct_plan_file.name, {construct_plan_file.name}, "", function()
@@ -2813,13 +2946,19 @@ menu.readonly(menus.credits, "LanceSpooner", t("LanceSpooner is also a huge insp
 menu.divider(menus.credits, t("Translators"))
 menu.readonly(menus.credits, t("Chinese"), t("Zelda Two"))
 menu.readonly(menus.credits, t("Spanish"), t("Tryce"))
+menu.readonly(menus.credits, t("French"), t("ukn"))
 
 ---
 --- Startup Logo
 ---
 
 if SCRIPT_MANUAL_START and not SCRIPT_SILENT_START then
-    local logo = directx.create_texture(filesystem.scripts_dir() .. '/lib/constructor/constructor_logo.png')
+    local logo_path = filesystem.scripts_dir() .. '/lib/constructor/constructor_logo.png'
+    local logo_status, logo = pcall(directx.create_texture, logo_path)
+    if not logo_status then
+        debug_log("Failed to load constructor logo. "..tostring(logo))
+        return
+    end
     local fade_steps = 50
     -- Fade In
     for i = 0,fade_steps do

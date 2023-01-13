@@ -693,7 +693,6 @@ Stand
 	Lua Scripts
 		Actions: On
 		Chat Interface: On
-		Constructor: On
 		CxScript: On
 		EntityThrottler: On
 		gLanceCN: On
@@ -707,7 +706,6 @@ Stand
 		JinxScript_CN_3.31: On
 		lancescript_reloaded: On
 		LanceSpoonerCN: On
-		MusinessBanager: On
 		PolicifyCN: On
 		SprunkStop: On
 		train_control.cn: On
