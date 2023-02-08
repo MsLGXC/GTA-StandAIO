@@ -43,20 +43,22 @@
 ## 如果您决定维护modv6，那么ro框架可能无法更新。因为我不能说登陆下载地址的账号密码?但同样您可以更新其他任何内容只要您认为这有益于游戏
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
-> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=WfN0bIsi)，一起搞♂(迫真)!<br><br>
+> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=WfN0bIsi)，一起搞♂(迫真)!<br>
 
-> 如果你对线上mod包感兴趣，可以查看此视频[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
-> 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br><br><br>
+# 线上MOD包
+> 如果你对线上mod包感兴趣，可以查看此视频（v4)[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
+> 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
-> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br><br>
-> ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数（相比v5），并稍微降低了土豆发生的几率。<br><br><br><br>
+> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br>
+> ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数（相比v5），并降低了土豆发生的几率。
 
+# 另一个版本的MOD包
 > 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
-> 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br><br>
+> 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
-> [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~20%-30%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）
+> [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
+> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~20%-30%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）<br><br><br><br>
 
 > 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
 
