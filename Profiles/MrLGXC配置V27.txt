@@ -111,7 +111,8 @@ Online
 			Modded Event
 				Write To Log File: Enabled
 				Write To Console: Enabled
-			CEO/MC Kick
+			Trigger Business Raid
+				Block: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Start Freemode Mission
@@ -133,6 +134,9 @@ Online
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Give Collectible (Not My Boss)
+				Write To Log File: Enabled
+				Write To Console: Enabled
+			CEO/MC Kick
 				Write To Log File: Enabled
 				Write To Console: Enabled
 			Infinite Loading Screen
@@ -266,29 +270,7 @@ Online
 				Notification: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
-			Invalid Name
-				Notification: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-			Invalid Rockstar ID
-				Notification: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-				Block Join: Strangers
-			Soft RID Spoofing
-				Notification: Enabled
-				Block: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-			RID-Session Mismatch
-				Notification: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
 			Rockstar Employee RID
-				Notification: Enabled
-				Write To Log File: Enabled
-				Write To Console: Enabled
-			Spoofed IP Address
 				Notification: Enabled
 				Write To Log File: Enabled
 				Write To Console: Enabled
@@ -517,10 +499,6 @@ Online
 	Spoofing
 		Name Spoofing
 			Spoofed Name: Sonknuck-
-		RID Spoofing
-			Spoofed RID: 63457
-		IP Address Spoofing
-			Spoofed IP Address: 139.138.231.17
 		Session Spoofing
 			Hide Session: Non-Existent Session
 			Session Type: Closed Crew
@@ -568,6 +546,7 @@ Online
 		Peyote Plants: On
 	Reveal Off The Radar Players: On
 	Rockstar Admin DLC: On
+	Player Tags On Blips: On
 Players
 	Settings
 		Tags
@@ -689,7 +668,6 @@ Stand
 			Scale: 20
 		Session Joining
 			Automatically Change Targeting Mode: On
-			Check If Join Will Succeed: On
 	Lua Scripts
 		Actions: On
 		Chat Interface: On
@@ -698,8 +676,6 @@ Stand
 		gLanceCN: On
 		head_bangCN: On
 		Heezy二代目V6.1.4: On
-			其他选项
-				使用帮助: Off
 		Heist Control: On
 		HornSongs: On
 		jackz_vehicles: On
