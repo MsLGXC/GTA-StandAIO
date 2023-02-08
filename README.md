@@ -58,13 +58,14 @@
 > 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
 > [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~20%-30%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）<br><br><br><br>
-
-> 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
+> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~20%-30%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）
 
 ```bash
 “我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
 ```
+
+> 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
+
 # 为爱发电 用心制造
 > **但有人问：为什么选择月球?**<br>
 > **为什么选择登月作为我们的目标?**<br>
