@@ -130,8 +130,6 @@
 
   - [x] train_control.cn (汉化-Vermouth)
 
-  - [x] heezy二代目 (缝合，原生中文)
-
 </details>
 <details>
   <summary>Theme</summary>
