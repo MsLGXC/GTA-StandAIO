@@ -675,11 +675,10 @@ Stand
 		EntityThrottler: On
 		gLanceCN: On
 		head_bangCN: On
-		Heezy二代目V6.1.4: On
 		Heist Control: On
 		HornSongs: On
 		jackz_vehicles: On
-		JinxScript_CN_3.31: On
+		JinxScript_CN_3.5: On
 		lancescript_reloaded: On
 		LanceSpoonerCN: On
 		PolicifyCN: On
