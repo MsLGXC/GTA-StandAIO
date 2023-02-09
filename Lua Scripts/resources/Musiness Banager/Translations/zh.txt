@@ -65,9 +65,7 @@ INFO_BUNKER=地堡: {1}% | {2}/{3}
 
 FINDSAFERWAYS=寻找更安全的赚钱方式
 FINDSAFERWAYS_DESC=在继续使用下面的金钱选项之前,请至少先阅读此内容.
-RETREIVINGINFO=检索信息中...
 
-SALESABUSE_DIVIDER=产业管理
 
 MAXSELLPRICE=最大销售价格
 MAXSELLPRICE_DESC=以尽可能高的价格出售您的{1},无论您有多少{2}.
@@ -106,7 +104,7 @@ SUPPLYPRODUCTRATIO=原材料->产品比例
 SUPPLYPRODUCTRATIO_DESC=设置生产一种产品所需的原材料数量. 较低的值意味着更高的效率.
 SUPPLYPRODUCTRATIO_TOAST=比例已修改.
 
-RESUPPLY=原材料
+RESUPPLY=补满原材料
 RESUPPLY_DESC=将立即免费为您的企业补满原材料.
 
 TRIGGERPRODUCTION=修改保险箱金额
@@ -116,13 +114,13 @@ TRIGGERPRODUCTION_TOAST=每日收入已触发.
 ENFORCEEASIESTMISSION=执行最简单的任务
 ENFORCEEASIESTMISSION_DESC=这将确保您始终获得最快和最简单的出售任务. 虽然,如果您太快,您可能不会得到报酬?
 
-SPECIALCARGOLIST_DESC=注意: 出售价格的上限是 $600万.
+SPECIALCARGOLIST_DESC=注意: 出售价格的上限是 $1000万.
 
 SPECIALCARGOWAREHOUSE_DESC=选择要显示和修改的仓库,因为您最多可以拥有5个仓库.
 SPECIALCARGOMONITOR_DESC=显示您在所选的仓库中有多少特种货物板条箱.
 SPECIALCARGONOWAREHOUSE=未购买仓库
 SPECIALCARGONOWAREHOUSE_DESC=您在此槽位中没有仓库!
-SPECIALCARGOMAXSELLPRICE_DESC=将您的特种货物板条箱的出售价格更改为$600万.\n保持启用以确保对未来出售的正确计算.
+SPECIALCARGOMAXSELLPRICE_DESC=将您的特种货物板条箱的出售价格更改为$1000万.\n保持启用以确保对未来出售的正确计算.
 OPENSCREEN=打开 {1} 屏幕
 OPENSCREEN_DESC=打开 {1} 屏幕.
 ! {1} could be [TERRORBYTE] or [WAREHOUSE]
@@ -135,7 +133,7 @@ AUTOCOMPLETE=自动完成 {1}
 AUTOCOMPLETE_DESC=使 {1} 自动完成.
 ! {1} could be [SELLMISSION] or [BUYMISSION]
 
-NCLIST_DESC=注意: 出售价格的上限是$400万.\n不要试图"出售全部货物"
+NCLIST_DESC=注意: 出售价格的上限是 $400万.\n不要试图"出售全部货物"
 NCREVENUE=每日收入
 NCREVENUE_DESC=编辑您夜总会获得的收入,无论人气值是多少.
 NCREVENUE_TOAST=每日收入已设置.
@@ -143,8 +141,6 @@ NCREVENUE_TOAST=每日收入已设置.
 NCMAXPOPULARITY=满夜总会人气
 NCMAXPOPULARITY_DESC=将您的夜总会人气设置为 100%.
 NCMAXPOPULARITY_TOAST=已最大化夜总会的人气.
-
-NCSAFELIST_DESC=
 
 NCSAFELOOP=挂机循环刷钱
 NCSAFELOOP_DESC=在使用此功能前请先打开您的夜总会保险箱!\n将使您大约每4-5秒获得$30万.
@@ -171,13 +167,13 @@ NCRESETSAFEVALUESKIP_TOAST=您的夜总会保险箱似乎没问题.
 NCSAFELOOPMAXIMUMVALUEREACHED_TOAST=已达到最大值!
 NCSAFELOOPNOTINNIGHTCLUB_TOAST=您似乎不在您的夜总会里. 在使用此功能之前,请确保您在您的夜总会里并打开了保险箱!
 NCSAFELOOPTIMEOUT_TOAST=好像您遇到了交易超时.
-NCSAFELOOPSAFEOVERLIMIT_TOAST=呃噢,好像保险箱超出了限制. 使用 '重置保险箱数值' 然后重试.
+NCSAFELOOPSAFEOVERLIMIT_TOAST=呃噢,好像保险箱超出了限制. 请使用 "重置保险箱数值" 然后重试.
 ! References [NCRESETSAFEVALUE]
 NCSAFELOOPSOMETHINGWENTWRONG_TOAST=事情没有按预期方式进行...如果您可以重现此问题,请到Discord报告.
 
-MCLIST_DESC=注意: 出售价格的上限是$250万.
+MCLIST_DESC=注意: 出售价格的上限是 $250万.
 
-BUNKERLIST_DESC=注意: 出售价格的上限是$270万.
+BUNKERLIST_DESC=注意: 出售价格的上限是 $270万.
 
 TELEPORTTO=传送到 {1}
 TELEPORTTO_DESC=传送您到您的 {1}.
@@ -185,11 +181,11 @@ TELEPORTTO_DESC=传送您到您的 {1}.
 
 NOTINNIGHTCLUB_TOAST=您不在您的夜总会!
 
-JOINDISCORD=加入Discord服务器
-SHOWMOTD=显示今日信息
-SHOWMOTDBLANK_TOAST=今日信息为空.
-WARNINGRISKY_TOAST=\n警告:此脚本中的所有功能都被认为是有风险的! 您有可能会在未来的未知天数内被封号(封号有随机延迟). 您已经被警告过.
 
+SHOWMOTDBLANK_TOAST=今日信息为空.
+WARNINGRISKY_TOAST=警告:此脚本中的所有功能都被认为是有风险的! 您有可能会在未来的未知天数内被封号(封号有随机延迟). 您已经被警告过.
+
+! Nightclub
 ALREADYINPROPERTY=您已在您的 {1}!
 ! {1} may be [NIGHTCLUB], [WAREHOUSE], [BUSINESS]
 
