@@ -1,9 +1,9 @@
 <div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MrLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
 ![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
-![maven](https://img.shields.io/badge/GTA-1.64-darkgreen)
-![maven](https://img.shields.io/badge/Stand-0.97-pink)
-![maven](https://img.shields.io/badge/AIO-v27-blue)
+![maven](https://img.shields.io/badge/GTA-1.66-darkgreen)
+![maven](https://img.shields.io/badge/Stand-0.98.6-pink)
+![maven](https://img.shields.io/badge/AIO-v27b1-blue)
 ![maven](https://img.shields.io/badge/Modpack-v6-red)
   
   <h1>StandAIO</h1>
@@ -124,7 +124,7 @@
 
   - [x] Heist Control (汉化-)
 
-  - [x] MusinessBanager (汉化-)
+  - [x] MusinessBanagersource (汉化-zzzz)
 
   - [x] Actions (汉化-)
 
