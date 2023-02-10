@@ -9,7 +9,11 @@ Script created by ICYPhoenix#0727 and Ren#5219
 local IS_RELEASE_VERSION <const> = false
 local IS_BETA_VERSION <const> = false
 local IGNORE_VERSION_DIFFERENCE <const> = false
+<<<<<<< HEAD
+local THIS_RELEASE_VERSION <const> = "1.0.1"
+=======
 local THIS_RELEASE_VERSION <const> = "1.0.0"
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local STAND_RESOURCE_DIR = filesystem.resources_dir()
 local MB_RESOUCES_DIR = STAND_RESOURCE_DIR .. "Musiness Banager/"
 local MB_TRANSLATIONS_DIR = MB_RESOUCES_DIR .. "Translations/"
@@ -19,7 +23,11 @@ local og_log = util.log
 local nullsub = function() --[[util.toast("nullsub")]] end
 util.toast = function(str, flag) assert(str != nil, "No string given") if flag ~= nil then og_toast(MBPrefix .. tostring(str), flag) else og_toast(MBPrefix .. tostring(str)) end end
 util.log = function(str) assert(str != nil, "No string given") og_log(MBPrefix .. tostring(str)) end
+<<<<<<< HEAD
+util.yield_x = function(int) for i = 1, int do util.yield() end end -- yields x amount of ticks
+=======
 util.yield_x = function(int) for i = 1, int do util.yield_once() end end -- yields x amount of ticks
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local menu, players, entities, directx, util, v3, lang, filesystem, async_http, memory = menu, players, entities, directx, util, v3, lang, filesystem, async_http, memory
 
 --#region natives
@@ -58,6 +66,186 @@ local TERMINATE_ALL_SCRIPTS_WITH_THIS_NAME                              = functi
 --#endregion natives
 
 local MenuLabels = {
+<<<<<<< HEAD
+	BUNKER="Bunker",
+	BUSINESS="Business",
+	MCBUSINESS="MC Business",
+	WAREHOUSE="Warehouse",
+	NIGHTCLUB="Nightclub",
+	NIGHTCLUBSAFE="Nightclub Safe",
+	SPECIALCARGO="Special Cargo",
+	SELLMISSION="Sell Mission",
+	BUYMISSION="Buy Mission",
+	START="Start",
+	MONEY="Money",
+	STOCK="Stock",
+	SUPPLIES="Supplies",
+	CRATES="Crates",
+	PRODUCT="Product",
+	INFOOVERLAY="Info Overlay",
+	TERRORBYTE="Terrorbyte",
+	--! STOCK, SUPPLIES, PRODUCT should all be what the game calls it, or something equivalent
+	--! You might want to leave TERRORBYTE the same, unless the game calls it something different
+
+	HTTPGIVEUP="Failed to establish connection to remote.",
+	HTTPINVALID="Received an invalid response from remote! This may be due to Cloudflare or your antivirus blocking the connection. Please either establish a new VPN connection, and or switch networks.",
+	HTTPFAILSAFE="Activating Killswitches due to failsafe.",
+	SCRIPTOUTOFDATE="Script is out of date! Please restart the script to get the latest from the repository!",
+
+	KILLSWITCH_SAFELOOP="Killing Nightclub Safe AFK Money Loop due to killswitch",
+	KILLSWITCH_SPECIALCARGO="Killing Special Cargo due to killswitch",
+	KILLSWITCH_MAXSELLPRICE="Killing Max Sell Price due to killswitch",
+	KILLSWITCH_AUTOCOMPLETE="Killing Auto Complete due to killswitch",
+
+	TRANSACTIONSSTUCK_TOAST="It seems that your transactions are stuck. Please switch sessions or restart the game.",
+	BEALONE_TOAST="There are too many players in your lobby! Triggering bealone",
+
+	PREFIX_SAFELOOP="[Safe Loop] {1}",
+	PREFIX_SPECIALCARGO="[Special Cargo] {1}",
+	PREFIX_TOTALEARNED="Total Earned: {1}",
+	PREFIX_MOTD="MOTD: {1}",
+	--! {1} is a number, the amount of money earned in total.
+	PREFIX="{1} {2}",
+	--! This can be '[x1] x2' where x1 is the prefix, and x2 is the message. This might go unused though..
+
+	INFO_SCWAREHOUSE="SC Warehouse {1}: {2}/{3}",
+	--! {1} is slot {2} is amount {3} is capacity
+	INFO_HUBBUSINESS="Hub {1}: {2}/{3}",
+	--! {1} is name {2} is stock {3} is max capacity
+	INFO_NCSAFE="Nightclub Safe $: {1}",
+	--! {1} is value
+	INFO_MCBUSINESS="MC {1}: {2}% | {3}/{4}",
+	--! {1} is name {2} is supplies {3} is product {4} is capacity
+	INFO_BUNKER="Bunker: {1}% | {2}/{3}",
+	--! {1} is supplies {2} is product {3} is capacity
+
+	FINDSAFERWAYS="Find safer ways to make money",
+	FINDSAFERWAYS_DESC="Please at least read this before proceeding with the money options found below",
+	RETREIVINGINFO="Retreiving Info...",
+
+	SALESABUSE_DIVIDER="Sales Abuse",
+
+	MAXSELLPRICE="Max Sell Price",
+	MAXSELLPRICE_DESC="Sell your {1} for the maximum possible price no matter how much {2} you have",
+	--! {1} and {2} are the same, and may be one of the following: [STOCK], [SUPPLIES], or [PRODUCT]
+
+	MONITOR="Monitor",
+
+	MONITOR_EXTRA="Monitor {1}",
+	MONITOR_DESC="Shows you the amount of {1} you have in your {2}, using the {3}",
+	--! {1} could be [STOCK], [SUPPLIES], [PRODUCT], or [MONEY] {2} could be [NIGHTCLUBSAFE], [BUSINESS], or [WAREHOUSE]. {3} is [INFOOVERLAY] for now, but could be changed in the future.
+
+	BYPASSCOOLDOWN="Bypass {1} Cooldown",
+	--! {1} may be one of the following: [SELLMISSION], [BUYMISSION]
+	BYPASSCOOLDOWN_DESC="Allows you to {1} another {2} without having to wait on a cooldown",
+	--! {1} is [START] for now, and {2} could be [SELLMISSION] or [BUYMISSION] for now.
+
+	SETPRODUCT="Set Product",
+	SETPRODUCT_DESC="Set how much product you have directly",
+	SETPRODUCT_TOAST="Product set.",
+
+	MAXPRODUCTALL="Max Product of All",
+	MAXPRODUCTALL_DESC="Sets all of your product amount to max",
+	MAXPRODUCTALL_TOAST="All product maxed.",
+
+	MAXPRODUCTIONSPEED="Max Production Speed",
+	MCMAXPRODUCTIONSPEED_DESC="Takes effect instantly",
+	NCMAXPRODUCTIONSPEED_DESC="Takes effect after a unit finishes producing",
+	MAXPRODUCTIONSPEED_TOAST="Production speed maxed.",
+	MAXPRODUCTIONSPEEDSLOW_TOAST="Production speed maxed. It will take effect once a good has been produced.",
+
+	MAXIMUMCAPACITY="Maximum Capacity",
+	MAXIMUMCAPACITY_DESC="Affects how much stock you can potentially hold",
+	MAXIMUMCAPACITY_TOAST="Capacity modified.",
+
+	SUPPLYPRODUCTRATIO="Supply->Product Ratio",
+	SUPPLYPRODUCTRATIO_DESC="Sets how much supply it takes to make one product. Lower values means better efficiency",
+	SUPPLYPRODUCTRATIO_TOAST="Ratio modified.",
+
+	RESUPPLY="Resupply",
+	RESUPPLY_DESC="Will instantly deliver supplies to your business, free of charge",
+
+	TRIGGERPRODUCTION="Trigger Production",
+	TRIGGERPRODUCTION_DESC="Puts production into effect immediately",
+	TRIGGERPRODUCTION_TOAST="Production Triggered.",
+
+	ENFORCEEASIESTMISSION="Enforce Easiest Sell Mission",
+	ENFORCEEASIESTMISSION_DESC="This will make sure you always get the quickest and easiest sell mission. Although, if you're too quick you may not get paid?",
+
+	SPECIALCARGOLIST_DESC="Note that sell values cap out at $10m.",
+
+	SPECIALCARGOWAREHOUSE_DESC="Select which warehouse to monitor and modify, since you can own five of them.",
+	SPECIALCARGOMONITOR_DESC="Displays how many special cargo crates you have in the selected warehouse",
+	SPECIALCARGONOWAREHOUSE="No Warehouse",
+	SPECIALCARGONOWAREHOUSE_DESC="You don't have a warehouse in this slot!",
+	SPECIALCARGOMAXSELLPRICE_DESC="Changes the sell price of your CEO's Special Cargo crates to $10m. Keep this enabled to ensure proper math on future sales",
+	OPENSCREEN="Open {1} Screen",
+	OPENSCREEN_DESC="Opens the {1} Screen",
+	--! {1} could be [TERRORBYTE] or [WAREHOUSE]
+    SELLACRATE="Press To Sell A Crate",
+    SELLACRATE_DESC="Automatically sells one Special Cargo Crate",
+
+	NOTINSELECTEDWAREHOUSE_TOAST="You are not at your currently selected warehouse!",
+
+	AUTOCOMPLETE="Autocomplete {1}",
+	AUTOCOMPLETE_DESC="Makes the {1} complete automatically",
+	--! {1} could be [SELLMISSION] or [BUYMISSION]
+
+	NCLIST_DESC="Note that sell values cap out at $4m.\nDO NOT attempt to 'sell all'",
+	NCREVENUE="Revenue",
+	NCREVENUE_DESC="Edits how much revenue your Nightclub gains, no matter how popular you are",
+	NCREVENUE_TOAST="Revenue set.",
+
+	NCMAXPOPULARITY="Max Nightclub Popularity",
+	NCMAXPOPULARITY_DESC="Sets your Nightclub popularity to 100%",
+	NCMAXPOPULARITY_TOAST="Maxed Nightclub popularity.",
+
+	NCSAFELIST_DESC="",
+
+	NCSAFELOOP="AFK Money Loop",
+	NCSAFELOOP_DESC="Open your Nightclub safe before enabling this feature!\nWill allow you to passively gain $300k every ~4-5 seconds",
+
+	NCSAFELOOPDELAY="Loop Delay",
+	NCSAFELOOPDELAY_DESC="Will set how long the afk loop waits (in milliseconds) in between major steps",
+	NCSAFELOOPDELAY_TOAST="Delay modified.",
+
+	NCSAFELOOPTRANSACTIONTIMEOUT="Transaction Timeout",
+	NCSAFELOOPTRANSACTIONTIMEOUT_DESC="Sets how long to wait for a transaction to process before giving up",
+	NCSAFELOOPTIMEOUTMODIFIED_TOAST="Transaction Timeout modified.",
+
+	NCSAFELOOPSTOP="Stop Loop After $x Amount",
+	NCSAFELOOPSTOP_DESC="Will stop the AFK Money Loop after you earn the set amount",
+	NCSAFELOOPSTOP_TOAST="Limit set.",
+
+	NCRESETSAFEVALUE="Reset Safe Value",
+	--! Referenced in [NCSAFELOOPSAFEOVERLIMIT_TOAST]
+	NCRESETSAFEVALUE_DESC="If your Nightclub Safe is above $300k or below $0 then this should fix it.",
+	NCRESETSAFEVALUEWAIT_TOAST="Please wait while your Nightclub Safe is being reset.",
+	NCRESETSAFEVALUESUCCESS_TOAST="Your Nightclub Safe should be reset now.",
+	NCRESETSAFEVALUESKIP_TOAST="Your Nightclub Safe appears to be fine",
+
+	NCSAFELOOPMAXIMUMVALUEREACHED_TOAST="Maximum value has been reached!",
+	NCSAFELOOPNOTINNIGHTCLUB_TOAST="You don't appear to be in your Nightclub. Make sure you are in your Nightclub with the safe open before using this feature!",
+	NCSAFELOOPTIMEOUT_TOAST="Seems like you've hit transaction timeout.",
+	NCSAFELOOPSAFEOVERLIMIT_TOAST="Uh oh, it seems like the safe went over the limit. Use 'Reset Safe Value' then try again",
+	--! References [NCRESETSAFEVALUE]
+	NCSAFELOOPSOMETHINGWENTWRONG_TOAST="Something didn't go as it should... if you can reproduce this issue, please report it.",
+
+	MCLIST_DESC="Note that sell values cap out at $2.5m.",
+
+	BUNKERLIST_DESC="Note that sell values cap out at $2.7m.",
+
+	TELEPORTTO="Teleport to {1}",
+	TELEPORTTO_DESC="Teleports you to your {1}",
+	--! {1} may be one of the following: [PROPERTY], [WAREHOUSE], [NIGHTCLUB], or [NIGHTCLUBSAFE]
+
+	NOTINNIGHTCLUB_TOAST="You are not in your Nightclub!",
+
+	JOINDISCORD="Join the Discord",
+	SHOWMOTD="Show MOTD",
+	SHOWMOTDBLANK_TOAST="The MOTD is blank.",
+	WARNINGRISKY_TOAST="WARNING: All features in this script are considered risky! There is a chance you will get banned within an unknown number of days (bans are delayed randomly). You have been warned.",
+=======
     BUNKER="Bunker",
     BUSINESS="Business",
     MCBUSINESS="MC Business",
@@ -229,6 +417,7 @@ local MenuLabels = {
 
     SHOWMOTDBLANK_TOAST="The MOTD is blank.",
     WARNINGRISKY_TOAST="WARNING: All features in this script are considered risky! There is a chance you will get banned within an unknown number of days (bans are delayed randomly). You have been warned.",
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 
     --! Nightclub
     ALREADYINPROPERTY="You are already in your {1}!",
@@ -260,11 +449,14 @@ local MenuLabels = {
     SPECIALCARGOSETDELIVERTIME_DESC="Sets the amount of time to pass before you staff will deliver, to zero",
 }
 
+<<<<<<< HEAD
+=======
 -- Register English labels now
 for k, v in MenuLabels do
     MenuLabels[k] = lang.register(v)
 end
 
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local MCBusinessPropertyInfo = {
     [1]  = {name = "Paleto Bay Meth Lab",                      coords = {x = 52.903,     y =  6338.585,  z = 31.35  }, type = 3},  -- "MP_BWH_METH_1",
     [2]  = {name = "Mount Chiliad Weed Farm",                  coords = {x = 416.7524,   y =  6520.753,  z = 27.7121}, type = 1},  -- "MP_BWH_WEED_1",
@@ -401,44 +593,100 @@ local globals = {
         SellCooldownActive = 1958659+28+1, -- was 1958876+28+1
 
         Cargo = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24387, -- 24387 was 24415
+            SellDefaultValue    = 10000,
+            ProSpd              = tunables_global+24372, -- 24372 was 24400
+            ProSpdDefaultValue  = 8400000,
+            Cap                 = tunables_global+24394, -- 24394 was 24422
+=======
             SellDefaultValue    = 10000,
             ProSpdDefaultValue  = 8400000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 50,
         },
 
         Weapons = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24381, -- was 24409
+            SellDefaultValue    = 5000,
+            ProSpd              = tunables_global+24366, -- was 24394
+            ProSpdDefaultValue  = 4800000,
+            Cap                 = tunables_global+24388, -- was 24416
+=======
             SellDefaultValue    = 5000,
             ProSpdDefaultValue  = 4800000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 100,
         },
 
         Cocaine = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24382, -- 24382 was 24410
+            SellDefaultValue    = 27000,
+            ProSpd              = tunables_global+24367, -- 24367 was 24395
+            ProSpdDefaultValue  = 14400000,
+            Cap                 = tunables_global+24389, -- 24389 was 24417
+=======
             SellDefaultValue    = 27000,
             ProSpdDefaultValue  = 14400000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 10,
         },
 
         Meth = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24383, -- was 24411
+            SellDefaultValue    = 11475,
+            ProSpd              = tunables_global+24368, -- was 24396
+            ProSpdDefaultValue  = 7200000,
+            Cap                 = tunables_global+24390, -- was 24418
+=======
             SellDefaultValue    = 11475,
             ProSpdDefaultValue  = 7200000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 20,
         },
 
         Weed = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24384, -- 24384 was 24412
+            SellDefaultValue    = 2025,
+            ProSpd              = tunables_global+24369, -- 24369 was 24397
+            ProSpdDefaultValue  = 2400000,
+            Cap                 = tunables_global+24391, -- 24391 was 24419
+=======
             SellDefaultValue    = 2025,
             ProSpdDefaultValue  = 2400000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 80,
         },
 
         Forgery = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24385, -- was 24413
+            SellDefaultValue    = 1350,
+            ProSpd              = tunables_global+24370, -- was 24398
+            ProSpdDefaultValue  = 1800000,
+            Cap                 = tunables_global+24392, -- was 24420
+=======
             SellDefaultValue    = 1350,
             ProSpdDefaultValue  = 1800000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 60,
         },
 
         Cash = {
+<<<<<<< HEAD
+            Sell                = tunables_global+24386, -- was 24414
+            SellDefaultValue    = 4725,
+            ProSpd              = tunables_global+24371, -- was 24399
+            ProSpdDefaultValue  = 3600000,
+            Cap                 = tunables_global+24393, -- was 24421
+=======
             SellDefaultValue    = 4725,
             ProSpdDefaultValue  = 3600000,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 40,
         },
     },
@@ -447,56 +695,148 @@ local globals = {
         MaxSellPrice = 2000000,
 
         Forgery = {
+<<<<<<< HEAD
+            Sell1               = tunables_global+17420, -- was 17471
+            Sell1DefaultValue   = 1350,
+            Sell2               = tunables_global+19067, -- was 19112
+            Sell2DefaultValue   = 1.5,
+            ProSpd1             = tunables_global+17394, -- was 17449
+            ProSpd1DefaultValue = 300000,
+            ProSpd2DefaultValue = 300000,
+            Ratio1              = tunables_global+17408, -- was 17461
+            Ratio1DefaultValue  = 4,
+            Ratio2              = tunables_global+17414, -- was 17466
+            Ratio2DefaultValue  = 2,
+            Cap                 = tunables_global+18933, -- was 18980
+=======
             Sell1DefaultValue   = 1350,
             Sell2DefaultValue   = 1.5,
             ProSpd1DefaultValue = 300000,
             ProSpd2DefaultValue = 300000,
             Ratio1DefaultValue  = 4,
             Ratio2DefaultValue  = 2,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 60,
         },
 
         Cash = {
+<<<<<<< HEAD
+            Sell1               = tunables_global+17421, -- was 17472
+            Sell1DefaultValue   = 4725,
+            Sell2               = tunables_global+19067, -- was 19112
+            Sell2DefaultValue   = 1.5,
+            ProSpd1             = tunables_global+17395, -- was 17450
+            ProSpd1DefaultValue = 720000,
+            ProSpd2DefaultValue = 720000,
+            Ratio1              = tunables_global+17409, -- was 17462
+            Ratio1DefaultValue  = 10,
+            Ratio2              = tunables_global+17415, -- was 17467
+            Ratio2DefaultValue  = 5,
+            Cap                 = tunables_global+18941, -- was 18988
+=======
             Sell1DefaultValue   = 4725,
             Sell2DefaultValue   = 1.5,
             ProSpd1DefaultValue = 720000,
             ProSpd2DefaultValue = 720000,
             Ratio1DefaultValue  = 10,
             Ratio2DefaultValue  = 5,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 40,
         },
 
         Cocaine = {
+<<<<<<< HEAD
+            Sell1               = tunables_global+17422, -- was 17473
+            Sell1DefaultValue   = 27000,
+            Sell2               = tunables_global+19067, -- was 19112
+            Sell2DefaultValue   = 1.5,
+            ProSpd1             = tunables_global+17393, -- was 17448
+            ProSpd1DefaultValue = 3000000,
+            ProSpd2DefaultValue = 3000000,
+            Ratio1              = tunables_global+17410, -- was 17463
+            Ratio1DefaultValue  = 50,
+            Ratio2              = tunables_global+17416, -- was 17468
+            Ratio2DefaultValue  = 25,
+            Cap                 = tunables_global+18925, -- was 18972
+=======
             Sell1DefaultValue   = 27000,
             Sell2DefaultValue   = 1.5,
             ProSpd1DefaultValue = 3000000,
             ProSpd2DefaultValue = 3000000,
             Ratio1DefaultValue  = 50,
             Ratio2DefaultValue  = 25,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 10,
         },
 
         Meth = {
+<<<<<<< HEAD
+            Sell1               = tunables_global+17423, -- was 17474
+            Sell1DefaultValue   = 11475,
+            Sell2               = tunables_global+19067, -- was 19112
+            Sell2DefaultValue   = 1.5,
+            ProSpd1             = tunables_global+17392, -- was 17447
+            ProSpd1DefaultValue = 1800000,
+            ProSpd2DefaultValue = 1800000,
+            Ratio1              = tunables_global+17411, -- was 17464
+            Ratio1DefaultValue  = 24,
+            Ratio2              = tunables_global+17417, -- was 17469
+            Ratio2DefaultValue  = 12,
+            Cap                 = tunables_global+18917, -- was 18964
+=======
             Sell1DefaultValue   = 11475,
             Sell2DefaultValue   = 1.5,
             ProSpd1DefaultValue = 1800000,
             ProSpd2DefaultValue = 1800000,
             Ratio1DefaultValue  = 24,
             Ratio2DefaultValue  = 12,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 20,
         },
 
         Weed = {
+<<<<<<< HEAD
+            Sell1               = tunables_global+17424, -- was 17475
+            Sell1DefaultValue   = 2025,
+            Sell2               = tunables_global+19067, -- was 19112
+            Sell2DefaultValue   = 1.5,
+            ProSpd1             = tunables_global+17391, -- was 17446
+            ProSpd1DefaultValue = 360000,
+            ProSpd2DefaultValue = 360000,
+            Ratio1              = tunables_global+17412, -- was 17465
+            Ratio1DefaultValue  = 4,
+            Ratio2              = tunables_global+17418, -- was 17470
+            Ratio2DefaultValue  = 2,
+            Cap                 = tunables_global+18909, -- was 18956
+=======
             Sell1DefaultValue   = 2025,
             Sell2DefaultValue   = 1.5,
             ProSpd1DefaultValue = 360000,
             ProSpd2DefaultValue = 360000,
             Ratio1DefaultValue  = 4,
             Ratio2DefaultValue  = 2,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue     = 80,
         },
 
         Bunker = {
+<<<<<<< HEAD
+            Sell1 = tunables_global+21537, -- was 21581
+            Sell1DefaultValue = 5000,
+            Sell2 = tunables_global+21510, -- was 21554
+            Sell2DefaultValue = 1.5,
+            ProSpd1 = tunables_global+21532, -- was 21576 -- base
+            ProSpd1DefaultValue = 600000,
+            ProSpd2 = tunables_global+21533, -- was 21577 -- equipment
+            ProSpd2DefaultValue = 90000,
+            ProSpd3 = tunables_global+21534, -- was 21578 -- staff upg
+            ProSpd3DefaultValue = 90000,
+            Ratio1 = tunables_global+21283, -- was 21327 -- no upgrade
+            Ratio1DefaultValue = 10,
+            Ratio2 = tunables_global+21284, -- was 21328 -- with upgrade
+            Ratio2DefaultValue = 5,
+            Cap = tunables_global+21531, -- was 21575
+=======
             Sell1DefaultValue = 5000,
             Sell2DefaultValue = 1.5,
             ProSpd1DefaultValue = 600000,
@@ -504,10 +844,38 @@ local globals = {
             ProSpd3DefaultValue = 90000,
             Ratio1DefaultValue = 10,
             Ratio2DefaultValue = 5,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             CapDefaultValue = 100,
         },
     },
 
+<<<<<<< HEAD
+    SafeCap           = tunables_global+24045, -- was 24073 -- 250000, which is interesting because its actually set to 210k :thonk: 
+    SafeRevenue       = tunables_global+24021, -- was 24049 keep in mind theres 20 different ones, this is just the first
+    SafeLimit         = 300000,
+    SafeStatus1       = 1648769, -- was 1640759
+    SafeStatus2       = 2764411, -- was 2787714
+
+    MCSupplyDelay   = tunables_global+18954, -- 600 -- was 18999
+    MCSupplyTime    = 1648637+1, -- not a tunable, found in freemode.c func_16968. Now found in func_17804. was 1640642+1
+    BunkSupplyDelay = tunables_global+21305, -- 600
+
+    SpecialCargoMaxSellPriceValue   = 6000000,
+    SpecialCargoBypassBuyCooldown   = tunables_global+15553, -- 300000  -- was 15608
+    SpecialCargoBypassSellCooldown  = tunables_global+15554, -- 1800000 -- was 15609
+    SpecialCargoCrateMaxThreshold   = tunables_global+15787, -- 111     -- was 15842
+    SpecialCargoRewardPerCrate      = tunables_global+15808, -- 20000   -- was 15863
+    SpecialCargoCrateMultiplier3    = tunables_global+16653, -- 100     -- was 16708
+    SpecialCargoCrateMultiplier2    = tunables_global+16654, -- 50      -- was 16709
+    SpecialCargoCrateMultiplier1    = tunables_global+16655, -- 20      -- was 16710
+    SpecialCargoBonus               = tunables_global+15580, -- 9000    -- was 15635
+
+    SpecialCargoSellFuncSomething   = 1949955, -- was 1946098
+    SpecialCargoDeliveryTime        = tunables_global+32554,
+    SpecialCargoDeliveryCrates      = 1890428+12,
+
+    IsUsingComputerScreen = 75693, -- was 75485
+=======
     SafeLimit         = 300000,
     SafeStatus1       = 1648769,
     SafeStatus2       = 2764413,
@@ -520,6 +888,7 @@ local globals = {
     SpecialCargoDeliveryCrates      = 1890428+12, -- unsure why +12
 
     IsUsingComputerScreen = 75693,
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 }
 
 local locals = {
@@ -528,6 +897,23 @@ local locals = {
     ----------------
     --appsecuroserv
     SpecialCargoSecuroString = "appsecuroserv",
+<<<<<<< HEAD
+    SpecialCargoSecuroArgs = 4592, -- not a local, just the arg count needed to properly start the script
+    SpecialCargoCurrentProperty = 732, -- warehouse property id (non-global-index based)) -- was 730
+    SpecialCargoScreenStatus = 555, -- status: 3011 = sold? 1 = error, 3012 = confirm? -- was 553
+    SpecialCargoCratesToSell = 736, -- was 734
+    SpecialCargoSellFromOption = 737, -- (not current property id, but buttons [1-3]) -- was 735
+    SpecialCargoCurrentBitset = 556, -- bit 13 controls if it is warehouse or securoserv -- was 554
+    SpecialCargoStartingPosX = 753, -- float  (if distance to this from self is greater than 5f to this local, kill script) -- was 751
+    SpecialCargoStartingPosY = 754, -- float  (if distance to this from self is greater than 5f to this local, kill script) -- was 752?
+    SpecialCargoStartingPosZ = 755, -- float  (if distance to this from self is greater than 5f to this local, kill script) -- was 753?
+
+    --gb_contraband_sell
+    SpecialCargoSellString = "gb_contraband_sell",
+    SpecialCargoSellType = 540+583,
+    SpecialCargoSellSubType = 540+7,
+    SpecialCargoSellAmount = 540+57,
+=======
     SpecialCargoSecuroArgs = 4592, -- arg count needed to properly start the script, possibly outdated
     SpecialCargoCurrentProperty = 732, -- warehouse property id (non-global-index based)) -- was 795
     SpecialCargoScreenStatus = 555, -- IS_SCALEFORM_MOVIE_METHOD_RETURN_VALUE_READY -- status: 3011 = sold? 1 = error, 3012 = confirm?
@@ -543,10 +929,28 @@ local locals = {
     SpecialCargoSellType = 540+584,
     SpecialCargoSellSubType = 540+7, -- return 5000;
     SpecialCargoSellAmount = 540+57, -- ^ in function below
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     SpecialCargoSellStatus = 540+583,
 
     --gb_contraband_buy
     SpecialCargoBuyString = "gb_contraband_buy",
+<<<<<<< HEAD
+    SpecialCargoBuyComplete = 598+192, -- was 596+192
+    SpecialCargoBuyCollected = 598+186, -- was 596+186
+    SpecialCargoBuyCollected2 = 473, -- was 471
+    SpecialCargoBuyStatus = 264, -- was 262
+
+    --appHackerTruck
+    SpecialCargoBuyScreenString = "appHackerTruck",
+    SpecialCargoBuyScreenArgs = 4592, -- outdated?
+    SpecialCargoBuyScreenHasSelectedJobCategory = 305+1, -- outdated
+    SpecialCargoBuyScreenCurrentPrompt = 115,  -- outdated
+    SpecialCargoBuyScreenCurrentCategory = 116, -- outdated
+    SpecialCargoBuyScreenWarehousePropertyId = 292, -- outdated
+    SpecialCargoBuyScreenShipmentSize = 293, -- outdated
+    SpecialCargoBuyScreenBitset = 107, -- outdated
+    
+=======
     SpecialCargoBuyComplete = 598+192,
     SpecialCargoBuyCollected = 598+186,
     SpecialCargoBuyCollected2 = 473,
@@ -554,16 +958,27 @@ local locals = {
     --appHackerTruck
     SpecialCargoBuyScreenString = "appHackerTruck",
     SpecialCargoBuyScreenArgs = 4592, -- arg count needed to properly start the script, possibly outdated
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 
     ----------------
     -- NightClub
     ----------------
     NCSafeScriptString = "freemode",
+<<<<<<< HEAD
+    NCSafeTransactionStatus = 19195+1, -- was 18992+1
+    NCSafeAddMoneyAmount = 19195+2, -- was 18992+2
+    NCSellMissionCooldown = 114, -- a bitset
+    NCSellMissionCooldownBit = 27,
+
+    NCHubScriptString = "appbusinesshub",
+    NCHubSellCooldown = 114, -- a local
+=======
     NCSafeTransactionStatus = 19195+1, -- , 39, 0);
     NCSafeAddMoneyAmount = 19195+2, -- same as above
 
     NCHubScriptString = "appbusinesshub",
     NCHubSellCooldown = 116, -- a local
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     NCHubSellCooldownBit = 27, -- a bitset bit
 
     ----EZNCMission = ,
@@ -572,6 +987,23 @@ local locals = {
     -- MC
     ----------------
     MCSellScriptString = "gb_biker_contraband_sell",
+<<<<<<< HEAD
+    MCEZMissionStarted = 698+122,
+    MCEZMission = 698+17,
+
+    MCLaptopString = "appbikerbusiness",
+    MCLaptopCurrentProperty = 521,
+
+    ----------------
+    -- Bunker
+    ----------------
+    BunkScriptString = "gb_gunrunning",
+    PeePeePooPoo = (1199 + 551 + 1 + 19), --! hmm yes, quite a descriptive name :) -- outdated
+    BunkTimeRemaining = 1181, -- outdated
+    BunkTimeTakenToDeliver = (1199 + 579), -- outdated
+}
+
+=======
     MCEZMissionStarted = 698+122, -- == 3 && (Local
     MCEZMission = 698+17, -- ^ function below
 
@@ -656,6 +1088,7 @@ globals.SpecialCargoBonus = tunables_global+15580
 globals.SpecialCargoDeliveryTime = tunables_global+32554
 --#endregion Generated by internal tooling
 
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local TotalEarnedTypes = {
     --type   = {prefix = label, amount = 0}
     -- Do not use GetLabelText in here, these are prefixes and will be converted later
@@ -690,6 +1123,9 @@ local function GetLabelText(label, ...)
     -- Note: NUMBER OF ARGS GIVEN TO FUNCTION AND ARGS IN LABEL MUST MATCH!
     -- Note: EMPTY ARGS OR DUPLICATE ARGS IN LABEL IS UNDEFINED BEHAVIOUR!
     local args = {...}
+<<<<<<< HEAD
+    local str = label
+=======
     local str = lang.get_localised(label)
     for i = 1, #args do
         str = ReplacePlaceholder(str, lang.get_localised(args[i]), i)
@@ -699,6 +1135,7 @@ end
 local function GetLabelTextLiteral(label, ...)
     local args = {...}
     local str = lang.get_localised(label)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     for i = 1, #args do
         str = ReplacePlaceholder(str, args[i], i)
     end
@@ -793,7 +1230,20 @@ local function GetTranslationFileMetadata(path)
 end
 
 ---@param language table|string
+<<<<<<< HEAD
+local function TranslateLabels(language)
+    local path
+    if type(language) == "table" then
+        path = language["path"]
+    elseif type(language) == "string" then
+        path = language
+    else
+        error("TranslateLabels was not given a valid type!")
+    end
+
+=======
 local function TranslateLabels(path)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     local lvalue, rvalue
     for line in io.lines(path) do
         local first_char = GetCharacterFromString(line, 1)
@@ -803,7 +1253,11 @@ local function TranslateLabels(path)
             lvalue, rvalue = GetKeyValueFromLine(line, 1)
             if lvalue then
                 if MenuLabels[lvalue] ~= nil then
+<<<<<<< HEAD
+                    MenuLabels[lvalue] = rvalue:gsub("\\n", "\n") or "ERROR"
+=======
                     lang.translate(MenuLabels[lvalue], rvalue:gsub("\\n", "\n") or "ERROR")
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 else
                     util.toast("Error occurred while reading Translation file. Translation file may be corrupt or out of date.")
                     --util.log("Translation file attempted to assign a non-existant MenuLabel a value. $"..lvalue)
@@ -813,6 +1267,57 @@ local function TranslateLabels(path)
     end
 end
 
+<<<<<<< HEAD
+local Languages = {
+    [1] = {"EN - English", {"en"}, ""},
+}
+
+if not filesystem.exists(MB_TRANSLATIONS_DIR) then
+    filesystem.mkdirs(MB_TRANSLATIONS_DIR)
+end
+
+local dirlen = string.len(MB_TRANSLATIONS_DIR)
+for index, filepath in ipairs(filesystem.list_files(MB_TRANSLATIONS_DIR)) do
+    local success, metadata = GetTranslationFileMetadata(filepath) -- stuff like version, creator, etc.
+    local filename = filepath:sub(dirlen + 1, -5):gsub("_", " ") -- transforms "_" to " ", because discord is stinky and replaces spaces with "_".
+    local langcode = string.match(filename, "([%a-]+) - ")
+    local author  = (success and metadata.Author ~= nil)  and "Author: " .. metadata.Author or "No author"
+    local version = (success and metadata.Version ~= nil) and metadata.Version or "0.0.0"
+    local uptodate, ood_msg
+
+    if success and metadata.Version ~= nil then
+        uptodate, ood_msg = VersionCheck(version, THIS_RELEASE_VERSION)
+    else
+        uptodate, ood_msg = false, "no msg"
+    end
+
+    Languages[#Languages+1] = {
+        filename, {langcode}, author .. "\n" .. version,
+        path = filepath, version = version, uptodate = uptodate, ood_msg = ood_msg, author = author, filename = filename, langcode = langcode,
+    }
+end
+
+local SelectedLanguage
+if #Languages > 1 then
+    local LanguageSelector = menu.list_action(menu.my_root(), "Language", {"mblang"}, "", Languages, function(index, name)
+        SelectedLanguage = name
+        if index ~= 1 then
+            if not Languages[index].uptodate then
+                util.toast("Translation file is out of date!")
+                util.log("Translation file is out of date!")
+            end
+            TranslateLabels(Languages[index])
+        end
+    end)
+        
+    while SelectedLanguage == nil do
+        util.yield()
+    end
+        
+    menu.delete(LanguageSelector)
+else
+    SelectedLangauge = Languages[1][1]
+=======
 do
     local l = lang.get_current()
     local path = MB_TRANSLATIONS_DIR .. l .. ".txt"
@@ -820,12 +1325,20 @@ do
        lang.set_translate(l)
        TranslateLabels(path)
     end
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 end
 --#endregion Translation Functions
 
 local menu_findsaferways = menu.hyperlink(menu.my_root(), MenuLabels.FINDSAFERWAYS, "https://stand.gg/help/money", MenuLabels.FINDSAFERWAYS_DESC)
+<<<<<<< HEAD
+local ACCEPTED_WARNING = false
+while not ACCEPTED_WARNING do
+    menu.show_warning(menu_findsaferways, CLICK_HOTKEY, MenuLabels.WARNINGRISKY_TOAST, function() ACCEPTED_WARNING = true end, function() util.stop_script() end, false)
+    util.yield()
+=======
 if not SCRIPT_SILENT_START then
     util.toast(lang.get_string(MenuLabels.WARNINGRISKY_TOAST, lang.get_current()))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 end
 
 -----------------------------------
@@ -922,7 +1435,18 @@ local function HandleHTTPResponse(response)
     HTTP.FAILSAFE = false -- reset failsafe if it triggered before
 
     if not IGNORE_VERSION_DIFFERENCE and IS_RELEASE_VERSION and not VersionCheck(THIS_RELEASE_VERSION, remote.version) then
+<<<<<<< HEAD
+        util.toast(MenuLabels.SCRIPTOUTOFDATE, TOAST_ALL)
+    end
+
+    if MOTD ~= remote.motd then
+        MOTD = remote.motd
+        if MOTD ~= "" then
+            util.toast(GetLabelText(MenuLabels.PREFIX_MOTD, MOTD), TOAST_ALL) -- yeah i cant really think of a good way to only show this only after the script is "started". and a script "start" is a loose term here, so im going to base it on clicking the start button and thats it. any further input made by the user then causes those toasts to appear.
+        end
+=======
         util.toast(lang.get_localised(MenuLabels.SCRIPTOUTOFDATE), TOAST_ALL)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     end
 end
 
@@ -987,6 +1511,17 @@ local function HTTPHeartbeat()
     end
 end
 
+<<<<<<< HEAD
+local loading_divider = menu.divider(menu.my_root(), MenuLabels.RETREIVINGINFO)
+util.create_tick_handler(HTTPHeartbeat)
+
+while not HTTP.SUCCESS and HTTP.TRIES < 4 do
+    util.yield()
+end
+
+menu.delete(loading_divider)
+=======
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 --#endregion HTTP Functions
 
 -----------------------------------
@@ -1208,12 +1743,15 @@ local function SetEntityCoords(entity, coords)
     ENTITY_SET_ENTITY_COORDS_NO_OFFSET(entity, coords.x, coords.y, coords.z, false, false, false)
 end
 
+<<<<<<< HEAD
+=======
 local function TeleportTo(coords)
     local ent = entities.get_user_vehicle_as_handle(false)
     if ent == -1 then ent = players.user_ped() end
     SetEntityCoords(ent, coords)
 end
 
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local function LoadArea(coords)
     local has_ground, ground_z = util.get_ground_z(coords.x, coords.y, coords.z)
     if not has_ground then
@@ -1238,7 +1776,11 @@ end
 
 local function AddToTotalEarned(amount, type)
     type.amount = type.amount + amount
+<<<<<<< HEAD
+    local str = type and GetLabelText(type.prefix, GetLabelText(MenuLabels.PREFIX_TOTALEARNED, type.amount)) or GetLabelText(MenuLabels.PREFIX_TOTALEARNED, type.amount)
+=======
     local str = type and GetLabelTextLiteral(type.prefix, GetLabelTextLiteral(MenuLabels.PREFIX_TOTALEARNED, type.amount)) or GetLabelTextLiteral(MenuLabels.PREFIX_TOTALEARNED, type.amount)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     util.toast(str, TOAST_ABOVE_MAP | TOAST_LOGGER)
 end
 --#endregion Basic Functions
@@ -1248,7 +1790,10 @@ end
 -----------------------------------
 --#region Global Functions
 
+<<<<<<< HEAD
+=======
 -- [[update]]
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local function GetOrgOffset()
     return (1894573 + 1 + (players.user() * 608) + 10)
 end
@@ -1269,12 +1814,31 @@ local function RegisterAsCEO()
     end
 end
 
+<<<<<<< HEAD
+-- Business / Other Online Work Stuff
+=======
 -- Business / Other Online Work Stuff [[update]]
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local function GetOnlineWorkOffset()
     return (1853910 + 1 + (players.user() * 862) + 267)
 end
 
 local function GetNightClubHubOffset()
+<<<<<<< HEAD
+    return (GetOnlineWorkOffset() + 310) -- 295
+end
+
+local function GetNightClubOffset()
+    return (GetOnlineWorkOffset() + 353) -- 336
+end
+
+local function GetWarehouseOffset()
+    return (GetOnlineWorkOffset() + 116) + 1 -- 114
+end
+
+local function GetMCBusinessOffset()
+    return (GetOnlineWorkOffset() + 193) + 1 -- 191
+=======
     return (GetOnlineWorkOffset() + 310)
 end
 
@@ -1288,6 +1852,7 @@ end
 
 local function GetMCBusinessOffset()
     return (GetOnlineWorkOffset() + 193) + 1
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 end
 
 -- Nightclub
@@ -1397,7 +1962,11 @@ end
 -- returns true if already alone, false if it it had to bealone
 local function CheckIfAlone()
     if #players.list() > 1 then
+<<<<<<< HEAD
+        util.toast(MenuLabels.BEALONE_TOAST)
+=======
         util.toast(lang.get_localised(MenuLabels.BEALONE_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         menu.trigger_commands("bealone")
         util.yield(1000)
         return false
@@ -1405,7 +1974,10 @@ local function CheckIfAlone()
     return true
 end
 
+<<<<<<< HEAD
+=======
 -- [[update]]
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 local function GetPlayerPropertyOffset()
     return (2657589 + 1 + (players.user() * 466) + 321 + 7)
 end
@@ -1452,7 +2024,11 @@ local function SetSpecialCargoValues(state)
             local warehouse = GetLocalInt(locals.SpecialCargoSecuroString, locals.SpecialCargoCurrentProperty)
             if warehouse ~= nil then
                 if warehouse ~= 0 and warehouse ~= GetWarehousePropertyFromSlot(Selected_Warehouse) then
+<<<<<<< HEAD
+                    util.toast(MenuLabels.NOTINSELECTEDWAREHOUSE_TOAST)
+=======
                     util.toast(lang.get_localised(MenuLabels.NOTINSELECTEDWAREHOUSE_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
             end
         end)
@@ -1530,21 +2106,36 @@ end
 local function FixNCSafe()
     local GetSafeValue = GetSafeCashValueFromStat
     if not (IsInSession() and (GetSafeValue() > 300000 or GetSafeValue() < 0)) then
+<<<<<<< HEAD
+        util.toast(MenuLabels.NCRESETSAFEVALUESKIP_TOAST)
+=======
         util.toast(lang.get_localised(MenuLabels.NCRESETSAFEVALUESKIP_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         return
     end
     while IsInSession() and (GetSafeValue() > 300000 or GetSafeValue() < 0) do
         if IsPlayerInNightclub() then
+<<<<<<< HEAD
+            SetEntityCoords(PLAYER_PLAYER_PED_ID(), {x = -1620.5, y = -3014.9, z = -75.2})
+=======
             TeleportTo({x = -1620.5, y = -3014.9, z = -75.2})
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end
         local before = GetSafeValue()
         TriggerNCSafeAddMoneyTransaction(300000, false)
         local after = GetSafeValue()
         if before == after then
+<<<<<<< HEAD
+            util.toast(MenuLabels.TRANSACTIONSSTUCK_TOAST)
+            return
+        elseif (after <= 300000 and after >= 0) then
+            util.toast(MenuLabels.NCRESETSAFEVALUESUCCESS_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.TRANSACTIONSSTUCK_TOAST))
             return
         elseif (after <= 300000 and after >= 0) then
             util.toast(lang.get_localised(MenuLabels.NCRESETSAFEVALUESUCCESS_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             return
         end
         util.yield()
@@ -1568,7 +2159,11 @@ local function TeleportToMCProperty(property_id)
     if property_id ~= 0 and IsInSession() then
         local coords = MCBusinessPropertyInfo[property_id].coords
         if LoadArea(coords) then
+<<<<<<< HEAD
+            SetEntityCoords(PLAYER_PLAYER_PED_ID(), coords)
+=======
             TeleportTo(coords)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end
     end
 end
@@ -1577,6 +2172,11 @@ end
 -- Start of menu options
 ----------------------------------
 
+<<<<<<< HEAD
+menu.divider(menu.my_root(), MenuLabels.SALESABUSE_DIVIDER)
+
+=======
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
 ----------------------------------
 -- Special Cargo Shit
 ----------------------------------
@@ -1591,7 +2191,11 @@ menu.action(SCMan, GetLabelText(MenuLabels.TELEPORTTO, MenuLabels.WAREHOUSE), {"
     local tbl = WarehousePropertyInfo[GetWarehousePropertyFromSlot(Selected_Warehouse)]
     if tbl ~= nil then
         local pos = tbl.coords
+<<<<<<< HEAD
+        SetEntityCoords(PLAYER_PLAYER_PED_ID(), pos)
+=======
         TeleportTo(pos)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     end
 end)
 
@@ -1600,7 +2204,11 @@ menu.toggle_loop(SCMan, MenuLabels.MONITOR, {"monitorcargo"}, GetLabelText(MenuL
         local crate_amount = GetSpecialCargoCrateAmountFromStat(Selected_Warehouse)
         local warehouse_property_info = WarehousePropertyInfo[GetWarehousePropertyFromSlot(Selected_Warehouse)]
         local capacity = warehouse_property_info and warehouse_property_info.capacity or "unk"
+<<<<<<< HEAD
+        util.draw_debug_text(GetLabelText(MenuLabels.INFO_SCWAREHOUSE, Selected_Warehouse+1, crate_amount, capacity))
+=======
         util.draw_debug_text(GetLabelTextLiteral(MenuLabels.INFO_SCWAREHOUSE, Selected_Warehouse+1, crate_amount, capacity))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     end
 end)
 
@@ -1624,7 +2232,11 @@ end)
 
 SCRefs[#SCRefs+1] = menu.toggle_loop(SCMan, GetLabelText(MenuLabels.BYPASSCOOLDOWN, MenuLabels.BUYMISSION), {"nobuycdcargo"}, GetLabelText(MenuLabels.BYPASSCOOLDOWN_DESC, MenuLabels.START, MenuLabels.BUYMISSION), function()
     if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+        util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
         util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         SetGlobalInt(globals.SpecialCargoBypassBuyCooldown, 300000)
         util.stop_thread()
         return
@@ -1637,7 +2249,11 @@ end)
 
 SCRefs[#SCRefs+1] = menu.toggle_loop(SCMan, GetLabelText(MenuLabels.BYPASSCOOLDOWN, MenuLabels.SELLMISSION), {"nosellcdcargo"}, GetLabelText(MenuLabels.BYPASSCOOLDOWN_DESC, MenuLabels.START, MenuLabels.SELLMISSION), function()
     if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+        util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
         util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         SetGlobalInt(globals.SpecialCargoBypassSellCooldown, 1800000)
         util.stop_thread()
         return
@@ -1754,7 +2370,11 @@ do
 
     SCRefs[#SCRefs+1] = menu.toggle_loop(SCMan, GetLabelText(MenuLabels.AUTOCOMPLETE, MenuLabels.SELLMISSION), {"autocompletespecialsell"}, GetLabelText(MenuLabels.AUTOCOMPLETE_DESC, MenuLabels.SELLMISSION), function()
         if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             util.stop_thread()
             return
         end
@@ -1770,7 +2390,11 @@ do
 
     menu.action(SCMan, GetLabelText(MenuLabels.OPENSCREEN, MenuLabels.TERRORBYTE), {"openterrorbyte"}, GetLabelText(MenuLabels.OPENSCREEN_DESC, MenuLabels.TERRORBYTE), function()
         if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             return
         end
 
@@ -1784,7 +2408,11 @@ do
 
     menu.action(SCMan, GetLabelText(MenuLabels.OPENSCREEN, MenuLabels.WAREHOUSE), {"openwarehouse"}, GetLabelText(MenuLabels.OPENSCREEN_DESC, MenuLabels.WAREHOUSE), function()
         if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             return
         end
 
@@ -1807,7 +2435,11 @@ do
 
     menu.action(SCMan, MenuLabels.SELLACRATE, {"sellacrate"}, MenuLabels.SELLACRATE_DESC, function()
         if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             return
         end
 
@@ -1829,7 +2461,11 @@ do
                     StartSellMission()
                     SetPlayerPropertyID(-1)
                 else
+<<<<<<< HEAD
+                    util.toast(MenuLabels.SPECIALCARGONOMORECRATES)
+=======
                     util.toast(lang.get_localised(MenuLabels.SPECIALCARGONOMORECRATES))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
             end
         end
@@ -1844,7 +2480,11 @@ do
 
     menu.toggle_loop(SCMan, "AFK Money Loop", {"scafkloop"}, "For best results, have a stable internet connection and a high framerate.", function() --! needs a label
         if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             return
         end
 
@@ -1858,7 +2498,11 @@ do
             RegisterAsCEO()
             util.yield()
         elseif GetOrgType() == 1 then
+<<<<<<< HEAD
+            util.toast(MenuLabels.SPECIALCARGONEEDCEO)
+=======
             util.toast(lang.get_localised(MenuLabels.SPECIALCARGONEEDCEO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             util.yield(200)
             return
         end
@@ -1912,7 +2556,11 @@ end
 
 SCRefs[#SCRefs+1] = menu.toggle_loop(SCMan, MenuLabels.SPECIALCARGOMAXCRATESOURCE, {}, MenuLabels.SPECIALCARGOMAXCRATESOURCE_DESC, function()
     if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+        util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
         util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         util.stop_thread()
         return
     end
@@ -1929,7 +2577,11 @@ end)
 
 SCRefs[#SCRefs+1] = menu.toggle_loop(SCMan, MenuLabels.SPECIALCARGOSETDELIVERTIME, {}, MenuLabels.SPECIALCARGOSETDELIVERTIME_DESC, function()
     if remote.killswitches.specialcargo then
+<<<<<<< HEAD
+        util.toast(MenuLabels.KILLSWITCH_SPECIALCARGO)
+=======
         util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SPECIALCARGO))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         SetGlobalInt(globals.SpecialCargoDeliveryTime, 48)
         util.stop_thread()
         return
@@ -1953,7 +2605,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
             if property ~= 0 and IsInSession() then
                 local coords = NightclubPropertyInfo[property].coords
                 if LoadArea(coords) then
+<<<<<<< HEAD
+                    SetEntityCoords(PLAYER_PLAYER_PED_ID(), coords)
+=======
                     TeleportTo(coords)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
             end
         end
@@ -1981,13 +2637,21 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
         menu.toggle_loop(list, MenuLabels.MONITOR, {"monitorhub"..name}, GetLabelText(MenuLabels.MONITOR_DESC, MenuLabels.STOCK, MenuLabels.NIGHTCLUB, MenuLabels.INFOOVERLAY), function()
             if IsInSession() then
                 local value = GetGlobalInt(globals.Hub[name].Cap)
+<<<<<<< HEAD
+                util.draw_debug_text(GetLabelText(MenuLabels.INFO_HUBBUSINESS, label, MyBusinesses.Hub[name], value))
+=======
                 util.draw_debug_text(GetLabelTextLiteral(MenuLabels.INFO_HUBBUSINESS, lang.get_localised(label), MyBusinesses.Hub[name], value))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
         menu.toggle_loop(list, MenuLabels.MAXSELLPRICE, {"maxsellhub"..name}, GetLabelText(MenuLabels.MAXSELLPRICE_DESC, MenuLabels.STOCK, MenuLabels.STOCK), function()
             if remote.killswitches.maxsellprice then
+<<<<<<< HEAD
+                util.toast(MenuLabels.KILLSWITCH_MAXSELLPRICE)
+=======
                 util.toast(lang.get_localised(MenuLabels.KILLSWITCH_MAXSELLPRICE))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 SetGlobalInt(globals.Hub[name].Sell, globals.Hub[name].SellDefaultValue)
                 util.stop_thread()
                 return
@@ -2008,7 +2672,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
             toggle_active = toggle
             if toggle then
                 --! Missing Global Here (one that goes into effect immediately)
+<<<<<<< HEAD
+                util.toast(MenuLabels.MAXPRODUCTIONSPEEDSLOW_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.MAXPRODUCTIONSPEEDSLOW_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
             while toggle_active do
                 if IsInSession() then
@@ -2021,7 +2689,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
         menu.click_slider(list, MenuLabels.MAXIMUMCAPACITY, {"setcaphub"..name}, MenuLabels.MAXIMUMCAPACITY_DESC, 1, 999, GetGlobalInt(globals.Hub[name].Cap), 5, function(value)
             if IsInSession() then
                 SetGlobalInt(globals.Hub[name].Cap, value)
+<<<<<<< HEAD
+                util.toast(MenuLabels.MAXIMUMCAPACITY_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.MAXIMUMCAPACITY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
@@ -2030,7 +2702,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
         --     menu.click_slider(list, "[DEBUG] " .. MenuLabels.SETPRODUCT, {"setproducthub"..name}, MenuLabels.SETPRODUCT_DESC, 0, GetGlobalInt(globals.Hub[name].Cap), GetGlobalInt(globals.Hub[name].Cap), 1, function(value) --! implement default values for set product limits
         --         if IsInSession() then
         --             SetHubValueFromSlot(index, value)
+<<<<<<< HEAD
+        --             util.toast(MenuLabels.SETPRODUCT_TOAST)
+=======
         --             util.toast(lang.get_localised(MenuLabels.SETPRODUCT_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         --         end
         --     end)
         -- end
@@ -2040,20 +2716,34 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
     -- Nightclub Safes
     ----------------------------------
 
+<<<<<<< HEAD
+    local NCSafe = menu.list(NCMan, MenuLabels.NIGHTCLUBSAFE, {}, MenuLabels.NCSAFELIST_DESC)
+        menu.toggle_loop(NCSafe, MenuLabels.MONITOR, {"monitorncsafe"}, GetLabelText(MenuLabels.MONITOR_DESC, MenuLabels.MONEY, MenuLabels.NIGHTCLUBSAFE, MenuLabels.INFOOVERLAY), function()
+            if IsInSession() then
+                local safeval = GetSafeCashValueFromStat()
+                util.draw_debug_text(GetLabelText(MenuLabels.INFO_NCSAFE, safeval))
+=======
     local NCSafe = menu.list(NCMan, MenuLabels.NIGHTCLUBSAFE)
         menu.toggle_loop(NCSafe, MenuLabels.MONITOR, {"monitorncsafe"}, GetLabelText(MenuLabels.MONITOR_DESC, MenuLabels.MONEY, MenuLabels.NIGHTCLUBSAFE, MenuLabels.INFOOVERLAY), function()
             if IsInSession() then
                 local safeval = GetSafeCashValueFromStat()
                 util.draw_debug_text(GetLabelTextLiteral(MenuLabels.INFO_NCSAFE, safeval))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
         menu.action(NCSafe, GetLabelText(MenuLabels.TELEPORTTO, MenuLabels.NIGHTCLUBSAFE), {"tpncsafe"}, GetLabelText(MenuLabels.TELEPORTTO_DESC, MenuLabels.NIGHTCLUBSAFE), function()
             if IsInSession() then
                 if IsPlayerInNightclub() then
+<<<<<<< HEAD
+                    SetEntityCoords(PLAYER_PLAYER_PED_ID(), NCSafePos)
+                else
+                    util.toast(MenuLabels.NOTINNIGHTCLUB_TOAST)
+=======
                     TeleportTo(NCSafePos)
                 else
                     util.toast(lang.get_localised(MenuLabels.NOTINNIGHTCLUB_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                     menu.trigger_commands("tpnightclub")
                 end
             end
@@ -2062,14 +2752,22 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
         menu.action(NCSafe, MenuLabels.NCMAXPOPULARITY, {"resupplyncsafe"}, MenuLabels.NCMAXPOPULARITY_DESC, function()
             if IsInSession() then
                 menu.trigger_commands("clubpopularity 100")
+<<<<<<< HEAD
+                util.toast(MenuLabels.NCMAXPOPULARITY_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.NCMAXPOPULARITY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
         menu.action(NCSafe, MenuLabels.TRIGGERPRODUCTION, {"triggerncsafe"}, MenuLabels.TRIGGERPRODUCTION_DESC, function()
             if IsInSession() then
                 if SetNightclubPayTimeLeft(-1) then
+<<<<<<< HEAD
+                    util.toast(MenuLabels.TRIGGERPRODUCTION_TOAST)
+=======
                     util.toast(lang.get_localised(MenuLabels.TRIGGERPRODUCTION_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
             end
         end)
@@ -2078,7 +2776,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
             if IsInSession() then
                 local address = memory.script_global(globals.SafeCap)
                 memory.write_int(address, value)
+<<<<<<< HEAD
+                util.toast(MenuLabels.MAXIMUMCAPACITY_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.MAXIMUMCAPACITY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
@@ -2096,7 +2798,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
 
         menu.toggle_loop(NCSafe, MenuLabels.NCSAFELOOP, {"ncafkloop"}, MenuLabels.NCSAFELOOP_DESC, function(toggle)
             if remote.killswitches.safeloop then
+<<<<<<< HEAD
+                util.toast(MenuLabels.KILLSWITCH_SAFELOOP, TOAST_ALL)
+=======
                 util.toast(lang.get_localised(MenuLabels.KILLSWITCH_SAFELOOP), TOAST_ALL)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 util.stop_thread()
                 return
             end
@@ -2109,9 +2815,15 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
                 end
 
                 if NCSafeLoopUserLimit ~= 0 and (TotalEarnedTypes.safeloop.amount >= NCSafeLoopUserLimit) then
+<<<<<<< HEAD
+                    StopSafeLoop(MenuLabels.NCSAFELOOPMAXIMUMVALUEREACHED_TOAST)
+                elseif not IsPlayerInNightclub() then
+                    StopSafeLoop(MenuLabels.NCSAFELOOPNOTINNIGHTCLUB_TOAST)
+=======
                     StopSafeLoop(lang.get_localised(MenuLabels.NCSAFELOOPMAXIMUMVALUEREACHED_TOAST))
                 elseif not IsPlayerInNightclub() then
                     StopSafeLoop(lang.get_localised(MenuLabels.NCSAFELOOPNOTINNIGHTCLUB_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
 
                 if GetGlobalInt(globals.SafeCap) ~= globals.SafeLimit then
@@ -2140,7 +2852,11 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
                         StopSafeLoop(GetLabelText(MenuLabels.PREFIX_SAFELOOP, MenuLabels.NCSAFELOOPTIMEOUT_TOAST) .. " (1)")
                     end
                 elseif ValueBeforeAdding > globals.SafeLimit then
+<<<<<<< HEAD
+                    StopSafeLoop(MenuLabels.NCSAFELOOPSAFEOVERLIMIT_TOAST)
+=======
                     StopSafeLoop(lang.get_localised(MenuLabels.NCSAFELOOPSAFEOVERLIMIT_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
 
                 -- okay, so far so good, fill the safe
@@ -2196,22 +2912,38 @@ local NCMan = menu.list(menu.my_root(), MenuLabels.NIGHTCLUB, {}, MenuLabels.NCL
             if remote.killswitches.safeloop then
                 return
             end
+<<<<<<< HEAD
+            SetEntityCoords(PLAYER_PLAYER_PED_ID(), {x = -1615.86, y = -3015.5, z = -75.2})
+=======
             TeleportTo({x = -1615.86, y = -3015.5, z = -75.2})
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end)
 
         menu.slider(NCSafe, MenuLabels.NCSAFELOOPDELAY, {"ncafkloopdelay"}, MenuLabels.NCSAFELOOPDELAY_DESC, 0, 100000, NCSafeLoopDelay, 100, function(peepeepoopoo)
             NCSafeLoopDelay = peepeepoopoo -- clever
+<<<<<<< HEAD
+            util.toast(MenuLabels.NCSAFELOOPDELAY_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.NCSAFELOOPDELAY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end)
 
         menu.slider(NCSafe, MenuLabels.NCSAFELOOPTRANSACTIONTIMEOUT, {"ncafktransactiontimeout"}, MenuLabels.NCSAFELOOPTRANSACTIONTIMEOUT_DESC, 1000, NCSafeLoopTransactionTimeout, NCSafeLoopTransactionTimeout, 100, function(peepeepoopoo)
             NCSafeLoopTransactionTimeout = peepeepoopoo -- clever
+<<<<<<< HEAD
+            util.toast(MenuLabels.NCSAFELOOPTIMEOUTMODIFIED_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.NCSAFELOOPTIMEOUTMODIFIED_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end)
 
         menu.slider(NCSafe, MenuLabels.NCSAFELOOPSTOP, {"ncafkamount"}, MenuLabels.NCSAFELOOPSTOP_DESC, 0, 999999999, 0, 300000, function(value)
             NCSafeLoopUserLimit = value
+<<<<<<< HEAD
+            util.toast(MenuLabels.NCSAFELOOPSTOP_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.NCSAFELOOPSTOP_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end)
 
         menu.action(NCSafe, MenuLabels.NCRESETSAFEVALUE, {}, MenuLabels.NCRESETSAFEVALUE_DESC, FixNCSafe)
@@ -2267,7 +2999,11 @@ local MCMan = menu.list(menu.my_root(), GetLabelText(MenuLabels.MCBUSINESS), {},
         menu.toggle_loop(list, MenuLabels.MONITOR, {"monitor"..name}, GetLabelText(MenuLabels.MONITOR_DESC, MenuLabels.PRODUCT, MenuLabels.BUSINESS, MenuLabels.INFOOVERLAY), function()
             if IsInSession() then
                 local capacity = GetGlobalInt(globals.MC[name].Cap)
+<<<<<<< HEAD
+                util.draw_debug_text(GetLabelText(MenuLabels.INFO_MCBUSINESS, label, MyBusinesses[name].supplies, MyBusinesses[name].product, capacity))
+=======
                 util.draw_debug_text(GetLabelTextLiteral(MenuLabels.INFO_MCBUSINESS, lang.get_localised(label), MyBusinesses[name].supplies, MyBusinesses[name].product, capacity))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
@@ -2284,7 +3020,11 @@ local MCMan = menu.list(menu.my_root(), GetLabelText(MenuLabels.MCBUSINESS), {},
 
         menu.toggle_loop(list, MenuLabels.MAXSELLPRICE, {"maxsell"..name}, GetLabelText(MenuLabels.MAXSELLPRICE_DESC, MenuLabels.PRODUCT, MenuLabels.PRODUCT), function()
             if remote.killswitches.maxsellprice then
+<<<<<<< HEAD
+                util.toast(MenuLabels.KILLSWITCH_MAXSELLPRICE)
+=======
                 util.toast(lang.get_localised(MenuLabels.KILLSWITCH_MAXSELLPRICE))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 SetGlobalInt(globals.MC[name].Sell1, globals.MC[name].Sell1DefaultValue)
                 SetGlobalFloat(globals.MC[name].Sell2, globals.MC[name].Sell2DefaultValue)
                 util.stop_thread()
@@ -2310,7 +3050,11 @@ local MCMan = menu.list(menu.my_root(), GetLabelText(MenuLabels.MCBUSINESS), {},
             var = toggle
             if var then
                 SetGlobalInt(GetMCBusinessProductionSpeed2(MyBusinesses[name].slot), 0)
+<<<<<<< HEAD
+                util.toast(MenuLabels.MAXPRODUCTIONSPEED_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.MAXPRODUCTIONSPEED_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
             while var do
                 SetGlobalInt(globals.MC[name].ProSpd1, 500)
@@ -2323,14 +3067,22 @@ local MCMan = menu.list(menu.my_root(), GetLabelText(MenuLabels.MCBUSINESS), {},
             if IsInSession() then
                 SetGlobalInt(globals.MC[name].Ratio1, value)
                 SetGlobalInt(globals.MC[name].Ratio2, value)
+<<<<<<< HEAD
+                util.toast(MenuLabels.SUPPLYPRODUCTRATIO_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.SUPPLYPRODUCTRATIO_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
         menu.click_slider(list, MenuLabels.MAXIMUMCAPACITY, {"setcap"..name}, MenuLabels.MAXIMUMCAPACITY_DESC, 1, 999, globals.MC[name].CapDefaultValue, 1, function(value)
             if IsInSession() then
                 SetGlobalInt(globals.MC[name].Cap, value)
+<<<<<<< HEAD
+                util.toast(MenuLabels.MAXIMUMCAPACITY_TOAST)
+=======
                 util.toast(lang.get_localised(MenuLabels.MAXIMUMCAPACITY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             end
         end)
 
@@ -2350,10 +3102,45 @@ local BunkMan = menu.list(menu.my_root(), MenuLabels.BUNKER, {}, MenuLabels.BUNK
     menu.toggle_loop(BunkMan, MenuLabels.MONITOR, {"monitorbunker"}, GetLabelText(MenuLabels.MONITOR_DESC, MenuLabels.PRODUCT, MenuLabels.BUNKER, MenuLabels.INFOOVERLAY), function()
         if IsInSession() then
             local capacity = GetGlobalInt(globals.MC.Bunker.Cap)
+<<<<<<< HEAD
+            util.draw_debug_text(GetLabelText(MenuLabels.INFO_BUNKER, MyBusinesses.Bunker.supplies, MyBusinesses.Bunker.product, capacity))
+        end
+    end)
+
+    -- if not IS_RELEASE_VERSION then
+    --     menu.toggle_loop(BunkMan, "[DEBUG] Monitor Autocomplete", {"autocompletebunkersell"}, "", function()
+    --         if IsInSession() then
+    --             local something = GetLocalInt(locals.BunkScriptString, locals.PeePeePooPoo)
+    --             local time_remaining = GetLocalInt(locals.BunkScriptString, locals.BunkTimeRemaining)
+    --             local time_deliver = GetLocalInt(locals.BunkScriptString, locals.BunkTimeTakenToDeliver)
+    --             if something then
+    --                 util.draw_debug_text(something)
+    --             end
+    --             if time_remaining then
+    --                 util.draw_debug_text("Time Remaining: " .. time_remaining)
+    --             end
+    --             if time_deliver then
+    --                 util.draw_debug_text("Time Taken To Deliver: " .. time_deliver)
+    --             end
+    --         end
+    --     end)
+    --     menu.toggle_loop(BunkMan, "[DEBUG] Finish Sell Mission (fail)", {"autocompletebunkersell"}, "This will cause a failure in the sell mission", function()
+    --         if IsInSession() then
+    --             local time_remaining = GetLocalInt(locals.BunkScriptString, locals.BunkTimeRemaining)
+    --             local time_deliver = GetLocalInt(locals.BunkScriptString, locals.BunkTimeTakenToDeliver)
+    --             if time_remaining and time_deliver then
+    --                 SetLocalInt(locals.BunkScriptString, locals.BunkTimeTakenToDeliver, time_remaining)
+    --             end
+    --         end
+    --     end)
+    -- end
+
+=======
             util.draw_debug_text(GetLabelTextLiteral(MenuLabels.INFO_BUNKER, MyBusinesses.Bunker.supplies, MyBusinesses.Bunker.product, capacity))
         end
     end)
 
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
     menu.toggle_loop(BunkMan, MenuLabels.RESUPPLY, {"resupplybunker"}, MenuLabels.RESUPPLY_DESC, function()
         if IsInSession() then
             if MyBusinesses.Bunker.property ~= 0 then
@@ -2367,7 +3154,11 @@ local BunkMan = menu.list(menu.my_root(), MenuLabels.BUNKER, {}, MenuLabels.BUNK
 
     menu.toggle_loop(BunkMan, MenuLabels.MAXSELLPRICE, {"maxsellbunker"}, GetLabelText(MenuLabels.MAXSELLPRICE_DESC, MenuLabels.PRODUCT, MenuLabels.PRODUCT), function()
         if remote.killswitches.maxsellprice then
+<<<<<<< HEAD
+            util.toast(MenuLabels.KILLSWITCH_MAXSELLPRICE)
+=======
             util.toast(lang.get_localised(MenuLabels.KILLSWITCH_MAXSELLPRICE))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
             SetGlobalInt(globals.MC.Bunker.Sell1, globals.MC.Bunker.Sell1DefaultValue)
             SetGlobalFloat(globals.MC.Bunker.Sell2, globals.MC.Bunker.Sell2DefaultValue)
             util.stop_thread()
@@ -2391,7 +3182,11 @@ local BunkMan = menu.list(menu.my_root(), MenuLabels.BUNKER, {}, MenuLabels.BUNK
         BunkProSpdVar = peepeepoopoo
         if BunkProSpdVar then
             SetGlobalInt(GetMCBusinessProductionSpeed2(MyBusinesses.Bunker.slot), 0)
+<<<<<<< HEAD
+            util.toast(MenuLabels.MAXPRODUCTIONSPEED_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.MAXPRODUCTIONSPEED_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         else
             SetGlobalInt(globals.MC.Bunker.ProSpd1, 600000)
             SetGlobalInt(globals.MC.Bunker.ProSpd2, 90000)
@@ -2411,14 +3206,22 @@ local BunkMan = menu.list(menu.my_root(), MenuLabels.BUNKER, {}, MenuLabels.BUNK
         if IsInSession() then
             SetGlobalInt(globals.MC.Bunker.Ratio1, value) -- no upgrade
             SetGlobalInt(globals.MC.Bunker.Ratio2, value) -- with upgrade
+<<<<<<< HEAD
+            util.toast(MenuLabels.SUPPLYPRODUCTRATIO_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.SUPPLYPRODUCTRATIO_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end
     end)
 
     menu.click_slider(BunkMan, MenuLabels.MAXIMUMCAPACITY, {"setcapbunker"}, MenuLabels.MAXIMUMCAPACITY_DESC, 1, 999, 100, 1, function(value)
         if IsInSession() then
             SetGlobalInt(globals.MC.Bunker.Cap, value)
+<<<<<<< HEAD
+            util.toast(MenuLabels.MAXIMUMCAPACITY_TOAST)
+=======
             util.toast(lang.get_localised(MenuLabels.MAXIMUMCAPACITY_TOAST))
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
         end
     end)
 
@@ -2449,7 +3252,11 @@ if not IS_RELEASE_VERSION then
             local coords = MCBusinessPropertyInfo[MyBusinesses[type].property].coords
             if coords then
                 if LoadArea(coords) then
+<<<<<<< HEAD
+                    SetEntityCoords(PLAYER_PLAYER_PED_ID(), coords)
+=======
                     TeleportTo(coords)
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
                 end
             else
                 util.toast("You do not have a "..type)
@@ -2519,3 +3326,15 @@ util.create_tick_handler(function()
     end
     return true
 end)
+<<<<<<< HEAD
+
+menu.hyperlink(menu.my_root(), MenuLabels.JOINDISCORD, "https://discord.gg/mmxWwc5FCC")
+menu.action(menu.my_root(), MenuLabels.SHOWMOTD, {}, tostring(THIS_RELEASE_VERSION) .. " / " .. remote.version, function()
+    if remote.motd == "" then
+        util.toast(MenuLabels.SHOWMOTDBLANK_TOAST)
+    else
+        util.toast(GetLabelText(MenuLabels.PREFIX_MOTD, remote.motd))
+    end
+end)
+=======
+>>>>>>> 0d434c56a68675170749320ff195e5cfc239c15f
