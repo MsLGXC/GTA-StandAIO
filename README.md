@@ -147,7 +147,7 @@
 
   - [x] Menyoo TOXX9.5 (基于原版1.40由守望社区大佬TOXX魔改，带机翻)
 
-  - [x] [Menyoo MAFINS 1.76](https://github.com/MAFINS/MenyooSP)
+  - [x] [Menyoo MAFINS 1.81](https://github.com/MAFINS/MenyooSP)
 
   - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
 
