@@ -58,7 +58,7 @@
 > 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
 > [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~20%-30%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）
+> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）
 
 ```bash
 “我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
@@ -79,7 +79,8 @@
 # 注意事项
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
-> **无论如何，您应该优先使用原脚本中的功能而不是二代目或任何国产脚本中复制缝合的功能（尤其是“模组加载器”）大部分缝合限于作者的技术原因无法及时更新，所以他们通常是很老的代码或根本是一堆破烂**<br>
+> **无论如何，您应该优先使用原脚本中的功能而不是任何缝合脚本中复制粘贴的功能，大部分缝合限于作者的技术原因无法及时更新，所以他们通常是很老的代码或根本是一堆破烂**<br>
+> **此项目不会添加任何缝合脚本，同样我也不支持您使用任何缝合脚本（即使是免费的）**<br>
 > **在线模式中最多同步80个实体，超出后仅本地显示。若别人无法看到请先清除旧的实体**<br>
 > **若使用Menyoo生成载具后异常，请重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
@@ -146,7 +147,7 @@
 
   - [x] Menyoo TOXX9.5 (基于原版1.40由守望社区大佬TOXX魔改，带机翻)
 
-  - [x] [Menyoo MAFINS 1.76](https://github.com/MAFINS/MenyooSP)
+  - [x] [Menyoo MAFINS 1.81](https://github.com/MAFINS/MenyooSP)
 
   - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
 
