@@ -53,12 +53,14 @@
 > ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数（相比v5），并降低了土豆发生的几率。
 
-# 另一个版本的MOD包
+# 另一个版本的MOD包（nveo）
 > 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
 > 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
 > [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。该版本特色：移植了一些nve可选组件如极光，拥有一个允许使用非经典shv调用asi以运行vsreload的加载方式（可以加载nve或qv等任何画质的视觉和天气参数，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。）
+> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。<br>
+> 该版本特色：移植了一些nve可选组件如极光，<del>拥有一个允许使用旧版垃圾2tshv调用asi以运行vsreloader的加载方式<del>(作者zzoko的智力似乎不太好，该功能已在v7使用20秒钟修复至原生钩子直接加载)<br>
+> （vsreloader允许您在游戏运行过程中加载nve或qv等任何画质的视觉和天气参数而不必重启游戏，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。该废弃项目现在在线上Mod中大放异彩）
 
 ```bash
 “我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
