@@ -17,7 +17,6 @@
   | [MAFINS/MenyooSP](https://github.com/MAFINS/MenyooSP) | C++\ASI |
   | [xSetrox/lancescript-reloaded](https://github.com/xSetrox/lancescript-reloaded) | Lua |
   | [xSetrox/lance-spooner](https://github.com/xSetrox/lance-spooner) | Lua |
-  | [xSetrox/gLance](https://github.com/xSetrox/gLance) | Lua |
   | [xSetrox/nextConsole](https://github.com/xSetrox/nextConsole) | Lua |
   | [nowiry/WiriScript](https://github.com/nowiry/WiriScript) | Lua |
   | [hexarobi/stand-lua-constructor](https://github.com/hexarobi/stand-lua-constructor) | Lua |
@@ -30,7 +29,10 @@
   | [d6bDev/EntityThrottler](https://github.com/d6bDev/EntityThrottler) | Lua |
   | [jackz/jackz_vehicle_builder](https://github.com/Jackzmc/lua-scripts) | Lua |
   | [jackz/jackz_vehicles](https://github.com/Jackzmc/lua-scripts) | Lua |
- 
+  | [Davus0717/custom-loadouts](https://github.com/Davus0717/custom-loadouts) | Lua |
+  | [Lev200501/InfOverlay](https://github.com/Lev200501/InfOverlay) | Lua |
+  | [bigtuna76/stand-lua-balldrop](https://github.com/bigtuna76/stand-lua-balldrop) | Lua |
+
 </div>
 
 # 公告
