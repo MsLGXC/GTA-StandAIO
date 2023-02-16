@@ -1,4 +1,4 @@
-Tree Compatibility Version: 42
+Tree Compatibility Version: 43
 Self
 	Weapons
 		Fill All Ammo: Mouse 5
@@ -20,9 +20,5 @@ Stand
 				Command Box: Numpad *
 	Lua Scripts
 		lancescript_reloaded
-			自我
-				我的战斗/武器
-					沉默自瞄
-						沉默自瞄: #
 			世界
 				超级清除: Numpad -

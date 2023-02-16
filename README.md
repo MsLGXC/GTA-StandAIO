@@ -2,8 +2,8 @@
 
 ![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
 ![maven](https://img.shields.io/badge/GTA-1.66-darkgreen)
-![maven](https://img.shields.io/badge/Stand-0.98.6-pink)
-![maven](https://img.shields.io/badge/AIO-v27b1-blue)
+![maven](https://img.shields.io/badge/Stand-0.99.3-pink)
+![maven](https://img.shields.io/badge/AIO-v28-blue)
 ![maven](https://img.shields.io/badge/Modpack-v6-red)
   
   <h1>StandAIO</h1>
@@ -34,7 +34,7 @@
 </div>
 
 # 公告
-## 本项目现已停止更新和维护,我已无时间精力继续和这个狗屎社区纠缠（更多的是没心情）。中国的游戏环境已经毁灭了，我不打算继续任何项目或者继续玩此游戏
+## 本项目正在以龟速更新和维护（AIO半个月-一个月，mod3-4个月）,我已无时间精力继续和这个狗屎社区纠缠（更多的是没心情）。中国的游戏环境已经毁灭了。
 ## AIO包的大部分内容仍然可用（但已过时）。同样，MOD包也仍然可用，您只需重新安装并更新SHV至最新的破解版本或直接删除（损失少量画面效果）
 ## 您可以在以下地址找到SHV破解器并一键破解最新版本[Exodouding/SHOUP](https://github.com/Exodouding/SHOUP)
 ## 当游戏更新至下一个dlc后，v6版本将如同上一个更新一样崩溃。修复的方法也很简单，您只需替换gameconfig为原始游戏文件（同时下蹲会失效）
@@ -84,6 +84,7 @@
 > **无论如何，您应该优先使用原脚本中的功能而不是任何缝合脚本中复制粘贴的功能，大部分缝合限于作者的技术原因无法及时更新，所以他们通常是很老的代码或根本是一堆破烂**<br>
 > **此项目不会添加任何缝合脚本，同样我也不支持您使用任何缝合脚本（即使是免费的）**<br>
 > **在线模式中最多同步80个实体，超出后仅本地显示。若别人无法看到请先清除旧的实体**<br>
+> **使用Constructor构造脚本似乎可以无视同步上限，未经测试证实**<br>
 > **若使用Menyoo生成载具后异常，请重载ASI**<br>
 > **若使用Menyoo生成地图后黑屏无限加载，请切换战局，并重载ASI**<br>
 > **本合集以实用主义至上，拒绝任何无意义或功能重复的资源**<br>
@@ -91,61 +92,63 @@
 ## *包含的内容*
 
 <details>
-  <summary>LUA Scripts</summary>
+  <summary>LUA Scripts（出于对原作者的尊重并且易于维护，没有改动名字）</summary>
 
-  - [x] lancescript_reloaded (汉化-MrLGXC)
+  - [x] lancescript_reloaded (汉化-MrLGXC) {多功能脚本}
 
-  - [x] WiriScript (汉化-MrLGXC)
+  - [x] WiriScript (汉化-MrLGXC) {多功能脚本}
 
-  - [x] LanceSpoonerCN (汉化-MrLGXC)
+  - [x] LanceSpoonerCN (汉化-MrLGXC) {xml\ini\json载具地图模组生成器}
 
-  - [x] PolicifyCN (汉化-MrLGXC)
+  - [x] PolicifyCN (汉化-MrLGXC) {监管，允许给载具添加警灯等各种设置}
 
-  - [x] nextConsoleCN (汉化-MrLGXC)
+  - [x] nextConsoleCN (汉化-MrLGXC) {游戏内可视化控制台}
 
-  - [x] head_bangCN (这也能算汉化?-MrLGXC)
+  - [x] head_bangCN (这也能算汉化?-MrLGXC) {行人甩头}
 
-  - [x] Constructor (汉化-Zelda Two)
+  - [x] Constructor (汉化-Zelda Two) {更强大的xml\ini\json载具地图模组生成器，同时允许制作人物模组并有实时预览功能}
 
-  - [x] SaltyScript (汉化-Zelda Two)
+  - [x] SaltyScript (汉化-Zelda Two) {多功能脚本}
 
-  - [x] CxScript (汉化-Zelda Two)
+  - [x] CxScript (汉化-Zelda Two) {多功能脚本}
 
-  - [x] SprunkStop (汉化-Zelda Two)
+  - [x] SprunkStop (汉化-Zelda Two) {生成雪碧的娱乐脚本}
 
-  - [x] EntityThrottler (汉化-Zelda Two)
+  - [x] EntityThrottler (汉化-Zelda Two) {实体节流器，控制世界内实体数量并删除溢出实体}
 
-  - [x] HornSongs (汉化-Zelda Two)
+  - [x] HornSongs (汉化-Zelda Two) {喇叭歌声，允许用本地歌曲替换载具喇叭声音}
 
-  - [x] JinxScript__CN (汉化-BLackMist)
+  - [x] JinxScript__CN (汉化-BLackMist) {多功能脚本}
 
-  - [x] jackz_vehicle_builder (汉化-谷歌翻译)
+  - [x] jackz_vehicle_builder (汉化-谷歌翻译) {使用jackz写法的json格式载具生成器，LanceSpooner和Constructor同样支持}
 
-  - [x] jackz_vehicles (汉化-谷歌翻译)
+  - [x] jackz_vehicles (汉化-谷歌翻译) {可对世界内载具进行一系列操作}
 
-  - [x] Heist Control (汉化-未知)
+  - [x] Heist Control (汉化-未知) {抢劫控制，允许你立刻启动各种抢劫任务，跳过前置或准备，设置大量分红等}
 
-  - [x] MusinessBanagersource (汉化-zzzz)
+  - [x] MusinessBanagersource (汉化-zzzz) {业务经理，允许你掌控你所有产业中的货物，立刻补充原材料或是立刻生产并贩卖成品}
 
-  - [x] Actions (汉化-未知)
+  - [x] Actions (汉化-未知) {动作脚本，允许你使用游戏中所有已知的动画和场景}
 
-  - [x] train_control.cn (汉化-Vermouth)
+  - [x] train_control.cn (汉化-Vermouth) {火车控制}
 
-  - [x] vehWeaponsControl (汉化-Zelda Two)
+  - [x] vehWeaponsControl (汉化-Zelda Two) {载具武器控制，允许你在任何座位上遥控载具的武器}
 
-  - [x] custom-loadout (汉化-Zelda Two)
+  - [x] custom-loadout (汉化-Zelda Two) {自定义装备加载-类似原版但更强大的武器库管理并可随时编辑配件并保存配置自动加载}
 
-  - [x] 12s Black Hole (汉化-Zelda Two)
+  - [x] 12s Black Hole (汉化-Zelda Two) {黑洞，可在游戏里生成黑洞并吸走所有载具}
 
-  - [x] BallDrop (汉化-Zelda Two)
+  - [x] BallDrop (汉化-Zelda Two) {掉球脚本 从天上掉足球，娱乐}
 
-  - [x] InfOverlay (汉化-暂无计划)
+  - [x] InfOverlay (汉化-暂无计划) {可视化信息覆盖层，浏览玩家时在游戏内显示图形化的玩家信息并有一个小地图显示玩家位置}
 
 </details>
 <details>
   <summary>Theme</summary>
 
   - [x] MrLGXC制作的20个超高清中文玩家标签，极致美学，巅峰像素
+
+  - [x] 不知道谁制作的"VPN"玩家标签用以补充（我自己的电脑重装了所以没了旧的素材）
 
   - [x] 高清重制的stand图形选项卡
 
@@ -177,7 +180,7 @@
 <details>
   <summary>Profiles</summary>
 
-  - [x] MrLGXC自用配置，3400h+游戏时长，3300h+菜单经验，1100h+stand经验，全场景适用
+  - [x] MrLGXC自用配置，3500h+游戏时长，3400h+菜单经验，1200h+stand经验，全场景适用
 
 </details>
 <details>
