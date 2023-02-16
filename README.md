@@ -101,8 +101,6 @@
 
   - [x] PolicifyCN (汉化-MrLGXC)
 
-  - [x] gLanceCN (汉化-MrLGXC)
-
   - [x] nextConsoleCN (汉化-MrLGXC)
 
   - [x] head_bangCN (这也能算汉化?-MrLGXC)
@@ -125,13 +123,23 @@
 
   - [x] jackz_vehicles (汉化-谷歌翻译)
 
-  - [x] Heist Control (汉化-)
+  - [x] Heist Control (汉化-未知)
 
   - [x] MusinessBanagersource (汉化-zzzz)
 
-  - [x] Actions (汉化-)
+  - [x] Actions (汉化-未知)
 
   - [x] train_control.cn (汉化-Vermouth)
+
+  - [x] vehWeaponsControl (汉化-Zelda Two)
+
+  - [x] custom-loadout (汉化-Zelda Two)
+
+  - [x] 12s Black Hole (汉化-Zelda Two)
+
+  - [x] BallDrop (汉化-Zelda Two)
+
+  - [x] InfOverlay (汉化-暂无计划)
 
 </details>
 <details>
