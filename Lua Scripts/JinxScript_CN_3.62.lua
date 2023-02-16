@@ -671,7 +671,7 @@ local function player(pid)
     menu.action(griefing, "发送到高尔夫俱乐部", {"golf"}, "派遣玩家去打高尔夫.", function()
         if StandUser(pid) then util.toast(stand_notif) return end
         local int = memory.read_int(memory.script_global(1894573 + 1 + (pid * 608) + 510))
-        util.trigger_script_event(1 << pid, {-95341040, players.user(), 116, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, int})
+        util.trigger_script_event(1 << pid, {-95341040, players.user(), 193, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, int})
         util.trigger_script_event(1 << pid, {1742713914, players.user(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0})
     end)
 
@@ -2457,17 +2457,17 @@ end)
 
 local spoof = menu.list(protections, "欺骗观看同步")
 local x = 0.00
-menu.slider_float(spoof, "X (横向)", {"spoofedx"}, "", 0, 1000000, 0, 1, function(x_pos)
+menu.slider_float(spoof, "X (横向)", {"spoofedx"}, "", 0, 1000000, 1000000, 1, function(x_pos)
     x = x_pos
 end)
 
 local y = 0.00
-menu.slider_float(spoof, "Y (纵向)", {"spoofedy"}, "", 0, 1000000, 0, 1, function(y_pos)
+menu.slider_float(spoof, "Y (纵向)", {"spoofedy"}, "", 0, 1000000, 1000000, 1, function(y_pos)
     y = y_pos
 end)
 
 local z = 0.00
-menu.slider_float(spoof, "Z (高度)", {"spoofedz"}, "", 0, 1000000, 0, 1, function(z_pos)
+menu.slider_float(spoof, "Z (高度)", {"spoofedz"}, "", -20000, 270000, -20000, 1, function(z_pos)
     z = z_pos
 end)
 
