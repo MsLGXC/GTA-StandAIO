@@ -37,9 +37,7 @@
 
 # 公告
 ## 本项目正在以龟速更新和维护（AIO半个月-一个月，mod3-4个月）,我已无时间精力继续和这个狗屎社区纠缠（更多的是没心情）。中国的游戏环境已经毁灭了。
-## AIO包的大部分内容仍然可用（但已过时）。同样，MOD包也仍然可用，您只需重新安装并更新SHV至最新的破解版本或直接删除（损失少量画面效果）
-## 您可以在以下地址找到SHV破解器并一键破解最新版本[Exodouding/SHOUP](https://github.com/Exodouding/SHOUP)
-## 当游戏更新至下一个dlc后，v6版本将如同上一个更新一样崩溃。修复的方法也很简单，您只需替换gameconfig为原始游戏文件（同时下蹲会失效）
+## 为了照顾智力残障人士特别更新了mod升级包至1.66
 ## 如果您想要帮助此项目和整个社区的发展，可以直接点击fork创建一个分叉，并上传您想要添加或更新的任何东西。创建拉取请求以更新到此主要分支。一起维护此项目。
 ## 如果您决定帮助更新此项目，您可以添加任何您想要的东西。只要它是与游戏有关的。同样您也可以forkv6mod包。添加更多Mod内容或者删除一些不稳定内容（ps:我已经有一个完整修复和更新的三个大框架版本v7。但是我懒得上传）
 ## 如果您决定维护modv6，那么ro框架可能无法更新。因为我不能说登陆下载地址的账号密码?但同样您可以更新其他任何内容只要您认为这有益于游戏
@@ -49,19 +47,19 @@
 
 # 线上MOD包
 > 如果你对线上mod包感兴趣，可以查看此视频（v4)[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
-> 当前发布的mod包版本 ROv6,BOv4 点击图标选择下载方式<br><br>
+> 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
 > ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br>
-> ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象。v6版本使用海克斯科技提高了~15%左右的帧数（相比v5），并降低了土豆发生的几率。
+> ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
 
-# 另一个版本的MOD包（nveo）
+# 另一个版本的MOD包（nveo）{不推荐}
 > 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
 > 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
 > [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。<br>
-> 该版本特色：移植了一些nve可选组件如极光，<del>拥有一个允许使用旧版垃圾2tshv调用asi以运行vsreloader的加载方式</del>(作者zzoko的智力似乎不太好，该功能已在v7使用20秒钟修复至原生钩子直接加载)<br>
+> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的nveo版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。<br>
+> 该版本特色：移植了一些nve可选组件如极光，<del>拥有一个允许使用旧版垃圾2tshv调用asi以运行vsreloader的加载方式</del>(作者zzoko的智力似乎不太好，该功能已在我自己的包中使用20秒钟修复至原生钩子直接加载且没有任何冲突)<br>
 > （vsreloader允许您在游戏运行过程中加载nve或qv等任何画质的视觉和天气参数而不必重启游戏，由于r星的资产机制所以你不能直接把这些修改装进mod文件，否则无法匹配到其他战局。也就是说“绕过线上检测”实际上=阉割为原版视觉设置。该废弃项目现在在线上Mod中大放异彩）
 
 ```bash
