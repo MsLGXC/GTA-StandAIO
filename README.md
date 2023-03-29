@@ -1,10 +1,10 @@
 <div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MrLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
 ![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
-![maven](https://img.shields.io/badge/GTA-1.66-darkgreen)
-![maven](https://img.shields.io/badge/Stand-0.99.3-pink)
+![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
+![maven](https://img.shields.io/badge/Stand-101.1-pink)
 ![maven](https://img.shields.io/badge/AIO-v28-blue)
-![maven](https://img.shields.io/badge/Modpack-v6-red)
+![maven](https://img.shields.io/badge/Modpack-v6--red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -36,24 +36,23 @@
 </div>
 
 # 公告
-## 本项目正在以龟速更新和维护（AIO半个月-一个月，mod3-4个月）,我已无时间精力继续和这个狗屎社区纠缠（更多的是没心情）。中国的游戏环境已经毁灭了。
-## 为了照顾智力残障人士特别更新了mod升级包至1.66
-## 如果您想要帮助此项目和整个社区的发展，可以直接点击fork创建一个分叉，并上传您想要添加或更新的任何东西。创建拉取请求以更新到此主要分支。一起维护此项目。
-## 如果您决定帮助更新此项目，您可以添加任何您想要的东西。只要它是与游戏有关的。同样您也可以forkv6mod包。添加更多Mod内容或者删除一些不稳定内容（ps:我已经有一个完整修复和更新的三个大框架版本v7。但是我懒得上传）
-## 如果您决定维护modv6，那么ro框架可能无法更新。因为我不能说登陆下载地址的账号密码?但同样您可以更新其他任何内容只要您认为这有益于游戏
+## 本项目历时34天删库后重新回归。很可能不会更新。仅做指路和纪念用途
+## 为了照顾智力残障人士特别更新了mod升级包至1.67
+## 由于本人目前经济困难，您需要在爱发电中付费方可获取入群链接密码。当然一切内容仍然都是免费的，包括之后如果有更新
+## 由于本人经济困难所以无力继续玩游戏。此项目在最近半年内可能不会更新，半年以后另说
+## 当前AIO包中的许多Lua已过时,无力更新
+## 发癫主页https://afdian.net/a/MsLGXC
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
-> 如果您对上一条不感兴趣，也欢迎加入[双叶幼稚园](https://jq.qq.com/?_wv=1027&k=WfN0bIsi)，一起搞♂(迫真)!<br>
 
 # 线上MOD包
-> 如果你对线上mod包感兴趣，可以查看此视频（v4)[侠盗战地手 OL](https://www.bilibili.com/video/BV1914y1j7rg)<br>
-> 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
-> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1fGE8aJaufAg-sBu0PMD0sw?pwd=LGXC)<br>
-> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br>
-> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br>
+> 当前发布的mod包版本 ROv6-（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1ouvUJ5WIK3o1_ldOaBWemA?pwd=LGXC)<br>
+> <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br> </del>
+> <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
 
-# 另一个版本的MOD包（nveo）{不推荐}
+# 另一个版本的MOD包（nveo）
 > 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
 > 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
 > [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
@@ -180,7 +179,7 @@
 <details>
   <summary>Profiles</summary>
 
-  - [x] MrLGXC自用配置，3500h+游戏时长，3400h+菜单经验，1200h+stand经验，全场景适用
+  - [x] MrLGXC自用配置，3600h+游戏时长，3500h+菜单经验，1300h+stand经验，全场景适用
 
 </details>
 <details>
