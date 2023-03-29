@@ -1,6 +1,6 @@
-<div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MrLGXC/GTA-StandAIO/main/Elaina.jpg"/>
+<div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
-![maven](https://img.shields.io/badge/MrLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
+![maven](https://img.shields.io/badge/MsLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
 ![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
 ![maven](https://img.shields.io/badge/Stand-101.1-pink)
 ![maven](https://img.shields.io/badge/AIO-v28-blue)
@@ -8,10 +8,10 @@
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
-  本项目前身为2021/10由MrLGXC创建的Stand配置，后与MrLGXC在11月创建的lance/wiri等脚本汉化合并。<br>
+  本项目前身为2021/10由MsLGXC创建的Stand配置，后与MsLGXC在11月创建的lance/wiri等脚本汉化合并。<br>
   于2021/12正式开始StandAIO项目，为创建更好的社区于2022/11转储v25至github公开储存库<br>
 
-  本项目符合 [GPL3.0通用公开许可证](https://github.com/MrLGXC/GTA-StandAIO/blob/main/LICENSE) 标准，可基于以下项目进行翻译
+  本项目符合 [GPL3.0通用公开许可证](https://github.com/MsLGXC/GTA-StandAIO/blob/main/LICENSE) 标准，可基于以下项目进行翻译
   | 项目地址 | 平台 |
   | --- | --- |
   | [MAFINS/MenyooSP](https://github.com/MAFINS/MenyooSP) | C++\ASI |
@@ -43,7 +43,7 @@
 ## 当前AIO包中的许多Lua已过时,无力更新
 ## 发癫主页https://afdian.net/a/MsLGXC
 
-> 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
+> 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
 > 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
@@ -93,17 +93,17 @@
 <details>
   <summary>LUA Scripts（出于对原作者的尊重并且易于维护，没有改动名字）</summary>
 
-  - [x] lancescript_reloaded (汉化-MrLGXC) {多功能脚本}
+  - [x] lancescript_reloaded (汉化-MsLGXC) {多功能脚本}
 
-  - [x] WiriScript (汉化-MrLGXC) {多功能脚本}
+  - [x] WiriScript (汉化-MsLGXC) {多功能脚本}
 
-  - [x] LanceSpoonerCN (汉化-MrLGXC) {xml\ini\json载具地图模组生成器}
+  - [x] LanceSpoonerCN (汉化-MsLGXC) {xml\ini\json载具地图模组生成器}
 
-  - [x] PolicifyCN (汉化-MrLGXC) {监管，允许给载具添加警灯等各种设置}
+  - [x] PolicifyCN (汉化-MsLGXC) {监管，允许给载具添加警灯等各种设置}
 
-  - [x] nextConsoleCN (汉化-MrLGXC) {游戏内可视化控制台}
+  - [x] nextConsoleCN (汉化-MsLGXC) {游戏内可视化控制台}
 
-  - [x] head_bangCN (这也能算汉化?-MrLGXC) {行人甩头}
+  - [x] head_bangCN (这也能算汉化?-MsLGXC) {行人甩头}
 
   - [x] Constructor (汉化-Zelda Two) {更强大的xml\ini\json载具地图模组生成器，同时允许制作人物模组并有实时预览功能}
 
@@ -145,7 +145,7 @@
 <details>
   <summary>Theme</summary>
 
-  - [x] MrLGXC制作的20个超高清中文玩家标签，极致美学，巅峰像素
+  - [x] MsLGXC制作的20个超高清中文玩家标签，极致美学，巅峰像素
 
   - [x] 不知道谁制作的"VPN"玩家标签用以补充（我自己的电脑重装了所以没了旧的素材）
 
@@ -161,7 +161,7 @@
 
   - [x] [Menyoo MAFINS 1.81](https://github.com/MAFINS/MenyooSP)
 
-  - [x] Rampage (由MrLGXC翻译，由于兼容性问题已不再提供官方支持)
+  - [x] Rampage (由MsLGXC翻译，由于兼容性问题已不再提供官方支持)
 
 </details>
 <details>
@@ -179,7 +179,7 @@
 <details>
   <summary>Profiles</summary>
 
-  - [x] MrLGXC自用配置，3600h+游戏时长，3500h+菜单经验，1300h+stand经验，全场景适用
+  - [x] MsLGXC自用配置，3600h+游戏时长，3500h+菜单经验，1300h+stand经验，全场景适用
 
 </details>
 <details>
@@ -191,7 +191,7 @@
 <details>
   <summary>Headers</summary>
 
-  - [x] MrLGXC自用主题所需的头图
+  - [x] MsLGXC自用主题所需的头图
 
 </details>
 
@@ -199,11 +199,11 @@
 
 ## 1.使用发行版 (推荐)
 
-[![Github](https://shields.io/badge/GITHUB-RELEASE-4476AF?logo=github&style=for-the-badge)](https://github.com/MrLGXC/GTA-StandAIO/releases)
+[![Github](https://shields.io/badge/GITHUB-RELEASE-4476AF?logo=github&style=for-the-badge)](https://github.com/MsLGXC/GTA-StandAIO/releases)
 
 ## 2.使用每夜版（不推荐）
 
-[![Github](https://shields.io/badge/GITHUB-CODE\MAIN-4476AF?logo=github&style=for-the-badge)](https://ghproxy.com/https://github.com/MrLGXC/GTA-StandAIO/archive/refs/heads/main.zip)<br>
+[![Github](https://shields.io/badge/GITHUB-CODE\MAIN-4476AF?logo=github&style=for-the-badge)](https://ghproxy.com/https://github.com/MsLGXC/GTA-StandAIO/archive/refs/heads/main.zip)<br>
 点击此处下载最新的每夜版，由于文件是实时更新的，并且作者并未准备好完整的发布。可能在储存库变更后导致严重问题。
 
 ### *安装方法*
