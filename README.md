@@ -47,7 +47,7 @@
 
 # 线上MOD包
 > 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
-> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1ouvUJ5WIK3o1_ldOaBWemA?pwd=LGXC)<br>
+> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)]()<br>
 > <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
 > <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
