@@ -4,7 +4,7 @@
 ![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
 ![maven](https://img.shields.io/badge/Stand-101.1-pink)
 ![maven](https://img.shields.io/badge/AIO-v28-blue)
-![maven](https://img.shields.io/badge/Modpack-v6--red)
+![maven](https://img.shields.io/badge/Modpack-v6+-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -46,10 +46,10 @@
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MrLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv6-（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1ouvUJ5WIK3o1_ldOaBWemA?pwd=LGXC)<br>
-> <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g<br> </del>
-> <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 由于空间不足已停止上传<br><br> </del>
+> <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
+> <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
 
 # 另一个版本的MOD包（nveo）
