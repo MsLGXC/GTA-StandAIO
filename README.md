@@ -37,16 +37,16 @@
 
 # 公告
 ## 本项目历时34天删库后重新回归。很可能不会更新。仅做指路和纪念用途
-## 为了照顾智力残障人士特别更新了mod升级包至1.67
+## v6+已更新，正在上传中，添加了更多的脚本，完善了卸载包，添加了极简版
 ## 由于本人目前经济困难，您需要在爱发电中付费方可获取入群链接密码。当然一切内容仍然都是免费的，包括之后如果有更新
 ## 由于本人经济困难所以无力继续玩游戏。此项目在最近半年内可能不会更新，半年以后另说
 ## 当前AIO包中的许多Lua已过时,无力更新
-## 发癫主页https://afdian.net/a/MsLGXC
+## 爱发癫主页https://afdian.net/a/MsLGXC
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv6（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> 当前发布的mod包版本 ROv6+（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)]()<br>
 > <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
 > <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
@@ -77,7 +77,7 @@
 > **我们决定登月**<br>
 > **我们决定在这十年间登上月球，并实现更多梦想，并非它们轻而易举，而是它们困难重重**<br>
 > **因为这个目标将促进我们实现最佳的组织并测出我们最佳的能力，因为这个挑战我们乐于接受**<br>
-> **因为这个挑战我们不愿推迟，因为这个挑战我们志在必得，其他的挑战也是如此。**<br>
+> **因为这个挑战我们不愿推迟，因为这个挑战我们志在必得，其他的挑战也是如此**<br>
 # 注意事项
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
