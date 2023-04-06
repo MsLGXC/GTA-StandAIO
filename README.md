@@ -41,13 +41,15 @@
 ## 由于本人目前经济困难，您需要在爱发电中付费方可获取入群链接密码。当然一切内容仍然都是免费的，包括之后如果有更新
 ## 由于本人经济困难所以无力继续玩游戏。此项目在最近半年内可能不会更新，半年以后另说
 ## 当前AIO包中的许多Lua已过时,无力更新
+## 重要!!!由于本项目的收藏和入群数量均远远低于预期，所以最新内容将仅在群内发布!当新版本发布后公开上一个版本!
 ## 爱发癫主页https://afdian.net/a/MsLGXC
 
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
 > 当前发布的mod包版本 ROv6+（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
-> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)]()<br>
+> 目前您能免费下载的最新版本为v6<br><br>
+> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
 > <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
 > <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
