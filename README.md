@@ -4,7 +4,7 @@
 ![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
 ![maven](https://img.shields.io/badge/Stand-101.1-pink)
 ![maven](https://img.shields.io/badge/AIO-v28-blue)
-![maven](https://img.shields.io/badge/Modpack-v6+-red)
+![maven](https://img.shields.io/badge/Modpack-v7-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -64,7 +64,9 @@
 > <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
 > <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
-
+# v7抢先看！
+<div align=center><img width="959" height="2996" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
+</div>
 <del>
 # 另一个版本的MOD包（nveo）
 > 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
