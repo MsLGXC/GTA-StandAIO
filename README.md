@@ -65,7 +65,7 @@
 > <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
 > ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
 # v7抢先看！
-<div align=center><img width="959" height="2996" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
+<div align=center><img width="1918" height="5993" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
 </div>
 <del>
 # 另一个版本的MOD包（nveo）
