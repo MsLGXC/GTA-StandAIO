@@ -1,0 +1,96 @@
+----------------------------------------------------------------------------
+-- NATIVE CHECK
+----------------------------------------------------------------------------
+
+-- Check If Natives Are Installed
+util.ensure_package_is_installed('lua/natives-1672190175')
+local status_natives, natives = pcall(require, "natives-1672190175")
+if not status_natives then
+    error("Could not natives lib. Make sure it is selected under Stand > Lua Scripts > Repository > natives-1672190175")
+end
+
+
+----------------------------------------------------------------------------
+-- VARIABLES
+----------------------------------------------------------------------------
+
+-- The Names Of The Players Aiming At You
+local player_names = { "Unknown" }
+
+-- The Position, Size, And Color Of The Text
+local x = 0.525
+local y = 0.420
+local y_itterated = 0.02
+local text_size = 0.60
+local text_spacing = 30
+local text_color = {
+    r = 1.0,
+    g = 0.0,
+    b = 1.0,
+    a = 1.0
+}
+
+
+----------------------------------------------------------------------------
+-- MENU OPTIONS
+----------------------------------------------------------------------------
+
+-- Enable / Disable Aim Warning
+menu.toggle_loop(menu.my_root(), "Aim Warning", { "aimwarning" }, "Displays A Warning When You Are Being Aimed At", function()
+    get_players_aiming_at_you()
+    draw_text()
+end)
+
+-- Divider
+menu.divider(menu.my_root(), "Customization")
+
+-- Position
+menu.slider_float(menu.my_root(), "X Position", {}, "X Position Of Warning Text", 0, 1000, 525, 5, function(value)
+    x = (value / 1000)
+end)
+menu.slider_float(menu.my_root(), "Y Position", {}, "Y Position Of Warning Text", 0, 1000, 420, 5, function(value)
+    y = (value / 1000)
+end)
+
+-- Text Size
+menu.slider_float(menu.my_root(), "Text Size", {}, "Text Size Of Warning Text", 0, 300, 60, 5, function(value)
+    text_size = (value / 100)
+end)
+
+-- Text Spacing
+menu.slider_float(menu.my_root(), "Line Spacing", {}, "Text Spacing Of Warning Text", 20, 500, 110, 5, function(value)
+    text_spacing = (28 * (value / 100))
+    util.toast("value: " .. (value / 100))
+    util.toast("text_spacing: " .. text_spacing)
+end)
+
+-- Text Color
+menu.my_root():colour(lang.find_builtin("Colour"), {}, "", 1.0, 0.0, 1.0, 1.0, false, function(color, click_type)
+    text_color = color;
+end)
+
+
+----------------------------------------------------------------------------
+-- FUNCTIONS
+----------------------------------------------------------------------------
+
+-- Get If Player Is Aiming At You
+function get_players_aiming_at_you()
+    for i = 0, 31, 1
+    do
+        if players.exists(i) and PLAYER.IS_PLAYER_FREE_AIMING_AT_ENTITY(NETWORK.NETWORK_GET_PLAYER_INDEX_FROM_PED(PLAYER.GET_PLAYER_PED(i)), players.user_ped()) then
+            table.insert(player_names, PLAYER.GET_PLAYER_NAME(i))
+        end
+    end
+end
+
+-- Draw The Names Of The Players Aiming At You
+function draw_text()
+    for i, names in ipairs(player_names) do
+        directx.draw_text(x, y + y_itterated, names, ALIGN_CENTRE, text_size, text_color)
+        y_itterated += (text_size / text_spacing)
+    end
+
+    y_itterated = 0.02
+    player_names = {}
+end

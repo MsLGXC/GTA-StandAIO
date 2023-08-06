@@ -38,12 +38,14 @@
 # 公告
 # v7将在8月6号发布!为庆祝本mod公开一周年，v7将对所有人免费开放下载!特此公告!<br>
 
+<del>
 ## 关于2944 1.67 gta雇佣兵dlc 的 紧急通知
 ## 当前没有正式发布v7，原因为gta更新后enb和reshade出现兼容问题。您可以手动修复以解决
 ## 安装v6/v6+后 根据我的视频手动破解或进群下载更新最新的破解钩子（或直接删除，所有脚本和大部分asi将失效）。不要使用官方钩子，否则进入线上将强制退出
 ## 替换gameconfig为原版游戏（下蹲将失效）否则游戏一加载就会立刻崩溃
 ## 设置gta5.exe以win7兼容模式运行（enb和reshade将正常使用）
 ## 车身雨滴失效解决方法，替换patch2023_01\dlc.rpf\x64\levels\gta5\vehicles.rpf中的vehshare为安装后你能找到的最大的vehshare版本
+</del>
 <br><br><br>
 
 ## 没有正式发布的原因是，我不希望我花几个小时就做个临时版本用十几天，又要推翻重来。我做了也得不到任何收入。所以建议各位根据以上自行操作修复
@@ -58,24 +60,13 @@
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv6+（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> 当前发布的mod包版本 ROv7（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > 目前您能免费下载的最新版本为v6<br><br>
-> [![Pan](https://shields.io/badge/百度云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
-> <del> [![Pan](https://shields.io/badge/天翼云-ROv6+BOv4-red?logo=go&style=for-the-badge)](https://cloud.189.cn/t/2QfQj2aaqeii) 访问码:fg8g 天翼云无时间分流<br> </del>
-> <del> ![Pan](https://shields.io/badge/GoogleDrive-ROV5-red?logo=googledrive&style=for-the-badge) 谷歌云无空间上传<br><br> </del>
-> ps:RO框架需要的配置较高，游戏过程中可能会偶尔出现土豆的现象（已解决）。
+> [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
+> [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/joEeVv-kxFU3.html) 提取码：LGXC<br>
 # v7抢先看！
 <div align=center><img width="1918" height="5993" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
 </div>
-<del>
-# 另一个版本的MOD包（nveo）
-> 另有一个由@zzoko移植修改的线上nve版本（前身enhance v）<br>
-> 当前发布的mod包版本 3.1 点击图标选择下载方式 由@SakuraYears分流至百度云<br><br>
-> [![Pan](https://shields.io/badge/百度云-NVEO-darkbule?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1lso2jRaZlAuCiZdQo1dGxQ?pwd=AQxH)<br>
-> [![Pan](https://shields.io/badge/anonfiles-NVEO-darkbule?logo=go&style=for-the-badge)](https://anonfiles.com/Z5G2i9Ucyc/Natural_Vision_Evolved_Online_December_22_v3.1_rar)<br><br>
-> ps:v6的rebellion也是以nve为基础，修改和添加的更多。作者是@meadow。老牌mod大佬。而由zzoko制作的nveo版本阉割内容更多，大约~40%-55%的内容实际上是未被安装的（只是放在文件里注释掉）。<br>
-> 该版本特色：移植了一些nve可选组件如极光
-</del>
 
 ```bash
 “我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
