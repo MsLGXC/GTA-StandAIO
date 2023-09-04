@@ -2,9 +2,9 @@
 
 ![maven](https://img.shields.io/badge/MsLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
 ![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
-![maven](https://img.shields.io/badge/Stand-101.1-pink)
+![maven](https://img.shields.io/badge/Stand-107.8-pink)
 ![maven](https://img.shields.io/badge/AIO-v28-blue)
-![maven](https://img.shields.io/badge/Modpack-v7-red)
+![maven](https://img.shields.io/badge/Modpack-v8-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -47,8 +47,8 @@
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv7（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
-> 目前您能免费下载的最新版本为v7<br><br>
+> 当前发布的mod包版本 ROv8（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> 目前您能免费下载的最新版本为v8<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/joEeVv-kxFU3.html) 提取码：LGXC<br>
 # v7抢先看！
