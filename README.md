@@ -37,8 +37,12 @@
 
 # 公告
 # 此项目已完全停止更新!包括线上mod!<br>
+# 勿下载standaio的任何版本，已经很长时间没有更新，几乎大部分内容都已不适用当前stand版本<br>
 # 注意，不要使用stand进入游戏!否则您有极高可能被封号!2023/8/30-2023/?/?<br>
-# 安装v7/v8进入游戏暂时没有问题
+# 线上modv7，v8仍可正常下载安装并游玩<br>
+# v7/v8尚未有任何单独使用导致的封号报告<br>
+# 请确认你没有启动任何其他外挂软件，菜单，仅使用mod导致封号<br>
+# 不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上<br>
 
 <br><br><br>
 
@@ -47,7 +51,7 @@
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv8（基于NVE制作）,BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
+> 当前发布的mod包版本 ROv7（基于NVE制作）,ROv8（基于rb制作）BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > 目前您能免费下载的最新版本为v8<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/joEeVv-kxFU3.html) 提取码：LGXC<br>
