@@ -54,7 +54,7 @@
 > 当前发布的mod包版本 ROv7（基于NVE制作）,ROv8（基于rb制作）BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
 > 目前您能免费下载的最新版本为v8<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
-> [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/joEeVv-kxFU3.html) 提取码：LGXC<br>
+> [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/zgYhjv-kmNOA.html) 提取码：LGXC<br>
 # v7抢先看！
 <div align=center><img width="1918" height="5993" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
 </div>
