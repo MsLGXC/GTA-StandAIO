@@ -43,6 +43,7 @@
 # v7/v8尚未有任何单独使用导致的封号报告<br>
 # 请确认你没有启动任何其他外挂软件，菜单，仅使用mod导致封号<br>
 # 不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上<br>
+# 关于v3028更新后游戏闪退等问题，请安装这个https://github.com/MsLGXC/GTA-gameconfigmp
 
 <br><br><br>
 
@@ -55,9 +56,6 @@
 > 目前您能免费下载的最新版本为v8<br><br>
 > [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
 > [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/zgYhjv-kmNOA.html) 提取码：LGXC<br>
-# v7抢先看！
-<div align=center><img width="1918" height="5993" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/v7.png"/>
-</div>
 
 ```bash
 “我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
