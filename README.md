@@ -1,10 +1,10 @@
 <div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
 ![maven](https://img.shields.io/badge/MsLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
-![maven](https://img.shields.io/badge/GTA-1.67-darkgreen)
-![maven](https://img.shields.io/badge/Stand-107.8-pink)
-![maven](https://img.shields.io/badge/AIO-v28-blue)
-![maven](https://img.shields.io/badge/Modpack-v8-red)
+![maven](https://img.shields.io/badge/GTA-1.68-darkgreen)
+![maven](https://img.shields.io/badge/Stand(outdated))-107.8-pink)
+![maven](https://img.shields.io/badge/AIO(outdated)-v28-blue)
+![maven](https://img.shields.io/badge/Modpack(Support_Latest)-v8-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -36,15 +36,13 @@
 </div>
 
 # 公告
-# 此项目已完全停止更新!包括线上mod!<br>
-# 勿下载standaio的任何版本，已经很长时间没有更新，几乎大部分内容都已不适用当前stand版本<br>
-# 注意，不要使用stand进入游戏!否则您有极高可能被封号!2023/8/30-2023/?/?<br>
-# 线上modv7，v8仍可正常下载安装并游玩<br>
-# v7/v8尚未有任何单独使用导致的封号报告<br>
-# 请确认你没有启动任何其他外挂软件，菜单，仅使用mod导致封号<br>
-# 不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上<br>
-# 关于v3028更新后游戏闪退等问题，请安装这个https://github.com/MsLGXC/GTA-gameconfigmp
+# 此项目已完全停止更新!包括线上mod!
+# 勿下载standaio的任何版本，已经很长时间没有更新，几乎大部分内容都已不适用当前stand版本
+# 线上mod所有版本（目前仅提供v4,v7,v8)仍可正常下载安装并游玩
+# 关于v3095更新后游戏闪退等问题，请安装这个https://github.com/MsLGXC/GTA-gameconfigmp
 # 关于v8没有车身雨滴：由于疏忽不小心把文件放错位置导致没有加载-请提取您安装后最大的vehshare并将其替换掉patch2023中的那一个
+# v7/v8尚未有任何单独使用导致的封号报告,请确认你没有启动任何其他外挂软件，菜单
+# 不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上
 
 <br><br><br>
 
@@ -53,65 +51,20 @@
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
-> 当前发布的mod包版本 ROv7（基于NVE制作）,ROv8（基于rb制作）BOv4（基于基础大修制作） 点击图标选择下载方式<br><br>
-> 目前您能免费下载的最新版本为v8<br><br>
-> [![Pan](https://shields.io/badge/百度云-ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
-> [![Pan](https://shields.io/badge/123-ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/zgYhjv-kmNOA.html) 提取码：LGXC<br>
+> 当前发布的mod包版本 MsLGXCv8（在rb,nb等众多mod基础上完全重做合并冲突）,ROv7（RO本体基于NVE制作）,BOv4（基于基础大修制作）<br><br>
+> 点击图标选择下载方式<br><br>
+> [![Pan](https://shields.io/badge/百度云-MsLGXCv8+ROv7+BOv4-red?logo=go&style=for-the-badge)](https://pan.baidu.com/s/1cy_kLH3HKZ4_OFsge4669w?pwd=LGXC)<br>
+> [![Pan](https://shields.io/badge/123-MsLGXCv8+ROv7-red?logo=go&style=for-the-badge)](https://www.123pan.com/s/zgYhjv-kmNOA.html) 提取码：LGXC<br>
 
 ```bash
-“我看见一匹灰马。骑在马上的，名字叫做死，地狱也随之而来。有权柄赐给他们，可以用刀剑、饥荒、瘟疫、野兽，杀害地上四分之一的人。”
+“如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~”
 ```
 
-> 如果您喜欢这个项目请在右上角点个Star，您的每一个Star都是对我们的支持和鼓励,球球惹~
-
 # 为爱发电 用心制造
-<div align=center>
-夕阳西下 灯火微亮  孩子们的嬉戏声<br><br>
 
-今天 这片土地也仍旧生生不息的证明<br>
 
-不论是下著寒冷的秋雨的日子或是耀眼动人的春天<br>
-
-直到昨天为止都是独自一人守望至今<br>
-
-跨越了无数年的四季<br>
-
-终于找到这令人疼爱的心意<br>
-
-那两道肩并肩的影子<br>
-
-是我无法取代的宝物<br>
-
-仰望着金星 让心意奔驰于此<br>
-
-落下的眼泪微微地照亮了秋月<br>
-
-与你紧紧连系，令人怀念<br>
-
-这双手掌，那声音<br>
-
-那份温暖，轻轻在耳边细语<br>
-
-我还是第一次知晓，请保佑能够幸福下去<br>
-
-让我喜极而泣，一起活下去吧<br>
-
-跨越了无数年的四季<br>
-
-只为了想与你一同欢笑<br>
-
-这场淋湿内心的雨<br>
-
-也已经不害怕了 只要与你一起的话<br>
-
-在这块温柔的土地上<br>
-
-紧抱着大家的笑容<br>
-
-从今以后<br>
-
-让我们一起点缀崭新的未来吧</div>
 # 注意事项 （以下所有内容均已不再更新，请勿下载standaio任何版本）
+~~
 > **由于版本更迭过多，若遇到代码冲突脚本错误的情况请酌情备份并删除旧文件**<br>
 > **优先使用Constructor/LanceSpooner加载自定义载具和地图**<br>
 > **无论如何，您应该优先使用原脚本中的功能而不是任何缝合脚本中复制粘贴的功能，大部分缝合限于作者的技术原因无法及时更新，所以他们通常是很老的代码或根本是一堆破烂**<br>
@@ -365,3 +318,4 @@ v25-变动内容太多
    -游戏版本1.63
    -stand版本0.90.5
 ```
+~~
