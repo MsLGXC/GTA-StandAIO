@@ -46,8 +46,6 @@
 
 <br><br><br>
 
-## 本项目在删库之后重新回归，已经停止更新，仅作纪念用途（仍然可以使用线上mod）<br>
-
 > 如果您对改善社区环境及汉化感兴趣，欢迎联系[MsLGXC/流光星辰](https://qm.qq.com/cgi-bin/qm/qr?k=ns7X57iFzOJ0r7MxpS98dWwIWW42eQ6p&noverify=0&personal_qrcode_source=4)，加入github并一起协作!<br>
 
 # 线上MOD包
