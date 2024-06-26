@@ -1,7 +1,7 @@
 <div align=center><img width="350" height="500" src="https://raw.githubusercontent.com/MsLGXC/GTA-StandAIO/main/Elaina.jpg"/>
 
 ![maven](https://img.shields.io/badge/MsLGXC-%E6%B5%81%E5%85%89%E6%98%9F%E8%BE%B0-brightgreen)
-![maven](https://img.shields.io/badge/GTA-1.68-darkgreen)
+![maven](https://img.shields.io/badge/GTA-1.68(outdated)-darkgreen)
 ![maven](https://img.shields.io/badge/Stand(outdated)-107.8-pink)
 ![maven](https://img.shields.io/badge/AIO(outdated)-v28-blue)
 ![maven](https://img.shields.io/badge/Modpack(Support_Latest)-v8-red)
