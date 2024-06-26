@@ -4,7 +4,7 @@
 ![maven](https://img.shields.io/badge/GTA-1.68(outdated)-darkgreen)
 ![maven](https://img.shields.io/badge/Stand(outdated)-107.8-pink)
 ![maven](https://img.shields.io/badge/AIO(outdated)-v28-blue)
-![maven](https://img.shields.io/badge/Modpack(Support_Latest)-v8-red)
+![maven](https://img.shields.io/badge/Modpack(outdated)-v8-red)
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
