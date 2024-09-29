@@ -5,6 +5,15 @@
 ![maven](https://img.shields.io/badge/Stand(outdated)-107.8-pink)
 ![maven](https://img.shields.io/badge/AIO(outdated)-v28-blue)
 ![maven](https://img.shields.io/badge/Modpack(outdated)-v8-red)
+
+# 公告 CockStar已更新BattleEyes反作弊 此项目将被暂停并存档
+# 此项目已完全停止更新!包括线上mod!
+# 勿下载standaio的任何版本，已经很长时间没有更新，几乎大部分内容都已不适用当前stand版本
+# 线上mod所有版本（目前仅提供v4,v7,v8)仍可正常下载安装但因为BE的添加可能已经无法在线上模式使用（没玩游戏，未知）
+# 关于v3095更新后游戏闪退等问题，请安装这个https://github.com/MsLGXC/GTA-gameconfigmp
+# 关于v8没有车身雨滴：由于疏忽不小心把文件放错位置导致没有加载-请提取您安装后最大的vehshare并将其替换掉patch2023中的那一个
+# ~~v1-v8所有版本目前均尚未有任何单独使用导致的封号报告,请确认你没有启动任何其他作弊外挂软件，菜单~~
+# ~~不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上~~(由于BE，状态未知）
   
   <h1>StandAIO</h1>
   StandAIO是GTAV Stand Mod Menu 的All In One多位一体合集  旨在建立并完善一个更好的Modder社区<br>
@@ -35,19 +44,12 @@
 
 </div>
 
-# 公告
-# 此项目已完全停止更新!包括线上mod!
-# 勿下载standaio的任何版本，已经很长时间没有更新，几乎大部分内容都已不适用当前stand版本
-# 线上mod所有版本（目前仅提供v4,v7,v8)仍可正常下载安装并游玩
-# 关于v3095更新后游戏闪退等问题，请安装这个https://github.com/MsLGXC/GTA-gameconfigmp
-# 关于v8没有车身雨滴：由于疏忽不小心把文件放错位置导致没有加载-请提取您安装后最大的vehshare并将其替换掉patch2023中的那一个
-# v1-v8所有版本目前均尚未有任何单独使用导致的封号报告,请确认你没有启动任何其他作弊外挂软件，菜单
-# 不要以讹传讹，使用外挂软件刷钱等导致封号却归于mod身上
 
 在使用我的线上模组包时不要安装其他版本的gameconfig无论他们看上去说的有多好。<br>
 使用未完全调整的gameconfig将会使得你的游戏在加载某些添加内容时崩溃。<br>
 尤其是你在中国网站看到的那些小偷和声称自己是第一个发布更新的。不要下载那些狗屎文件。<br>
-如果你安装了那些所谓的环境/上限补丁导致崩溃，请不要来我这里整天说不能用
+如果你安装了那些所谓的环境/上限补丁导致崩溃，请不要来我这里整天说不能用。<br>
+
 
 <br><br><br>
 
